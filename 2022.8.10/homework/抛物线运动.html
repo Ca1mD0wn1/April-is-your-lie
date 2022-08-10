@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 1000px;
+            height: 800px;
+            background-color: aqua;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        li {
+            list-style: none;
+        }
+
+
+        .x_unit {
+            /* left: 5%; */
+            float: left;
+            top: 49%;
+            /* position: absolute; */
+            height: 10px;
+            width: 1px;
+            background-color: black;
+            margin-left: 49px;
+            margin-top: 390px;
+        }
+
+        #moveLi {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .point {
+            width: 1px;
+            height: 1px;
+            background-color: black;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <li id="moveLi"></li>
+    </div>
+    <input type="text" id="a">
+    <!-- <input type="text" id="b"> -->
+    <input type="button" value="生成" id="create">
+    <script>
+        var main = document.querySelector(".main");
+        var btn = document.querySelector("#create");
+        var moveLi = document.querySelector("#moveLi");
+        btn.onclick = function () {
+            var a = document.querySelector("#a").value;
+            var b = 0;
+
+            if (isNaN(a) || isNaN(b)) {
+                alert("输入有误");
+                return;
+            }
+
+            parabolaMove(moveLi, Number(a), Number(b), 20);
+        }
+
+        // y 20px = 1;
+        // x 5px = 1;
+        function parabola(a, b) {
+            if (b == undefined) b = 0;
+            var y;
+            var x;
+            // y = ax^2+b
+
+            for (x = -500; x < 500; x++) {
+                y = a * x * x + b * 500;
+                // console.log(x, y, a);
+                let li1 = document.createElement("li");
+                // let li2 = document.createElement("li");
+                if ((500 + x) > 1000 || (y / 200 + 400) > 800) {
+                    continue;
+                }
+                console.log(x, y);
+                li1.style.left = 500 + x + "px";
+                li1.style.top = y / 200 + 400 + "px";
+
+                // li2.style.right = 500 + i * 5 + "px";
+                // li2.style.top = y / 25 + 400 + "px";
+
+                li1.className = "point";
+                // li2.className = "point"
+                // console.log(li);
+                main.append(li1);
+                // main.append(li2);
+            }
+        }
+
+        function parabolaMove(dom, a, b) {
+            let x = parseFloat(window.getComputedStyle(dom)["left"]);
+            let y = parseFloat(window.getComputedStyle(dom)["bottom"]);
+            maxWidth = parseFloat(window.getComputedStyle(dom.parentElement)["width"]);
+            maxHeight = parseFloat(window.getComputedStyle(dom.parentElement)["height"]);
+            console.log(x, y, maxHeight, maxHeight);
+
+            if (b == undefined) b = 0;
+
+            let myTimer = setInterval(function () {
+
+                dom.style.left = (x++) * 4 + "px";
+                dom.style.top = (y + a * x * x + b) / 100 + "px";
+                console.log(x, (a * x * x + b) / 100);
+                if (x * 4 > maxWidth || ((y + a * x * x + b) / 100) > 800) {
+                    clearInterval(myTimer);
+                    return;
+                }
+            }, 10)
+
+
+        }
+        // parabola(9, 50);
+    </script>
+</body>
+
+</html>

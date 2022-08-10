@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img01 {
+            opacity: 0;
+        }
+
+        #box01 {
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+
+        #box01 img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #box01 img:nth-child(1) {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <img id="img01" src="./img/51.jpg" />
+
+    <div id="box01">
+        <img src="./img2/1.jpg">
+        <img src="./img2/2.jpg">
+    </div>
+
+    <script src="./js/cssTools.js"></script>
+    <script src="./js/movergp.js"></script>
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let img01 = document.getElementById("img01");
+
+        let imgDoms = document.querySelectorAll("#box01 img");
+
+        btnGo.onclick = function () {
+            // movement02(img01,"opacity",0,2000);
+            // fadeOut(img01,2000);
+
+            // fadeIn(img01,2000);
+            // fadeIn(img01,2000,0.3);
+            fadeInOut(imgDoms[0], imgDoms[1], 2000);
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

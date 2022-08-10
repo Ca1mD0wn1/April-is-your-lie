@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 10px;
+            height: 40px;
+            background-color: red;
+        }
+
+        #box2{
+            position: absolute;
+            left: 400px;
+            top: 600px;
+            width: 300px;
+            height: 400px;
+            background-color: red;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <div id="box"></div>
+
+    <div id="box2"></div>
+
+    <script src="./js/cssTools.js"></script>
+    <script src="./js/movergp.js"></script>
+
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let box = document.getElementById("box");
+        let box2 = document.getElementById("box2");
+
+        btnGo.addEventListener("click", function(){
+            // movement(box,10,200,1,3,20,"width");
+            // movement(box,40,600,1,2,10,"height");            
+            // movement(box2,1,0,-1,0.01,30,"opacity");            
+            // movement(box2,600,100,-1,2,30,"top");
+
+            // movement02(box,"width",600,2000);
+            // movement02(box,"height",600,2000);
+            // movement02(box,"opacity",0.2,1000);
+
+            // movement02(box,"width",600,2000,function(){
+            //     movement02(box,"height",600,1000,function(){
+            //         movement02(box,"opacity",0.2,1000);
+            //     });
+            // });
+
+            // let iter = run();
+
+            // for(let key of iter){
+            //     console.log(key);
+            // }  
+            
+            // movement03(box,{
+            //     width:200,
+            //     height:300,
+            //     opacity:0.2
+            // },2000)
+            
+            movement03(box2,{
+                height:50,
+                left:800,
+                top:100,
+                width:600
+            },3000);
+
+        });
+
+        function* run(){
+            movement02(box,"width",600,2000);
+            yield "第一个动画完毕";
+            movement02(box,"height",600,1000);
+            yield "第二个动画完毕";
+            movement02(box,"opacity",0.2,1000);
+            yield "第三个动画完毕";
+        }
+
+    </script>
+
+</body>
+
+</html>

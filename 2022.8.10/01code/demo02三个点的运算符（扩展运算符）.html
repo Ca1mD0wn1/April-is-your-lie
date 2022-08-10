@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        // 1、数组的扩展
+        // 1)、克隆，复制数组
+        // let arr = [12,23,34];
+        // let arr2 = [...arr]; //把原数组复制了一份
+        
+        // console.log(arr2);
+        // console.log(arr === arr2);
+       
+
+        // 2）、拼接数组
+        // let arr = [12,23,34];
+        // let arr1 = [34,56,67]
+        // // let arr2 = [...arr,...arr1]; //把原数组复制了一份
+        // let arr2 = [...arr,...arr1,100,200]; //把原数组复制了一份
+        
+        // console.log(arr2);
+
+
+        // 2、json对象的扩展
+        // 1)、扩展对象（对象没有嵌套）
+        // let person = {
+        //     name:"张三疯",
+        //     sex:"女"
+        // }
+
+        // let person2 = {...person};
+
+        // console.log(person2);
+        // console.log(person===person2);
+
+
+        // 2）、扩展对象（对象中有嵌套，即：某个属性 是引用类型）
+        let person = {
+            name:"张三疯",
+            sex:"女",
+            address:{
+                province:"陕西",
+                city:"西安"
+            }
+        }
+
+        // 只能扩展一级
+        // let person2 = {...person};
+
+        // console.log(person2);
+        // console.log(person===person2);
+        // console.log(person.address === person2.address);
+
+        // 扩展两级：
+
+        // let person2 = {...person,address:{...person.address}};
+
+        // console.log(person2);
+        // console.log(person===person2);
+        // console.log(person.address === person2.address);
+
+
+        // 3、扩展运算符使用者函数的形参上，那么，形参会被处理成数组
+
+        function fn(...obj){//错误  只支持数组
+            console.log(obj);
+        }
+
+        fn({a:1,b:2});
+        
+
+    </script>
+</body>
+</html>

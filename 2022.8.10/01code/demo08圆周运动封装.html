@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            position: absolute;
+            left: 600px;
+            top: 600px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            background-color: green;
+        }
+
+        /* 圆心：  400,400 */
+        #center {
+            position: absolute;
+            left: 0px;
+            top: -400px;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: blue;
+        }
+
+        /* 球球的起始位置：400,100 */
+        #ball {
+            position: absolute;
+            left: 0px;
+            top: -100px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <div id="container">
+        <div id="center">
+            <div id="ball"></div>
+        </div>
+    </div>
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let center = document.getElementById("center");
+        let ball = document.getElementById("ball");
+        let myTimer;
+
+        btnGo.onclick = function () {
+            if (myTimer) return;
+            circleRun(center, 30, 400);
+            circleRun(ball, 10, 100);
+        }
+
+
+        // 圆周运动
+        // 参数
+        // 转圈的dom
+        // 时间间隔
+        // 半径
+        // 
+
+        function circleRun(dom, timespace, r) {
+            // 角度
+            let degree = 0;
+
+            myTimer = setInterval(function () {
+                // 一、逻辑
+                // 1、运算
+                degree = (degree + 1) % 360;
+                let hu = degree * Math.PI / 180;
+                let left1 = r * Math.sin(hu);
+                let top1 = - r * Math.cos(hu);
+
+                // 2、边界判断
+
+                // 二、外观
+                dom.style.left = left1 + "px";
+                dom.style.top = top1 + "px";
+
+            }, timespace)
+
+        }
+
+    </script>
+</body>
+
+</html>

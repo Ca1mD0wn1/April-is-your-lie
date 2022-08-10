@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        function* gFunc(){
+            yield "今天不肯埋头，明日以何抬头"; //yield：可以返回值，暂停了函数的执行。            
+            yield "今天多敲代码，明日多拿offer";
+        }
+
+        let iter = gFunc();
+
+        // let obj = iter.next();//{value:"今天不肯埋头，明日以何抬头",done:false}
+        // console.log("obj",obj);
+        // iter.next();
+
+        for(let key of iter){
+            console.log(key);
+        }
+
+
+        console.log("===========================");
+
+        let m1 = new  Map();
+        m1.set("001",{id:"001"});
+        m1.set("002",{id:"002"});
+        m1.set("003",{id:"003"});
+
+        let iterKeys = m1.keys(); //keys()其实就是生成器函数
+
+        // console.log(iterKeys.next());
+        // console.log(iterKeys.next());
+
+        for(let key of iterKeys){
+            console.log(key);
+        }
+
+
+    </script>
+</body>
+</html>

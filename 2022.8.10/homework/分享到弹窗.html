@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 50px;
+            background-color: yellowgreen;
+            position: fixed;
+            right: 0;
+            bottom: 300px;
+            white-space: nowrap;
+        }
+
+        #index {
+            list-style: none;
+            width: 0px;
+            height: 100px;
+            background-color: green;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="">分享&emsp;请问你要分享给谁呢</a>
+    </div>
+</body>
+<script>
+    // var share = document.querySelector("a");
+    var index = document.querySelector("#index");
+    var div = document.querySelector("div");
+    var myTimer;
+    window.onload = function () {
+        clearInterval(myTimer);
+
+        div.onmouseenter = function () {
+            var sum = 0;
+            var myTimer = setInterval(function () {
+                if (sum >= 100) {
+                    clearInterval(myTimer);
+                    return;
+                }
+                sum += 5;
+                div.style.width = 50 + sum + "px";
+                div.style.whiteSpace = "normal";
+            }, 10)
+            sum = 0;
+        }
+
+        div.onmouseleave = function () {
+            clearInterval(myTimer);
+
+            var sum2 = 0;
+            var myTimer = setInterval(function () {
+                sum2 += 5;
+                div.style.width = 150 - sum2 + "px";
+                div.style.whiteSpace = "";
+                console.log(sum2);
+                if (sum2 >= 100) {
+                    console.log(123);
+                    clearInterval(myTimer);
+                    return;
+                }
+            }, 10)
+
+        }
+    }
+
+
+</script>
+
+</html>

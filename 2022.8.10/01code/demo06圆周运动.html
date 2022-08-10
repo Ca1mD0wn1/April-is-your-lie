@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            /* border:1px solid black; */
+            margin: 0 auto;
+        }
+
+        /* 圆心：  400,400 */
+        #center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        /* 球球的起始位置：400,100 */
+        #ball {
+            position: absolute;
+            left: 400px;
+            top: 100px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <div id="container">
+        <div id="ball"></div>
+        <div id="center"></div>
+    </div>
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let ball = document.getElementById("ball");
+        let myTimer;
+
+        btnGo.onclick = function () {
+            if (myTimer) return;
+
+            // 角度
+            let degree = 0;
+            let baseLeft = 400;
+            let baseTop = 100;
+            let r = 300;
+
+            myTimer = setInterval(function () {
+                // 一、逻辑
+                // 1、运算
+                degree = (degree + 1) % 360;
+                let hu = degree * Math.PI / 180;
+                let left1 = baseLeft + r * Math.sin(hu);//开始的left + 半径*sin(度数)
+                let top1 = baseTop + r - r * Math.cos(hu);//
+
+                // 2、边界判断
+
+                // 二、外观
+                ball.style.left = left1 + "px";
+                ball.style.top = top1 + "px";
+
+            }, 20)
+
+        }
+
+
+    </script>
+</body>
+
+</html>

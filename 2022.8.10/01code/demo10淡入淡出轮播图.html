@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            margin: 100px auto;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        #imgbox {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        #imgbox img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+
+        #imgbox img:nth-child(1) {
+            opacity: 1;
+        }
+
+        #doubox {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            /* background-color: rgba(135, 207, 235, 0.416);             */
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+        }
+
+        #doubox li {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+
+        #doubox li:nth-child(1) {
+            background-color: red;
+        }
+
+        #leftArrow {
+            left: 0px;
+        }
+
+        #rightArrow {
+            right: 0px;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            font-size: 30px;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="imgbox">
+            <img src="./img2/1.jpg">
+            <img src="./img2/2.jpg">
+            <img src="./img2/3.jpg">
+            <img src="./img2/4.jpg">
+            <img src="./img2/5.jpg">
+            <img src="./img2/6.jpg">
+        </div>
+        <ul id="doubox">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="leftArrow" class="arrow"> &lt; </div>
+        <div id="rightArrow" class="arrow"> &gt; </div>
+    </div>
+    <script src="./js/cssTools.js"></script>
+    <script src="./js/movergp.js"></script>
+    <script>
+
+        //简单轮播图的功能：
+
+        // 1、自动播放（每隔1秒钟换一张图片）；
+        // 2、点击分页器，切换到对应的图片上
+        // 3、鼠标移入 停止播放
+        // 4、鼠标离开 继续播放
+        // 5、点击左右箭头切换对应的图片
+        // 6、点击图片跳转页面
+
+        let currIndex = 0;
+        let myTimer;
+        let imgBox = document.querySelector("#imgbox");
+        let imgDoms = document.querySelectorAll("#imgbox img");
+        let liDoms = document.querySelectorAll("#doubox li");
+        let urls = [
+            "https://www.baidu.com",
+            "https://www.1000phone.com",
+            "https://www.jd.com",
+            "https://www.taobao.com",
+            "https://www.xiaomi.com",
+            "https://www.meituan.com"
+        ];
+
+        // window.onload:页面的dom加载完毕并且dom对应的资源（如：图片）渲染完毕
+        window.onload = function () {
+            // 1、自动播放（每隔1秒钟换一张图片）；
+            autoplay();
+            // 2、点击分页器，切换到对应的图片上
+            for (let i = 0; i < liDoms.length; i++) {
+                liDoms[i].onclick = function () {
+                    goImg(i);
+                }
+            }
+            // 3、鼠标移入 停止播放
+            let container = document.getElementById("container");
+            container.onmouseenter = pause;
+            // 4、鼠标离开 继续播放
+            container.onmouseleave = autoplay;
+
+            // 5、点击左右箭头切换对应的图片
+            let leftArrow = document.getElementById("leftArrow");
+            leftArrow.onclick = function () {
+                goImg(currIndex - 1);
+            }
+            let rightArrow = document.getElementById("rightArrow");
+            rightArrow.onclick = function () {
+                goImg(currIndex + 1);
+            }
+            // 6、点击图片跳转页面
+            imgBox.onclick = goUrl;
+
+        }
+
+        function autoplay() {
+            myTimer = setInterval(function () {
+                goImg(currIndex + 1);
+            }, 2000)
+        }
+
+        function pause() {
+            window.clearInterval(myTimer);
+        }
+
+        function goImg(index) {
+            // 一、逻辑
+            // 1、计算
+            let preIndex = currIndex;//前一张的下标
+            currIndex = index;
+
+            // 2、边界判断
+            if (currIndex > 5) {
+                currIndex = 0;
+            } else if (currIndex < 0) {
+                currIndex = 5;
+            }
+
+            // 二、外观
+            // 1、换图片
+            // imgDoms[preIndex].style.zIndex = 1;
+            // imgDoms[currIndex].style.zIndex = 2;
+
+            fadeInOut(imgDoms[currIndex], imgDoms[preIndex], 500);
+
+            // 2、换豆豆
+            liDoms[preIndex].style.backgroundColor = "pink";
+            liDoms[currIndex].style.backgroundColor = "red";
+
+        }
+
+        function goUrl() {
+            location.href = urls[currIndex];
+        }
+
+    </script>
+</body>
+
+</html>

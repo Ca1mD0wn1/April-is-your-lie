@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            margin: 100px auto;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        #imgbox {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #imgbox img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 400px;
+        }
+
+        #imgbox img:nth-child(1) {
+            left: 0px;
+        }
+
+        #doubox {
+            position: absolute;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            /* background-color: rgba(135, 207, 235, 0.416);             */
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 999;
+        }
+
+        #doubox li {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+
+        #doubox li:nth-child(1) {
+            background-color: red;
+        }
+
+        #leftArrow {
+            left: 0px;
+        }
+
+        #rightArrow {
+            right: 0px;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 50px;
+            height: 40px;
+            font-size: 30px;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="imgbox">
+            <img src="images/image1.jpg">
+            <img src="images/image2.jpg">
+            <img src="images/image3.jpg">
+            <img src="images/image4.jpg">
+            <img src="images/image5.jpg">
+            <img src="images/image6.jpg">
+        </div>
+        <ul id="doubox">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div id="leftArrow" class="arrow"> &lt; </div>
+        <div id="rightArrow" class="arrow"> &gt; </div>
+    </div>
+    <script>
+        let currIndex = 0;
+        let myTimer;
+        let imgBox = document.querySelector("#imgbox");
+        let imgDoms = document.querySelectorAll("#imgbox img");
+        let liDoms = document.querySelectorAll("#doubox li");
+        let urls = [
+            "https://www.baidu.com",
+            "https://www.1000phone.com",
+            "https://www.jd.com",
+            "https://www.taobao.com",
+            "https://www.xiaomi.com",
+            "https://www.meituan.com"
+        ];
+        window.onload = function () {
+            autoplay();
+
+            for (let i = 0; i < liDoms.length; i++) {
+                liDoms[i].onclick = function () {
+                    goImg(i);
+                }
+            }
+
+            let container = document.getElementById("container");
+            container.onmouseenter = pause;
+            container.onmouseleave = autoplay;
+
+            let leftArrow = document.getElementById("leftArrow");
+            leftArrow.onclick = function () {
+                goImg(currIndex - 1);
+            }
+            let rightArrow = document.getElementById("rightArrow");
+            rightArrow.onclick = function () {
+                goImg(currIndex + 1);
+            }
+
+        }
+        function goImg(index) {//去Index张图片
+            let preIndex = currIndex;
+            currIndex = index;
+
+            if (currIndex > 5) {
+                currIndex = 0;
+            } else if (currIndex < 0) {
+                currIndex = 5;
+            }
+            slideInOut(imgDoms[currIndex], imgDoms[preIndex], 500, 400);
+
+            //按钮颜色
+            liDoms[preIndex].style.backgroundColor = "pink";
+            liDoms[currIndex].style.backgroundColor = "red";
+
+
+        }
+        // domIn 进入元素  domOut 滑出元素 timeLong 花费时间 width 图片宽度
+        function slideInOut(domIn, domOut, timeLong, width) {//两个元素的滑入滑出
+            let left = 0;
+            let timeSpace = 5;
+            let stepCount = timeLong / timeSpace;
+            let step = width / stepCount;
+
+            let myTimer = setInterval(function () {
+                left -= step;
+                if (left <= -width) {
+                    left = -width;
+                    clearInterval(myTimer);
+                }
+                domOut.style.left = left + "px";
+                domIn.style.left = (left + width) + "px";
+
+
+            }, timeSpace)
+        }
+        function autoplay() {//自动播放
+            myTimer = setInterval(function () {
+                goImg(currIndex + 1);
+            }, 2000)
+        }
+
+        function pause() {//暂停
+            window.clearInterval(myTimer);
+        }
+    </script>
+</body>
+
+</html>
