@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //返回新数组的长度
+        Array.prototype.myPush = function (...nihao) {
+            for (let i = 0; i < nihao.length; i++) {
+                this[this.length] = nihao[i];
+            }
+            return this.length;
+        }
+        Array.prototype.myPop = function () {
+            if (this.length == 0) {
+                return;
+            }
+            let item = this[this.length - 1]
+            this.length = this.length - 1;
+            return item;
+        }
+        Array.prototype.myUnshift = function () {
+            for (i = this.length - 1; i >= 0; i--) {
+                this[i + arguments.length] = this[i]
+            }
+            for (i = 0; i < arguments.length; i++) {
+                this[i] = arguments[i];
+            }
+            return this.length;
+        }
+        Array.prototype.myshift = function () {
+            if (this.length == 0) {
+                return;
+            }
+            var item = this[0];
+            for (let i = 0; i < this.length - 1; i++) {
+                this[i] = this[i + 1]
+            }
+            this.length--;
+            return item;
+        }
+        Array.prototype.mySlice = function (begin, end) {
+            if (end == undefined || end > this.length) {
+                end = this.length;
+            } else if (end < 0) {
+                end = this.length + end;
+            }
+            if (begin == undefined || begin < -this.length) {
+                begin = 0;
+            } else if (begin < 0) {
+                begin = this.length + begin;
+            }
+            if (begin >= end) {
+                return [];
+            }
+            var newArr = []
+            for (var i = begin; i < end; i++) {
+                newArr.myPush(this[i]);
+            }
+            return newArr;
+        }
+        Array.prototype.myConcat = function () {
+            var newArr = [];
+            for (var i = 0; i < this.length; i++) {
+                newArr.myPush(this[i]);
+            }
+            for (var i = 0; i < arguments.length; i++) {
+                if (Array.isArray(arguments[i])) {
+                    newArr.myPush(arguments[i][j]);
+                } else {
+                    newArr.myPush(arguments[i]);
+                }
+            }
+            return newArr;
+        }
+        Array.prototype.mySplice = function (start, len, ...item) {
+            if (start < 0) {
+                start = this.length + start;
+            }
+
+            if (len == undefined) {
+                len = this.length - start;
+            }
+
+            //删除
+            var result = [];
+            for (var i = start; i < start + len; i++) {
+                result.push(this[i]);
+            }
+
+            for (var i = start + len; i < this.length; i++) {
+                this[i - len] = this[i];
+            }
+            this.length -= len;
+
+            //添加
+            for (var i = this.length - 1; i >= start; i--) {
+                this[i + item.length] = thsi[i];
+            }
+            for (var i = 0; i < item.length; i++) {
+                this[start + i] = item[i];
+            }
+            return result;
+        }
+        Array.prototype.myJoin = function (str) {
+            // 参数
+            // str 可选
+            // 指定一个字符串来分隔数组的每个元素。如果需要，将分隔符转换为字符串。
+            // 如果缺省该值，数组元素用逗号（,）分隔。如果str是空字符串 ("")，则所有元素之间都没有任何字符。
+            // 返回值
+            // 一个所有数组元素连接的字符串。如果 arr.length 为 0，则返回空字符串。
+            // 描述
+            // 所有的数组元素被转换成字符串，再用一个分隔符将这些字符串连接起来。
+            var str1 = '';
+            if (this.length == 0) {
+                return '';
+            }
+            if (str == undefined) {
+                str = ',';
+            }
+            for (var i = 0; i < this.length; i++) {
+                str1 = str1 + this[i] + str;
+            }
+            str1 = str1.slice(0, str1.length - 1)
+            return str1;
+        }
+        // var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        // console.log(testArr.join("?"));
+        // console.log(testArr.myJoin("?"));
+
+        Array.prototype.myAt = function (index) {
+            // 参数
+            // index
+            // 要返回的数组元素的索引（位置）。当传递负数时，支持从数组末端开始的相对索引；也就是说，如果使用负数，返回的元素将从数组的末端开始倒数。
+            // 返回值
+            // 匹配给定索引的数组中的元素。如果找不到指定的索引，则返回undefined。
+            if (index < 0) {
+                index = this.length + index;
+            }
+            return (this[index]);
+
+        }
+        // var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        // console.log(testArr.myAt(3));
+        // console.log(testArr.at(3));
+        Array.prototype.myFill = function (value, start, end) {
+            // value
+            // 用来填充数组元素的值。
+            // start 可选
+            //  起始索引，默认值为 0。
+            // end 可选
+            // 终止索引，默认值为 this.length。
+            // 返回值
+            // 修改后的数组。
+            start = parseInt(start);
+            if (start == undefined || isNaN(start)) {
+                start = 0;
+            }
+            if (start < 0) {
+                start = this.length + start;
+            }
+            if (end == undefined) {
+                end = this.length;
+            } else {
+                end = parseInt(end)
+            }
+            if (end < 0) {
+                end = this.length + end;
+            }
+            for (i = start; i < end; i++) {
+                this[i] = value;
+            }
+            return this;
+        }
+        // var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        // var testArr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+        // console.log(testArr.fill("测试", "a", 5));
+        // console.log(testArr2.myFill("测试", "A", 5));
+
+        Array.prototype.myIndexOf = function (value, fromIndex) {
+            // indexOf()方法返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+            // 开始查找的位置。如果该索引值大于或等于数组长度，意味着不会在数组里查找，返回 - 1。
+            // 如果参数中提供的索引值是一个负值，则将其作为数组末尾的一个抵消，即 - 1 表示从最后一个元素开始查找
+            // 首个被找到的元素在数组中的索引位置; 若没有找到则返回 -1
+
+            if (fromIndex == undefined) {
+                fromIndex = 0;
+            }
+            if (fromIndex < 0) {
+                fromIndex = this.length + fromIndex;
+            }
+            for (var i = fromIndex; i < this.length; i++) {
+                if (this[i] == value) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        // var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 10, 11, 12, 13];
+        // var testArr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 10, 11, 12, 13];
+        // console.log(testArr.indexOf(3, 1));
+        // console.log(testArr2.myIndexOf(3, 1));
+        Array.prototype.myLastIndexOf = function (value, fromIndex) {
+            // lastIndexOf() 方法返回指定元素（也即有效的 JavaScript 值或变量）在数组中的最后一个的索引，如果不存在则返回 -1。
+            // 从数组的后面向前查找，从 fromIndex 处开始。
+            // 从此位置开始逆向查找。默认为数组的长度减 1(arr.length - 1)，即整个数组都被查找。
+            // 如果该值大于或等于数组的长度，则整个数组会被查找。
+            // 如果为负值，将其视为从数组末尾向前的偏移。即使该值为负，数组仍然会被从后向前查找。
+            // 如果该值为负时，其绝对值大于数组长度，则方法返回 - 1，即数组不会被查找。
+            if (fromIndex == undefined) {
+                fromIndex = this.length;
+            }
+            if (fromIndex < 0) {
+                fromIndex = this.length + fromIndex;
+            } else {
+                fromIndex = this.length;
+            }
+            for (var i = fromIndex; i > 0; i--) {
+                if (this[i] == value) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        // var testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 3, 10, 11, 12, 13];
+        // console.log(testArr.lastIndexOf(3, 100));
+        // console.log(testArr.myLastIndexOf(3, 100));
+    </script>
+</body>
+
+</html>

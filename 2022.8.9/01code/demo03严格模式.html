@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="username"><span></span>
+
+    <script>
+        "use strict";
+        // 一、js的不严谨的体现
+        fn01();
+        // fn02();
+        function fn01() {
+            var temp = "hello";//不用var声明变量，照样可以使用（赋值）；默认是按照全局变量处理的。
+            console.log("fn01",temp);
+        }
+
+        // function fn02(){
+        //     console.log("fn02",temp);
+        // }
+
+    </script>
+    <script src="./js/01.js"></script>
+    <script src="./js/02.js"></script>
+    <script>
+        // fn0101();
+        fn0201();
+    </script>
+    
+</body>
+
+</html>

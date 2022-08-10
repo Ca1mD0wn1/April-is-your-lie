@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <ul id="box1">
+        <li>第一个li</li>
+        <li>第二个li</li>
+        <li>
+            <p>我是个p</p>
+        </li>
+        <li>
+            <img src="./img/1.jpg" />
+        </li>
+    </ul>
+    <script>
+
+        var ord = 5;
+
+        function fn01() {
+            var boxDom1 = document.getElementById("box1");
+
+            // 1、创建并添加
+            /*
+            var liDomNew01 = document.createElement("li");
+            // liDomNew01.innerHTML ="我是新的li"+ ord++;
+            var textDom = document.createTextNode("我是新的li"+ ord++);
+            liDomNew01.appendChild(textDom);
+
+            boxDom1.appendChild(liDomNew01);
+            */
+
+            // var liDomNew01 = document.createElement("li");
+            // liDomNew01.innerHTML="我在美女的上面";
+            // boxDom1.insertBefore(liDomNew01,boxDom1.lastElementChild)
+
+            // 2、删除
+            // if(confirm("亲，你真的要删除吗？")){
+            //     boxDom1.removeChild(boxDom1.lastElementChild);
+            // }
+
+            // boxDom1.lastElementChild.remove();
+            
+            // 3、
+            var liDomNew01 = document.createElement("li");
+            liDomNew01.innerHTML="我要替换美女";
+            boxDom1.replaceChild(liDomNew01,boxDom1.lastElementChild);
+
+        }
+
+
+    </script>
+</body>
+
+</html>
+
+

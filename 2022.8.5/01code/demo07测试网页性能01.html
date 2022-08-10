@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #box {
+            width: 600px;
+            height: 600px;
+            border: 1p solid red;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #box li {
+            position: absolute;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: url(img/1.jpg);
+            background-size: 600px 600px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="button" value="测试01" onclick="initUI01()">
+    <ul id="box">
+
+    </ul>
+
+    <script>
+
+        // 
+        var rowCount = 4;
+        var cellHeight = 600 / rowCount;
+        var colCount = 5;
+        var cellWidth = 600 / colCount;
+
+
+        var ulDom = document.getElementById("box");
+
+        function initUI01() {
+            console.time("aaa");
+            var htmlStr = "";
+            for (var i = 0; i < rowCount; i++) {
+                for (var j = 0; j < colCount; j++) {
+                    htmlStr += `
+                        <li style="
+                                    width: ${cellWidth}px;
+                                    height: ${cellHeight}px;
+                                    left:${j * cellWidth}px;
+                                    top: ${i * cellHeight}px;
+                                    background-position: -${j * cellWidth}px -${i * cellHeight}px;
+                         "></li>
+                    `
+                }
+            }
+            ulDom.innerHTML = htmlStr;
+            console.timeEnd("aaa");
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

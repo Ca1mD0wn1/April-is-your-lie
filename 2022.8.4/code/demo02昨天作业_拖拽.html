@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            position: absolute;
+            left:10px;
+            top:10px;
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body style="height: 2000px;">
+
+    <div id="box">
+    </div>
+    
+    <script>
+        var box = document.getElementById("box");
+
+        box.onmousedown = function(event){
+            var e = event || window.event;
+
+            var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+
+            document.onmousemove = function(event){
+                var e = event || window.event;
+
+                // 计算 盒子的left和top
+                var left1 = e.pageX - offsetX ;
+                var top1 = e.pageY - offsetY ;
+
+                // 改变盒子的left和top
+                box.style.left = left1 +"px";
+                box.style.top = top1 +"px";
+
+            }
+        }
+
+        document.onmouseup = function(){
+            document.onmousemove=null;
+        }
+
+
+
+    </script>
+</body>
+</html>

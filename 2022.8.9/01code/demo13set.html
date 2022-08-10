@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 
+        console.dir(Set);//add()
+
+        // 1、定义一个set集合的变量
+
+        let s1 = new Set([1,2,3,2,1,5,6,7]); //new Array(1,2,32,2,3,2);
+        console.log(s1);
+        console.log(s1.size);//6
+
+        // 2、遍历set中的元素
+        // console.log("===============");
+
+        // for(let item of s1){
+        //     console.log(item);
+        // }
+
+        // 3、添加一个元素
+        
+        // s1.add(12);
+        // s1.add(2).add(100).add(200);
+
+
+        // 4、删除
+        // s1.delete(2);
+
+
+        // 5、判断存在性
+        // console.log(s1.has(3));
+
+        // 6、清除：
+        // s1.clear();
+        
+
+        // let result =  s1.entries();
+        // console.log(result);
+
+        // console.log(s1.keys()); 
+        // console.log(s1.values()); 
+        
+        // s1.forEach(function(v1,v2,s){
+        //     console.log(v1,v2,s);
+        // })
+
+        console.log("===============");
+
+        for(let item of s1){
+            console.log(item);
+        }
+        
+    </script>
+
+
+</body>
+
+</html>

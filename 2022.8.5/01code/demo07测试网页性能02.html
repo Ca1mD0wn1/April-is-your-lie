@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #box {
+            width: 600px;
+            height: 600px;
+            border: 1p solid red;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #box li {
+            position: absolute;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: url(img/1.jpg);
+            background-size: 600px 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="测试01" onclick="initUI01()">
+    <input type="button" value="测试02" onclick="initUI02()">
+    <ul id="box">
+
+    </ul>
+
+    <script>
+
+        // 
+        var rowCount = 4;
+        var cellHeight = 600 / rowCount;
+        var colCount = 5;
+        var cellWidth = 600 / colCount;
+
+        var ulDom = document.getElementById("box");
+
+
+        function initUI02() {
+            console.time("aaa");
+
+            for (var i = 0; i < rowCount; i++) {
+                for (var j = 0; j < colCount; j++) {
+                    var liDom = document.createElement("li");
+                    // ulDom.appendChild(liDom);
+                    ulDom.insertBefore(liDom, ulDom.lastElementChild);
+                    liDom.style.width = `${cellWidth}px`;
+                    liDom.style.height = `${cellHeight}px`;
+                    liDom.style.left = `${j * cellWidth}px`;
+                    liDom.style.top = `${i * cellHeight}px`;
+                    liDom.style.backgroundPosition = `-${j * cellWidth}px -${i * cellHeight}px`;
+                }
+            }
+
+            console.timeEnd("aaa");
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

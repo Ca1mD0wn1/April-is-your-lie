@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <hr/>
+    请输入您的身高（厘米）：
+    <input id="height" type="text" /><br/>
+    请输入您的体重（斤）：
+    <input id="weight" type="text" /><br/>
+    <input type="button" value="bmi" onclick="bmi()"><br/>
+    结果：<input id="bmiResult" type="text" /><br/>
+
+
+    <script>
+       
+
+        function bmi(){
+            // 1、输入
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            // 2、逻辑
+            // 根据公式（身高-108）*2=体重，可以有10斤左右的浮动
+
+            var standardWeight = (height-108)*2;
+
+            // if(weight<standardWeight-10){
+
+            // }else if(weight>standardWeight+10){
+
+            // }else{
+
+            // }
+
+            if(Math.abs(weight-standardWeight)<=10){
+                
+
+            }else{
+
+
+            }
+          
+            // 3、输出
+            document.getElementById("bmiResult").value = str;
+
+        }
+        
+    </script>
+</body>
+</html>

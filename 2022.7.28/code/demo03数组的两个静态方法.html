@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    
+    <script>
+        function fn01(){
+            // console.dir(Array);
+
+            //一、 Array.isArray() ：判断一个变量（数据）是不是数组
+
+            // var arr = [1,2,3];            
+            // console.log(Array.isArray(arr));
+            
+            
+            fn02("ab",2,5);
+
+        }
+
+        function fn02(){
+            //二、 Array.from()： 把伪数组转成真正的数组。 
+            //    伪数组：有length属性，也能用方括号的方式访问它的元素。
+            
+            console.log(arguments);//arguments:就是当前函数接收到的实参。是个伪数组；
+            console.log(arguments.length);
+            for(var i=0;i<arguments.length;i++){
+                console.log(arguments[i]);
+            }
+
+            console.log(Array.isArray(arguments));
+
+            var shiCans = Array.from(arguments);
+            console.log("shiCans",shiCans);
+            console.log("Array.isArray(shiCans)",Array.isArray(shiCans));
+
+            
+        }
+
+    </script>
+</body>
+</html>

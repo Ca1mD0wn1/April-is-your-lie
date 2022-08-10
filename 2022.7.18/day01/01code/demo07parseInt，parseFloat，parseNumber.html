@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+    //    显式转换
+        // parseInt();
+        // 从第一个字符开始进行转换，碰到第一个不合法的整数字符（如：字母，小数点），就停止转换。
+        // 如果第一个字符就是不合法的整数字符，那么，结果是NaN。NaN也是number类型
+
+        // parseFloat();
+        // 从第一个字符开始进行转换，碰到第一个不合法的小数字符（如：字母，第二个小数点），就停止转换。
+        // 如果第一个字符就是不合法的小数字符，那么，结果是NaN。NaN也是number类型
+
+        // Number();
+        // 把其它类型转成数字。
+        // 看的是整体，如果有不合法的数字字符，那么就是NaN
+
+        // 1、parseInt();
+        // var str1 = "12";
+        // console.log(parseInt(str1));
+        // str1 = "12a";
+        // console.log(parseInt(str1));        
+        // str1 = "12.5";
+        // console.log(parseInt(str1));
+        // str1 = "12a23"
+        // console.log(parseInt(str1));
+        // str1 = "a12"
+        // console.log(parseInt(str1));//NaN:not a number;  是 number类型。
+        // console.log(typeof parseInt(str1));//number类型
+
+
+        // 2、parseFloat();
+        
+        // var str1 = "12";
+        // console.log(parseFloat(str1));
+        // str1 = "12.5";
+        // console.log(parseFloat(str1));
+        // str1 = "12.5.6";
+        // console.log(parseFloat(str1));
+        // str1 = "12.5a";
+        // console.log(parseFloat(str1));
+        // str1 = "a12.5a";
+        // console.log(parseFloat(str1));
+
+        // 3、parseNumber();
+        
+        // var str1 = "12";
+        // console.log(Number(str1));
+        // str1 = "12.5";
+        // console.log(Number(str1));
+        // str1 = "12.5.6";
+        // console.log(Number(str1));
+        // str1 = "12.5a";
+        // console.log(Number(str1));
+        // str1 = "a12.5a";
+        // console.log(Number(str1));
+
+
+
+        console.log(Number(true));//1
+        console.log(Number(false));//0
+
+        
+    </script>
+</body>
+</html>

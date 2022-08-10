@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    用户名：<input id="username" type="text"  /><br/>
+    <input type="button" value="测试01" onclick="fn()" />
+    
+    <script>
+        // document:就是文档（网页）
+        // getElementById(); 通过id获取元素（html标签）
+        var txt = document.getElementById("username");//txt就是 文本框，在js中操作txt，就是在操作文本框
+        txt.value = "hi";
+
+
+        function fn(){
+            console.log(txt.value);//hi
+            console.log("hi,打我干嘛1");
+            console.log("hi,打我干嘛2");
+            console.log("hi,打我干嘛3");
+            txt.value = "依然打我"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+
+    <script>
+        /*
+        function fn01(){
+            var arr =[
+                [1,2,3],
+                [4,5,6],
+                [7,8,9,10]
+            ]
+
+            // var t = arr[1];
+            // console.log(t[1]);//5
+
+            // console.log(arr[1][1]);//5
+            // console.log(arr[2][1]);//8
+            // console.log(arr[2][3]);//10
+        
+            // 遍历二维数组
+            // for(var i=0;i<arr.length;i++){
+            //     // arr[i]
+            //     for(var j=0;j<arr[i].length;j++){
+            //         document.write(arr[i][j]+"-");
+            //     }
+            //     document.write("<br/>");
+            // }
+
+            
+
+            
+
+        }
+        */
+
+        // //示例： 通过循环为一个5X5的二维数组a赋值1到25，然后输出该数组的左下半三角
+
+        function fn01(){
+            var arr = [];
+
+            // 1,2,3,4,5
+            // 6,  7,8,9,10,
+            // 11,12,13,14,15
+            // 16,17,18,19,20,
+
+            // 1、通过循环为一个5X5的二维数组a赋值1到25，
+            for(var i=0;i<5;i++){
+                var temps = [];
+                arr.push(temps);
+                for(var j=0;j<5;j++){
+                    arr[i].push( (i*5) + j+1);
+                }
+            }
+
+            // console.table(arr);
+
+            // 2、输出该数组的左下半三角
+            for(var i=0;i<arr.length;i++){
+
+                for(var j=0;j<=i;j++){
+                    document.write(arr[i][j]+" ");
+                }
+
+                document.write("<br/>")
+
+            }
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .jindutiao {
+            width: 1000px;
+            height: 20px;
+            border: 1px solid red;
+        }
+
+        .jindutiao div {
+            width: 80%;
+            height: 80%;
+            margin: 2px 0 2px 0;
+            background-color: red;
+
+        }
+
+        img {
+            height: 19%;
+            width: 19%;
+        }
+
+        body {
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .nav {
+            list-style: none;
+            float: left;
+            height: 50px;
+            width: 100px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 50px;
+            background-color: #fff;
+
+        }
+
+        #nav {
+            width: 510px;
+
+        }
+
+        .item {
+            position: absolute;
+            width: 510px;
+            height: 300px;
+            left: 0;
+            top: 50px;
+            display: none;
+            font-size: 50px;
+            color: red;
+        }
+
+        #tab {
+            position: relative;
+        }
+
+        td {
+            width: 200px;
+            height: 50px;
+        }
+
+        #yanchi {
+            position: relative;
+            width: 400px;
+
+        }
+
+
+        #yanchi div {
+            /* display: none; */
+            overflow: hidden;
+            position: absolute;
+            left: 0;
+            top: -200px;
+            width: 200px;
+            height: 0px;
+            background-color: white;
+            font-size: 20px;
+            text-align: center;
+            line-height: 200px;
+            /* transition: all 1s ; */
+        }
+
+        #yanchi span {
+            position: absolute;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            font-size: 15px;
+            text-align: center;
+            line-height: 100px;
+            background-color: white;
+
+        }
+    </style>
+</head>
+
+<body style="background: url('100006639_p0.png');">
+    <div class=" jindutiao" style="width: 1000px;">
+        <div>
+        </div>
+    </div>
+    <input type="button" value="绑定" class="bind">
+    <input type="button" value="解绑" class="unbind">
+
+
+    <div id="change">
+        <img src="99895450_p0.png" alt="">
+        <img src="99927585_p0.png" alt="">
+        <img src="99987663_p0.png" alt="">
+        <img src="99996736_p0.jpg" alt="">
+        <img src="100006639_p0.png" alt="">0
+    </div>
+
+
+    <input type="checkbox" name="" id="login" value="">自动登录
+    <hr><br>
+
+    <img src="99895450_p0.png" alt="123" id="img1"><button>下一张图片</button>
+
+
+    <div id="tab">
+        <div id="nav">
+            <li style="background-color: red;" class="nav">导航1</li>
+            <li class="nav">导航2</li>
+            <li class="nav">导航3</li>
+            <li class="nav">导航4</li>
+            <li class="nav">导航5</li>
+        </div>
+        <div class="item" style="display:block ;">导航1的内容</div>
+        <div class="item">导航2的内容</div>
+        <div class="item">导航3的内容</div>
+        <div class="item">导航4的内容</div>
+        <div class="item">导航5的内容</div>
+
+
+
+
+    </div>
+
+    <table border="1" cellspacing="0" cellpadding="">
+        <thead>
+            <th>标题1</th>
+            <th>标题2</th>
+            <th>标题3</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <!-- 延迟提示框 -->
+
+    <div id="yanchi">
+        <div>这是提示内容</div>
+        <span>鼠标悬浮到此</span>
+    </div>
+    <input type="text" id="password" /><span id="paswd">输入你的密码</span>
+
+
+
+    <div id="year">
+        <li class="year">1</li>
+        <li class="year">2</li>
+        <li class="year">3</li>
+        <li class="year">4</li>
+        <li class="year">5</li>
+        <li class="year">6</li>
+        <li class="year">7</li>
+        <li class="year">8</li>
+        <li class="year">9</li>
+        <li class="year">10</li>
+        <li class="year">11</li>
+        <li class="year">12</li>
+    </div>
+
+
+    <script>
+        // 1，进度条
+        var jindu = document.querySelector(".jindutiao").style.width;
+        // console.log(jindu);
+        var jindutiao = document.querySelector('.jindutiao div');
+        function move(e) {
+            if (e.pageX - 5 > parseInt(jindu)) {
+                jindutiao.style.width = jindu + "px";
+            } else {
+                jindutiao.style.width = e.pageX - 7 + "px";
+            }
+        }
+        // console.log(jindutiao);
+        var button1 = document.querySelector(".bind");
+        var button2 = document.querySelector(".unbind");
+        button1.addEventListener("click", function () {
+            let body = document.querySelector(".jindutiao");
+            body.addEventListener("mousemove", move)
+        })
+        button2.onclick = function () {
+            // console.log(2);
+            let body = document.querySelector(".jindutiao");
+            // body.onclick = function () { alert(123) }
+            body.removeEventListener("mousemove", move)
+            // console.log(body);
+        }
+
+
+        // })
+
+
+        // 2，隔行变色
+
+        var trs = document.querySelectorAll("tr");
+        // console.log(trs);
+        for (let i = 1; i < trs.length; i++) {
+            trs[i].onmouseover = function () {
+                // console.log(123);
+                for (let j = 1; j < trs.length; j++) {
+                    trs[j].style.backgroundColor = "transparent";
+                    // console.log(trs[j]);
+                }
+                trs[i].style.backgroundColor = "red";
+            }
+        }
+
+
+        // 3，网页换肤
+        var imgs = document.querySelectorAll("img");
+        // console.log(imgs);
+        for (let i = 0; i < imgs.length; i++) {
+            imgs[i].onclick = function () {
+                // console.log(this.src);
+                const body = document.querySelector("body");
+                body.style.background = "url(" + this.src + ")";
+            }
+
+        }
+
+
+        // 4，简易年历
+
+
+
+
+        // 5，自动登录勾选（onmouseover，onmouseout）
+        const login = document.querySelector("#login");
+        login.ariaDisabled = false;
+        login.addEventListener("mouseover", checked2)
+
+        login.addEventListener("mouseout", checked1)
+
+        function checked1() {
+
+            this.checked = false;
+        }
+        function checked2() {
+            this.checked = true;
+
+        }
+        login.addEventListener("click", function () {
+
+            if (this.checked) {
+                login.removeEventListener("mouseout", checked1);
+                login.removeEventListener("mouseover", checked2)
+                this.checked = true;
+            } else {
+                this.checked = false;
+
+                login.addEventListener("mouseover", checked2);
+                login.addEventListener("mouseout", checked1);
+            }
+        })
+
+
+        // 6，点击按钮换图片
+        i = 1;
+        var pictures = ["99895450_p0.png", "99927585_p0.png", "99987663_p0.png", "99996736_p0.jpg", "100006639_p0.png"];
+        var picture = document.querySelector("#img1");
+
+
+        picture.onclick = "";
+        // console.log(picture);
+        const btn = document.querySelector("button");
+        btn.addEventListener("click", function () {
+            // alert(1);
+            picture.src = pictures[i % 5];
+            i++;
+            // console.log(i);
+        })
+        // 7，tab切换
+
+        const items = document.querySelectorAll(".item")
+        const lis = document.querySelectorAll(".nav");
+
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].setAttribute("data-index", i);
+            lis[i].addEventListener("click", function () {
+                for (let j = 0; j < lis.length; j++) {
+                    // console.log(1);
+                    lis[j].style.backgroundColor = "#fff";
+                    items[j].style.display = "none";
+                }
+                // console.log(i);
+
+
+                items[this.getAttribute("data-index")].style.display = "block";
+
+                this.style.backgroundColor = "red";
+            })
+        }
+        // 8，扩展：qq延迟提示框
+        const yanchi = document.querySelector("#yanchi");
+        const tishi = document.querySelector("#yanchi>div");
+        const xuanfu = document.querySelector("#yanchi>span");
+
+        xuanfu.addEventListener("mouseover", function () {
+
+            self = setTimeout(function () {
+
+                tishi.style.height = "200px";
+                tishi.style.transition = 'all 0.5s linear';
+
+            }, 500)
+        })
+        xuanfu.addEventListener("mouseout", function () {
+            tishi.style.height = "0px";
+            tishi.style.transition = 'none';
+
+        })
+
+        // 9，密码强度（onblur,oninput或者用onkeyup，onkeydown）
+        const pwd = document.querySelector("#password");
+        pwd.oninput = function () {
+            let level = test(this.value);
+            switch (level) {
+                case 0: str = "密码不符合长度规范！"; break;
+                case 1: str = "密码一般般"; break;
+                case 2: str = "密码还行！"; break;
+                case 3: str = "密码有点强！"; break;
+                case 4: str = "没人猜得到！！"; break;
+                default: ;
+            }
+            console.log(level);
+            document.querySelector("#paswd").innerHTML = str;
+        }
+
+
+
+        function test(sValue) {
+            let level = 0;
+            if (sValue.length < 6) return level;
+            if (/\d/.test(sValue)) level++; //数字
+            if (/[a-z]/.test(sValue)) level++; //小写
+            if (/[A-Z]/.test(sValue)) level++; //大写  
+            if (/\W/.test(sValue)) level++; //特殊字符
+            return level;
+        }
+    </script>
+</body>
+
+</html>

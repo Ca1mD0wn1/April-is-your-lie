@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text"  id="username"><span></span>
+    
+    <script>
+        
+        // 8-16数字，大小写字母；不能以数字开头，不能纯数字，不能纯小写，不能纯大写。
+        // 非数字开头的8-16位的由数字，大小写字母组合的字符串。
+        // 
+        var reg = /^(?=\D+\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,16}$/;
+
+
+        //  /^(?=\D+\d)/ 空字符后面 首字符是若干个非数字紧跟一个数字
+        // console.log("2hello1".replace(/^(?=\D+\d)/,"0"));
+        
+        //  /(?=.*[a-z])/ 空字符后面 必须含有小写字母
+
+        // console.log("hello1".replace(/^(?=.*[a-z])/,"0"));
+
+        // 空字符的后面，要有大写字母，小写字母，若干个非数字字符后面跟一个数字（数字不能开头）
+
+        // console.log("hello1123A".match(/^(?=\D+\d)(?=.*[a-z])(?=.*[A-Z])/));
+
+
+        username.oninput = function(){
+            var reg = /^(?=\D+\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,16}$/;
+
+            this.nextElementSibling.innerHTML =  reg.test(this.value)?"√":"×";
+        }
+
+
+        
+
+
+    </script>
+</body>
+</html>

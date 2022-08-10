@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01() {
+
+            var reg = /st.dy/ig;
+
+            // 属性：
+            // console.dir(RegExp);
+            // console.log(reg.global);//true
+            // console.log(reg.ignoreCase);//true
+            // console.log(reg.multiline);//false
+
+            // 方法：
+            // test(字符串): 验证一个字符串是否符合正则的规则；
+
+            //   console.log(reg.test("abc"));//false;
+            //  console.log(reg.test("stadystudy"));//true;        
+            //  console.log(reg.test("stadystudy"));//true;
+            //  console.log(reg.test("stadystudy"));//false;
+
+
+            // exec(字符串)：
+
+            // console.log(reg.exec("stadystudy"));//匹配的下标 0 和匹配到的内容
+            // console.log(reg.exec("stadystudy"));//匹配的下标 5 和匹配到的内容
+            // console.log(reg.exec("studystudy"));//null
+
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

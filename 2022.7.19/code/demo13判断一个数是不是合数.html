@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    请输入一个数字:
+    <input id="num" type="text" /><br/>
+    <input type="button" value="是不是合数" onclick="fn01()"><br/>
+    结果：<input id="result" type="text" /><br/>
+    <hr/>
+
+    <script>
+        function fn01(){
+            // 判断一个数是不是偶数
+            // 1、获取用户的输入
+            var num = parseInt(document.getElementById("num").value);
+
+            // 2、判断（逻辑）
+            // 合数：（除了1和它本身之外，还有数能够整除它）；
+            var isHe = false;
+            // for(var i=2;i<=num-1;i++){
+            //     if(num%i==0){
+            //         isHe = true;
+            //         break;
+            //     }
+            // }
+
+            for(var i=2;i<=Math.sqrt(num);i++){
+                if(num%i==0){
+                    isHe = true;
+                    break;
+                }
+            }
+
+            // 3、输出
+            document.getElementById("result").value = isHe?"是合数":"是素数";
+
+        }
+        
+    </script>
+</body>
+</html>
+
+
+<!-- 
+
+    36
+
+    2
+    3
+    4
+    5
+
+    6
+
+    7
+    8
+    9
+
+    6 * 6 = 36
+    2   
+
+ -->

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btnAdd" type="button" value="添加一个li">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+    </ul>
+
+    <script>
+        // var liDoms = document.querySelectorAll("li");
+        var ulDom = document.querySelector("ul");
+        var btnAdd = document.querySelector("#btnAdd")
+
+        // for(var i=0;i<liDoms.length;i++){
+        //     liDoms[i].onclick = function(){
+        //         console.log(this.innerHTML);
+        //     }
+        // }
+
+        ulDom.onclick = function (event) {
+            var e = event || window.event;
+            if (e.target.tagName.toLowerCase() == "li") {
+                console.log(e.target.innerHTML);
+            }
+        }
+
+        var ord = 9;
+        btnAdd.onclick = function () {
+            ulDom.innerHTML += `<li>${ord++}</li>`
+        }
+
+    </script>
+</body>
+
+</html>

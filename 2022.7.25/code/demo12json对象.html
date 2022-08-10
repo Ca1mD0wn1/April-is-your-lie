@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input  type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01() {
+            // 一、对象
+            var doctor1 = {
+                id:"007",
+                name:"梅超风",
+                name:"张三疯",
+                sex:"男",
+                dept:"骨科",
+                seatZhen:function(){
+                    console.log(this.name+"在坐诊……");
+                }
+            };
+
+            console.log(typeof doctor1);
+
+            // doctor1.id //
+            console.log(doctor1.id);
+            console.log(doctor1.name);
+
+            var d2 = {
+                id:"008",
+                name:"马冬梅"
+            }
+
+            console.log(d2.id);
+            console.log(d2.name);
+
+
+
+
+            // 二、对象数组
+            let doctors = [
+                {
+                    id:"007",
+                    name:"梅超风",
+                    sex:"男",
+                    dept:"骨科",
+                    seatZhen:function(){
+                        console.log(this.name+"在坐诊……");
+                    }
+                },
+                {
+                    id:"008",
+                    name:"马冬梅",
+                    sex:"女",
+                    dept:"脑科",
+                    seatZhen:function(){
+                        console.log(this.name+"在坐诊……");
+                    }
+                }
+            ]
+
+            // doctors[0].name;
+            for(var i=0;i<doctors.length;i++){
+                console.log(doctors[i].name);
+            }
+
+
+        }
+
+    </script>
+</body>
+
+</html>

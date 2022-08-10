@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+    <script>
+        function fn01(){
+            var a = isRunYear(2000);
+            console.log(a);
+            var b = isRunYear(2022);
+            console.log(b);
+
+            // var n = Math.sqrt(25);
+
+            var c = isPrimer(12);
+            var d = isPrimer(25);
+
+            var count1 = dayCount(2000,2,5);
+            console.log("count1",count1);
+            
+            var count1 = dayCount(2000,3,5);
+            console.log("count1",count1);
+
+        }
+
+
+        // 一、判断一个年份是不是闰年
+        // 函数：
+        // 参数：年份
+        // 返回值：true：是闰年；false：不是闰年；
+
+        function isRunYear(year){
+            
+            if((year%4==0 && year%100!=0) || (year%400==0)){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
+        // 二、判断一个数是不是素数
+        // 参数: 一个数
+        // 返回值: true:是;false:不是;
+
+        function isPrimer(num){
+            
+            for(var i=2;i<=Math.sqrt(num);i++){
+                if(num%i==0){
+                    return false;//结束函数的执行，并返回false
+                }
+            }
+
+            return true;
+
+        }
+
+        // 三、根据年月日求第几天
+        // 参数：
+        //    year:年
+        //    month：月
+        //    date：日
+        // 返回值：天数
+
+        function dayCount(year,month,date){
+            
+
+            // 2）、求第几天
+            var dayCount = 0;
+            switch(month){
+                case 12:dayCount1 += 30;
+                case 11:dayCount += 31
+                case 10:dayCount += 30
+                case 9:dayCount += 31
+                case 8:dayCount += 31
+                case 7:dayCount += 30
+                case 6:dayCount += 31
+                case 5:dayCount += 30
+                case 4:dayCount += 31
+                case 3:dayCount += isRunYear(year) ?29:28;;
+                case 2:dayCount += 31;
+                case 1:dayCount += date;break;
+                default:;
+            }
+            // 3、输出
+            return dayCount;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 25px;
+            font-size: 25px;
+            text-align: right;
+        }
+
+        input {
+
+            font-size: 25px;
+
+            height: 25px;
+            width: 300px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <span>用户名</span><input type="text" placeholder="请输入用户名" id="username"><span></span><br>
+    <span>设置密码</span><input type="text" placeholder="请输入密码" id="password"><span></span><br>
+    <span>确认密码</span><input type="text" placeholder="确认密码" id="confirm"><span></span><br>
+    <span>姓名</span><input type="text" placeholder="姓名" id="name"><span></span><br>
+    <span>身份证号</span><input type="text" placeholder="身份证号" id="identityNumber"><span></span><br>
+    <span>手机号</span><input type="text" placeholder="手机号" id="phoneNumber"><span></span><br>
+    <script>
+
+
+        var username = $("#username");
+        var password = $("#password");
+        var userConfirm = $("#confirm");
+        var reallyName = $("#name");
+        var identityNumber = $("#identityNumber");
+        var phoneNumber = $("#phoneNumber");
+
+
+        username.oninput = function () {//6-16位数字，字母组合 且以字母开头
+            check(this, /^[a-z]\w{5,15}$/i);///^[a-z]\w{5,15}$/i
+        }
+        password.oninput = function () {//长度为6-16的字母，数字组合、不能为纯数字
+            check(this, /^(?![0-9]+$)\w{6,16}$/)
+        }
+        userConfirm.oninput = function () { //再次输入密码
+            if (this.value == password.value) {
+                this.nextElementSibling.innerHTML = "√"
+                this.nextElementSibling.style.color = "green";
+            } else {
+                this.nextElementSibling.innerHTML = "×"
+                this.nextElementSibling.style.color = "red";
+            }
+        }
+        reallyName.oninput = function () {//2-20个字符，只能为汉字字母空格，不能以空格开头或者结尾
+            check(this, /^(?!\s)[\u4e00-\u9fa5\sa-z]{0,18}(?<!\s)$/i)
+        }
+        identityNumber.oninput = function () {//身份证号
+            check(this, /^[1-8]\d{16}[x\d]$/i)
+        }
+        phoneNumber.oninput = function () { //11位纯数字}
+            check(this, /^1[0-9]{10}$/)
+        }
+
+
+        function check(dom, reg) {
+            var myTimer;
+            if (myTimer) {
+                clearTimeout(myTimer);
+            }
+
+            myTimer = setTimeout(function () {
+                if (reg.test(dom.value)) {
+                    dom.nextElementSibling.innerHTML = "√"
+                    dom.nextElementSibling.style.color = "green";
+                } else {
+                    dom.nextElementSibling.innerHTML = "×"
+                    dom.nextElementSibling.style.color = "red";
+                }
+            }, 300);
+        }
+        function $(id) {
+            return document.querySelector(id);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    密码：
+    <input id="userpass" type="text"  /><span id="passMsg"></span><br/>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+
+        // （必须包含字母、数字、特殊字符，长度6个字符以上）
+        document.getElementById("userpass").onblur = function(){
+            // this:事件源，发生事件的源头（一般来说就是html标签）；
+            var pass = this.value;
+
+            // 1、长度6个字符以上
+            if(pass.length<6){
+                document.getElementById("passMsg").innerHTML = "密码格式不对：长度应该是6个字符以上";
+                return;
+            }
+            
+            // 2、包含字母
+            var hasLetter = false;
+            for(var i=0;i<pass.length;i++){
+                var code = pass.charCodeAt(i);
+                if((code>=65 && code<=90) || (code>=97 && code<=122)){
+                    hasLetter = true;
+                    break;
+                }
+            }
+
+            if(hasLetter==false){
+                document.getElementById("passMsg").innerHTML = "密码格式不对：应该包含字母";
+                return;
+            }
+
+
+            var hasLetter = some(pass,function(code){
+                return (code>=65 && code<=90) || (code>=97 && code<=122)
+            })
+
+            if(!hasLetter){
+                document.getElementById("passMsg").innerHTML = "密码格式不对：应该包含字母";
+                return;
+            }
+
+
+            // 3、包含数字
+            var hasNum = some(pass,function(code){
+                return (code>=48 && code<=57);
+            })
+            if(!hasNum){
+                document.getElementById("passMsg").innerHTML = "密码格式不对：应该包含数字";
+                return;
+            }
+
+            // 4、包含特殊字符
+            var arr = ["$","#","!"];
+            var hasTeShu = false;
+            for(var i=0;i<arr.length;i++){
+                if(pass.indexOf(arr[i])>-1){
+                    hasTeShu =  true;
+                    break;
+                }
+            }
+            if(!hasTeShu){
+                document.getElementById("passMsg").innerHTML = '密码格式不对：应该包含特殊字符（"$","#","!"）';
+                return;
+            }
+
+            document.getElementById("passMsg").innerHTML = "√";
+
+        }
+
+        // 判断字符串中是否包含（满足条件的）字符
+        // String.prototype.some ()
+        // 12a3b4;
+        function some(str,cb){
+            for(var i=0;i<str.length;i++){
+                if(cb(str.charCodeAt(i))){
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    </script>
+    
+</body>
+</html>

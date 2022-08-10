@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box2{
+            width: 50px;
+            height: 51px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body >
+    <input type="button" value="测试" onclick="fn01()">
+
+    <input type="text"  id="txt">
+
+    <div id="box1" style="width: 100px;height:200px;background-color:red" >
+        <ul>
+            <li>第一个li</li>
+            <li>第二个li</li>
+        </ul>
+    </div>
+
+    <div id="box2" >
+
+    </div>
+
+    <script src="./js/tools.js"></script>
+    <script>
+
+        function fn01(){
+            var boxDom1 = $("#box1");
+            // 一、获取样式属性的值：
+            // 1、行内的样式，直接使用style属性
+
+            // console.log(boxDom1.style.width);
+            // console.log(boxDom1.style.height);
+            // console.log(boxDom1.style.backgroundColor);
+
+            // boxDom1.style.width = "400px";
+
+            // 2、外部（或者内部），不能使用style:
+            // 2.1)、IE8及其以下
+            // dom元素.currentStyle
+            
+            // var boxDom2 = $("#box2");
+            // console.log("boxDom2",boxDom2);
+            // console.log(boxDom2.currentStyle.width);
+
+
+            // 2.2）、非IE8的主流浏览器
+            //用 window.getComputedStyle(dom元素) 获取到的是所有的样式属性及其值
+            
+            // var boxDom2 = $("#box2");
+
+            // var csss = window.getComputedStyle(boxDom2);
+            // // console.log("csss",csss);
+            // console.log("csss.width",csss.width);
+            // console.log("csss.height",csss.height);
+            // console.log("csss.backgroundColor",csss.backgroundColor);
+
+            
+
+            //二、修改样式属性的值：都用style(改的都是行内的属性)
+
+            var boxDom1 = $("#box1");
+            var boxDom2 = $("#box2");
+
+            boxDom1.style.width = "400px";
+            boxDom2.style.width = "200px";
+        }
+ 
+
+    </script>
+</body>
+</html>

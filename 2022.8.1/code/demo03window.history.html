@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01(){
+            // location.href="http://www.1000phone.com";
+
+            console.dir(history);
+
+            // 一、history属性
+
+            // console.log("history.length",history.length);
+
+            
+            // 二、history的方法（函数）
+
+            // 1、原来的方法：
+
+            // history.forward();
+            // history.back();
+            // history.go(1);//等价于：history.forward();
+            // history.go(3);//等价于：history.forward()三次
+            // history.go(-1);//history.back();
+    
+            // 2、h5新增的方法：
+            //1）、 改变地址栏，不跳转页面，添加历史记录。
+
+            // 给历史记录会记录：url和state
+            // history.pushState({name:"张三疯"},"","/aaa");
+            // console.log(history.state);
+
+            // 2）、改变地址栏，不跳转页面，但是没有历史记录
+            // history.replaceState({name:"张三疯"},"","/aaa");
+            // console.log(history.state);
+        }
+
+        // 当后退（弹出state）时，触发。
+        window.onpopstate = function(){
+            console.log("onpopstate");
+        }
+
+        console.dir(window);
+    
+    </script>
+</body>
+</html>

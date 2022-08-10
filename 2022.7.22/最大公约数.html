@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入两个数:
+    <input type="text" id="number1"><input type="text" id="number2">
+    <input type="button" value="求公约数" conlick="fn01()">
+    <input type="text" id="result">
+    <script>
+        function fn01(m, n) { }
+        // 求两个数的最大公约数
+        function maxGongYue(m, n) {
+            var min = m < n ? m : n;
+            for (var i = min; i >= 1; i--) {
+                if (m % i == 0 && n % i == 0) {
+                    return i;
+                }
+            }
+        }
+        //欧几里得算法
+        function oujilide(number1, number2) {
+            while (number2 > 0) {
+                var x = number1 % number2;
+                number1 = number2;
+                number2 = x;
+
+            } return number1;
+        }
+        // 递归算法
+
+        function maxGongYueDiGui(number1, number2) {
+            if (number1 % number2 == 0) {
+                return number2;
+            } else {
+                maxGongYueDiGui(number1, number1 % number2)
+            }
+        }
+        console.log(oujilide(12, 18));
+    </script>
+</body>
+
+</html>

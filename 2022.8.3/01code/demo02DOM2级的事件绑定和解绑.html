@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btnAdd" type="button" value="测试01" >
+    <input id="btnRemove" type="button" value="解绑事件" >
+
+    <script>
+        var btnAdd = document.getElementById("btnAdd");
+        var btnRemove = document.getElementById("btnRemove");
+
+        // DOM0级有强烈的绑定感觉
+        // btnAdd.onclick = function(){
+        //     console.log("DOM0啊……");
+        // }
+
+        // DOM0级只能绑定一个事件处理函数
+
+        // btnAdd.onclick = function(){
+        //     console.log("DOM0啊……2");
+        // }
+
+        // DOM2级有注册事件。
+        // DOM2级相当于添加事件处理函数，可以是多个，而且，执行顺序和绑定顺序一致
+        btnAdd.addEventListener("click",function(){
+            console.log("啊……&……");
+        })
+
+        var fn01 = function(){
+            console.log("啊22222……&……");
+        }
+
+        btnAdd.addEventListener("click",fn01)
+
+        
+        btnAdd.addEventListener("click",function(){
+            console.log("啊3333……&……");
+        })
+
+        
+        btnRemove.onclick = function(){
+            btnAdd.removeEventListener("click",fn01);
+        }
+
+
+    </script>
+</body>
+</html>

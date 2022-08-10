@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btnAdd" type="button" value="测试01" >
+
+    <script>   
+
+    
+        function MyEventTarget(){
+            this.listens = {
+            };
+        }
+
+        MyEventTarget.prototype.addEventListener = function(type,cb){
+            this.listens[type] = cb;
+        }
+
+        MyEventTarget.prototype.dispatchEvent = function(type){
+            this.listens[type]();
+        }
+
+
+        var myETarget  = new MyEventTarget();
+
+        myETarget.addEventListener("myclick",function(){
+            console.log("myclick");
+        })
+
+        console.log("myETarget",myETarget);
+
+        myETarget.dispatchEvent("myclick");
+
+        
+        myETarget.addEventListener("mymouseover",function(){
+            console.log("mymouseover");
+        })
+
+        myETarget.dispatchEvent("mymouseover");
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 
+        console.dir(Map);
+
+        // 1、定义map:map是一个键值对的集合，键是唯一的，键让查询数据方便。
+
+        var m1 = new Map();
+
+        // 给集合map里增加了一个元素，每个元素有 key 和 value 组成。
+        m1.set("001",{id:"001",name:"曹继承",age:18});
+        m1.set("002",{id:"002",name:"王喜珍",age:17});
+        m1.set("003",{id:"003",name:"王紫瑜",age:16});
+
+        // map和json的区别：
+        // json：由若干个的键值对组成的一个有机的整体。整体和部分的关系
+        // map：若干个并列关系的数据，就相当于数组，只不过每个元素是一对。
+
+
+        // let value =  m1.get("001");
+        // console.log("value",value);
+
+        // console.log(m1.has("001"));
+        // console.log(m1.has("005"));
+
+        // m1.delete("001");
+
+        // console.log("m1.keys()", m1.keys());
+        console.log("m1.values()", m1.values());
+
+        // console.log("m1",m1);
+
+
+        // 遍历 map
+
+        // let keys = m1.keys();
+        // for(let key of keys){
+        //     console.log("key",key);
+        //     console.log("values",m1.get(key));
+        // }
+        
+        // let values = m1.values();
+        // for(let v of values){
+        //     console.log("v",v);
+        // }
+
+
+        
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body >
+    <!-- onfocus:标签获得焦点时，触发 -->
+    <!-- onblur:标签失去焦点时，触发 -->
+    
+    <input type="text"  id="txt" value="请输入电影名" onfocus="focusFn()" onblur="blurFn()">
+
+    <input type="button" value="测试" onfocus="btnFocusFn()" >
+    
+    <script>       
+        function focusFn(){
+            // console.log("focus");
+            var txtDom = document.getElementById("txt");
+            if(txtDom.value =="请输入电影名"){
+                txtDom.value="";
+            }         
+        }
+
+        function blurFn(){
+            // console.log("blur");
+            
+            var txtDom = document.getElementById("txt");
+            if(txtDom.value==""){
+                txtDom.value ="请输入电影名";
+            }
+            
+
+        }
+
+        function btnFocusFn(){
+            console.log("btnFocusFn");
+        }
+
+    </script>
+</body>
+</html>

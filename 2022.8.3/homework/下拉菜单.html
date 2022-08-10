@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul {
+            margin: 0;
+            border: 1px solid red;
+            padding-left: 0;
+            list-style: none;
+            background-color: brown;
+            width: 200px;
+            height: 30px;
+        }
+
+        * {
+            font-size: 20px;
+        }
+
+        li {
+            display: none;
+        }
+
+        li {
+            list-style: none;
+            width: 200px;
+            height: 30px;
+            background-color: gray;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>悬浮至此</ul>
+        <li>菜单1</li>
+        <li>菜单2</li>
+        <li>菜单3</li>
+        <li>菜单4</li>
+    </div>
+
+    <script>
+        var lis = document.querySelectorAll("li");
+        var div = document.querySelector("div");
+        var ul = document.querySelector("ul");
+        var result;
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                this.style.backgroundColor = "red";
+                result = this;
+            }
+        }
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseout = function () {
+                result.style.backgroundColor = "gray";
+            }
+        }
+
+
+        div.addEventListener("mouseover", function () {
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].style.display = "block"
+            }
+        })
+        div.addEventListener("mouseout", function () {
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].style.display = "none"
+            }
+        })
+    </script>
+</body>
+
+</html>

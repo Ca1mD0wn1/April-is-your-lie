@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tools.js"></script>
+
+</head>
+
+<body>
+    <input type="button" value="斐波那契数列 20个" onclick="fbnq()">
+    <input type="button" value="找数字" onclick="zsz()">
+    <input type="text" id="a"><input type="text" id="n">
+    <input type="button" value="点击查看结果" onclick="calc()" id="result">
+    <script>
+        function fbnq() {
+            var fbnq = [];
+            fbnq[0] = 1;
+            fbnq[1] = 1;
+            for (i = 2; i <= 19; i++) {
+                fbnq[i] = fbnq[i - 1] + fbnq[i - 2];
+            }
+            for (j = 0; j <= 19; j++) {
+                console.log(fbnq[j]);
+            }
+        }
+        function zsz() {
+            var a, b, c, d;
+            for (i = 1000; i <= 9999; i++) {
+                a = parseInt(i / 1000);
+                b = parseInt(i % 1000 / 100);
+                c = parseInt(i % 1000 % 100 / 10);
+                d = parseInt(i % 1000 % 100 % 10);
+                var x1 = ((a * 1000 + b * 100 + c * 10 + d) % 11 == 0);
+                var x2 = (a < 10 && b < 10 && c < 10 && d < 10);
+                var x3 = (a != b) && (a != c) && (a != d) && (c != b) && (c != d) && (b != d);
+                var x4 = (Math.sqrt(b * 10 + c) == parseInt(Math.sqrt(b * 10 + c)));
+                var x5 = (b + c == a);
+                if (x1 && x2 && x3 && x4 && x5) {
+                    console.log(i);
+                }
+            }
+        }
+        function calc() {
+            var a = parseInt(document.getElementById('a').value);
+            var n = parseInt(document.getElementById('n').value);
+
+            var sum = a;
+            var add = a;
+            for (var i = 1; i < n; i++) {
+                // for (var j = 0; j <= i - 1; j++) {
+                //     add = add + a * Math.pow(10, j);
+                // }
+                add = add * 10 + a;
+                sum += add;
+            }
+            document.getElementById('result').value = sum;
+        }
+
+    </script>
+</body>
+
+</html>

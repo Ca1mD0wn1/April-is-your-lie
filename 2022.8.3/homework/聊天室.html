@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main {
+            margin: 0 auto;
+            width: 30%;
+            height: 700px;
+            background-color: skyblue;
+            padding-bottom: 20px;
+            overflow: auto;
+            scrollbar-width: 1px;
+        }
+
+        .main::-webkit-scrollbar {
+            display: none;
+        }
+
+        .left {
+            float: left;
+            padding: 20px;
+            text-align: left;
+            width: auto;
+            height: auto;
+            background-color: red;
+            border-radius: 10px;
+
+
+        }
+
+        .right {
+            overflow: auto;
+            float: right;
+            padding: 20px;
+            margin-right: 0;
+            right: 0px;
+            width: auto;
+            height: auto;
+            background-color: blue;
+            text-align: right;
+            border-radius: 10px;
+        }
+
+        input {
+            font-size: 20px;
+            width: 500px;
+        }
+
+        .input {
+            height: auto;
+            width: 572px;
+            background-color: pink;
+            margin: 0 auto;
+        }
+
+        li {
+            list-style: none;
+            height: auto;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+
+    </div>
+    <div class="input">
+        <input type="text" id="left">
+        <button class="bt1">发送</button>
+        <input type="text" id="right">
+        <button class="bt2">发送</button>
+    </div>
+    <script>
+        var main = document.querySelector(".main");
+        var left = document.querySelector("#left");
+        var right = document.querySelector("#right");
+        var bt1 = document.querySelector(".bt1");
+        var bt2 = document.querySelector(".bt2");
+
+        bt1.addEventListener("click", sendLeft)
+        bt2.addEventListener("click", sendRight)
+
+        left.addEventListener("keydown", function (event) {
+            var e = event || window.event;
+            if (e.keyCode == 13) {
+                sendLeft();
+            }
+        })
+
+
+        right.addEventListener("keydown", function (event) {
+            var e = event || window.event;
+            if (e.keyCode == 13) {
+                sendRight();
+            }
+            main.scrollTop = main.scrollHeight;
+        })
+
+        function sendLeft() {
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            let content = document.querySelector("#left").value;
+
+            if (content.trim() != "") {
+                span.innerHTML = content;
+                span.className = "left";
+
+                li.append(span)
+                main.append(li);
+            }
+            left.value = "";
+            left.focus();
+            main.scrollTop = main.scrollHeight;
+
+        }
+
+        function sendRight() {
+            let li = document.createElement("li");
+            let span = document.createElement("span");
+            let content = document.querySelector("#right").value;
+            if (content.trim() != "") {
+                span.innerHTML = content;
+                span.className = "right";
+                li.append(span)
+                main.append(li);
+
+            }
+            right.value = "";
+            right.focus();
+            main.scrollTop = main.scrollHeight;
+
+        }
+    </script>
+</body>
+
+</html>

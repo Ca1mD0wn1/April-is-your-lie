@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    请输入两个数:
+    <input id="num1" type="text" />
+    <input id="num2" type="text" />
+    <input type="button" value="求公约数" onclick="fn01()" />
+    <input id="result" type="text" />
+
+    <script>
+
+        function fn01(){
+            // 一、输入
+            var num1 = parseInt(document.getElementById("num1").value);
+            var num2 = parseInt(document.getElementById("num2").value);
+
+            // 二、逻辑
+            // var num = maxGongYue(num1,num2);
+            var num = maxGongYueDiGui(num1,num2);
+            
+
+            // 三、输出
+            document.getElementById("result").value = num;
+
+        }
+
+
+        // 功能：求两个数的最大公约数
+        // 参数：两个正整数
+        // 返回值：公约数
+
+        function maxGongYue(m,n){            
+            // 公约数：m和n的公共约数中的最大。
+            // 方法一、
+            /*
+            var min = m<n?m:n;
+            for(var i=min; i>=1;i--){
+                if((m%i==0 && n%i==0)){
+                    return i;
+                }
+            }
+            */
+
+            // 二、欧几里得(循环)
+
+            // 例：48 , 57
+            // 48%57=48;
+            // 57%48=9    大数对小数求余
+            // 48%9=3     小数对上次的余数求余，重复这个过程直到余数为0
+            // 9%3=0	  余数为0时，此次求余的小数就是最大公约数
+
+            var num1 = m;
+            var num2 = n;
+
+            while(num2>0){
+                var yu = num1%num2;
+                num1 = num2;
+                num2 = yu;
+            }
+
+            return num1;
+        }
+
+        function maxGongYueDiGui(m,n){
+            if(m%n==0){
+                return n;
+            }
+            return maxGongYueDiGui(n,m%n);
+        }
+
+
+    </script>
+</body>
+</html>

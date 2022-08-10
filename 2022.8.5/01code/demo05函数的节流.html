@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 2000px;">
+    <p>我是个p</p>
+    <p>我是个p2</p>
+    <img src="./img/1.jpg" />
+    <p>我是个p2</p>
+
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+    1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />1<br />2<br />3<br />4<br />
+
+
+    <script src="./js/eventTools.js" async defer></script>
+
+    <script>
+        // addEventgp();
+
+
+        var i = 0;
+        var myTimer;
+
+        addEventgp();
+
+
+        window.onload = function () {
+            addEventgp();
+        }
+
+        window.onscroll = function () {
+
+            if (myTimer) {
+                return;
+            }
+
+            myTimer = setTimeout(function () {
+                console.log("onscroll", i++);
+                myTimer = undefined;
+            }, 500);
+
+        }
+
+    </script>
+</body>
+
+</html>

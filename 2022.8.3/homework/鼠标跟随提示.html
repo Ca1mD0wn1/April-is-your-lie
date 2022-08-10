@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        div {
+            position: relative;
+            cursor: default;
+        }
+
+        span {
+            display: none;
+            color: #af7b7b;
+            background-color: #f1f1f1;
+            position: absolute;
+            border: 1px gray solid;
+
+        }
+
+        p {
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>
+            【华春莹：#相信中国人民是理性爱国的#】
+        </p>
+
+        <span>
+            很多中国人对没有采取更多措施阻止佩洛西访台表示失望
+        </span>
+    </div>
+</body>
+<script>
+    var p = document.querySelector("p");
+    var span = document.querySelector("span");
+    p.addEventListener("mousemove", function (event) {
+        let e = event || window.event;
+
+        // console.log(e.clientX, e.clientY);
+        span.style.display = "block";
+        span.style.left = e.clientX + "px";
+        span.style.top = e.clientY + "px";
+    })
+
+    p.addEventListener("mouseout", function () {
+        span.style.display = 'none';
+
+    })
+</script>
+
+</html>

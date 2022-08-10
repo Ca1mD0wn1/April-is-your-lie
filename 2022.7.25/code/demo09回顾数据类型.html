@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>   
+     <input type="button" value="测试" onclick="fn01()" >
+    
+    <script>      
+
+        function fn01(){
+            //1、 网上流传的，大家好像都说的数据类型：
+            // number，string，boolean，undefined，null，object
+
+            // 2、实际上的数据类型，通过typeof是可以看到的：
+
+            // number:数值型；(最大取值：2^53 == 9007199254740992)
+            //           number类型（整数）的取值范围是：- 9007199254740992 到 9007199254740992
+            var num = 9007199254740992;
+            console.log("num",num);//9007199254740992
+            var num = 9007199254740993;
+            console.log("num",num);//9007199254740992
+            var num = -9007199254740993;
+            console.log("num",num);//9007199254740992
+
+
+            // string：字符串型
+            var str ="hello";
+
+            // boolean:布尔型
+
+            // undefined:未定义型
+
+            // object：对象类型，也叫引用类型，数组就是对象。
+
+            var arr = [12,23,34]; //
+            console.log(typeof arr);
+            var person = {
+                name:"张三疯",
+                sex:"女",
+                age:18
+            }
+            console.log(typeof person);
+
+            // function:函数类型
+            function fn001(){}
+            console.log( typeof fn001);
+            var fn002 = function(){}
+            console.log( typeof fn002);
+
+            // bigint：大整型：以 n 结尾
+            // 1）、number类型的最大数：9007199254740992
+            // 2）、bigint，以n结尾。用在金融类项目。
+            var big1 = 9007199254740992n + 1n;
+            console.log(big1);
+
+            console.log(typeof 1n);
+            
+            // 特殊的值：NaN，null
+            // NaN: 
+
+            // null:
+          
+        }
+
+    </script>
+</body>
+</html>

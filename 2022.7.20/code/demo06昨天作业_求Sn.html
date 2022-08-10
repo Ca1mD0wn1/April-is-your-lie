@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <hr/>
+   
+    请输入a（每位数字）：<input id="a" type="text" />
+    请输入n（项数）：<input id="n" type="text" />
+    <input type="button" value=" = " onclick="calc()">
+    <input id="result" type="text" />
+
+
+    <script>
+       
+       /*
+       3、求Sn=a+aa+aaa+……+aa……a之值，a是每位数字，n是项数。其中a、n是文本框输入的两个数字。
+
+​        假如：a是2，n是5，那么就是求：  2+22+222+2222+22222之和
+       
+
+                          i
+        2                 1
+        22                2
+        222               3
+        2222              4
+
+       */
+
+        function calc(){
+            // 1、输入
+            var a = parseFloat(document.getElementById("a").value);//2
+            var n = parseFloat(document.getElementById("n").value);           
+
+            // 2、逻辑
+           var sum = a;
+           var add = a;
+           for(var i=1;i<n;i++){
+                // 1）、求出加数
+                // var add = 0; //2
+                // for(var j=0;j<=i-1;j++){
+                //     add = add+a*Math.pow(10,j);// add = 0+2+20+200+2000
+                // }
+                add = add*10+a; //每次的加数等于上次  加数*10+a                
+                // 2）、累加
+                sum += add;
+           }
+            // 3、输出
+            document.getElementById("result").value = sum;
+
+        }
+        
+    </script>
+</body>
+</html>

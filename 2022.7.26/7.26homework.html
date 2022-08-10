@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .countdown {
+            float: left;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .timing {
+            float: left;
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .today {
+            float: left;
+            width: auto;
+            height: 100px;
+        }
+
+        div {
+            float: left;
+            font-size: 50px;
+            overflow: hidden;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #clock {
+            position: relative;
+            background: url(clock.png);
+            height: 800px;
+            width: 800px;
+            background-size: cover;
+            z-index: 4;
+
+        }
+
+        #h {
+            top: 208px;
+            left: 394px;
+            position: absolute;
+            height: 200px;
+            width: 10px;
+            background: url(h.png);
+            background-size: cover;
+            z-index: 3;
+            transform: rotate(50deg);
+            transform-origin: 50% 100%;
+
+        }
+
+        #m {
+            top: 145px;
+            left: 394px;
+            position: absolute;
+            height: 314px;
+            width: 10px;
+            background: url(m.png);
+            background-size: cover;
+            z-index: 2;
+            transform: rotate(0deg);
+            transform-origin: 70% 83%;
+            transition: all 2s;
+
+        }
+
+        #s {
+            top: 84px;
+            left: 394px;
+            position: absolute;
+            height: 400px;
+            width: 10px;
+            background: url(s.png);
+            background-size: cover;
+            z-index: 1;
+            transform: rotate(0deg);
+            transform-origin: 50% 80%;
+            transition: all 1s linear;
+        }
+
+        #color {
+            font-size: 30px;
+            width: 200px;
+            height: 200px;
+            color: red;
+            background-color: #999;
+            transition: all 1s linear;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="color">
+        随机切换颜色
+    </div>
+    <!-- 倒计时 -->
+    <div>
+        <div>今天是</div>
+        <div class="today"></div>
+        <div class="today"></div>
+        <div class="today"></div>
+    </div>
+    <div>
+        <div> 今天已经学习了</div>
+        <div class="timing">4</div>
+        <div class="timing">5</div>
+        <div class="timing">6</div>
+    </div>
+    <div>
+        <div>距离下课还有</div>
+        <div class="countdown">1</div>
+        <div class="countdown">2</div>
+        <div class="countdown">3</div>
+    </div>
+
+    <div id="clock">
+        <div id="h"></div>
+        <div id="m"></div>
+        <div id="s"></div>
+    </div>
+    <script>
+
+        // 1. 编写函数获得随机的颜色字符串（#20cd4f);
+        var color = document.querySelector("#color");
+
+        function color22() {
+            var max = 10066329;
+            var min = 0;
+            var number = Math.floor(Math.random() * (max - min + 1)) + min;
+            color.style.backgroundColor = '#' + convert2(number);
+        }
+        var color33 = setInterval("color22()", 1000)
+        function convert2(number) {//10转16
+            var arr = [];
+            var result = "";
+            while (true) {
+                arr.push(number % 16);
+                number = Math.floor(number / 16);
+                if (number == 0) {
+                    break;
+                }
+            }
+            arr = arr.reverse();
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == 10 || arr[i] == 11 || arr[i] == 12 || arr[i] == 13 || arr[i] == 14 || arr[i] == 15 || arr[i] == 0) {
+                    switch (arr[i]) {
+                        case 0: arr[i] = 0; break
+                        case 10: arr[i] = "A"; break;
+                        case 11: arr[i] = "B"; break;
+                        case 12: arr[i] = "C"; break;
+                        case 13: arr[i] = "D"; break;
+                        case 14: arr[i] = "E"; break;
+                        case 15: arr[i] = "F"; break;
+                        default: ;
+                    }
+                }
+                result = result + arr[i];
+            }
+            if (result.length < 6) {
+                for (i = 0; i < 6 - arr.length; i++)
+                    result = "0" + result;
+            }
+
+            return result;
+        }
+
+        // 2. 倒计时和正计时
+        function time() {
+            var countdown = document.querySelectorAll(".countdown");
+            var timing = document.querySelectorAll(".timing");
+            var today = document.querySelectorAll(".today");
+            var myDate = new Date();
+            //  getDate() 	   返回天
+            //  getHours() 	返回小时数
+            //  getMinutes() 	返回分钟数
+            //  getSeconds() 	返回秒数
+            var thisDay = myDate.getDate();
+            var thisMonth = myDate.getMonth() + 1;
+            var thisYear = myDate.getFullYear();
+            var thisTime = thisMonth + " " + thisDay + "," + thisYear.toString() + ' ';
+
+            var now = myDate.getTime();
+            // console.log(now);
+            // var t = Date.parse("8 26,2021 11:34:00");
+
+            var classover = new Date(thisTime + "21:30:00");
+            var classbegin = new Date(thisTime + "08:30:00");
+
+            var countdownSeconds = parseInt((((classover.getTime() - myDate.getTime()) / 1000) % 60));
+            var countdownMinutes = parseInt(((classover.getTime() - myDate.getTime()) / 1000 / 60) % 60);
+            var countdownHours = parseInt(((classover.getTime() - myDate.getTime()) / 1000 / 60 / 60) % 24);
+            // console.log(countdownHours);
+            // console.log(countdownMinutes);
+            // console.log(countdownSeconds);
+
+
+            var timingSeconds = parseInt((((myDate.getTime() - classbegin.getTime()) / 1000) % 60));
+            var timingMinutes = parseInt(((myDate.getTime() - classbegin.getTime()) / 1000 / 60) % 60);
+            var timingHours = parseInt(((myDate.getTime() - classbegin.getTime()) / 1000 / 60 / 60) % 24);
+            // console.log(timingHours);
+            // console.log(timingMinutes);
+            // console.log(timingSeconds);
+            countdown[0].innerHTML = countdownHours + "H";
+            countdown[1].innerHTML = countdownMinutes + "M";
+            countdown[2].innerHTML = countdownSeconds + "S";
+
+            timing[0].innerHTML = timingHours + "H";
+            timing[1].innerHTML = timingMinutes + "M";
+            timing[2].innerHTML = timingSeconds + "S";
+
+
+            today[0].innerHTML = thisYear + "年";
+            today[1].innerHTML = thisMonth + "月";
+            today[2].innerHTML = thisDay + "日";
+
+        }
+        time();
+        self.setInterval("time()", 1000);
+        // 3. 数码时钟
+        clockTime();
+        function clockTime() {
+
+            var myDate = new Date();
+            var thisDay = myDate.getDate();
+            var thisMonth = myDate.getMonth() + 1;
+            var thisYear = myDate.getFullYear();
+            var thisTime = thisMonth + " " + thisDay + "," + thisYear.toString() + ' ';
+            var today = new Date(thisTime + "00:00:00")
+
+
+            var clock = document.querySelector("#clock")
+            var second = document.querySelector("#s");
+            var minute = document.querySelector("#m");
+            var hour = document.querySelector("#h");
+            //         getDate() 	   返回天
+            //  getHours() 	返回小时数 
+            //       　getMinutes() 	返回分钟数 
+            //       　getSeconds() 	返回秒数 
+
+            var s = myDate.getTime();
+            s = s - today.getTime();
+            s = parseInt(s / 1000);
+
+            var hdeg = (s / 60 / 60 * 30).toFixed(2);
+            console.log(hdeg);
+            var mdeg = parseInt(((s / 60)) * 6) - 3;
+            console.log(mdeg);
+            var sdeg = (s) * 6;
+            // console.log(sdeg);
+            // console.log(hdeg, mdeg, sdeg);
+
+
+            hour.style.transform = "rotate(" + hdeg + "deg)";
+            minute.style.transform = "rotate(" + mdeg + "deg)";
+            second.style.transform = "rotate(" + sdeg + "deg)";
+
+        }
+
+        self.setInterval("clockTime()", 1000);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入一个年月日：
+    <input id="year" type="text" />年
+    <input id="month" type="text" />月
+    <input id="date" type="text" />日<br />
+    <input type="button" value="求该日期是当年的第几天" onclick="fn01()"><br />
+    结果：<input id="dayCount" type="text" /><br />
+
+
+    <script>
+
+        function fn01(){
+            var a = 10;
+            var b = 20;
+            sum(a,b);//实参：实际参数，调用函数时的参数；在调用时，实参会传给形参（相当于赋值）
+            sum(5,6);
+            sum(7,8);
+            // isPrimer(15);
+            // isPrimer(25);
+        }
+
+        // 形参：就是形式参数，在定义函数时声明的参数（参数其实就是变量）
+        function sum(x,y){
+           console.log(x+y);
+        }
+
+        // function isPrimer(num){
+        //     for(var i=2;i<=Math.sqrt(num);i++){
+        //         if(num%i==0){
+        //             console.log("是合数");
+        //         }
+        //     }
+        // }
+
+
+
+    </script>
+</body>
+
+</html>

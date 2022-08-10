@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parentBox {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            border: 2px solid red;
+            margin: 0 auto;
+            background-color: red;
+        }
+
+        #box1 {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        #title {
+            width: 100%;
+            height: 30px;
+            background-color: #ccc;
+        }
+
+        #content {
+            width: 100%;
+            height: calc(100% - 30px);
+
+        }
+
+        #box2 {
+            position: absolute;
+            left: 500px;
+            top: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: green;
+        }
+
+        /* #test {
+            width: 1000px;
+            height: 1000px;
+            z-index: 0;
+            top: 250px;
+            left: 250px;
+            position: relative;
+            background-color: pink;
+        } */
+    </style>
+</head>
+
+<body style="height: 2000px;">
+
+
+    <div id="test">
+        <div id="parentBox">
+            <div id="box1">
+                <div id="title">
+
+                </div>
+                <div id="content">
+
+                </div>
+            </div>
+
+            <div id="box2">
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+
+        // 功能：拖拽
+        // 参数：
+        // moveDom:移动的dom
+        // drageDom: 触发拖拽的dom（dragDom是moveDom的子元素）：可选
+        // parentDom: 父元素（移动的区域）。可选
+
+        // 返回值：无
+
+        function drag(moveDom, dragDom, parentDom) {
+
+            parentDom = parentDom || moveDom.offsetParent;//offsetParent：有定位的父元素（当前元素定位基于的父元素）
+            dragDom = dragDom || moveDom;
+
+
+            dragDom.onmousedown = function (event) {
+                var e = event || window.event;
+                // 鼠标距离事件源（要拖拽的盒子的距离）
+                var offsetX = e.offsetX;
+                var offsetY = e.offsetY;
+
+                parentDom.onmousemove = function (event) {
+                    var e = event || window.event;
+
+                    // 计算 盒子的left和top
+                    var left1 = e.pageX - offsetX - parentDom.offsetLeft;
+                    var top1 = e.pageY - offsetY - parentDom.offsetTop;
+
+                    console.log(left1, top1);
+                    if (left1 < 0) {
+                        left1 = 0;
+                    } else if (left1 > (parentDom.offsetWidth - moveDom.offsetWidth)) {
+                        left1 = parentDom.offsetWidth - moveDom.offsetWidth;
+                    }
+                    if (top1 < 0) {
+                        top1 = 0;
+                    } else if (top1 > (parentDom.offsetHeight - moveDom.offsetHeight)) {
+                        top1 = parentDom.offsetHeight - moveDom.offsetHeight;
+                    }
+
+                    // 改变盒子的left和top
+                    moveDom.style.left = left1 + "px";
+                    moveDom.style.top = top1 + "px";
+
+                }
+            }
+
+            document.onmouseup = function () {
+                parentDom.onmousemove = null;
+            }
+
+        }
+
+
+
+        window.onload = function () {
+            var parentBox = document.getElementById("parentBox");
+            var box1 = document.getElementById("box1");
+            var title = document.getElementById("title");
+            var box2 = document.getElementById("box2");
+
+            drag(box1);
+            drag(box2);
+
+
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

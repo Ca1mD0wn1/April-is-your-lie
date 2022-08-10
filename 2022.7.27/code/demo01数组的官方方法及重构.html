@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btn01" type="button" value="测试"  >
+
+    <script>
+
+        document.getElementById("btn01").onclick = function(){
+            // 1、join
+            // 功能：把数组的每个元素拼接成字符串 
+            // 参数：
+            //    分隔符，默认是 逗号
+            // 返回值：拼接好的字符串
+
+            // var arr=[12,23,34,45,56];
+            // var str = arr.join();
+            // console.log(str);
+            // var str = arr.join("-");
+            // console.log(str);
+            // var str = arr.join("|");
+            // console.log(str);
+            // var str = arr.join(null);
+            // console.log(str);
+            // var str = arr.join(undefined);
+            // console.log(str);
+            // var str = arr.join(5);
+            // console.log(str);
+
+
+            // 2、at 
+            // 功能: 接收一个整数值，并返回该索引的项目，允许整数和负整数。
+            // 参数：下标（正整数或负整数）
+            // 返回值：下标对应的元素
+
+            // var arr=[12,23,34,45,56];
+            // console.log(arr[0]);
+            // console.log(arr.at(0));
+            // console.log(arr[-1]);//不允许的
+            // console.log(arr.at(-1));
+
+            // console.log(arr.at(3.6));
+
+            // 3、fill
+            // 功能：用一个固定的值，填充一个数组，从起始到终止索引
+            // 参数：
+            //     value：要填充的值
+            //     start：起始下标
+            //     end：结束下标
+            // 返回值：修改后的数组
+
+            // var arr=[12,23,34,45,56];
+            // 1)、一个参数
+            // var result = arr.fill(5);
+            // console.log(result);
+            // console.log(arr);
+            // console.log(result===arr);
+            // console.log(arr.fill("hi"));
+
+            // console.log(arr.fill(5,2));
+            // console.log(arr.fill(5,2,4));
+            
+            // console.log(arr.fill(5,2,10));
+
+            // console.log(arr.fill(5,-3));
+            // console.log(arr.fill(5,-3,-1));
+
+            // console.log(arr.fill(9,5,8));
+
+
+            // 重构
+
+            Array.prototype.myFill=function(value,start,end){
+                
+                //结束是非数字，啥也不干
+                if(end!=undefined){
+                    if(isNaN(parseInt(end))){
+                        return this;
+                    }
+                }
+
+                if(end==undefined){
+                    end = this.length;
+                }else{
+                    end = parseInt(end);
+                    if(end<0){  //????没有考虑小于 -this.length;???
+                        end = this.length+end;
+                    }else if(end>this.length){
+                        end = this.length;
+                    }
+                }
+
+                start = parseInt(start);
+                
+                if(isNaN(start) || start<-this.length){
+                    start = 0;
+                }else if(start<0){
+                    start += this.length;
+                }
+                
+                for(var i=start;i<end;i++){
+                    this[i] = value;
+                }
+                
+                return this;
+
+            }
+
+            var arr=[12,23,34,45,56];
+            
+            // var result = arr.myFill(5);
+            // console.log(result);
+            // console.log(arr);
+            // console.log(result===arr);
+            // console.log(arr.myFill("hi"));
+
+            // console.log(arr.myFill(5,2));
+            // console.log(arr.myFill(5,2,4));
+            
+            // console.log(arr.myFill(5,2,10));
+
+            // console.log(arr.myFill(5,-3));
+            // console.log(arr.myFill(5,-3,-1));
+
+            // console.log(arr.myFill(9,5));
+
+            // console.log(arr.myFill(5,2.8));
+            // console.log(arr.myFill(5,1.8,3.2));
+
+            // console.log(arr.myFill(5,-2.8));
+            // console.log(arr.myFill(5,"a",-1));//起始是非数字，结束是有效数字，起始改为0
+            // console.log(arr.myFill(5,"a",3));//起始是非数字，结束是有效数字，起始改为0
+            // console.log(arr.myFill(5,1,"b"));  //结束是非数字，啥也不干
+            // console.log(arr.myFill(5,"a","b"));
+
+            // 4、indexOf
+            var arr = [12,23,34,45,34,45,56];
+            // console.log(arr.indexOf(34));//2
+            // console.log(arr.indexOf(34,2));//2
+            // console.log(arr.indexOf(34,3));//4            
+            // console.log(arr.indexOf(50));//-1
+
+
+                
+
+
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    请输入一个数字(0-6):
+    <input id="num" type="text" /><br/>
+    <input type="button" value="显示汉字的星期" onclick="fn01()"><br/>
+    结果：<input id="result" type="text" /><br/>
+    <hr/>
+
+    请输入一个成绩（0-100之间）：
+    <input id="score" type="text" /><br/>
+    <input type="button" value="显示成绩的等级" onclick="showLevel()"><br/>
+    结果：<input id="level" type="text" /><br/>
+
+    <hr/>
+
+    请输入一个年月日：
+    <input id="year" type="text" />年
+    <input id="month" type="text" />月
+    <input id="date" type="text" />日<br/>
+    <input type="button" value="求该日期是当年的第几天" onclick="showDayCount()"><br/>
+    结果：<input id="dayCount" type="text" /><br/>
+
+
+    <script>
+        function fn01(){
+            // 1、输入
+            var num = document.getElementById("num").value;
+            
+            // 2、逻辑
+            var str = "";
+            switch(num){
+                case "0":str="星期天";break;
+                case 1:str="星期一";break;
+                case 2:str="星期二";break;
+                case 3:str="星期三";break;
+                case 4:str="星期四";break;
+                case 5:str="星期五";break;
+                case 6:str="星期六";break;
+                default:str="亲，您胡输入呢";break;
+            }
+
+            // 3、输出
+            document.getElementById("result").value = str;
+        }
+
+        function showLevel(){
+            // 1、输入
+            var score = parseFloat(document.getElementById("score").value);
+
+            // 2、逻辑
+            // 85-100之间：A
+            // 70-85之间：B
+            // 60-70之间：C
+            // 60以下：D
+            var level = "";
+            switch(true){
+                case score>=85 && score<=100:level="A";break;
+                case score>=70 && score<85:level="B";break;
+                case score>=60 && score<70:level="C";break;
+                case score>=0 && score<60:level="D";break;
+                default:level="亲，您又胡输入呢";
+            }
+
+            // 3、输出
+            document.getElementById("level").value = level;
+
+        }
+   
+        
+        // function showDayCount(){
+        //     // 1、输入
+        //     var year = parseInt(document.getElementById("year").value);
+        //     var month = parseInt(document.getElementById("month").value);
+        //     var date = parseInt(document.getElementById("date").value);
+
+        //     // 2、逻辑
+        //     // 1)、计算二月份的天数
+
+        //     // if((year%4==0 && year%100!=0) || (year%400==0)){
+        //     //     var feb = 29;
+        //     // }else {
+        //     //     var feb = 28;
+        //     // }
+        //     var feb = ((year%4==0 && year%100!=0) || (year%400==0))?29:28;
+
+        //     // 2）、求第几天
+        //     var dayCount = 0;
+        //     switch(month){
+        //         case 1:dayCount = date;break;
+        //         case 2:dayCount = 31+date;break;
+        //         case 3:dayCount = 31+feb+date;break;
+        //         case 4:dayCount = 31+feb+31+date;break;
+        //         case 5:dayCount = 31+feb+31+30+date;break;
+        //         case 6:dayCount = 31+feb+31+30+31+date;break;
+        //         case 7:dayCount = 31+feb+31+30+31+30+date;break;
+        //         case 8:dayCount = 31+feb+31+30+31+30+31+date;break;
+        //         case 9:dayCount = 31+feb+31+30+31+30+31+31+date;break;
+        //         case 10:dayCount = 31+feb+31+30+31+30+31+31+30+date;break;
+        //         case 11:dayCount = 31+feb+31+30+31+30+31+31+30+31+date;break;
+        //         case 12:dayCount = 31+feb+31+30+31+30+31+31+30+31+30+date;break;
+        //     }
+
+        //     // 3、输出
+        //     document.getElementById("dayCount").value = dayCount;
+
+        // }
+
+        function showDayCount(){
+            // 1、输入
+            var year = parseInt(document.getElementById("year").value);
+            var month = parseInt(document.getElementById("month").value);
+            var date = parseInt(document.getElementById("date").value);
+
+            // 2、逻辑
+
+            // 2）、求第几天
+            var dayCount = 0;
+            switch(month){
+                case 12:dayCount1 += 30;
+                case 11:dayCount += 31
+                case 10:dayCount += 30
+                case 9:dayCount += 31
+                case 8:dayCount += 31
+                case 7:dayCount += 30
+                case 6:dayCount += 31
+                case 5:dayCount += 30
+                case 4:dayCount += 31
+                case 3:dayCount += ((year%4==0 && year%100!=0) || (year%400==0))?29:28;;
+                case 2:dayCount += 31;
+                case 1:dayCount += date;break;
+                default:;
+            }
+
+            // 3、输出
+            document.getElementById("dayCount").value = dayCount;
+            
+        }
+   
+   </script>
+
+</body>
+</html>

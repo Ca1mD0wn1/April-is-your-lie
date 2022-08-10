@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 使用HTML的属性指定方式，如果要调用函数，这个函数在JS中要处于全局作用域。 -->
+    <input type="button" value="测试" onclick="fn01()">
+
+    <input id="btn02" type="button" value="测试02"  >
+
+    <input id="btnRemoveEvent" type="button" value="解绑测试02的事件">
+
+    <script>
+        // fn01是全局函数
+        function fn01() {
+            console.log("fn01");
+        }
+
+        // 使用dom对象的onclick属性来绑定函数，这种写法比较解耦。
+        document.getElementById("btn02").onclick = function(){
+            console.log("btn02.click");
+            // this:事件源，触发事件的元素本身。
+            console.log("this",this);
+        }
+
+        document.getElementById("btnRemoveEvent").onclick = function(){
+            document.getElementById("btn02").onclick = null;
+        }
+
+
+    </script>
+</body>
+
+</html>

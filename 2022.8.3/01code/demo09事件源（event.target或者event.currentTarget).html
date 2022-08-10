@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #grandpaBox {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        #fatherBox {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        #meBox {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="grandpaBox">
+        <div id="fatherBox">
+            <div id="meBox">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // target:是真正的事件源，不会因为事件流的改变而改变
+        // currentTarget：当前事件源，会因为事件流的改变而改变。当前事件处理函数对应的事件源
+        // this: 当this所在函数式事件处理函数时，this就是currentTarget。
+        // fn01不是事件处理函数，没有event，这里面this就不是事件源了。
+            function fn01(){
+
+        }
+
+        fn01();
+        
+
+        
+        meBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("meBox.onclick，e.target",e.target);
+            console.log("meBox.onclick，e.currentTarget",e.currentTarget);
+            console.log("meBox.onclick，this",this);
+        }
+
+        fatherBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("fatherBox.onclick，e.target",e.target);
+            console.log("fatherBox.onclick，e.currentTarget",e.currentTarget);
+            console.log("fatherBox.onclick，this",this);
+        }
+
+        grandpaBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("grandpaBox.onclick，e.target",e.target);
+            console.log("grandpaBox.onclick，e.currentTarget",e.currentTarget);
+            console.log("grandpaBox.onclick，this",this);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

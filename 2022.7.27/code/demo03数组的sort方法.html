@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btn01" type="button" value="测试">
+
+    <script>
+
+        // 重构sort
+        Array.prototype.mySort = function (callback) {
+            if (callback == undefined) {
+                // 字符串的排序思路
+                return this;
+            }
+
+            for (var i = 0; i < this.length - 1; i++) {
+                var isSort = true;
+                for (var j = 0; j < this.length - 1 - i; j++) {
+
+                    if (callback(this[j], this[j + 1]) > 0) {
+
+                        isSort = false;
+                        var temp = this[j];
+                        this[j] = this[j + 1];
+                        this[j + 1] = temp;
+                    }
+                }
+                if (isSort) {
+                    break;
+                }
+            }
+            return this;
+        }
+
+        document.getElementById("btn01").onclick = function () {
+            // var arr=[11,14,2,5,3];
+            // var result = arr.sort();//sort函数内部，默认按照字符串的思路进行排序
+            // console.log(arr);
+            // console.log(arr===result);
+
+            // var arr=[11,14,2,5,3];
+            // var compareAsc = function(a,b){
+            //     return a-b;
+            // }
+            // arr.sort(compareAsc);
+            // console.log(arr);
+
+
+            // var compareDesc = function(a,b){
+            //     return b-a;
+            // }
+            // arr.sort(compareDesc);
+            // console.log(arr);
+
+
+            var compareAsc = function (a, b) {
+                return a - b;
+            }
+
+            var compareDesc = function (a, b) {
+                return b - a;
+            }
+
+            var arr = [11, 14, 2, 5, 3];
+            console.log(arr.mySort(compareAsc));
+            console.log(arr.mySort(compareDesc));
+
+            var pigs = [
+                {
+                    name: "小黑",
+                    weight: 180,
+                    long: 160
+                },
+                {
+                    name: "小花",
+                    weight: 200,
+                    long: 150
+                },
+                {
+                    name: "小白",
+                    weight: 300,
+                    long: 130
+                }
+            ];
+
+            // 比较大小的规则  由调用sort的程序员决定
+            var compareWeightAsc = function (a, b) {
+                return a.weight - b.weight;
+            }
+
+            // 比较大小的规则
+            var compareWeightDesc = function (a, b) {
+                return b.weight - a.weight;
+            }
+
+            // 比较大小的规则
+            var compareLongAsc = function (a, b) {
+                return a.long - b.long;
+            }
+
+            console.log(pigs.sort(compareWeightDesc));
+            console.log(pigs.sort(compareLongAsc));
+
+
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

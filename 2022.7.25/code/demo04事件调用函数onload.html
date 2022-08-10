@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 当页面（窗口里的页面）加载完毕时，调用函数 
+        window.onload = function(){
+            console.log(document.getElementById("txt"));
+            console.log(document.getElementById("txt").value);  
+        }        
+    </script>
+</head>
+<body >
+    <input type="text"  id="txt" value="呵呵">
+    <input type="button" value="测试" onclick="fn01()">
+    
+    <script>
+        
+        // onload:加载完毕。可以对应的标签，document，img ，body，window对象（跟document差不多）
+
+        console.log(document.getElementById("txt").value);
+
+        // 当页面（窗口里的页面）加载完毕时，调用函数
+        window.onload = function(){
+            console.log("window.onload");
+        }
+
+    </script>
+</body>
+</html>

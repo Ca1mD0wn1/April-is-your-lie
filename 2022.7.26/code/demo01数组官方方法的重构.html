@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    <script>
+        // push，pop，shift，unshift，concat，slice，splice，join，at ,fill ，indexOf、lastIndexOf及其重构
+
+        function fn01() {
+            // push:尾插
+            // 参数：可以是一个，也可以是多个
+            // 返回值：
+
+            // var arr = [12,23,34];
+            // var count =  arr.push(56,67);
+            // console.log(arr);
+            // console.log(count);
+            // var count =  arr.push([6,4]);
+            // console.log(arr);
+            // console.log(count);
+
+            // console.log("======================");
+
+
+            // 一、重构 push
+            // 使用Array构造函数的prototype，那么，就可以把函数挂载在数组本身上。
+            Array.prototype.myPush = function (...item) {//在声明形参时使用...，表示弹性参数（形参数量不限）。
+                // this:函数内部的this表示 数组变量（对象）。
+                // console.log("this",this);
+                // console.log("this.length",this.length);
+
+                // console.log("item",item);
+
+                for (var i = 0; i < item.length; i++) {
+                    this[this.length] = item[i];
+                }
+                return this.length;
+            }
+
+            // var arr = [12,23,34];
+            // var count = arr.myPush(56,67)
+            // console.log("arr",arr);
+            // console.log("count",count);
+
+            // var count = arr.myPush([6,7])
+            // var count = arr.myPush(undefined)
+            // console.log("arr",arr);
+            // console.log("count",count);
+
+            // 二、重构pop
+            // pop():尾删
+            // 参数：无
+            // 返回值：被删除的元素
+
+            // var arr = [12,34,45];
+            // var count = arr.pop();
+            // console.log(arr);
+            // console.log(count);
+
+            Array.prototype.myPop = function () {
+                if (this.length == 0) {
+                    return undefined;
+                }
+                var item = this[this.length - 1];
+                this.length--;
+                return item;
+            }
+
+            // var arr = [12,34,45];
+            // var count = arr.myPop();
+            // console.log(arr);
+            // console.log(count);
+
+            // var arr = [];
+            // var count = arr.myPop();
+            // console.log(arr);
+            // console.log(count);
+
+            // 三、重构 unshift
+
+            // var arr = [12,23,12,23,34];
+            // var count = arr.unshift(90);
+            // console.log(arr);
+            // console.log(count);
+
+            Array.prototype.myUnshift = function (...item) {
+                if (item.length == 0) {
+                    return this.length;
+                }
+
+                for (var i = this.length - 1; i >= 0; i--) {
+                    this[i + item.length] = this[i];
+                }
+
+                for (var i = 0; i < item.length; i++) {
+                    this[i] = item[i];
+                }
+
+                return this.length;
+
+            }
+
+            // var arr = [12,23,34];
+            // var count = arr.myUnshift(90,100,200,300);
+            // console.log(arr);
+            // console.log(count);
+
+
+            // var arr = [12,23,34];
+            // var count = arr.myUnshift([100,200]);
+            // console.log(arr);
+            // console.log(count);
+
+            //四、重构：  shift
+            // 功能：头删
+            // 参数：无
+            // 返回值：被删除的元素
+
+            Array.prototype.myShift = function () {
+                if (this.length == 0) {
+                    return undefined;
+                }
+                var item = this[0];
+                for (var i = 0; i < this.length - 1; i++) {
+                    this[i] = this[i + 1];
+                }
+                this.length--;
+                return item;
+            }
+
+            // var arr =[];
+            // var item = arr.shift();
+            // console.log("arr",arr);
+            // console.log("item",item);
+
+
+            // 五、重构：concat
+
+            // var arr=[12,23,34,45];
+
+            // var arr2 = arr.concat(56,67);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+            // var arr2 = arr.concat([56,67]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+
+            // var arr2 = arr.concat([56,67],[78,89]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+
+            // var arr2 = arr.concat(1,2,3,[56,67],100,[78,89,[9,10]]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+            Array.prototype.myConcat = function (...item) {
+                var newArr = [];
+                for (var i = 0; i < this.length; i++) {
+                    newArr.myPush(this[i]);
+                }
+
+                for (var i = 0; i < item.length; i++) {
+                    if (Array.isArray(item[i])) {
+                        for (var j = 0; j < item[i].length; j++) {
+                            newArr.myPush(item[i][j]);
+                        }
+                    } else {
+                        newArr.myPush(item[i]);
+                    }
+                }
+
+                return newArr;
+
+            }
+
+            // var arr=[12,23,34,45];
+
+            // var arr2 = arr.myConcat(undefined,null);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+            // var arr2 = arr.myConcat(56,67);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+            // var arr2 = arr.myConcat([56,67]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+
+            // var arr2 = arr.myConcat([56,67],[78,89]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+
+            // var arr2 = arr.myConcat(1,2,3,[56,67],100,[78,89,[9,10]]);
+            // console.log("arr",arr);
+            // console.log("arr2",arr2);
+
+
+            // 六、重构：slice()
+            // 功能：从数组中截取一部分元素
+            // 参数：
+            //  开始下标（闭）
+            //  结束下标（开）
+            // 返回值：截取的
+
+            // var arr = [12, 23, 34, 45, 56, 67];
+            // var arr2 = arr.slice(1,4);
+            // console.log(arr2);
+            // var arr2 = arr.slice(1);
+            // var arr2 = arr.slice();
+            // console.log(arr2);
+            // console.log(arr == arr2);
+
+            // var arr2 = arr.slice(-2);
+            // console.log(arr2);
+            
+            // var arr2 = arr.slice(-5,-1);
+            // console.log(arr2);
+            
+            // var arr2 = arr.slice(-3,6);
+            // console.log(arr2);
+            
+            // var arr2 = arr.slice(3,-1);
+            // console.log(arr2);
+
+            
+            // var arr2 = arr.slice(3,-5);
+            // console.log(arr2);
+
+            // ??还要考虑，越界情况？？？
+            // var arr2 = arr.slice(-7,2);
+            // console.log(arr2);
+
+            //  var arr2 = arr.slice(8);
+            // console.log(arr2);
+
+            Array.prototype.mySlice = function(begin,end){
+                // if(end==undefined){
+                //     end = this.length;
+                // }else if(end<0){
+                //     end = this.length+end;
+                // }else if(end>this.length){
+                //     end = this.length;
+                // }
+
+                if(end==undefined || end>this.length){
+                    end = this.length;
+                }else if(end<0){
+                    end = this.length+end;
+                }
+
+                // if(begin==undefined){
+                //     begin=0;
+                // }else if(begin<0){
+                //     if(begin<-this.length){
+                //         begin = 0;
+                //     }else{
+                //         begin = this.length+begin;
+                //     }
+                // }
+
+                if(begin==undefined || begin<-this.length){
+                    begin=0;
+                }else if(begin<0){
+                    begin = this.length+begin;
+                }
+
+                if(begin>=end){
+                    return [];
+                }
+
+                var newArr = []
+                for(var i=begin; i<end; i++){
+                    newArr.myPush(this[i]);
+                }
+
+                return newArr;
+
+            }
+
+            // var arr = [12, 23, 34, 45, 56, 67];
+            // var arr2 = arr.mySlice(1,4);
+            // console.log(arr2);//23,34,45
+            // var arr2 = arr.mySlice(1);
+            // console.log(arr2);//23, 34, 45, 56, 67
+            // var arr2 = arr.mySlice();
+            // console.log(arr2);//12, 23, 34, 45, 56, 67
+            // // console.log(arr == arr2);
+
+            // var arr2 = arr.mySlice(-2);
+            // console.log(arr2);// 56, 67
+            
+            // var arr2 = arr.mySlice(-5,-1);//23, 34, 45, 56
+            // console.log(arr2);
+            
+            // var arr2 = arr.mySlice(-3,5);//45, 56
+            // console.log(arr2);
+            
+            // var arr2 = arr.mySlice(3,-1);//45, 56
+            // console.log(arr2);
+
+            
+            // var arr2 = arr.mySlice(3,-5);//[]
+            // console.log(arr2);
+
+            // // ??还要考虑，越界情况？？？
+            // var arr2 = arr.mySlice(-7,2);//12, 23
+            // console.log(arr2);
+
+            //  var arr2 = arr.mySlice(8);//[]
+            // console.log(arr2);
+
+            // 七、重构：splice();
+            // 功能：给原数组添加，删除，修改元素
+            // 参数：
+            //   起始下标（删除的起始，添加的起始）
+            //   长度（删除的长度）
+            //   要添加的元素（可以写多个）
+            // 返回值：删除的元素
+
+            // var arr = [12,23,34,45,56,67];
+            // 添加
+            // var result = arr.splice(1,0,100);
+            // console.log("arr",arr);//12, 100, 23, 34, 45, 56, 67
+            // console.log("result",result);//[]
+            
+            // var result = arr.splice(1,0,100,200);
+            // console.log("arr",arr);//12, 100,200, 23, 34, 45, 56, 67
+            // console.log("result",result);//[]
+            
+            // 删除
+            // var result = arr.splice(1,2);
+            // console.log("arr",arr);//[12, 45, 56, 67]
+            // console.log("result",result);//[23, 34]
+            
+            // 修改
+            // var result = arr.splice(1,2,250);
+            // console.log("arr",arr);//[12, 250,45, 56, 67]
+            // console.log("result",result);//[23, 34]
+            
+
+
+            // var result = arr.splice(1);
+            // console.log("arr",arr);//[12]
+            // console.log("result",result);//[23, 34, 45, 56, 67]
+
+            // var result = arr.splice(-2);
+            // console.log("arr",arr);//[12]
+            // console.log("result",result);//[23, 34, 45, 56, 67]
+
+
+            // 功能：给原数组添加，删除，修改元素
+            // 参数：
+            //   起始下标（删除的起始，添加的起始）
+            //   长度（删除的长度）
+            //   要添加的元素（可以写多个）
+            // 返回值：删除的元素
+            //                  1  2          4 5
+            // var arr = [12,  23,34,45,     56,67,23,3,4,5,6]
+            // arr.mySlice(1,3)
+            Array.prototype.mySplice = function(start,len,...item){
+                
+                if(start<0){
+                    start = this.length+start;
+                }
+
+                if(len==undefined){
+                    len = this.length-start;
+                }
+
+                //...item 这种参数，在调用函数时，会定义一个数组           
+
+                // 1、删除
+                var result = [];
+                for(var i=start;i<start+len;i++){                    
+                    result.push(this[i]);
+                }
+                for(var i=start+len;i<this.length;i++){
+                    this[i-len] = this[i];
+                }
+                this.length -= len;
+
+                // 2、添加
+                // 腾位置（朝后挪）
+                for(var i=this.length-1;i>=start;i--){
+                    this[i+item.length] = this[i];                    
+                }
+
+                for(var i=0;i<item.length;i++){
+                    this[start+i] = item[i];
+                }
+
+                return result;
+            }
+
+            var arr = [12,23,34,45,56,67];
+            // 添加
+            // var result = arr.mySplice(1,0,100);
+            // console.log("arr",arr);//12, 100, 23, 34, 45, 56, 67
+            // console.log("result",result);//[]
+            
+            // var result = arr.mySplice(1,0,100,200);
+            // console.log("arr",arr);//12, 100,200, 23, 34, 45, 56, 67
+            // console.log("result",result);//[]
+            
+            // 删除
+            // var result = arr.mySplice(1,2);
+            // console.log("arr",arr);//[12, 45, 56, 67]
+            // console.log("result",result);//[23, 34]
+            
+            // 修改
+            // var result = arr.mySplice(1,2,250);
+            // console.log("arr",arr);//[12, 250,45, 56, 67]
+            // console.log("result",result);//[23, 34]
+            
+
+
+            // var result = arr.mySplice(1);
+            // console.log("arr",arr);//[12]
+            // console.log("result",result);//[23, 34, 45, 56, 67]
+
+            var result = arr.mySplice(-2);
+            console.log("arr",arr);//[12,23, 34, 45,]
+            console.log("result",result);//[56,67]
+
+        }
+
+    </script>
+</body>
+
+</html>

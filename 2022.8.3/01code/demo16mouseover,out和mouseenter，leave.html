@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #fatherBox {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        #meBox {
+            position: absolute;
+            left:210px;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+
+        #smallbox{
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            float: left;
+        }
+
+        
+        #bigbox{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div id="fatherBox">
+        <div id="meBox">
+
+        </div>
+    </div>
+
+    <div id="smallbox"></div>
+    <div id="bigbox"></div>
+    <script>
+        // 1、mouseover和mouseenter的区别(在两个html元素有父子关系时有区别）：
+        //   mouseover： 子元素的区域不属于父元素区域。有冒泡的体现
+        //   mouseenter: 子元素区域，就属于父元素区域，不冒泡了
+
+        // fatherBox.onmouseover = function(event){
+        //     var e = event || window.event
+        //     console.log("fatherBox.onmouseover",e.target);
+        // }
+        
+        // fatherBox.onmouseout = function(event){
+        //     var e = event || window.event
+        //     console.log("fatherBox.onmouseout",e.target);
+        // }
+
+        
+        // meBox.onmouseover = function(event){
+        //     var e = event || window.event
+        //     console.log("meBox.onmouseover",e.target);
+        // }
+        
+        // meBox.onmouseout = function(event){
+        //     var e = event || window.event
+        //     console.log("meBox.onmouseout",e.target);
+        // }
+
+
+        // fatherBox.onmouseenter = function(event){
+        //     var e = event || window.event
+        //     console.log("fatherBox.onmouseenter",e.target);
+        // }
+        
+        // fatherBox.onmouseleave = function(event){
+        //     var e = event || window.event
+        //     console.log("fatherBox.onmouseleave",e.target);
+        // }
+
+        
+        // meBox.onmouseenter = function(event){
+        //     var e = event || window.event
+        //     console.log("meBox.onmouseenter",e.target);
+        // }
+        
+        // meBox.onmouseleave = function(event){
+        //     var e = event || window.event
+        //     console.log("meBox.onmouseleave",e.target);
+        // }
+
+        
+        // bigbox.onmouseover = function(event){
+        //     var e = event || window.event
+        //     console.log("bigbox.onmouseover",e.target);
+        // }
+        
+        // bigbox.onmouseout = function(event){
+        //     var e = event || window.event
+        //     console.log("bigbox.onmouseout",e.target);
+        // }
+
+        
+        // smallbox.onmouseover = function(event){
+        //     var e = event || window.event
+        //     console.log("smallbox.onmouseover",e.target);
+        // }
+        
+        // smallbox.onmouseout = function(event){
+        //     var e = event || window.event
+        //     console.log("smallbox.onmouseout",e.target);
+        // }
+
+        
+        // bigbox.onmouseenter = function(event){
+        //     var e = event || window.event
+        //     console.log("bigbox.onmouseenter",e.target);
+        // }
+        
+        // bigbox.onmouseleave = function(event){
+        //     var e = event || window.event
+        //     console.log("bigbox.onmouseleave",e.target);
+        // }
+
+        
+        // smallbox.onmouseenter = function(event){
+        //     var e = event || window.event
+        //     console.log("smallbox.onmouseenter",e.target);
+        // }
+        
+        // smallbox.onmouseleave = function(event){
+        //     var e = event || window.event
+        //     console.log("smallbox.onmouseleave",e.target);
+        // }
+
+
+    </script>
+</body>
+
+</html>

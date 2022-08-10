@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        fn01();
+        fn02();
+
+        // 1、声明式的定义：声明提升
+        function fn01(){
+            console.log("fn01");
+        }
+
+        // 2、（赋值）表达式：不会提升
+        var fn02 = function(){
+            console.log("fn02");
+        }
+
+
+    </script>
+</body>
+</html>

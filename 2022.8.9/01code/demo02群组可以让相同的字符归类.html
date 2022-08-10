@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text"  id="username"><span></span>
+    
+    <script>
+        // console.log("aaaabbbcccccccc".match(/([a-z])\1/g))
+        // console.log("aaaabbbcccccccc".match(/([a-z])\1+/g))
+        // console.log("aaaabbbdcccccccc".match(/([a-z])\1*/g))
+        // console.log("aaaabbbdcccaaaccccc".match(/([a-z])\1*/g))
+        
+
+        var str="asdkhjasdkjahsdkuashdkasjhdaskjdhsa";
+        // a{7}d{6}h{5}j{4}k{5}s{7}u{1}
+
+        // console.log(str.split("").sort().join(""));
+        // aaaaaaaddddddhhhhhjjjjkkkkksssssssu
+
+        // console.log(str.split("").sort().join("").match(/([a-z])\1*/g))
+        // ['aaaaaaa', 'dddddd', 'hhhhh', 'jjjj', 'kkkkk', 'sssssss', 'u']
+
+        var arr = str.split("").sort().join("").match(/([a-z])\1*/g);
+
+        var result = arr.reduce(function(value,item){
+            return value + item[0]+"{"+item.length+"}";
+        },"")
+
+        console.log(result);
+
+        // var result = "";
+        // arr.forEach(function(item){
+        //     result += item[0]+"{"+item.length+"}"
+        // })
+
+        // console.log(result);
+        
+
+    </script>
+</body>
+</html>

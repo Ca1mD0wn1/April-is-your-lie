@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // 输入不定长度的金额字符串，千位分隔符实现1234567 => 1, 234, 567
+
+
+
+
+
+        function Thousands(str) {
+
+            let number = Number(str);
+            // console.log(number);
+            if (isNaN(number)) {
+                console.log("not a number!");
+                return 0;
+            }
+            // console.log(str.length);
+
+            // console.log(str);
+
+
+            // console.log(xiaoshulen);
+            // console.log(number);
+            if (number != parseInt(number)) {
+                let xiaoshulen = str.split(".")[1].length;//
+                var xiaoshu = (number - parseInt(number)).toFixed(xiaoshulen);
+
+
+                // console.log(number);
+                // console.log(parseInt(number));
+                // console.log(xiaoshu);
+            } else {
+                var xiaoshu = '';
+            }
+            var arr = [];
+            var j = 0;
+            str = parseInt(number).toString();
+            for (let i = str.length - 1; i >= 0; i--) {
+                arr.push(str[i]);
+                j++; if (j == 3) {
+                    arr.push(",");
+                    j = 0;
+                }
+            }
+            arr.reverse();
+            // console.log(xiaoshu);
+            // console.log(arr);
+            var result = "";
+            for (let i in arr) {
+                result = result + arr[i];
+            }
+
+            result = result + xiaoshu.replace("0", "");
+            if (result[0] == ",") {
+                result = result.slice(1, result.length);
+            }
+            console.log(result);
+
+        }
+        // Thousands("1111323232312.1232323232");
+
+
+
+        //  加密程序，明文的字母变成其后的第4个字母。字母表首尾相连
+        //  China Glmre
+
+        function encrypt(str) {
+
+            var code = '';
+            let j;
+            var arr = [];
+            for (let i in str) {
+                j = str[i];
+                if ((str[i].charCodeAt() >= 65 && str[i].charCodeAt() <= 90) || (str[i].charCodeAt() >= 97 && str[i].charCodeAt() <= 122)) {
+                    if ((str[i].charCodeAt() >= 87 && str[i].charCodeAt() <= 90) || (str[i].charCodeAt() >= 119 && str[i].charCodeAt() <= 122)) {
+                        arr.push(String.fromCharCode(str[i].charCodeAt() + 4 - (122 - 97)));
+                        continue;
+                    }
+                    j = String.fromCharCode(str[i].charCodeAt() + 4);
+                }
+
+                arr.push(j);
+            }
+            // console.log(arr);
+
+            for (let x in arr) {
+                code = code + arr[x];
+            }
+            console.log(code);
+        }
+
+        // encrypt("123qw  .ASDe123");
+
+
+
+
+        // 求n（包括n）以内所有勾股数组
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

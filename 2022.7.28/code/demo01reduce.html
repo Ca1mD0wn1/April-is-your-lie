@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    <script>
+        function fn01() {
+            
+            // reduce：归并
+
+            // 重构
+            Array.prototype.myReduce = function(cb,initValue){
+
+                if(typeof cb !="function") throw new TypeError(cb+" is not a function");
+                                
+                // 0、把数组的前面的无效元素排除掉
+                //  startIndex：第一有效元素的下标
+                var startIndex=0;//
+                while(!(startIndex in this) && startIndex<this.length) {
+                    startIndex++;
+                }
+                // 1、异常处理
+                if(initValue==undefined && startIndex>=this.length){
+                    // 抛出错误（异常）
+                    throw new TypeError("Reduce of empty array with no initial value")
+                }
+
+                // 2、初始值和初始下标
+                if(initValue==undefined){
+                    var result = this[startIndex]; 
+                    startIndex += 1;
+                }else{
+                    var result = initValue;                    
+                }
+
+                for(var i=startIndex;i<this.length;i++){
+                   if(i in this){
+                        result = cb(result,this[i]);
+                   }
+                }
+
+                return result;
+            }
+          
+
+            // 1、场景一：
+            // var arr = [1,2,3,4,5];
+
+            // var sum = arr.reduce(function(value,item,index,arr){
+            //     return value-item;
+            // });
+
+            // console.log("sum",sum);//-13
+            
+            // 2、场景二：
+            // var arr = [1,2,3,4,5];
+            // var sum = arr.reduce(function(value,item,index,arr){
+            //     return value+item;
+            // },10); //25
+
+            // console.log("sum",sum);
+
+            // 3、场景三：
+            // var arr = [];
+            // var sum = arr.myReduce(function(value,item,index,arr){
+            //     return value+item;
+            // }); 
+
+            // console.log("sum",sum); //抛出错误（）
+
+            // =======================
+
+            // 4、场景四：
+            // var arr = [];
+            // var sum = arr.myReduce(function(value,item,index,arr){
+            //     return value+item;
+            // },10);
+
+            // console.log("sum",sum);//10
+
+  
+            // 5、场景五：
+            // var arr = [,,5,];
+            // console.log(arr.length);
+            // var sum = arr.myReduce(function(value,item,index,arr){
+            //     return value+item;
+            // },8);
+
+            // console.log("sum",sum);//13（OK）
+
+            // var arr = [,,5,,,];
+            // console.log(arr.length);
+            // var sum = arr.myReduce(function(value,item,index,arr){
+            //     return value+item;
+            // });
+
+            // console.log("sum",sum);//5（OK）
+
+            
+            // var arr = [,,,];
+            // console.log(arr.length);
+            // var sum = arr.myReduce(function(value,item,index,arr){
+            //     return value+item;
+            // });//报错误
+
+            // console.log("sum",sum);////报错误（OK）
+
+            // var arr=[];
+            // arr.myReduce("bdd")
+
+        }
+
+    </script>
+</body>
+
+</html>

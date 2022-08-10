@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <input type="button" value="测试" onclick="fn01()">
+
+    <img src="./img/1.jpg" />
+
+    <img  class="cls" id="img01" src="img/01.jpg" />
+
+    <div id="box1" class="cls"></div>
+
+    <script>
+
+        var width = 100;
+
+        function fn01(){
+            var divDom = document.getElementById("box1");
+            console.log("divDom",divDom);
+            // 
+            var imgDoms = document.getElementsByTagName("img");
+            console.log("imgDoms",imgDoms);
+
+            var arr = Array.from(imgDoms);
+            console.log("arr",arr);
+
+            // 
+            var clsDoms = document.getElementsByClassName("cls");
+
+            console.log("clsDom0s",clsDoms);
+
+            for(var i=0;i<clsDoms.length;i++){
+                clsDoms[i].style.width= width++ +"px";
+                clsDoms[i].style.height="100px";
+                clsDoms[i].style.border="2px solid #000";                
+            }
+
+        }
+ 
+
+    </script>
+</body>
+</html>

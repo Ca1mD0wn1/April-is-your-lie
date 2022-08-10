@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01() {
+            // 定义正则：
+            // 1、构造函数
+            // var reg = new RegExp(字符串/正则对象,"属性");
+            var reg = new RegExp("study", "ig");//匹配 study 不区分大小写，全局范围匹配
+            var reg = new RegExp("st.dy", "ig");//匹配 st任意一个字符dy 不区分大小写，全局范围匹配
+            var reg = new RegExp(/st.dy/, "ig");
+
+            // 2、直接量
+
+            var reg = /st.dy/ig;
+
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

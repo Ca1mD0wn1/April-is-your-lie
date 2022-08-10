@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 100px;
+            height: 25px;
+            font-size: 25px;
+            text-align: right;
+        }
+
+        input {
+            font-size: 15px;
+            height: 25px;
+            width: 300px;
+        }
+
+        .login {
+            margin: 0 auto;
+            width: 500px;
+            background-color: gray;
+        }
+
+        .register {
+            margin: 0 auto;
+            width: 500px;
+            background-color: gray;
+            display: none;
+        }
+
+        button {
+            margin-left: 130px;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        <span>用户名</span><input type="text" placeholder="输入您的用户名" id="loginUsername"><span></span><br>
+        <span>密码</span><input type="text" placeholder="输入你的密码" id="loginPassword"><span></span><br>
+        <button id="login">登录</button><button id="register">注册</button>
+    </div>
+    <div class="register">
+        <span>用户名</span><input type="text" placeholder="6-16位数字，字母组合 且以字母开头" id="username"><span></span><br>
+        <span>设置密码</span><input type="text" placeholder="长度为6-16的字母，数字组合、不能为纯数字" id="password"><span></span><br>
+        <span>确认密码</span><input type="text" placeholder="再次输入密码" id="confirm"><span></span><br>
+        <button id="regConfirm">确定注册</button>
+        <button id="back">返回</button>
+    </div>
+    <script>
+        var username = $("#username");
+        var password = $("#password");
+        var userConfirm = $("#confirm");
+        var registerButton = $("#register");
+        var loginButton = $("#login");
+        var loginDiv = $(".login");
+        var registerDiv = $(".register");
+        var regConfirmButton = $("#regConfirm");
+        var backButton = $("#back");
+        var loginUsername = $("#loginUsername");
+        var loginPassword = $("#loginPassword");
+        var users = new Map();
+        username.oninput = function () {//6-16位数字，字母组合 且以字母开头
+            check(this, /^[a-z]\w{5,15}$/i);///^[a-z]\w{5,15}$/i
+        }
+        password.oninput = function () {//长度为6-16的字母，数字组合、不能为纯数字
+            check(this, /^(?![0-9]+$)\w{6,16}$/)
+        }
+        var loginConfirm = false;
+        userConfirm.oninput = function () { //再次输入密码
+            console.log(check(password, /^(?![0-9]+$)\w{6,16}$/));
+            if (this.value == password.value && check(password, /^(?![0-9]+$)\w{6,16}$/)) {
+                this.nextElementSibling.innerHTML = "√"
+                this.nextElementSibling.style.color = "green";
+                loginConfirm = true;
+            } else {
+                this.nextElementSibling.innerHTML = "×"
+                this.nextElementSibling.style.color = "red";
+            }
+        }
+        loginButton.onclick = function () {//登录按钮
+            if (users.get(loginUsername.value) == loginPassword.value) {
+                alert("登陆成功！");
+
+            } else {
+                let x = confirm("登陆失败！是否去注册？")
+                if (x) {
+                    loginDiv.style.display = "none";
+                    registerDiv.style.display = "block";
+                }
+            }
+        }
+        registerButton.onclick = function () {//注册按钮
+            loginDiv.style.display = "none";
+            registerDiv.style.display = "block";
+        }
+        regConfirmButton.onclick = function () {//注册确认按钮
+            console.log(123);
+            if (check(username, /^[a-z]\w{5,15}$/i) && check(password, /^(?![0-9]+$)\w{6,16}$/) && loginConfirm) {
+                if (users.has(username.value)) {
+                    alert("注册失败！已经有这个用户了！");
+                    username.value = "";
+                    password.value = "";
+                    userConfirm.value = "";
+                    return;
+                }
+                users.set(username.value, password.value);
+                username.value = "";
+                password.value = "";
+                userConfirm.value = "";
+                let x = confirm("注册成功！是否返回登录？")
+
+                if (x) {
+                    loginDiv.style.display = "block";
+                    registerDiv.style.display = "none";
+                }
+            } else {
+                alert("注册不符合规范！")
+            }
+        }
+        backButton.onclick = function () {
+            loginDiv.style.display = "block";
+            registerDiv.style.display = "none";
+        }
+        function check(dom, reg) {
+            if (reg.test(dom.value)) {
+                dom.nextElementSibling.innerHTML = "√"
+                dom.nextElementSibling.style.color = "green";
+                return true;
+            } else {
+                dom.nextElementSibling.innerHTML = "×"
+                dom.nextElementSibling.style.color = "red";
+                return false;
+            }
+        }
+        function $(id) {
+            return document.querySelector(id);
+        }
+    </script>
+</body>
+
+</html>

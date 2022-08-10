@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        html,
+        body,
+        #box {
+            width: 100%;
+            height: 100%;
+        }
+
+        #box {
+            background-color: #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .footer {
+            width: 100%;
+            height: 40px;
+            background-color: skyblue;
+            display: flex;
+            justify-content: space-around;
+            line-height: 40px;
+        }
+
+        .content {
+            width: 100%;
+            flex: 1;
+            background-color: orange;
+        }
+
+        .active {
+            color: red;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="content">
+
+        </div>
+        <ul class="footer">
+            <li id="home">首页</li>
+            <li id="goodstype">商品分类</li>
+            <li id="car">购物车</li>
+            <li id="my">我的</li>
+        </ul>
+    </div>
+
+
+    <script>
+        var obj = {
+            "home": `
+    <div>
+        <div>首页的搜索</div>
+        <div>首页的轮播图</div>
+        <div>首页的导航</div>
+        <div>首页的商品列表</div>
+    </div>
+`,
+            "goodstype": `
+    <div>
+        <div>商品类别</div>
+        <div>上衣</div>
+        <div>裤子</div>
+        <div>鞋子</div>
+    </div>
+`,
+            "car": `
+    <div>
+        <table>
+        <tr>
+            <td>编号</td>
+            <td>名称</td>
+            <td>价格</td>
+            <td>数量</td>
+            <td>小计</td>
+            <td>操作</td>
+        </tr>
+        <tr>
+            <td>01001</td>
+            <td>铅笔</td>
+            <td>1</td>
+            <td>
+                <input type="button" value=" - ">
+                <input type="text" value="2" />
+                <input type="button" value=" + ">
+            </td>
+            <td>2</td>
+            <td>
+                <input type="button" value="删除" />
+            </td>
+        </tr>
+        <tr>
+            <td>01002</td>
+            <td>钢笔</td>
+            <td>100</td>
+            <td>
+                <input type="button" value=" - ">
+                <input type="text" value="2" />
+                <input type="button" value=" + ">
+            </td>
+            <td>200</td>
+            <td>
+                <input type="button" value="删除" />
+            </td>
+        </tr>
+        </table>
+    </div>
+`,
+            "my": `
+    <div>
+        <div><img src="1.jpg" style="width:40px;height:40px" />，曹继承</div>
+        <div>我的个人信息</div>
+        <div>我浏览过商品记录</div>
+        <div>我的收藏</div>
+        <div>我的钱包</div>
+    </div>
+`
+        };
+        //         var home = `
+        //     <div>
+        //         <div>首页的搜索</div>
+        //         <div>首页的轮播图</div>
+        //         <div>首页的导航</div>
+        //         <div>首页的商品列表</div>
+        //     </div>
+        // `
+
+        //         var goodstype = `
+        //     <div>
+        //         <div>商品类别</div>
+        //         <div>上衣</div>
+        //         <div>裤子</div>
+        //         <div>鞋子</div>
+        //     </div>
+        // `
+
+        //         var car = `
+        //     <div>
+        //         <table>
+        //         <tr>
+        //             <td>编号</td>
+        //             <td>名称</td>
+        //             <td>价格</td>
+        //             <td>数量</td>
+        //             <td>小计</td>
+        //             <td>操作</td>
+        //         </tr>
+        //         <tr>
+        //             <td>01001</td>
+        //             <td>铅笔</td>
+        //             <td>1</td>
+        //             <td>
+        //                 <input type="button" value=" - ">
+        //                 <input type="text" value="2" />
+        //                 <input type="button" value=" + ">
+        //             </td>
+        //             <td>2</td>
+        //             <td>
+        //                 <input type="button" value="删除" />
+        //             </td>
+        //         </tr>
+        //         <tr>
+        //             <td>01002</td>
+        //             <td>钢笔</td>
+        //             <td>100</td>
+        //             <td>
+        //                 <input type="button" value=" - ">
+        //                 <input type="text" value="2" />
+        //                 <input type="button" value=" + ">
+        //             </td>
+        //             <td>200</td>
+        //             <td>
+        //                 <input type="button" value="删除" />
+        //             </td>
+        //         </tr>
+        //         </table>
+        //     </div>
+        // `
+
+        //         var my = `
+        //     <div>
+        //         <div><img src="./img/1.jpg" style="width:40px;height:40px" />，曹继承</div>
+        //         <div>我的个人信息</div>
+        //         <div>我浏览过商品记录</div>
+        //         <div>我的收藏</div>
+        //         <div>我的钱包</div>
+        //     </div>
+        // `
+
+        var contentDom = document.getElementsByClassName("content")[0]
+        var liDoms = document.getElementsByTagName("li");
+        var prevLi;
+
+        function goUrl(id) {
+            console.log("goUrl", id);
+            contentDom.innerHTML = obj[id];
+            console.log("obj[id]", obj[id]);
+        }
+        function saveHistory(id) {
+            history.pushState({ id: id }, "");
+        }
+
+        function changeStyle(id) {
+            var liDom = document.getElementById(id);
+            if (liDom == prevLi) {
+                return;
+            }
+
+            prevLi && (prevLi.className = "");
+
+            liDom.className = "active";
+            prevLi = liDom;
+        }
+
+        function showPage(id, isSaveHistory = true) {
+            isSaveHistory && saveHistory(id);
+            goUrl(id);
+            changeStyle(id);
+
+        }
+
+
+        for (var i = 0; i < liDoms.length; i++) {
+            liDoms[i].onclick = function () {
+                console.log(this.id);
+                showPage(this.id);
+            }
+        }
+
+        if (history.state) {
+            showPage(history.state.id, false);
+        } else {
+            history.replaceState({ id: "home" }, "");
+            goUrl("home");
+            changeStyle("home");
+        }
+        window.onpopstate = function () {
+            showPage(history.state.id, false);
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #grandpaBox {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        #fatherBox {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        #meBox {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="grandpaBox">
+        <div id="fatherBox">
+            <div id="meBox">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        // e.stopPropagation():阻止事件流（包括冒泡和捕获）
+        
+        meBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("meBox.onclick，");
+            e.stopPropagation();
+        }
+
+        fatherBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("fatherBox.onclick，e.target",e.target);
+        }
+
+        grandpaBox.onclick = function (event) {
+            var e = event || window.event;
+            console.log("grandpaBox.onclick，e.target",e.target);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

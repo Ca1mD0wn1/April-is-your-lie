@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #box {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+    <script>
+        var left1 = 100;
+        var top1 = 100;
+
+
+        document.onkeydown = function (event) {
+            var e = event || window.event;
+            console.log("keyCode", e.keyCode);
+            switch (e.keyCode) {
+                case 37: left1 -= 5; break;
+                case 38: top1 -= 5; break;
+                case 39: left1 += 5; break;
+                case 40: top1 += 5; break;
+                default: ;
+            }
+
+            box.style.left = left1 + "px";
+            box.style.top = top1 + "px";
+
+        }
+
+    </script>
+</body>
+
+</html>

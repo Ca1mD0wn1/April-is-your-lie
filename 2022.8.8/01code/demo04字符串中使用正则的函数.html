@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1、match方法：
+
+        // console.log("abcadcadd".match(/a.c/)) 
+        // console.log("abcadcadd".match(/a.c/g)) //['abc', 'adc']
+        // console.log("abcaccadc".match(/a[bc]c/g)) //['abc', 'acc']
+
+        // 贪婪匹配：尽量匹配最大的
+
+        // console.log("aaa".match(/a{1,5}/g));
+        // console.log("aaaaa".match(/a{1,5}/g));
+        // console.log("aaaaaaaaaaaa".match(/a{1,5}/g));
+
+        // var str="中国四大名著包括《西游记》、《水浒传》、《三国演义》、《红楼梦》";
+        // console.log(str.match(/《[^》]*》/g));// ['《西游记》', '《水浒传》', '《三国演义》', '《红楼梦》']
+
+
+
+        // 非贪婪匹配：取最小，在贪婪匹配（重复次数）的后面加上？
+
+        // console.log("aaa".match(/a{1,5}?/g));//['a', 'a', 'a']
+        // console.log("aaaaa".match(/a{2}/g));// ['aa', 'aa']
+        // console.log("aaaaaaaaaaaaaa".match(/a{3,5}?/g));//['aaa', 'aaa', 'aaa', 'aaa']
+
+        // console.log("aaaaaaaaaaaaaa".match(/a{1,}?b/g));//['aaa', 'aaa', 'aaa', 'aaa']
+
+        // var str="中国四大名著包括《西游记》、《水浒传》、《三国演义》、《红楼梦》";
+        // console.log(str.match(/《.*?》/g));
+
+
+        // 2、search
+
+        // var  str = "abbabcaabbcccd";
+        // console.log(str.search("abc"));
+        // console.log(str.search(/ab*a/));
+        // console.log(str.search(/ab{2}c/));
+        // console.log(str.search(/ab*c/g));
+
+        //3、replace;
+        
+        // var str="good good study my god day day  gd up";
+
+        // // console.log(str.replace(/go*d/g,"000"));
+
+        // console.log(str.replace(/go*d/g,function(item,arr){
+        //     console.log(item,arr);
+        //     // return "000";
+        //     return item+"000"
+        // }))
+ 
+ 
+        // 4、split();
+        var str="a=3&b=42&d=56";
+
+        var arr = str.split(/[&=]/);
+        // console.log(arr);
+
+        var obj = {};
+        for(var i=0;i<arr.length;i+=2){
+            obj[arr[i]] = arr[i+1];
+        }
+
+        // console.table(obj);
+        console.log(obj);
+
+
+
+        
+    </script>
+
+</body>
+
+</html>

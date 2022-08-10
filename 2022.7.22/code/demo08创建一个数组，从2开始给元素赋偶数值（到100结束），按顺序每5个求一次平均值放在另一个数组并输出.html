@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+
+    <script src="./js/arrTools.js"></script>
+    <script>
+
+        // 创建一个数组，从2开始给元素赋偶数值（到100结束），按顺序每5个求一次平均值放在另一个数组并输出
+
+        function fn01(){
+
+            // 1、创建一个数组，从2开始给元素赋偶数值（到100结束）
+            var arr = [];
+            
+            for(var i=1;i<=50;i++){
+                arr[i-1] = i*2;
+            }
+
+            console.log("arr",arr);
+
+            // 2、按顺序每5个求一次平均值放在另一个数组并输出
+            var avgs = [];
+
+            var sum = 0 ;
+            for(var i=0;i<arr.length;i++){
+                // 1、求和
+                sum += arr[i];
+
+                // 2、够5个求平均值，放到新的数组
+                if((i+1)%5==0){
+                    avgs.push(sum/5);
+                    sum = 0;
+                }
+
+            }
+     
+            console.log("avgs",avgs);
+
+        }
+
+
+    </script>
+</body>
+</html>

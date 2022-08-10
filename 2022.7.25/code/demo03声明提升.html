@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    
+    <script>
+
+    // 一、变量（和函数）都会声明提升
+        // function fn01(){            
+        //     console.log(a);//没有出错。
+        //     var a;
+        // }
+
+        // // 以上代码，经过预编译后，
+
+        // function fn01(){            
+        //     var a;
+        //     console.log(a);//没有出错。        
+        // }
+        
+    // 二、变量（和函数）声明提升：提升的是声明，而不是赋值
+
+        // testf();//testf is not a function
+    
+        // function fn01(){            
+        //     console.log(a);//            
+        //     var a=100;//这句话：是声明变量的同时做了赋值。            
+        // }
+
+        // 经过预编译后的结果是：
+            
+        // function fn01(){            
+        //     var a;
+        //     console.log(a);//
+        //     a=100;
+        // }
+
+        // var testf = function(){
+        //     console.log("testf");
+        // }
+
+
+        //三、 当全局变量和局部变量重名并且碰到了声明提升
+
+        var global_num = 100;
+
+        function fn01(){
+            console.log("global_num",global_num);//undefined(局部变量)
+            var global_num = 200;
+            console.log("global_num",global_num);//200
+        }
+
+        // 以上代码经过预编译，成为如下：
+        function fn01(){
+            var global_num;
+            console.log("global_num",global_num);//undefined
+            global_num = 200;
+            console.log("global_num",global_num);//200
+        }
+    </script>
+</body>
+</html>

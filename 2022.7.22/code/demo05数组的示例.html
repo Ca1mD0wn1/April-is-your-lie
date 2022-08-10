@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+
+    <script>
+
+        // 1、求最大数
+        // function fn01(){
+        //     var scores = [98,78,100,87,88];
+        //     var max = scores[0];
+
+        //     for(i=1;i<scores.length;i++){
+        //         if(scores[i]>max){
+        //             max = scores[i];
+        //         }
+        //     }
+
+        //     console.log("max",max);
+
+        // }
+
+
+        // 2、求最大数和最小数
+        // function fn01(){
+        //     var scores = [98,78,100,87,88];
+        //     var max = scores[0];
+        //     var min = scores[0];
+
+        //     for(i=1;i<scores.length;i++){
+                
+        //         if(scores[i]>max){
+        //             max = scores[i];
+        //         }
+
+        //         if(scores[i]<min){
+        //             min = scores[i];
+        //         }
+
+        //     }
+
+        //     console.log("max",max);
+        //     console.log("min",min);
+
+        // }
+
+        // 3、求平均数
+        // function fn01(){
+        //     var scores = [60,70,100,90,80];
+
+        //     // 1、求和
+        //     var sum = 0;
+        //     for(i=0;i<scores.length;i++){
+        //         sum += scores[i];
+        //     }
+
+        //     // 2、求平均数
+        //     var avg = sum/scores.length;
+
+        //     console.log("avg",avg);
+
+        // }
+  
+        // 4、数组倒置
+        /*
+        function fn01(){
+            var scores = [60,70,100,90,80];
+
+            for(var i=0;i<parseInt(scores.length/2);i++){
+                var temp = scores[i];
+                scores[i] = scores[scores.length-1-i];
+                scores[scores.length-1-i] = temp;
+            }
+        
+            console.log("scores",scores);
+
+        }
+        */
+
+        // 5、求出小于某个数的个数
+
+        function fn01(){
+            var scores = [60,70,40,100,55,90,80];
+            var num = 60;
+
+            var count = 0;
+            for(var i=0;i<scores.length;i++){
+                if(scores[i]<num){
+                    count++;
+                }
+            }
+
+            console.log("count",count);
+
+        }
+
+    </script>
+</body>
+</html>

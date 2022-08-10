@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btn01" type="button" value="测试">
+
+    <script>
+
+        $("btn01").onclick = function () {
+
+            var d = new Date();
+            console.log(convertDate(d));
+            console.log(convertDate(d,"-"));
+
+            console.log(convertDateTime(d))
+            console.log(convertDateTime(d, "-"))
+
+        }
+
+        // 功能：把日期对象转换成指定格式的日期字符串
+        // 参数：
+        //    日期对象
+        //    分隔符
+        // 返回值：日期字符串
+
+        function convertDateTime(d, separator) {
+            return convertDate(d,separator) +" "+ d.toLocaleTimeString();
+        }
+
+        function convertDate(d, separator) {
+            if (separator == undefined) {
+                return d.getFullYear() + "年" + (d.getMonth() + 1) + "月" + d.getDate() + "日" ;
+            } else {
+                return d.getFullYear() + separator + (d.getMonth() + 1) + separator + d.getDate();
+            }
+        }
+
+        // 计算两个日期天数差
+        // 参数：
+        // 两个日期对象
+        // 返回值：天数差
+
+        // 2022-7-28 23:59:59
+        // 2022-7-29 0:0:1
+        
+        // 2022-7-28 0:0:1
+        // 2022-7-29 23:59:59
+
+        function diffDate(d1,d2){
+            // (d1.getTime() - d2.getTime());
+            d1.setHours(0);            
+            d1.setMinutes(0);
+            d1.setSeconds(0);
+            d1.setMilliseconds(0)
+
+            d2.setHours(0);            
+            d2.setMinutes(0);
+            d2.setSeconds(0);
+            d2.setMilliseconds(0)
+
+           return (d1.getTime() - d2.getTime())/(24*3600*1000);
+
+        }
+
+        // 计算两个日期的月份差 (year2-year1)*12+(month2-month1);
+        // 两个日期对象
+        // 返回值：月份差 
+
+        // 2022-7-29
+        // 2021-8-1
+
+
+        function diffMonth(d1,d2){
+        
+            return (d1.getFullYear()-d2.getFullYear())*12 + (d1.getMonth()-d2.getMonth());
+
+        }
+
+        // 根据选择器获取dom元素
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+    </script>
+
+</body>
+
+</html>

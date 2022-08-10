@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    
+    <script>
+        // 全局变量，又叫共享变量，当，若干个函数需要共享一个数据时， 才定义全局变量。而不是变量名相同
+        var global_num = 250;
+
+        // 局部变量：在函数内部定义，起作用的范围就是当前函数内部。
+        function fn01(){            
+            var a = 100;//局部变量，只能当前函数里使用
+            console.log("fn01的a",a);
+            console.log("fn01打印globa_num",global_num);//250;
+            fn03();
+            global_num = 300;
+            fn04();
+            fn02();
+        }
+
+        function fn02(){
+            // console.log("fn02的a",a);//在fn02里不能使用其它函数的局部变量
+            console.log("fn02打印globa_num",global_num);//300
+        }
+        
+        
+        function fn03(){            
+            console.log("fn03打印globa_num",global_num);//250
+        }
+        
+
+        function fn04(){
+            var global_num = 10;
+            console.log("fn04打印global_num",global_num);
+        }
+
+    </script>
+</body>
+</html>

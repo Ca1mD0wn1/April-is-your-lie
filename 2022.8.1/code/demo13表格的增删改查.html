@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+    <table id="t">
+        <tr>
+            <td>第一行第一列</td>
+            <td>第一行第二列</td>
+        </tr>
+        <tr>
+            <td>第二行第一列</td>
+            <td>第二行第二列</td>
+        </tr>
+        <tr>
+            <td>第三行第一列</td>
+            <td>第三行第二列</td>
+        </tr>
+    </table>
+
+    <script>
+
+         function fn01(){
+            var tableDom = document.getElementById("t");
+            // 1、获取表格对象的行和列（单元格）
+            // console.log("tableDom.rows",tableDom.rows)
+            // console.log("tableDom.rows[0]",tableDom.rows[0]);
+            // console.log("tableDom.rows[0].cells",tableDom.rows[0].cells);
+            // console.log("tableDom.rows[0].cells[0]",tableDom.rows[0].cells[0]);
+
+            // 2、添加
+            // var trDom = tableDom.insertRow();
+            // var tdDom1 = trDom.insertCell();
+            // tdDom1.innerHTML = "第四行第一列";
+            // var tdDom2 = trDom.insertCell();
+            // tdDom2.innerHTML = "第四行第二列";
+
+            // var trDom = tableDom.insertRow(1);
+            // var tdDom1 = trDom.insertCell();
+            // tdDom1.innerHTML = "第四行第一列";
+            // var tdDom2 = trDom.insertCell(0);
+            // tdDom2.innerHTML = "第四行第二列";
+
+            // 3、
+            // t.rows[1].deleteCell(0);
+            // t.deleteRow(1);
+            
+        }
+
+    </script>
+</body>
+
+</html>
+
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        div {
+            margin: 0 auto;
+            display: flex;
+            width: 400px;
+            flex-wrap: wrap;
+
+        }
+
+        li {
+            line-height: 100px;
+            color: white;
+            text-align: center;
+            font-size: 30px;
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 10px;
+            box-shadow: 10px 5px 5px gray;
+        }
+
+        span {
+            color: white;
+            padding-left: 2px;
+            text-align: left;
+            font-size: 30px;
+            margin-left: 10px;
+            width: 340px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <li>1月</li>
+        <li>2月</li>
+        <li>3月</li>
+        <li>4月</li>
+        <li>5月</li>
+        <li>6月</li>
+        <li>7月</li>
+        <li>8月</li>
+        <li>9月</li>
+        <li>10月</li>
+        <li>11月</li>
+        <li>12月</li>
+        <span>1月假期</span>
+    </div>
+    <script>
+        const span = document.querySelector("span");
+        const lis = document.querySelectorAll("li");
+        let result = lis[0];
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].onmouseover = function () {
+                result.style.backgroundColor = "black";
+                result.style.color = "white";
+                this.style.backgroundColor = "white";
+                this.style.color = "black";
+                span.innerHTML = `${this.innerHTML}假期`
+
+                result = this;
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+
+      li{
+        list-style: none;
+      }
+
+      html,body,#box{
+        width: 100%;
+        height: 100%;        
+      }
+
+      #box{
+        background-color:#eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .footer{
+        width: 100%;
+        height: 40px;
+        background-color: skyblue;
+        display: flex;
+        justify-content: space-around;
+        line-height: 40px;
+      }
+
+      .content{
+        width: 100%;
+        flex:1;
+        background-color: orange;
+      }
+
+      .active{
+        color:red;
+        background-color: green;
+      }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="content">
+            
+        </div>
+        <ul class="footer">
+            <li id="home">首页</li>
+            <li id="goodstype">商品分类</li>
+            <li id="car">购物车</li>
+            <li id="my">我的</li>
+        </ul>
+    </div>
+
+    <script src="./js/home.js"></script>
+    <script src="./js/goodstype.js"></script>
+    <script src="./js/car.js"></script>
+    <script src="./js/my.js"></script>
+
+    <script>
+      // history.pushState(state,"",url?);//添加历史记录，同时，添加state;
+      // window.onpopstate://弹出页面栈顶端的state。
+
+        var obj = {
+            "home":home,
+            "goodstype":goodstype,
+            "car":car,
+            "my":my
+        };
+
+        var contentDom = document.getElementsByClassName("content")[0]
+        // 所有li
+        var liDoms = document.getElementsByTagName("li");
+        var prevLi;//前一个被点击li
+
+        // 通过循环，给每个li绑定事件
+        for(var i=0;i<liDoms.length;i++){
+
+          liDoms[i].onclick = function(){
+            // this:点击的dom元素，就是事件源
+            console.log("this.id",this.id);
+            // 1、改变地址栏
+            // pushState: 给历史记录添加数据（就是pushState的第一个参数）,添加到history.state。
+            history.pushState({url:this.id},this.id,this.id);
+            // 2、改变内容
+            contentDom.innerHTML = obj[this.id];
+
+            // 3、改变样式
+            // 清除其它的样式
+            prevLi && (prevLi.className="");
+            // 给当前li增加样式
+            this.className = "active";
+            prevLi = this;
+          }
+        }
+
+        // onpopstate:弹出state，其实就是后退
+        window.onpopstate = function(){
+          console.log("history.state",history.state);
+          contentDom.innerHTML = obj[history.state.url];
+        }
+        
+        // console.log("history.state",history.state);
+
+    </script>
+</body>
+</html>

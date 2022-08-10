@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tools.js"></script>
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        button {
+            color: aqua;
+        }
+
+        a {
+            display: block;
+            width: 500px;
+            height: 100px;
+            margin: 0 auto;
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p>1,课堂案例敲一遍</p>
+    <p>2,输入一个整数,判断大于0小于0还是等于0</p>
+    <input type="text" id="demo1" value='此处输入数字' onfocus="if(value=='此处输入数字'){value=''}"
+        onblur="if(value==''){value='此处输入数字'}"><input type="button" value="点击按钮判断" onclick="demo1()">
+    <p id="answ1" style="color: red;">此处显示问题1的结果</p>
+    <p>3,国内BMI:开发一款软件,根 据公式（身高-108)*2=体重,可以有10斤左右的浮动。来观察测试者体重是否合适</p>
+    <p>提示：输入身高算体重,然后判断算出的体重和输入的体重差值在正负10斤以内,可使用Math.abs()</p>
+    <input type="text" id="demo2" value="此处输入你的身高" onfocus="if(value=='此处输入你的身高'){value=''}"
+        onblur="if(value==''){value='此处输入你的身高'}">
+    <input type="text" id="demo2_1" value="此处输入你的体重" onfocus="if(value=='此处输入你的体重'){value=''}"
+        onblur="if(value==''){value='此处输入你的体重'}"><input type="button" value="点击按钮判断" onclick="demo2()">
+    <p id="answ2" style="color: red;">此处显示问题2的结果</p>
+    <p>4,输入一个数判断是奇数还是偶数,并输出结果</p>
+    <input type="text" id="demo3" value='此处输入数字' onfocus="if(value=='此处输入数字'){value=''}"
+        onblur="if(value==''){value='此处输入数字'}"><input type="button" value="点击按钮判断" onclick="demo3()">
+    <p id="answ3" style="color: red;">此处显示问题3的结果</p>
+    <p>5,输入一个年份判断是否是闰年</p>
+    <input type="text" id="demo4" value='此处输入数字' onfocus="if(value=='此处输入数字'){value=''}"
+        onblur="if(value==''){value='此处输入数字'}"><input type="button" value="点击按钮判断" onclick="demo4()">
+    <p id="answ4" style="color: red;">此处显示问题4的结果</p>
+    <p>6,输入成绩转成成绩等级(A,B,C,D,E),使用if和switch两种写法完成</p>
+    <input type="text" id="demo5" value='此处输入数字' onfocus="if(value=='此处输入数字'){value=''}"
+        onblur="if(value==''){value='此处输入数字'}"><input type="button" value="点击按钮判断" onclick="demo5()">
+    <p id="answ5" style="color: red;">此处显示问题5的结果</p>
+    <p>7,输入年和月份显示当月天数</p>
+    <input type="text" id="demo6" value='此处输入年份' onfocus="if(value=='此处输入年份'){value=''}"
+        onblur="if(value==''){value='此处输入年份'}">
+    <input type="text" id="demo6_1" value='此处输入月份' onfocus="if(value=='此处输入月份'){value=''}"
+        onblur="if(value==''){value='此处输入月份'}">
+    <input type="button" value="点击按钮判断" onclick="demo6()">
+    <p id="answ6" style="color: red;">此处显示问题6的结果</p>
+    <p>8,输入数字显示星期几</p>
+
+    <p>9,根据会员积分,计算折扣大小(积分10000以上,打5折;积分8000-10000之间,打6折;积分6000-8000打7折;积分6000以下打8折)</p>
+    <input type="text" id="demo9" value='此处输入数字' onfocus="if(value=='此处输入数字'){value=''}"
+        onblur="if(value==''){value='此处输入数字'}"><input type="button" value="点击按钮判断" onclick="demo9()">
+    <p id="answ9" style="color: red;">此处显示问题9的结果</p>
+    <p>10,加减乘除计算器</p> <a href="计算器.html">点击此处查看计算机</a>
+    <p>11、国际BMI</p>
+    <input type="text" id="height" value='此处输入你的身高cm' onfocus="if(value=='此处输入你的身高cm'){value=''}"
+        onblur="if(value==''){value='此处输入你的身高cm'}">
+    <input type="text" id="weight" value='此处输入你的体重kg' onfocus="if(value=='此处输入你的体重kg'){value=''}"
+        onblur="if(value==''){value='此处输入你的体重kg'}">
+    <input type="button" value="点击查看问题11的结果" onclick="demo11()">
+    <p style="color: red;" id="answ11">此处显示问题11的结果</p>
+    <p>扩展：
+        12、输入年,月,日,求出该日期是当前年的第几天</p>
+    <input type="date" id="year">
+    <button onclick="showDayCount()">点击查看结果</button>
+    <p id="showDayCount" style="color: red;">此处显示问题12的结果</p>
+    <p>13、个人所得税的计算器</p>
+    <input type="text" name="" id="demo13" value='此处输入收入' onfocus="if(value=='此处输入收入'){value=''}"
+        onblur="if(value==''){value='此处输入收入'}">
+    <input type="button" value="点击显示问题13的结果" onclick="demo13()">
+    <p id="answ13" style="color: red;">此处显示问题13的结果</p>
+
+    <script>
+        function demo1() {
+            var x = document.getElementById("demo1").value;
+            if (isNaN(x)) {
+                document.getElementById("answ1").innerHTML = "你输入的不是一个数字";
+            } else {
+                if (Number(x) > 0) {
+                    document.getElementById("answ1").innerHTML = "你输入的数字大于0";
+                } else if (Number(x) < 0) {
+                    document.getElementById("answ1").innerHTML = "你输入的数字小于0";
+                } else {
+                    document.getElementById("answ1").innerHTML = "你输入的数字等于0";
+                }
+            }
+        }
+        function demo2() {
+            var x = document.getElementById("demo2").value;
+            var z = document.getElementById("demo2_1").value;
+            if (isNaN(x) || isNaN(z)) {
+                document.getElementById("answ2").innerHTML = "你输入的不是一个数字";
+            } else {
+                var y = (Number(x) - 108);
+                if (Math.abs(z - y) > 10) {
+                    document.getElementById("answ2").innerHTML = "你的BMI不合格!";
+                } else {
+                    document.getElementById("answ2").innerHTML = "你的BMI是合格的";
+                }
+            }
+        }
+        function demo3() {
+            var x = document.getElementById("demo3").value;
+            if (isNaN(x)) {
+                document.getElementById("answ3").innerHTML = "你输入的不是一个数字";
+            } else {
+                if (x % 2 == 0) {
+                    document.getElementById("answ3").innerHTML = "你输入的是一个偶数";
+                } else {
+                    document.getElementById("answ3").innerHTML = "你输入的是一个奇数";
+                }
+            }
+        }
+        function demo4() {
+            var x = document.getElementById("demo4").value;
+            if (isNaN(x)) {
+                document.getElementById("answ4").innerHTML = "你输入的不是一个数字";
+            } else {
+                if ((((Number(x) % 4) == 0) && Number(x) % 100) != 0 || (Number(x) % 400) == 0) {
+                    document.getElementById("answ4").innerHTML = "你输入的是闰年";
+                } else
+                    document.getElementById("answ4").innerHTML = "你输入的是平年";
+            }
+        }
+        function demo5() {
+            var x = document.getElementById("demo5").value;
+            var level = "";
+            if (isNumber(x)) {
+                x = parseInt(x);
+                switch (true) {
+                    case x >= 85 && x <= 100: level = "A"; break;
+                    case x >= 70 && x < 85: level = "B"; break;
+                    case x >= 60 && x < 70: level = "C"; break;
+                    case x >= 0 && x < 60: level = "D"; break;
+                    default: level = "输入有误！";
+                }
+            } else {
+                level = "输入有误！";
+            }
+
+            document.getElementById("answ5").innerHTML = level;
+
+        }
+
+        function demo6() {
+            var x = document.getElementById("demo6").value;
+            var y = document.getElementById("demo6_1").value;
+            var day;
+            if (isNaN(x) || isNaN(y)) {
+                document.getElementById("answ6").innerHTML = "你输入的值不规范";
+            } else {
+                switch (Number(y)) {
+                    case 1: day = 31; break;
+                    case 2:
+                        if ((((Number(x) % 4) == 0) && Number(x) % 100) != 0 || (Number(x) % 400) == 0) {
+                            day = 29; break;
+                        } else {
+                            day = 28; break;
+                        }
+                    case 3: day = 31; break;
+                    case 4: day = 30; break;
+                    case 5: day = 31; break;
+                    case 6: day = 30; break;
+                    case 7: day = 31; break;
+                    case 8: day = 31; break;
+                    case 9: day = 30; break;
+                    case 10: day = 31; break;
+                    case 11: day = 30; break;
+                    case 12: day = 31; break;
+                }
+                document.getElementById("answ6").innerHTML = "该月天数为" + day + '天';
+            }
+        }
+        function demo9() {
+            var x = document.getElementById("demo9").value;
+            var y;
+            if (isNaN(x)) {
+                document.getElementById("answ9").innerHTML = "你输入的值不规范";
+            } else {
+                if (Number(x) > 10000) {
+                    y = 5;
+                } else if (Number(x) <= 10000 && Number(x) > 8000) {
+                    y = 6;
+                } else if (Number(x) <= 8000 && Number(x) > 6000) {
+                    y = 7;
+                } else if (Number(x) <= 6000 && Number(x) > 0) {
+                    y = 8;
+                } else {
+                }
+                document.getElementById("answ9").innerHTML = "给该顾客打" + y + "折";
+            }
+        }
+        function demo11() {
+            var x = document.getElementById("height").value;
+            var y = document.getElementById("weight").value;
+            var str = '';
+            if (isNumber(x, y)) {
+                x = x / 100;
+                var BMI = parseInt(y) / (x * x);
+                switch (true) {
+                    case BMI < 0: str = "输入有误！";
+                    case BMI < 18.5: str = "体重过低"; break;
+                    case BMI < 24.9: str = "正常范围"; break;
+                    case BMI >= 25: str = "超重"; break;
+                    default: str = "输入有误！";
+
+                }
+                document.getElementById("answ11").innerHTML = str;
+            } else {
+                document.getElementById("answ11").innerHTML = "输入有误！"
+            }
+        }
+        function showDayCount() {
+            var x = document.getElementById('year').value;
+            var year = parseInt(x.charAt(0) + x.charAt(1) + x.charAt(2) + x.charAt(3));
+            var month = parseInt(x.charAt(5) + x.charAt(6));
+            var date = parseInt(x.charAt(8) + x.charAt(9));
+            // var year = document.getElementById('year').value;
+            // var month = parseInt(document.getElementById('month').value);
+            // var date = parseInt(document.getElementById('date').value);
+            if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                var feb = 29;
+            } else {
+                feb = 28;
+            }
+            var dayCount = 0;
+            switch (month) {
+                case 12: dayCount = 30;
+                case 11: dayCount = dayCount + 31;
+                case 10: dayCount = dayCount + 30;
+                case 9: dayCount = dayCount + 31;
+                case 8: dayCount = dayCount + 31;
+                case 7: dayCount = dayCount + 30;
+                case 6: dayCount = dayCount + 31;
+                case 5: dayCount = dayCount + 30;
+                case 4: dayCount = dayCount + 31;
+                case 3: dayCount = dayCount + feb;
+                case 2: dayCount = dayCount + 31;
+                case 1: dayCount = dayCount;
+            }
+            dayCount = dayCount + date;
+            console.log(dayCount);
+            if (isNaN(dayCount)) {
+                document.getElementById("showDayCount").innerHTML = "选择有误！"
+            } else {
+                document.getElementById("showDayCount").innerHTML = '这天是该月的第' + dayCount + '天';
+            }
+        }
+        function demo13() {
+            var x = document.getElementById("demo13").value;
+            var str = '';
+            var shui = 0;
+            if (isNumber(x)) {
+                x = Number(x);
+                switch (true) {
+                    case x < 0: shui = '国家还得给你补贴！';
+                    case x <= 36000 && x >= 0: break;
+                    case x > 36000 && x <= 144000: shui = (x - 36000) * 0.1; break;
+                    case x > 144000 && x <= 300000: shui = (x - 144000) * 0.2; break;
+                    case x > 300000 && x <= 420000: shui = (x - 300000) * 0.25; break;
+                    case x > 420000 && x <= 660000: shui = (x - 420000) * 0.3; break;
+                    case x > 660000 && x < 960000: shui = (x - 660000) * 0.35; break;
+                    case x > 960000: shui = x - 960000 * 0.45; break;
+                    default: shui = '输入错误！';
+                }
+                str = '你应该交税' + shui + '元';
+            } else {
+                str = "你输入的数据有误！";
+            }
+            document.getElementById("answ13").innerHTML = str;
+
+        }
+    </script>
+</body>!
+
+</html>

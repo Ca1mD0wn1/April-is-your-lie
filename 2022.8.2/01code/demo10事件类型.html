@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img01{
+            position:absolute;
+            left:100px;
+            top:50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <img id="img01" src="./img/1.jpg" >
+
+    <input id="btnClose" type="button" value="关闭">
+
+    <script>
+        var imgDom01 = document.getElementById("img01");
+
+        imgDom01.onmousedown = function(){
+            this.src="./img/2.jpg"
+        }
+
+        imgDom01.onmouseup = function(){
+            this.src="./img/1.jpg"
+        }
+
+        imgDom01.onmouseover = function(){
+            console.log("onmouseover");
+            this.src="./img/3.jpg";
+        }
+        
+        // imgDom01.onmouseout = function(){
+        //     this.src="./img/1.jpg";
+        // }
+
+
+        imgDom01.onmouseenter = function(){
+            console.log("onmouseenter");
+            this.src="./img/3.jpg";
+        }
+        
+        imgDom01.onmouseleave = function(){
+            this.src="./img/1.jpg";
+        }
+
+        imgDom01.onmousemove = function(event){
+            console.log("onmousemove");
+            this.style.left = event.pageX-100 +"px";
+            this.style.top = event.pageY-100 +"px";
+        }
+
+
+        document.getElementById("btnClose").onclick = function(){
+            // window.close();
+            imgDom01.parentNode.removeChild(imgDom01);
+        }
+
+        // 现在不行了
+        imgDom01.onunload = function(){
+            console.log("图片卸载");
+            alert("图片卸载");
+        }
+
+        // 现在不行了
+        // imgDom01.addEventListener('unload', function() {
+        //     console.log('I am the 3rd one.');
+        // });
+
+        // 现在不行了
+        document.body.onunload = function(){
+            alert("退出document.body.");
+        }
+
+        // 现在不行了
+        window.onunload = function(){
+            alert("退出window");
+        }
+
+    </script>
+</body>
+
+</html>

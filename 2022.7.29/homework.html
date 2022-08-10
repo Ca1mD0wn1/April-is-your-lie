@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .jindutiao {
+            width: 1000px;
+            height: 20px;
+            border: 1px solid red;
+        }
+
+        .jindutiao div {
+            width: 80%;
+            height: 80%;
+            margin: 2px 0 2px 0;
+            background-color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jindutiao" style="width: 1000px;">
+        <div>
+        </div>
+    </div>
+    <input type="button" value="绑定" class="bind">
+    <input type="button" value="解绑" class="unbind">
+    <script>
+        // 1，进度条
+        var jindu = document.querySelector(".jindutiao").style.width;
+        // console.log(jindu);
+        var jindutiao = document.querySelector('.jindutiao div');
+        function move(e) {
+            if (e.pageX - 5 > parseInt(jindu)) {
+                jindutiao.style.width = jindu + "px";
+            } else {
+                jindutiao.style.width = e.pageX - 7 + "px";
+            }
+        }
+        // console.log(jindutiao);
+        var button1 = document.querySelector(".bind");
+        var button2 = document.querySelector(".unbind");
+        button1.addEventListener("click", function () {
+            let body = document.querySelector(".jindutiao");
+            body.addEventListener("mousemove", move)
+        })
+        button2.onclick = function () {
+            // console.log(2);
+            let body = document.querySelector(".jindutiao");
+            // body.onclick = function () { alert(123) }
+            body.removeEventListener("mousemove", move)
+            // console.log(body);
+        }
+
+
+        // })
+
+
+// 2，隔行变色
+// 3，网页换肤
+// 4，简易年历
+
+// 5，自动登录勾选（onmouseover，onmouseout）
+
+// 6，点击按钮换图片
+
+// 7，tab切换
+
+// 8，扩展：qq延迟提示框
+
+// 9，密码强度（onblur,oninput或者用onkeyup，onkeydown）
+    </script>
+</body>
+
+</html>

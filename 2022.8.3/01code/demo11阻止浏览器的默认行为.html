@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+    
+        #menu{
+            display: none;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text">
+
+    <ul id="menu">
+        <li>鱼香肉丝</li>
+        <li>宫保鸡丁</li>
+        <li>红烧茄子</li>
+    </ul>
+
+    <script>
+        
+        // 浏览器的默认行为：就是浏览器自带的功能。如：右键菜单，在文本框里按键（字符会自动进入到文本框）
+        // 阻止浏览器的默认行为：event.preventDefault();
+
+        // 阻止右键菜单
+        // oncontextmenu：这个事件是上下文菜单（右键的菜单）；
+        document.oncontextmenu = function(event){
+            var e = event || window.event;
+            // alert("亲，您点击右键了吧");            
+            menu.style.left = e.pageX +"px";
+            menu.style.top = e.pageY +"px";            
+            menu.style.display ="block";
+            e.preventDefault();
+        }
+
+        document.onmousedown = function(){
+            menu.style.display ="none";
+        }
+
+
+
+    </script>
+</body>
+
+</html>

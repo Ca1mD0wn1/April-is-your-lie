@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <hr/>
+   
+    <input id="num1" type="text" />
+    <select id="oper">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input id="num2" type="text" />
+    <input type="button" value=" = " onclick="calc()">
+    <input id="result" type="text" />
+
+
+    <script>
+       
+
+        function calc(){
+            // 1、输入
+            var num1 = parseFloat(document.getElementById("num1").value);
+            var num2 = parseFloat(document.getElementById("num2").value);
+            var oper = document.getElementById("oper").value;
+
+            // 2、逻辑
+            switch(oper){
+                case "+": var result = num1+num2;break;
+                case "-": var result = num1-num2;break;
+                case "*": var result = num1*num2;break;
+                case "/": {
+                                if(num2==0){
+                                    var result="除数不能为0"
+                                }else{
+                                    var result = num1/num2;
+                                }
+                            break;
+                        }
+                case "%": {
+                                if(num2==0){
+                                    var result="除数不能为0"
+                                }else{
+                                    var result = num1%num2;
+                                }
+                            break;
+                        }
+                default:;
+            }
+          
+            // 3、输出
+            document.getElementById("result").value = result;
+
+        }
+        
+    </script>
+</body>
+</html>

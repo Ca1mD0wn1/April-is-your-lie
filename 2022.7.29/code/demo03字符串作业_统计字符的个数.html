@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    请输入原始字符串：
+    <input id="str" type="text" value="aaaaaabbbbcccccddd" />
+    <input id="btnCompress" type="button" value="压缩" >
+    结果：
+    <input id="result" type="text"  />
+    <input id="btnUnCompress" type="button" value="解压缩" >
+    结果：
+    <input id="reset" type="text"  />
+
+    <script>
+       
+        $("btnCompress").onclick = function(){
+            // 1、获取文本框的字符串
+            var str = $("str").value;
+
+            // 2、压缩
+            var result = compress(str);
+
+            // 3、输出
+            $("result").value = result;
+
+        }
+
+        $("btnUnCompress").onclick = function(){
+            // 1、获取文本框的字符串
+            var str = $("result").value;
+
+            // 2、压缩
+            var result = uncompress(str);
+
+            // 3、输出
+            $("reset").value = result;
+
+        }
+
+        // 功能：压缩字符串（统计字符的个数）(有频繁连续字符的字符串)
+        // 参数：原始字符串
+        // 返回值：压缩后的字符串
+        // str:    aaaaaabbbbcccccddd;
+        // result :a6b4c5d3;
+        function compress(str){
+            var result = "";
+            var currChar = str[0];
+            var count = 1;
+
+            for(var i=1;i<=str.length;i++){
+                if(str[i]==currChar){
+                    count++;
+                }else{
+                    result += currChar+count;
+                    currChar = str[i];
+                    count = 1;
+                }
+            }
+
+            // result += currChar+count;
+
+            return result;
+
+        }   
+
+        // 解压缩
+        // 参数：被压缩字符串
+        // 返回值：解压后的字符串
+        // str: a612b4c5d3
+        // result : aaaaaabbbbcccccddda;
+        function uncompress(str){
+
+            var chars = str.split(/\d+/);
+            chars.length--;
+            console.log(chars);
+
+            var nums = str.match(/\d+/g);
+            console.log(nums);
+            
+            var result="";
+
+            for(var i=0;i<chars.length;i++){
+                result += chars[i].repeat(nums[i]);
+            }
+
+            // for(var i=0;i<str.length;i+=2){
+            //     result += str[i].repeat(str[i+1]);                
+            // }
+            return result;
+
+        }
+
+        // 根据选择器获取dom元素
+        function $(id){
+            return document.getElementById(id);
+        }
+
+    </script>
+    
+</body>
+</html>

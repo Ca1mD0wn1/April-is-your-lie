@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <a href="https://www.baidu.com">点击跳转到百度</a>
+    <button id="bt1">点击阻止浏览器默认事件</button>
+    <button id="bt2">点击取消阻止浏览器默认事件</button>
+
+    <script>
+        var a = document.querySelector("a");
+        var btn1 = document.querySelector("#bt1");
+        var btn2 = document.querySelector("#bt2");
+
+        btn1.onclick = function () {
+
+            a.onclick = function (event) {
+                event.preventDefault();
+            }
+        }
+
+        btn2.onclick = function () {
+            a.onclick = null;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 功能：
+        // 把源对象合并到目标对象，并返回目标对象。
+        // Object.assign(目标对象,...源对象)
+
+        
+        // 1、克隆对象person1
+        // let person1 = {
+        //     name:"曹继承",
+        //     age:18
+        // }
+        // let person2 = Object.assign({},person1);
+
+        // person1.name = "hello"
+        // console.log(person2);//
+
+        // 2、合并的对象。 
+        
+        // let person1 = {
+        //     name:"曹继承",
+        //     age:18
+        // }
+        // let obj1 = {sex:"男"}
+        // let person3 =  Object.assign(obj1,person1);
+        // console.log("obj1",obj1);
+        // obj1.sex = "女";
+        // console.log("person3",person3);
+
+        // console.log(obj1===person3);
+
+        // 3、合并多个对象
+        let target = {sex:"男"};
+        let person1 = {
+            name:"曹继承",
+            age:18
+        }
+        let person2={
+            sex:"女",
+            height:180
+        }
+
+        let person3 =  Object.assign(target,person1,person2);
+        console.log("target",target);     
+        console.log("person3",person3);
+        console.log(target===person3);
+
+    </script>
+
+
+</body>
+
+</html>

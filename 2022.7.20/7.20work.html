@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="tools.js"></script>
+    <style>
+        button,
+        input {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<input type="text" id="demo1_1">
+<input type="text" id="demo1_2">
+<button onclick="test1()">m到n之间所能组成的奇数</button>
+<input type="text" id="demo2" value="6234"><button onclick="test2()">输入原文，输出密文</button>
+
+<body>
+    <script>
+        function demo1(m, n) {
+            if (m < n) {
+                var count = 0;
+                for (m; m <= n; m++) {
+                    for (var j = m; j <= n; j++) {
+                        if ((m * 10 + j) % 2 != 0) {
+                            count = count + 1;
+                            console.log(m * 10 + j);
+                        }
+                    }
+                }
+                return count;
+            } else {
+                var count = 0;
+                for (n; n <= m; n++) {
+                    for (var j = n; j <= m; j++) {
+                        if ((n * 10 + j) % 2 != 0) {
+                            count = count + 1;
+                            console.log(n * 10 + j);
+                        }
+                    }
+                }
+                return count;
+            }
+        }
+        function test1() {
+            var x = parseInt(document.getElementById("demo1_1").value);
+            var y = parseInt(document.getElementById("demo1_2").value);
+            var answer = demo1(x, y);
+            console.log(answer);
+        }
+        function demo2(x) {
+            var a = parseInt(x / 1000);
+            var b = parseInt(x / 100 % 10);
+            var c = parseInt(x / 10 % 10);
+            var d = parseInt(x % 10);
+            a = (a + 5) % 10;
+            b = (b + 5) % 10;
+            c = (c + 5) % 10;
+            d = (d + 5) % 10;
+            var x, y;
+            x = a;
+            a = d;
+            d = x;
+            y = b;
+            b = c;
+            c = y;
+            return a * 1000 + b * 100 + c * 10 + d;
+        }
+        function test2() {
+            var x = document.getElementById("demo2").value;
+            if (isNumber(x)) {
+                var a = demo2(x);
+                console.log(a);
+            } else {
+                console.log("输入有误!");
+            }
+        }
+    </script>
+</body>
+
+</html>

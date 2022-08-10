@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        th {
+            height: 100px;
+            width: 200px;
+        }
+
+        td,
+        tr,
+        #sure {
+            height: 100px;
+            width: 200px;
+            font-size: 30px;
+        }
+
+        td input {
+            width: 180px;
+            height: 90px;
+        }
+
+        .insert {
+            margin: 0 auto;
+            display: none;
+        }
+
+        .insert input {
+            /* float: left; */
+            /* position: absolute; */
+            width: 191px;
+            font-size: 30px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="">
+        <table border="1" cellspacing="0" cellpadding="">
+            <thead>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>爱好</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                <td>20220101</td>
+                <td>张三</td>
+                <td>男</td>
+                <td>大三</td>
+                <td>唱跳rap</td>
+                <td><a href=javascript:;>删除</a></td>
+            </tr>
+            <tr>
+                <td>202210102</td>
+                <td>李四</td>
+                <td>女</td>
+                <td>大四</td>
+                <td>赚钱</td>
+                <td><a href=javascript:;>删除</a></td>
+            </tr>
+            <tr>
+                <td>202210103</td>
+                <td>周星驰</td>
+                <td>男</td>
+                <td>高三</td>
+                <td>练习两年半</td>
+                <td><a href=javascript:;>删除</a></td>
+            </tr> -->
+            </tbody>
+
+        </table>
+        <button>添加学生信息</button>
+        <!-- 添加学生信息 -->
+
+        <div class="insert">
+            <input type="text" placeholder="学生学号">
+            <input type="text" placeholder="学生姓名">
+            <input type="text" placeholder="学生性别">
+            <input type="text" placeholder="学生年级">
+            <input type="text" placeholder="学生爱好">
+            <button id="sure">确定添加</button>
+        </div>
+
+
+    </div>
+    <script>
+        var tbody = document.querySelector("tbody");
+        var student = [];
+        var DataCreate = function (score, name, sex, grade, hobby) {
+            this.score = score;
+            this.name = name;
+            this.sex = sex;
+            this.grade = grade;
+            this.hobby = hobby;
+        }
+
+        var arr = [];
+        arr.push(new DataCreate(2001, "张三", "男", "大三", "打游戏"));
+
+
+        // console.log(arr[0]);
+        // console.log(arr);
+
+        // for (i in arr[0]) {
+        //     console.log(i);
+        // }
+        // console.log(arr[0].name);
+        // 1，动态创建表格（每行最后一个单元格中要有一个删除按钮）
+        for (var i = 0; i < arr.length; i++) {
+
+            var tr = document.createElement("tr");
+            tbody.append(tr);
+            for (var j in arr[i]) {
+                let td = document.createElement("td");
+                td.innerHTML = arr[i][j];
+                tr.append(td);
+            }
+            var td = document.createElement("td");
+            td.innerHTML = '<a href="javascript:";>删除</a>';
+            tr.append(td);
+        }
+
+
+
+
+        var trs = document.querySelector("tbody").querySelectorAll("tr");
+        // 2，删除表格（点击每行的删除按钮，删除这一行）
+        // 双击出现修改
+        function deleteTable() {
+            var as = document.querySelectorAll("a");
+            for (let i = 0; i < as.length; i++) {
+                as[i].onclick = function () {
+                    tbody.removeChild(this.parentNode.parentNode)
+                }
+            }
+            var tds = document.querySelectorAll("td");
+            for (let i = 0; i < tds.length; i++) {
+                tds[i].ondblclick = function () {
+
+                    let input = document.createElement("input");
+                    input.value = this.innerHTML;
+                    input.style.fontSize = "30px";
+                    input.select();
+                    this.innerHTML = "";
+                    this.append(input);
+                    input.onfocus = input.select();
+                    input.onblur = function () {
+                        tds[i].innerHTML = input.value;
+                        this.remove();
+                    }
+                }
+            }
+
+        }
+        // deleteTable();
+
+
+
+        //添加学生信息
+        document.querySelector("button").onclick = function () {
+            let score1 = 2001;
+            let div = document.querySelector(".insert")
+            div.style.display = "block";
+            // let inputs = div.querySelectorAll("input");
+            // console.log(inputs);
+
+            // console.log(tbody.lastChild.firstChild.innerHTML);
+            // if (tbody.lastChild.firstChild.innerHTML == null) {
+            //     score = score1;
+            // } else {
+            //     score = tbody.lastChild.firstChild.innerHTML
+
+            // }
+
+            // inputs[0].value = score1;
+
+            // deleteTable();
+        }
+
+        // function demo1() {
+        //     console.log("监听事件发生！");
+        //     return true;
+        // }
+
+        let sure = document.querySelector("#sure");
+
+
+        //确认添加按钮事件
+        sure.onclick = function () {
+            let div = document.querySelector(".insert")
+            // div.style.display = "block";
+            let inputs = div.querySelectorAll("input");
+            // score = tbody.lastChild.firstChild.innerHTML - 0 + 1;
+
+            // console.log(score);
+            // score = inputs[i].value;
+            score = inputs[0].value;
+            name = inputs[1].value;
+            sex = inputs[2].value;
+            grade = inputs[3].value;
+            hobby = inputs[4].value;
+
+            // console.log(inputs);
+            for (let x = 0; x < inputs.length; x++) {
+                inputs[x].value = '';
+            }
+            arr.push(new DataCreate(score, name, sex, grade, hobby));
+            let tr = document.createElement('tr');
+            for (let i in arr[arr.length - 1]) {
+                let td = document.createElement("td");
+                td.innerHTML = arr[arr.length - 1][i];
+                tr.append(td);
+            }
+            tbody.append(tr);
+            let td = document.createElement("td");
+            td.innerHTML = '<a href="javascript:";>删除</a>';
+            tr.append(td);
+            // let div = document.querySelector(".insert")
+            div.style.display = "none";
+
+        }
+
+
+        //事件监听
+        deleteTable();
+        var observer = new MutationObserver(deleteTable);
+        var observerOptions = {
+            childList: true
+        }
+        observer.observe(tbody, observerOptions);
+    </script>
+</body>
+
+</html>

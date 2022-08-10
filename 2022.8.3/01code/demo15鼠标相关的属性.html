@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        
+        #box{
+            position: absolute;
+            left :100px;
+            top:100px;
+            width: 400px;
+            height: 400px;
+          background-color: pink;
+        }
+
+    </style>
+</head>
+
+<body style="height: 2000px;">
+    <div id="box" >
+
+    </div>
+    <script>
+
+        box.onmousedown = function(event){
+            var e = event || window.event;
+            console.log("e.button",e.button);
+            // clientX,clientY
+            console.log("clientX,clientY",e.clientX,e.clientY);
+            console.log("pageX,pageY",e.pageX,e.pageY);
+            console.log("offsetX,offsetY",e.offsetX,e.offsetY);
+            console.log("screenX,screenY",e.screenX,e.screenY);
+
+        }
+        
+    </script>
+</body>
+
+</html>

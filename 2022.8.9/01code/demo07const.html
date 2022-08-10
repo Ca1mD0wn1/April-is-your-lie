@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+        // 1、const修饰的变量是只读的
+        // 2、注意：const只修饰他后面跟的变量对应的内存为只读的
+
+        // 一、const修饰基本（值）类型
+        // const a = 10; //const让a对应的内存内容是只读的
+        // a = 20;//Assignment to constant variable
+
+
+        // 二、const修饰引用类型
+
+        const arr = [12,23,34]; //const让arr对应的内存内容(地址）是只读的，但是并没有限制 arr所引用的内存（arr[0]，arr[1],arr[2]）
+        arr[1] = 100;//可以的
+        console.log(arr);
+
+        arr = [90,8,7];//不行，Assignment to constant variable.
+        
+        // const person = {
+        //     name:"曹继承"
+        // }
+
+        // person.name = "王喜珍";
+
+        // console.log(person);
+
+    </script>
+
+
+</body>
+
+</html>

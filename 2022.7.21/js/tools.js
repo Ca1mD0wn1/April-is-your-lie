@@ -1,0 +1,236 @@
+// 1、闰年
+// 功能：判断一个年份是不是闰年
+// 参数：年份  【输入（已知条件）】
+// 返回值：true：是闰年; false:不是闰年 【结果】
+
+function isRunYear(year) {
+    // if((year%4==0 && year%100!=0)||(year%400==0)){                
+    //     return true;
+    // }
+    // return false;     
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+}
+
+
+// 2、判断一个数是不是素数
+// 功能：判断一个数是不是素数
+// 参数：一个数（正整数）
+// 返回值：true：是素数；false：不是素数；
+
+function isPrimer(num) {
+
+    for (var i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+// 3、根据年月日，求第几天
+// 功能：根据年月日，求第几天
+// 参数:
+// year:年
+// month:月
+// date:日
+
+// 返回值: 如果传入的日期不合法，那么返回 -1，如果合法：那就返回天数
+
+function showDayCount(year, month, date) {
+    if (!isDate(year, month, date)) {
+        return -1;
+    }
+
+    // 2、逻辑
+
+    // 2）、求第几天
+    var dayCount = 0;
+    switch (month) {
+        case 12: dayCount1 += 30;
+        case 11: dayCount += 31
+        case 10: dayCount += 30
+        case 9: dayCount += 31
+        case 8: dayCount += 31
+        case 7: dayCount += 30
+        case 6: dayCount += 31
+        case 5: dayCount += 30
+        case 4: dayCount += 31
+        case 3: dayCount += ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) ? 29 : 28;;
+        case 2: dayCount += 31;
+        case 1: dayCount += date; break;
+        default: ;
+    }
+
+    // 3、输出
+    return dayCount;
+
+}
+
+
+// 4、根据阿拉伯数字，得到汉字星期：
+
+// 功能：传入0-6之间的阿拉伯数字，返回汉字的星期
+// 参数：
+//     0-6之间的阿拉伯数字
+// 返回值：汉字的星期；如果传入的数字不是0-6之间，那么返回 false；
+//        如：传入 0 ，返回 "星期天"
+
+
+function toChineseWeek(num) {
+
+    // 2、逻辑
+    switch (num) {
+        case 0: return "星期天";
+        case 1: return "星期一";
+        case 2: return "星期二";
+        case 3: return "星期三";
+        case 4: return "星期四";
+        case 5: return "星期五";
+        case 6: return "星期六";
+        default: return false;
+    }
+
+}
+
+
+// 5、国际bmi
+// 功能：国际bmi，根据身高和体重，得出体型；
+// 参数：
+//   height：身高
+//   weight:体重
+// 返回值：  -1：偏瘦；0：正常；1：偏胖；2：太胖
+
+
+function bmi(height, weight) {
+
+    // 2、逻辑
+    // BMI=体重(以千克为单位)除以身高的平方(以米为单位)。
+    // 中国成人正常的BMI应在18.5-23.9之间，如果小于18.5为体重不足，如果大于等于24为超重，大于等于28为肥胖
+    var value = weight / (height * height);
+
+    if (value >= 18.5 && value < 24) {
+        return 0;
+    } else {
+        if (value < 18.5) {
+            return -1;
+        } else if (value < 28) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+}
+
+
+// 6、求m到n之间的素数的个数
+// 功能：求m到n之间的素数的个数
+// 参数：
+//    m：起始数
+//    n：终止数
+// 返回值：个数；
+
+function primerCount(m, n) {
+    var count = 0;
+    for (var i = m; i <= n; i++) {
+        if (isPrimer(i)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+
+// 7、求斐波那契数列中的第几个数
+// 功能：求斐波那契数列中的第几个数
+// 参数：
+//      n：第几个数
+// 返回值：斐波那契数列中的第n个数
+
+function fibonacciCircle(n) {
+
+    if (n == 1 || n == 2) {
+        return 1;
+    }
+
+    var n1 = 1;
+    var n2 = 1;
+    var n3;
+
+    for (var i = 3; i <= n; i++) {
+        n3 = n1 + n2;
+        n1 = n2;
+        n2 = n3;
+    }
+
+    return n3;
+
+}
+
+
+
+// 8、判断一个日期是不是合法
+// 功能：传入年，月，日，判断是不是合法的日期
+// 参数：
+//    year：年
+//    month：月份
+//    date：日期
+// 返回值: true:合法；false：不合法
+
+function isDate(year, month, date) {
+
+    if (year < 1) {
+        return false;
+    } else {
+        if (month < 1 || month > 12) {
+            return false;
+        } else {
+            if (date < 1 || date > 31) {
+                return false;
+            } else {
+                if (month == 2) {
+                    if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+                        if (date > 29) {
+                            return false;
+                        }
+                    } else {
+                        if (date > 28) {
+                            return false;
+                        }
+                    }
+                } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+                    if (date > 30) {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    return true;
+
+}
+
+// 9、求 m到n之间的加奇减偶
+// 功能：求 m到n之间的加奇减偶
+// 参数：
+//     m：起始数
+//     n：终止数
+// 返回值：加奇减偶的结果
+
+function addOddReduceEven(m, n) {
+    // 求出1/1-1/2+1/3-1/4+1/5....1/100的和（加奇减偶）。
+
+    var sum = 0;
+
+    var sign = m % 2 != 0 ? 1 : -1; //正负号（1表示正号；-1表示负号）；
+
+    for (var i = m; i <= n; i++) {
+        sum = sum + sign * 1 / i;
+        sign = sign * -1;
+    }
+
+    return sum;
+
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+
+        nav {
+            width: 900px;
+            height: 900px;
+            position: relative;
+        }
+    </style>
+</head>
+<nav>
+    <div></div>
+</nav>
+
+<body>
+    <!-- <script src="../code/js/dragandback.js"></script> -->
+    <!-- <script src="../code/js/drag.js"></script> -->
+    <script>
+
+
+
+
+        function drag(moveDom, fatherDom) {
+
+            var locations = [];
+
+            moveDom.onmousedown = function (event) {
+                var e = event || window.event;
+                //鼠标位置
+                var offsetX = e.offsetX;
+                var offsetY = e.offsetY;
+
+                fatherDom.onmousemove = function (event) {
+                    var e = event || window.event;
+                    //计算 盒子的位置
+                    // console.log(offsetX);
+                    //鼠标距离页面的距离 - 鼠标距离父盒子的距离 - 父盒子距离页面的距离
+                    var left1 = e.pageX - offsetX - fatherDom.offsetLeft;
+                    var top1 = e.pageY - offsetY - fatherDom.offsetTop;
+
+
+
+                    if (left1 < 0) {
+                        left1 = 0;
+                    } else if (left1 > (fatherDom.offsetWidth - moveDom.offsetWidth)) {
+                        left1 = fatherDom.offsetWidth - moveDom.offsetWidth;
+                    }
+                    if (top1 < 0) {
+                        top1 = 0;
+                    } else if (top1 > (fatherDom.offsetHeight - moveDom.offsetHeight)) {
+                        top1 = fatherDom.offsetHeight - moveDom.offsetHeight;
+                    }
+
+
+                    locations.push(
+                        {
+                            left: left1,
+                            top: top1
+                        }
+                    )
+
+
+                    moveDom.style.left = left1 + "px";
+                    moveDom.style.top = top1 + "px";
+                }
+            }
+            document.onmouseup = function () {
+                fatherDom.onmousemove = null;
+                var index = locations.length - 1;
+                myTimer = setInterval(function () {
+                    moveDom.style.left = locations[index].left + "px";
+                    moveDom.style.top = locations[index].top + "px";
+                    index--;
+                    if (index < 0) {
+                        clearInterval(myTimer);
+                        locations.length = 0;
+                    }
+                }, 50)
+                console.log(locations);
+
+            }
+
+        }
+        var div = document.querySelector("div");
+        var nav = document.querySelector("nav");
+        // console.log(div);
+        // var body = document.querySelector("body");
+        drag(div, nav);
+
+
+    </script>
+</body>
+
+</html>

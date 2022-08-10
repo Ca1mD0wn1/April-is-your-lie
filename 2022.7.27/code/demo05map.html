@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btn01" type="button" value="测试">
+
+    <script>
+
+        document.getElementById("btn01").onclick = function () {
+            var arr = [12, 23, 34, 45, 56];
+
+            // map:映射，把原数组做一定的处理后，放到新的数组
+            // 参数：回调函数(回调函数的返回值是新数组的元素)
+            // 返回值：新的数组（新的数组是原数组每个元素做了一定处理的结果）
+
+            //    var arr2 = arr.map(function(item,index,nums){                
+            //        return item+2;
+            //    })
+
+            //    console.log("arr",arr);
+            //    console.log("arr2",arr2);
+
+            // 重构
+            Array.prototype.myMap = function (cb) {
+                var arrnew = [];
+
+                for (var i = 0; i < this.length; i++) {
+                    if (i in this) {
+                        arrnew.push(cb(this[i], i, this));
+                    }
+                }
+
+                return arrnew;
+
+            }
+
+            var arr2 = arr.myMap(function (item, index, nums) {                
+                return item + 2;
+            })
+    
+            console.log("arr", arr);
+            console.log("arr2", arr2);
+
+        }
+
+
+    </script>
+</body>
+
+</html>

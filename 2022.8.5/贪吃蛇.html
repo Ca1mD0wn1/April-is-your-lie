@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            margin: 0 auto;
+            position: relative;
+            width: 900px;
+            height: 900px;
+            background-color: pink;
+        }
+
+        li {
+            list-style: none;
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: red;
+        }
+
+        #head {
+            left: 50%;
+            top: 50%;
+            background-color: black;
+        }
+
+        span {
+            position: absolute;
+            top: 0;
+            width: 200px;
+            height: 200px;
+            font-size: 20px;
+            background-color: aqua;
+        }
+
+        #hint {
+            /* top: 50%; */
+            color: gray;
+            font-size: 180px;
+            transform: translateY(40%);
+            position: absolute;
+            width: 100%;
+            height: 500px;
+            background: rgba(1, 1, 1, 0.5);
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <li id="head"></li>
+        <div id="hint">点我立刻开始游戏！</div>
+    </div>
+    <span>你的分数是 &emsp;</span>
+    <input type="hidden">
+
+
+</body>
+<script>
+    var hint = document.querySelector("#hint");//提示框
+    var timeout;//防抖函数
+    var div = document.querySelector("div");//蛇移动范围的主体地方
+    var lis = document.querySelectorAll("li");//所有的小li 也就是蛇的部分
+    var span = document.querySelector("span");
+    var button = document.querySelector("button");
+    var score = 0;
+
+
+    lis = Array.from(lis);
+    moveTo = setInterval(function () { }, 0);
+    function top1() {
+        head.style.top = head.offsetTop - 10 + "px";
+        clearInterval(moveTo);
+        moveTo = setInterval(function () {
+            head.style.top = head.offsetTop - 10 + "px";
+            // head.style.left = head.offsetLeft + 10 + "px";
+        }, 200)
+    }
+    function right1() {
+        head.style.left = head.offsetLeft + 10 + "px";
+        clearInterval(moveTo);
+        moveTo = setInterval(function () {
+            // head.style.top = head.offsetTop + 10 + "px";
+            head.style.left = head.offsetLeft + 10 + "px";
+        }, 200)
+    }
+    function bottom1() {
+        head.style.top = head.offsetTop + 10 + "px";
+        clearInterval(moveTo);
+        moveTo = setInterval(function () {
+            head.style.top = head.offsetTop + 10 + "px";
+            // head.style.left = head.offsetLeft + 10 + "px";
+        }, 200)
+    }
+    function left1() {
+        head.style.left = head.offsetLeft - 10 + "px";
+        clearInterval(moveTo);
+        moveTo = setInterval(function () {
+            // head.style.top = head.offsetTop + 10 + "px";
+            head.style.left = head.offsetLeft - 10 + "px";
+        }, 200)
+    }
+    //开始游戏
+    function start() {
+        var code = event.keyCode;
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            switch (code) {
+                case 37: left1(); break;
+                case 38: top1(); break;
+                case 39: right1(); break;
+                case 40: bottom1(); break;
+                default: ;
+            }
+        }, 50)
+    }
+
+
+
+    // li跟随前一个li
+    self = setInterval(function () {
+        for (var i = lis.length - 1; i > 0; i--) {
+            // console.log(lis[i]);
+            lis[i].style.left = lis[i - 1].offsetLeft + "px";
+            lis[i].style.top = lis[i - 1].offsetTop + "px";
+            // console.log(lis[0].offsettop + "px", lis[1].style.top);
+        }
+    }, 200)
+
+
+    function egg() {//生成一个蛋，并监测
+
+        var positionLeft = Math.floor(Math.random() * (90 - 1 + 1));
+        var positionTop = Math.floor(Math.random() * (90 - 1 + 1));
+        let li = document.createElement("li");
+        li.style.left = positionLeft * 10 + "px";
+        li.style.top = positionTop * 10 + "px";
+        li.style.backgroundColor = "green";
+        div.append(li);
+        var myTimer = setInterval(function () {
+            if (head.style.left == li.style.left && head.style.top == li.style.top) {
+                score += 1;
+                span.innerHTML = `你的分数是${score}`;
+                li.style.backgroundColor = "";
+                lis.push(li);
+                clearInterval(myTimer);
+                egg();
+            }
+            //死亡条件
+            if (parseInt(head.style.left) > 860 || parseInt(head.style.left) < 0 || parseInt(head.style.top) > 900 || parseInt(head.style.top) < 0) {
+                alert("game over");
+                self = setTimeout(window.close(), 2000)
+            }
+        }, 100)
+    }
+    hint.onclick = function () {
+        top1();
+        this.style.display = "none";
+        egg();
+        document.focus();
+    }
+    document.addEventListener("keydown", start);
+</script>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #clock {
+            position: relative;
+            background: url(clock.png);
+            height: 800px;
+            width: 800px;
+            background-size: cover;
+            z-index: 4;
+
+        }
+
+        #h {
+            top: 208px;
+            left: 394px;
+            position: absolute;
+            height: 200px;
+            width: 10px;
+            background: url(h.png);
+            background-size: cover;
+            z-index: 3;
+            transform: rotate(50deg);
+            transform-origin: 50% 100%;
+
+        }
+
+        #m {
+            top: 145px;
+            left: 394px;
+            position: absolute;
+            height: 314px;
+            width: 10px;
+            background: url(m.png);
+            background-size: cover;
+            z-index: 2;
+            transform: rotate(0deg);
+            transform-origin: 70% 83%;
+            transition: all 2s;
+
+        }
+
+        #s {
+            top: 84px;
+            left: 394px;
+            position: absolute;
+            height: 400px;
+            width: 10px;
+            background: url(s.png);
+            background-size: cover;
+            z-index: 1;
+            transform: rotate(0deg);
+            transform-origin: 50% 80%;
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <div id="h"></div>
+        <div id="m"></div>
+        <div id="s"></div>
+    </div>
+
+</body>
+<script>
+    clockTime();
+    function clockTime() {
+        var clock = document.querySelector("#clock")
+        var second = document.querySelector("#s");
+        var minute = document.querySelector("#m");
+        var hour = document.querySelector("#h");
+        var myDate = new Date();
+        //         getDate() 	   返回天
+        //  getHours() 	返回小时数 
+        //       　getMinutes() 	返回分钟数 
+        //       　getSeconds() 	返回秒数 
+
+        var h = myDate.getHours();
+        var m = myDate.getMinutes();
+        var s = myDate.getSeconds();
+
+        var hdeg = h % 12 * 30;
+        var mdeg = m * 6;
+        var sdeg = s * 6;
+
+        console.log(hdeg, mdeg, sdeg);
+        hour.style.transform = "rotate(" + hdeg + "deg)";
+        minute.style.transform = "rotate(" + mdeg + "deg)";
+        second.style.transform = "rotate(" + sdeg + "deg)";
+        if (sdeg == 354) {
+
+            clock.innerHTML = '<div id="h"></div><div id="m"></div><div id="s"></div>';
+            clockTime();
+
+        }
+
+    }
+
+    self.setInterval("clockTime()", 1000);
+</script>
+
+</html>

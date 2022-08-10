@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function copyObj(obj) {
+
+        //     var newobj = new Object();
+        //     for (let key in obj) {
+        //         if (typeof obj[key] == "object") {
+        //             newobj[key] = deepCopy(obj[key].copyself);
+        //         } else {
+        //             newobj[key] = obj[key];
+        //         }
+        //     }
+        //     return newobj;
+        // }
+        // console.log(deepCopy(p));
+
+        // p["books"][0] = "008";
+
+        // console.log(p);
+        // 给数组对象增加一个方法，用来复制自己
+        Array.prototype.copyself = function () {
+            let arr = new Array();
+            for (let i in this) {
+                arr[i] = this[i]
+            }
+            return arr;
+        }
+
+        var p = {
+            "id": "007",
+            "name": "刘德华",
+            "books": ["三国演义", "红楼梦", "水浒传", [1, 2, 3]]//这是引用类型
+        }
+
+        function copyObj(obj) {
+            let newObj = {};
+            for (let key in obj) {
+                if (typeof obj[key] == 'object') {//如:key是wife,引用类型,那就递归
+                    newObj[key] = obj[key].copyself();
+                } else {//基本类型,直接赋值
+                    newObj[key] = obj[key];
+                }
+            }
+            return newObj;
+        }
+        var pNew = copyObj(p);
+
+        pNew.books[3][1] = 5;
+        console.log(pNew.books[3][1]);
+        console.log(p.books[3][1]); 
+    </script>
+</body>
+
+</html>

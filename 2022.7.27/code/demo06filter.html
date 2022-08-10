@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btn01" type="button" value="测试">
+
+    <script>
+
+        document.getElementById("btn01").onclick = function () {
+            
+            var scores = [
+                {
+                    name:"张三疯",
+                    score:98
+                },
+                {
+                    name:"张四疯",
+                    score:100
+                },
+                {
+                    name:"张五疯",
+                    score:59
+                },
+                {
+                    name:"张六疯",
+                    score:88
+                }
+            ];
+
+            // filter:
+            // 功能：把满足条件的元素，返回到新的数组
+            // 参数：回调函数（回调的返回值是boolean类型，既就是条件）
+            // 返回值：新的数组
+            // var arr = scores.filter(function(item,index,arr){
+            //     return item.score<60;
+            // })
+
+            // console.log(arr);
+
+            // 重构
+            Array.prototype.myFilter = function(cb){
+                var arrnew = [];
+                for(var i=0;i<this.length;i++){
+                    if(i in this){
+                        if(cb(this[i],i,this)){
+                            arrnew.push(this[i]);
+                        }
+                    }
+                }
+                return arrnew;
+            }
+            
+            var arr = scores.myFilter(function(item,index,arr){
+                return item.score<60;
+            })
+
+            console.log(arr);
+
+        }
+
+
+    </script>
+</body>
+
+</html>

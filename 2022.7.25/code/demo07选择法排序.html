@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body >
+   
+     <input type="button" value="测试" onclick="fn01()" >
+    
+    <script>       
+        
+        function fn01(){
+            var scores = [98,100,78,89,99];
+            scores = selectSort(scores);
+            console.table(scores)
+        }
+
+        // 冒泡排序的封装。
+        // 参数：一个数组
+        // 返回值：排好序的数组
+
+        function selectSort(arr){
+
+            for(var i=0;i<arr.length-1;i++){
+                // 选择一个最小的数（在剩余数中找最小的数）
+                var minIndex = i;
+                for(var j=i+1;j<arr.length;j++){
+                    if(arr[j]<arr[minIndex]){
+                        minIndex = j;
+                    }
+                }
+
+                // 交换（最小数和arr[i]）
+                var temp = arr[minIndex];
+                arr[minIndex] = arr[i];
+                arr[i] = temp;
+
+            }
+           
+
+            return arr;
+        }
+
+    </script>
+</body>
+</html>

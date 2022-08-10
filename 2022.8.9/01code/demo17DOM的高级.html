@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 10px;
+            height: 40px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <div id="box"></div>
+
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let box = document.getElementById("box");
+        let width = 10;
+        let height = 40;
+        let left1 = 100;
+
+        // btnGo.onclick = changeWidth;
+
+        function changeWidth() {
+            let myTimer = setInterval(function () {
+                width += 3;
+                if (width >= 200) {
+                    width = 200;
+                    clearInterval(myTimer);
+                }
+
+                box.style.width = width + "px";
+
+            }, 20);
+        }
+
+
+        // btnGo.onclick = changeHeight;
+
+        function changeHeight() {
+            let myTimer = setInterval(function () {
+                height += 3;
+                if (height >= 200) {
+                    height = 200;
+                    clearInterval(myTimer);
+                }
+
+                box.style.height = height + "px";
+
+            }, 20);
+        }
+
+
+        // btnGo.onclick = changeLeft;
+
+        function changeLeft() {
+            let myTimer = setInterval(function () {
+                left1 += 3;
+                if (left1 >= 200) {
+                    left1 = 200;
+                    clearInterval(myTimer);
+                }
+
+                box.style.left = left1 + "px";
+
+            }, 20);
+        }
+
+        // btnGo.onclick = function(){
+        //     changeWidth();
+        //     changeHeight();
+        //     changeLeft();
+        // }
+
+        btnGo.addEventListener("click", changeWidth);
+        btnGo.addEventListener("click", changeHeight);
+        btnGo.addEventListener("click", changeLeft);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body >
+   
+     <input type="button" value="测试" onclick="fn01()" >
+    
+    <script>       
+        
+        function fn01(){
+            // var scores = [98,100,78,89,99];
+            var scores = [9,7,8,1,2,3,4,5];
+            scores = bubbleSort(scores);
+            console.table(scores)
+        }
+
+        // 冒泡排序的封装。
+        // 参数：一个数组
+        // 返回值：排好序的数组
+
+        function bubbleSort(arr){
+            console.log("初次的arr",arr);
+
+            for(var i=0;i<arr.length-1;i++){
+                var isSort = true;
+                // 内层循环：相邻两个数进行比较
+                for(var j=0;j<arr.length-1-i;j++){
+                    if(arr[j]>arr[j+1]){
+                        isSort = false;
+                        var temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+                console.log("第"+(i+1)+"趟的arr",arr);
+                if(isSort){
+                    break;
+                }
+            }
+
+            return arr;
+        }
+
+    </script>
+</body>
+</html>

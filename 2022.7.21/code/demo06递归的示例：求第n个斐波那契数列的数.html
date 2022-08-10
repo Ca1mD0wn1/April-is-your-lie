@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    亲，您想要第<input id="n" type="text" />个斐波那契数列的数
+    <input type="button" value=" 要 " onclick="fn01()" />
+    <input id="result" type="text" />
+
+    <script src="./js/tools.js"></script>
+    <script>
+
+        // 求第n个斐波那契数列的数
+        // 参数：n
+        // 返回值：第n个数
+
+        // 第n个 = 第n-1个 + 第n-2个
+
+        function fibonacci(n) {
+            if(n==1 || n==2){
+                return 1;
+            }
+            return fibonacci(n-1) + fibonacci(n-2);
+        }
+
+
+        function fn01() {
+
+            // var num = fibonacci(parseInt(document.getElementById("n").value));
+
+            // document.getElementById("result").value = num;
+
+            var num = fibonacciCircle(parseInt(document.getElementById("n").value));
+
+            document.getElementById("result").value = num;
+
+        }
+        
+    </script>
+</body>
+
+</html>

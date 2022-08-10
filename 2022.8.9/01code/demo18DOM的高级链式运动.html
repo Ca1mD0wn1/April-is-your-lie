@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 10px;
+            height: 40px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="走起">
+    <div id="box"></div>
+
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let box = document.getElementById("box");
+        let width = 10;
+        let height = 40;
+        let left1 = 100;
+
+        function changeWidth(cb) {
+            let myTimer = setInterval(function () {
+                width += 3;
+                if (width >= 200) {
+                    width = 200;
+                    clearInterval(myTimer);
+                    cb();
+                }
+                box.style.width = width + "px";
+
+            }, 20);
+        }
+
+        function changeHeight(cb) {
+            let myTimer = setInterval(function () {
+                height += 3;
+                if (height >= 200) {
+                    height = 200;
+                    clearInterval(myTimer);
+                    cb();
+                }
+                box.style.height = height + "px";
+
+            }, 20);
+            
+        }
+
+        function changeLeft(cb) {
+            let myTimer = setInterval(function () {
+                left1 += 3;
+                if (left1 >= 200) {
+                    left1 = 200;
+                    clearInterval(myTimer);
+                    cb();
+                }
+                box.style.left = left1 + "px";
+            }, 20);
+        }
+
+        btnGo.addEventListener("click", function(){
+            
+            changeWidth(function(){
+                changeHeight(changeLeft);
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

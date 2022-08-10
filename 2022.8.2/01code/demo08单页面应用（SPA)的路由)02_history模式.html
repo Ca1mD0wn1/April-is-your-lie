@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    html,
+    body,
+    #box {
+      width: 100%;
+      height: 100%;
+    }
+
+    #box {
+      background-color: #eee;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .footer {
+      width: 100%;
+      height: 40px;
+      background-color: skyblue;
+      display: flex;
+      justify-content: space-around;
+      line-height: 40px;
+    }
+
+    .content {
+      width: 100%;
+      flex: 1;
+      background-color: orange;
+    }
+
+    .active {
+      color: red;
+      background-color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="content">
+
+    </div>
+    <ul class="footer">
+      <li id="home">首页</li>
+      <li id="goodstype">商品分类</li>
+      <li id="car">购物车</li>
+      <li id="my">我的</li>
+    </ul>
+  </div>
+
+  <script src="./js/home.js"></script>
+  <script src="./js/goodstype.js"></script>
+  <script src="./js/car.js"></script>
+  <script src="./js/my.js"></script>
+
+  <script>
+    // 定义对象，完成state和页面内容的对应关系（未来学框架时，这个相当于路由配置）
+    var obj = {
+      "home": home,
+      "goodstype": goodstype,
+      "car": car,
+      "my": my
+    };
+
+    // 页面的展示区域
+    var contentDom = document.getElementsByClassName("content")[0]
+    // 所有li，（导航）
+    var liDoms = document.getElementsByTagName("li");
+    // 前一个被点击的li
+    var prevLi;
+
+    // 通过循环给每个li绑定事件
+    for (var i = 0; i < liDoms.length; i++) {
+      liDoms[i].onclick = function () {
+        showPage(this.id);
+      }
+    }
+    // 刷新。
+    if (history.state) {
+      showPage(history.state.id, false);
+
+    } else {
+      // 默认首页
+      // 1、记录历史记录
+      history.replaceState({ id: "home" }, "");
+      // // 2、跳转页面
+      goUrl("home");
+      // // 3、修改li的样式
+      changeStyle("home");
+    }
+
+    // onpopstate:弹出state，其实就是后退
+    window.onpopstate = function () {
+      // console.log("history.state", history.state);
+      // console.log("history.state.id", history.state.id);
+      showPage(history.state.id, false);
+    }
+
+    function showPage(id, isSaveHistory = true) {
+      // 1、记录历史记录
+      isSaveHistory && saveHistory(id);
+      // 2、跳转页面
+      goUrl(id);
+      // 3、修改li的样式
+      changeStyle(id);
+    }
+
+
+    function saveHistory(id) {
+      // 1、改变地址栏
+      // pushState: 给历史记录添加数据（就是pushState的第一个参数）,添加到history.state。
+      // history.pushState({url:this.id},this.id,this.id);
+      history.pushState({ id: id }, "");
+    }
+
+    // 跳转页面：
+    function goUrl(url) {
+      // 2、改变（页面）内容
+      contentDom.innerHTML = obj[url];
+    }
+
+    function changeStyle(id) {
+      var liDom = document.getElementById(id);
+      if (liDom == prevLi) {
+        return;
+      }
+      // 3、改变样式
+      // 清除其它的样式
+      prevLi && (prevLi.className = "");
+      // 给当前li增加样式
+      liDom.className = "active";
+      prevLi = liDom;
+    }
+
+  </script>
+</body>
+
+</html>

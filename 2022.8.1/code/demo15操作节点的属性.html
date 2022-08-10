@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <input type="button" value="测试" onclick="fn01()">
+
+    <input type="text"  id="txt">
+
+    <div id="box1" class="cls">
+        <ul>
+            <li>第一个li</li>
+            <li>第二个li</li>
+        </ul>
+    </div>
+
+    <div id="box2" v-text="aaa" index="aaa">
+
+    </div>
+    <script src="./js/tools.js"></script>
+    <script>
+
+        function fn01(){
+            // 一、官方属性（获取属性值，给属性赋值）
+
+            // console.log($("#box1").innerHTML);
+            // console.log($("#box1").outerHTML);
+
+            // $("#box1").innerHTML ="<span>我是span</span>"
+            // $("#box1").outerHTML ="<span>我是span</span>"
+
+            // innerText：
+            // 1、赋值时，把赋值的字符串当作文本处理
+            // $("#box1").innerText ="<span>我是span</span>";
+            // 2、获取时，只获取文本节点内容
+            // console.log($("#box1").innerText);//
+
+
+            // console.log($("#box1").className);
+
+            // 二、自定义属性：
+
+            // 1、设置自定义属性（写）
+            // $("#box2").setAttribute("v-if","true");
+
+            // 2、获取自定义属性（读）；
+
+            // console.log($("#box2").getAttribute("v-text"));
+
+
+            // 3、setAttribute()：也可以操作官方属性
+
+            // $("#txt").setAttribute("value","呵呵");//等价于 $("#txt").value="呵呵";
+            
+            
+        }
+ 
+
+    </script>
+</body>
+</html>

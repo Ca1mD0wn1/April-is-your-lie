@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="textarea" id="demo1" /><input type="button" value="过滤" onclick="demo1()" /><br />
+    <input type="textarea" id="demo2" /><input type="button" value="确认密码" onclick="demo2()" /><span></span><br />
+    <input type="textarea" id="demo3" /><input type="button" value="留言" onclick="demo3()" /><br>
+    <input type="button" value="统计字符串个数" onclick="demo4()"><br>
+    <input type="button" value="随机验证码" onclick="demo5()"><br>
+    <input type="button" value="统计并去重" onclick="demo6()">
+
+    <script>
+        // 1,敏感词过滤。（用户输入的内容中的敏感词替换为 *)
+        // 例：“今天有个SB在旁边大喊大叫,影响了我的操作。”,
+        // 过滤后“今天有个 * 在旁边大喊大叫,影响了我的 * 作。”。
+        // 思路：把敏感词汇放在数组里：var arr = [‘SB’,’cab’,’nnd’]; 可以不用正则
+        function demo1() {
+            var arr = ["SB", "操"];
+            var str = "今天有个SB在旁边大喊大叫,影响了我的操作。";
+            console.log("原字符串为", str);
+            for (var i = 0; i < arr.length; i++) {
+                str = str.replace(arr[i], "*");
+            }
+            console.log("过滤后的是", str);
+        }
+        // 2,密码格式要求。（必须包含字母、数字、特殊字符,长度6个字符以上)
+        function demo2() {
+            var pwd = document.querySelector("#demo2").value;
+            var span = document.querySelector("span");
+            var test = /(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@#$%^&*]){6,}/;
+            var bool = test.test(pwd);
+            console.log(bool);
+            if (bool) {
+                span.innerHTML = "√";
+                span.style.color = "green";
+            } else {
+                span.innerHTML = "x";
+                span.style.color = "red";
+            }
+        }
+        // 3,留言过滤。（不能重复发言不能包含敏感词)
+        var messages = [];
+        function demo3() {
+            var message = document.querySelector("#demo3").value;
+            var bool1 = check(messages, message);
+            var bool2 = repeat(messages, message);
+            if (bool1 && bool2) {
+                messages.push(message);
+            }
+            console.log(messages);
+        }
+        function check(messages, message) {
+            var susceptibles = ["SB", "操"];
+
+            for (var i = 0; i < susceptibles.length; i++) {
+                var bool = true;
+                var index = message.indexOf(susceptibles[i]);
+                if (index != -1) {
+                    alert("请注意用语规范！");
+                    bool = false;
+                    break;
+                } else {
+                    bool = true;
+                }
+            }
+            return bool;
+        }
+        function repeat(messages, message) {
+            var bool = true;
+            if (message.length == 0) {
+                alert("重复留言!");
+                return false;
+            }
+            for (var i = 0; i < messages.length; i++) {
+                var index = message.indexOf(messages[i]);
+                if (index != -1) {
+                    alert("重复留言!");
+                    return false;
+                }
+            }
+            return true;
+        }
+        // 4,统计字符串中每个字符的个数。（原始字符串是：“aabccdeefffaaaa”, 结
+        // 果是：a2 b1 c2 d1 e2 f3 a4)
+        function demo4() {
+            var str = "aabccdeefffaaaabbbcccddaacc";
+            console.log(statistics(str));
+        }
+
+        // 5、数字字母混合验证码
+        function demo5() {
+            console.clear();
+            // a - z =97 - 122;
+            // A - Z = 65 - 90;
+            // 0 - 9 = 48 - 57
+            var number;
+            var code = '';
+            var i = 0
+            while (code.length < 6) {
+                i++;
+                number = Math.floor(Math.random() * (122 - 48 + 1)) + 48;
+                if ((number >= 48 && number <= 57) || (number >= 65 && number <= 90) || (number >= 97 && number <= 122)) {
+                    code = code + String.fromCharCode(number);
+                }
+
+            }
+            console.log(code);
+            return code;
+        }
+
+
+
+
+
+        // 6,统计字符串中每个字符的个数,并去掉连续重复的字符。（原始：“aabccdeefff”, 统计后是：a2 b1 c2 d1 e2 f3,取重后是：abcdef)
+        function demo6() {
+
+            var index;
+            var str = "aabccdeefff";
+            // console.log(str.charAt(0));
+            console.log(statistics(str));
+            console.log(noreprat(str));
+
+        }
+
+
+        function statistics(str) {//统计
+            var count = 1;
+            var arr1 = [];
+            for (var i = 0; i < str.length; i++) {
+                if (str.charAt(i) == str.charAt(i + 1)) {
+                    count++;
+                } else {
+                    arr1.push(str[i] + count);
+                    count = 1;
+                }
+            }
+            return arr1;
+        }
+
+
+        //去重
+        function noreprat(str) {
+            var result = [];
+            for (var i = 0; i < str.length; i++) {
+                index = str.charAt(i);
+                if (result.indexOf(index) == -1) {
+                    result.push(str[i]);
+                } else {
+                    result.push();
+                }
+            }
+            return result;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .jisuan {
+            width: 892px;
+            margin: 0 500px;
+        }
+
+        #c {
+            width: 886px;
+            height: 100px;
+        }
+
+        div {
+            float: left;
+            width: 220px;
+            height: 100px;
+            background-color: rgba(191, 192, 192);
+            border: 1px solid white;
+            font-size: 50px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        input {
+            font-size: 50px;
+            height: 100px;
+            width: 880px;
+            margin-top: 5px;
+        }
+
+        input ::after {
+            content: '0';
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jisuan">
+        <input type="text" id="result" value="0">
+        <div id="" onclick="demo1()">7</div>
+        <div id="" onclick="demo2()">8</div>
+        <div id="" onclick="demo3()">9</div>
+        <div id="" onclick="demo4()">/</div>
+        <div id="" onclick="demo5()">4</div>
+        <div id="" onclick="demo6()">5</div>
+        <div id="" onclick="demo7()">6</div>
+        <div id="" onclick="demo8()">x</div>
+        <div id="" onclick="demo9()">1</div>
+        <div id="" onclick="demo10()">2</div>
+        <div id="" onclick="demo11()">3</div>
+        <div id="" onclick="demo12()">-</div>
+        <div id="" onclick="demo13()">.</div>
+        <div id="" onclick="demo14()">0</div>
+        <div id="" onclick="demo15()">=</div>
+        <div id="" onclick="demo16()">+</div>
+        <div id="c" onclick="demo17()">C</div>
+    </div>
+    <script>
+        function demo1() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById('result').value = Number(x) + 7;
+            } else {
+                document.getElementById("result").value = x + 7;
+            }
+        } function demo2() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById('result').value = Number(x) + 8;
+            } else {
+                document.getElementById("result").value = x + 8;
+            }
+        } function demo3() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById('result').value = Number(x) + 9;
+            } else {
+                document.getElementById("result").value = x + 9;
+            }
+        } function demo4() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = x + '/';
+        } function demo5() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 4;
+            } else {
+                document.getElementById("result").value = x + 4;
+            }
+        } function demo6() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 5;
+            } else {
+                document.getElementById("result").value = x + 5;
+            }
+        } function demo7() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 6;
+            } else {
+                document.getElementById("result").value = x + 6;
+            }
+        } function demo8() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = x + '*';
+        } function demo9() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 1;
+            } else {
+                document.getElementById("result").value = x + 1;
+            }
+        } function demo10() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 2;
+            } else {
+                document.getElementById("result").value = x + 2;
+            }
+        } function demo11() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 3;
+            } else {
+                document.getElementById("result").value = x + 3;
+            }
+        } function demo12() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = x + '-';
+        } function demo13() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = x + '.';
+        } function demo14() {
+            var x = document.getElementById("result").value;
+            if (x == 0) {
+                document.getElementById("result").value = Number(x) + 0;
+            } else {
+                document.getElementById("result").value = x + 0;
+            }
+        } function demo15() {
+            var x = document.getElementById("result").value;
+            try {
+                y = eval(x);
+            } catch (error) {
+                alert("输入有误");
+                document.getElementById('result').value = 0;
+            }
+            document.getElementById("result").value = y;
+        } function demo16() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = x + '+';
+
+        }
+        function demo17() {
+            var x = document.getElementById("result").value;
+            document.getElementById("result").value = 0;
+        }
+
+    </script>
+</body>
+
+</html>

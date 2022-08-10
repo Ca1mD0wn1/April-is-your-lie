@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 箭头函数：
+        // 1、是词法分析（编译的专业术语），
+        // 2、箭头函数是个表达式。
+        // 3、箭头函数里没有arguments。
+        // 4、箭头函数里没有this
+        // 5、箭头函数不能作为构造函数使用
+
+        // 1、箭头函数的写法
+        let fn01 = (n1,n2)=>{
+            return n1+n2;
+        }
+
+        console.log(fn01(2,3));
+
+        // 2、当形参只有一个时，可以省略形参的圆括号
+        let fn02 = a=>{
+            console.log(a+":hi");
+        }
+
+        fn02("亲")
+
+        // 3、当函数体中只有一句代码时，可以省略函数体的花括号，此时，默认带有return（即：return也省了）
+        let fn03 = (n1,n2)=>n1+n2;
+        console.log(fn03(2,3));
+
+
+        // 4、如果说箭头函数返回值是个json对象，在对象的外面加上圆括号。这样也是可以省略return。
+
+        let fn04 = (name,age)=>({
+                name:name,
+                age:age
+            })
+
+        console.log(fn04("曹继承",18));
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

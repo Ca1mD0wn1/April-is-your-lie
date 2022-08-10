@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    请输入一个数字:
+    <input id="num" type="text" /><br/>
+    <input type="button" value="是否是偶数" onclick="fn01()"><br/>
+    结果：<input id="result" type="text" /><br/>
+    <hr/>
+
+    请输入一个年份:
+    <input id="year" type="text" /><br/>
+    <input type="button" value="是否是平年" onclick="isLeapYear()"><br/>
+    结果：<input id="isLeapYearResult" type="text" /><br/>
+
+    <hr/>
+    请输入一个数（1-100之间）：
+    <input id="num2" type="text" /><br/>
+    <input type="button" value="判断是不是逢七过的数字" onclick="isSeven()"><br/>
+    结果：<input id="sevenResult" type="text" /><br/>
+
+    <hr/>
+    请输入您的身高（米）：
+    <input id="height" type="text" /><br/>
+    请输入您的体重（千克）：
+    <input id="weight" type="text" /><br/>
+    <input type="button" value="bmi" onclick="bmi()"><br/>
+    结果：<input id="bmiResult" type="text" /><br/>
+
+
+    <script>
+        function fn01(){
+            // 判断一个数是不是偶数
+            // 1、获取用户的输入
+            var num = parseInt(document.getElementById("num").value);
+
+            // 2、判断（逻辑）
+            var result = ""
+            if(num%2==0){
+                result = "是偶数"
+            }else{
+                result="不是偶数"
+            }
+
+            // 3、输出
+            document.getElementById("result").value = result;
+
+        }
+
+
+        function isLeapYear(){
+            // 1、获取用户的输入（输入）
+            var year = parseInt(document.getElementById("year").value)
+            // 2、判断
+            // 能被4整除但是不能被100整除，或者能被400整除；
+            var isLeapYear = true;
+            if((year%4==0 && year%100!=0)||(year%400==0)){
+                isLeapYear = false;
+            }
+
+            // 3、输出
+            let str = "";
+            if(isLeapYear){
+                str = "是平年"
+            }else{
+                str = "是闰年"
+            }
+
+            document.getElementById("isLeapYearResult").value = str;
+
+        }
+        
+        function isSeven(){
+            // 1、输入
+            var num = parseInt(document.getElementById("num2").value);
+
+            // 2、逻辑
+            // 能被7整除，或者含有七的数字
+            var is = false;
+            if((num%7==0) || (num%10==7 || parseInt(num/10)==7)){
+                is = true;
+            }
+
+            // 3、输出
+            document.getElementById("sevenResult").value =  is?"是":"不是"
+        }
+    
+
+        // function bmi(){
+        //     // 1、输入
+        //     var height = parseFloat(document.getElementById("height").value);
+        //     var weight = parseFloat(document.getElementById("weight").value);
+
+        //     // 2、逻辑
+        //     // BMI=体重(以千克为单位)除以身高的平方(以米为单位)。
+        //     // 中国成人正常的BMI应在18.5-23.9之间，如果小于18.5为体重不足，如果大于等于24为超重，大于等于28为肥胖
+        //     var value = weight/(height*height);
+        //     var str="";
+        //     if(value<18.5){
+        //         str = "亲，您多吃点吧"
+        //     }else if(value<24){
+        //         str = "亲，您是魔鬼，好崇拜噢"
+        //     }else if(value<28){
+        //         str = "亲，您多吃点蔬菜";
+        //     }else{
+        //         str="亲，您多运动，多吃蔬菜，管住嘴，迈开腿"
+        //     }
+        //     // 3、输出
+        //     document.getElementById("bmiResult").value = str;
+        // }
+
+
+        function bmi(){
+            // 1、输入
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            // 2、逻辑
+            // BMI=体重(以千克为单位)除以身高的平方(以米为单位)。
+            // 中国成人正常的BMI应在18.5-23.9之间，如果小于18.5为体重不足，如果大于等于24为超重，大于等于28为肥胖
+            var value = weight/(height*height);
+            var str="";
+
+            if(value>=18.5 && value<24){
+                str = "亲，您是魔鬼，好崇拜噢"
+            }else{
+                if(value<18.5){
+                    str = "亲，您多吃点吧"
+                }else if(value<28){
+                    str = "亲，您多吃点蔬菜";
+                }else{
+                    str="亲，您多运动，多吃蔬菜，管住嘴，迈开腿"
+                }
+            }
+          
+            // 3、输出
+            document.getElementById("bmiResult").value = str;
+
+        }
+        
+    </script>
+</body>
+</html>

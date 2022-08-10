@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #t{
+            width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #txt{
+          display: none;
+          width: 100%;
+          height: 100%;
+        } 
+
+        td{
+            width: 100px;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <table id="t" border="1" >
+        <tr>
+            <td>药品编号</td>
+            <td>药品名称</td>
+            <td>价格</td>
+            <td>批号</td>
+            <td>供应商</td>
+            <td>日期</td>
+        </tr>
+        <tr>
+            <td> 3500125a</td>
+            <td>阿莫西林</td>
+            <td>20</td>
+            <td>202208</td>
+            <td>千锋西安校区</td>
+            <td>2022-08-04</td>
+        </tr>
+        <tr>
+            <td>3500126</td>
+            <td>金嗓子</td>
+            <td>10.1</td>
+            <td>202207</td>
+            <td>千锋西安校区</td>
+            <td>2022-07-05</td>
+        </tr>
+    </table>
+    <input id="txt" type="text">
+
+    <script>
+
+
+        var td = document.getElementById("td");
+        var txt = document.getElementById("txt");
+
+        var table = document.getElementById("t");
+
+        for(var i=1;i<table.rows.length;i++){
+            for(var j=0;j<table.rows[i].cells.length;j++){
+                table.rows[i].cells[j].onclick = function(){
+                  
+                    console.log("td的onclick");
+                    txt.value = this.innerHTML;
+                    txt.style.display = "block";
+                    this.replaceChild(txt,this.firstChild);
+                    txt.focus();
+
+                }
+            }
+        }
+
+        txt.onclick = function(event){
+            var e = event || window.event;
+            e.stopPropagation();
+        }
+
+        txt.onblur = function(){
+            this.parentNode.innerHTML = txt.value;
+            txt.style.display = "none"            
+        }
+
+    </script>
+</body>
+</html>

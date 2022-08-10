@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box_top{
+            width: 100px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+    <!-- 内部写法 -->
+    <script>
+        alert("hi");
+    </script>
+    <!-- 外部 -->
+    <script src="./js/tools.js"></script>
+</head>
+<body>
+    <div class="box_top"></div>
+    <div class="box_bottom"></div>
+    <input type="text" />
+    <script>
+        alert("我在body标签中间");
+    </script>
+    <!-- 行内 -->
+    <input type="button" value="测试01" onclick="alert('啊…………………………')" />
+    <script>
+        alert("我在最后");
+        alert("我才是最后");
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+       var age = 12;
+       console.log(typeof age);
+       var myName="张三疯";
+       console.log(typeof myName);
+       var isAudlt = true;
+       console.log(typeof isAudlt);
+       var t;
+       console.log(typeof t); //变量没有赋值时，就是undefined的类型
+       var y = undefined;//undefined类型的取值范围只有 undefined 一种
+       console.log(typeof y);
+
+       var obj = null;
+       console.log(typeof obj);//null是对象的空引用，所以打印出来是object类型。
+
+
+        var num = 250;
+        console.log(typeof num);//number;
+        console.log(typeof typeof num);//string
+
+        var type = typeof num;//typeof的运算结果是string类型 （"number"）
+        console.log(typeof type);//string
+        
+        
+    </script>
+</body>
+</html>

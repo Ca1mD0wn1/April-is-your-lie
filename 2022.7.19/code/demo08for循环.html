@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="求1-100之和" onclick="testf01()"><br />
+
+    <script>
+
+        function testf01(){
+
+        //    for(给循环变量赋初值;循环条件;改变循环变量){
+        //     // 循环体
+        //    }
+
+            // 需求：求1-100之和
+            var sum = 0;
+
+            for(var i=1;i<=100;i++){
+                sum += i;
+            }
+            
+            console.log("sum",sum);
+            console.log("i",i);//101
+
+        }
+        
+
+    </script>
+
+</body>
+
+</html>

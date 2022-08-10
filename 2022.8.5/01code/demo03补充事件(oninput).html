@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 2000px;">
+    <input type="text" id="txt">
+
+    <textarea id="textarea"></textarea>
+
+    <script>
+        // onkeypress: 按下跟输入有关的键（退格键和delete键不可以）
+        //    有键码：重在关注键码
+
+        // oninput : 
+        //    html5新增。用户按下跟输入有关的键（退格键和delete键都可以）
+        //    没有键码（因为oninput重在关注用户是否输入）
+
+
+        var txt = document.querySelector("#txt");
+        var textarea = document.querySelector("#textarea");
+
+        txt.oninput = function (event) {
+            var e = event || window.event;
+            console.log("e", e);
+            console.log(e.keyCode);//undefined
+        }
+
+        textarea.oninput = function (event) {
+            var e = event || window.event;
+            console.log("e", e);
+            console.log(e.keyCode);//undefined
+        }
+
+
+
+    </script>
+</body>
+
+</html>

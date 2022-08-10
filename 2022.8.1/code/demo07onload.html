@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link id="css01" rel="stylesheet" href="./css/index.css" onload="cssLoadFn03()">
+</head>
+<body style="height: 2000px;" onload="bodyLoadFn01()">
+    <input type="button" value="测试" onclick="fn01()">
+
+    <img  id="img01" src="img/01.jpg" onload="imgLoadFn02()" />
+
+    <div id="box1"></div>
+
+    <script>
+
+        // body里的onload 是在 网页的标签加载完毕，并且标签对应资源（如：img对应图片）；
+        function bodyLoadFn01(){
+            console.log("body加载完毕，就相当于网页加载完毕");
+        }
+
+        // img标签里的onload，表示图片渲染出来了
+        function imgLoadFn02(){
+            console.log("图片加载完毕");
+            // offsetWidth:浏览器根据图片的实际尺寸计算的宽度。
+            console.log(document.getElementById("img01").offsetWidth);//1024
+        }
+
+        // 图片从后端来了，但是并不保证渲染出来
+        console.log("外面的offetWidth：",document.getElementById("img01").offsetWidth);//0
+        
+        
+        var boxDom1 = document.getElementById("box1");
+
+        function cssLoadFn03(){
+            console.log("onload后端的width",window.getComputedStyle(boxDom1)["width"]);
+        }
+
+        console.log("外面的width",window.getComputedStyle(boxDom1)["width"]);
+
+
+
+        // 创建图片对象（相当于img标签）
+        var imgDom01 = new Image();
+        imgDom01.src="./img/1.jpg";
+        // 把图片对象添加到body里
+        document.body.appendChild(imgDom01);
+
+        console.log("onload之外：imgDom01.offsetWidth",imgDom01.offsetWidth);//0
+        
+        imgDom01.onload = function(){
+            console.log("onlaod之后：imgDom01.offsetWidth",imgDom01.offsetWidth);//357
+        }
+
+    </script>
+</body>
+</html>

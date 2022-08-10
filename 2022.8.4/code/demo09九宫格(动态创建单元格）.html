@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #box {
+            width: 600px;
+            height: 600px;
+            border: 1p solid red;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        #box li {
+            position: absolute;
+            border: 1px solid black;
+            box-sizing: border-box;
+            background: url(img/1.jpg);
+            background-size: 600px 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+
+    </ul>
+
+    <script src="./js/dragandback.js"></script>
+    <script src="./js/cssTools.js"></script>
+    <script>
+
+        // 
+        var rowCount = 4;
+        var cellHeight = 600 / rowCount;
+        var colCount = 5;
+        var cellWidth = 600 / colCount;
+
+
+        var ulDom = document.getElementById("box");
+        var liDoms;
+        var sourceIndex = -1;
+        var targetIndex = -1;
+
+        function initUI() {
+            var htmlStr = "";
+            for (var i = 0; i < rowCount; i++) {
+                for (var j = 0; j < colCount; j++) {
+                    htmlStr += `
+                        <li style="
+                                    width: ${cellWidth}px;
+                                    height: ${cellHeight}px;
+                                    left:${j * cellWidth}px;
+                                    top: ${i * cellHeight}px;
+                                    background-position: -${j * cellWidth}px -${i * cellHeight}px;
+                            "></li>
+                    `
+                }
+            }
+            ulDom.innerHTML = htmlStr;
+        }
+
+        window.onload = function () {
+            initUI();
+            liDoms = document.getElementsByTagName("li");
+            console.log(liDoms);
+            // 拖拽
+            liDoms = Array.from(liDoms);
+            liDoms.forEach(function (li, index) {
+                li.setAttribute("index", index);
+
+                drag(li);
+
+                // 源和目标
+                // 1）、源：按下鼠标确定
+
+                li.onmousedown = function () {
+                    this.style.zIndex = 999;
+                    sourceIndex = this.getAttribute("index");
+                    console.log("sourceIndex", sourceIndex);
+                }
+
+                // 2)、目标：松开鼠标
+                ulDom.onmousemove = function (event) {
+                    var e = event || window.event;
+                    var left1 = e.pageX - ulDom.offsetLeft;
+                    var top1 = e.pageY - ulDom.offsetTop;
+
+                    // 行下标
+                    var row = parseInt(top1 / cellHeight);
+                    // 列下标
+                    var col = parseInt(left1 / cellWidth);
+
+                    targetIndex = row * colCount + col;
+
+                    console.log("targetIndex", targetIndex);
+
+                }
+
+            });
+
+            document.onmouseup = function () {
+                console.log("onmouseup", sourceIndex, targetIndex);
+                // 交换
+                exchange(sourceIndex, targetIndex)
+            }
+
+        }
+
+        function exchange(sourceIndex, targetIndex) {
+            console.log("exchange", sourceIndex, targetIndex);
+            if (sourceIndex == -1 || targetIndex == -1) {
+                return;
+            }
+
+            // 交换两个元素的 background-position；
+            var tempPos = getStyle(liDoms[sourceIndex], "backgroundPosition");
+
+            liDoms[sourceIndex].style.backgroundPosition = getStyle(liDoms[targetIndex], "backgroundPosition");
+
+            liDoms[targetIndex].style.backgroundPosition = tempPos;
+
+            liDoms[sourceIndex].style.zIndex = 0;
+
+            // 复位:
+            var left1 = (sourceIndex % colCount) * cellWidth;
+            var top1 = (parseInt(sourceIndex / colCount)) * cellHeight;
+
+            liDoms[sourceIndex].style.left = left1 + "px";
+            liDoms[sourceIndex].style.top = top1 + "px";
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

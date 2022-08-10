@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btn01" type="button" value="测试" >
+    
+    <script>
+
+        $("btn01").onclick = function(){
+            // var d = new Date();
+            // console.log("d",d);
+            
+            // var d = new Date("6 6,2021 15:08:22");            
+            // console.log("d",d);
+
+            // var d = new Date(1000);            
+            // console.log("d",d);
+
+            var d = new Date();
+
+            // console.log(d.getFullYear());
+            // console.log(d.getMonth());
+            // console.log(d.getDay());
+            // console.log(d.getTime());
+
+            // d.setFullYear(2021);
+            // d.setMonth(10);
+
+            // console.log(d);
+
+            // var t = Date.parse("8 26,2021 11:34:00");
+ 	        // console.log(t);//1629948840000
+
+
+            console.log(d.toDateString());
+            console.log(d.toTimeString());
+            console.log(d.toLocaleString());
+            console.log(d.toLocaleDateString());
+            console.log(d.toLocaleTimeString());
+            console.log(d.toUTCString());
+        }
+
+
+        // 根据选择器获取dom元素
+        function $(id){
+            return document.getElementById(id);
+        }
+
+    </script>
+    
+</body>
+</html>

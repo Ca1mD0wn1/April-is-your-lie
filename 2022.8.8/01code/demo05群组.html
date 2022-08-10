@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        //   1、（）可以把一些字符看成一个整体。如： ab{3} 和 (ab){3} 表示不同的意思。
+
+// ​       2、群组可以抽离部分数据
+
+        //1)、在match中使用，如果使用() ，则除了被查找到的整个内容外，还会根据()群组单独罗列每个查找到群组，但是不能使用g
+        // console.log("abcdef".match(/abcdef/));
+        // console.log("abcdef".match(/ab(cd)(ef)/));
+        // var arr = "abccccdef".match(/ab(c*d)(ef)/);
+        // console.log(arr[0]);
+        // console.log(arr[1]);
+        // console.log(arr[2]);
+
+        // console.log("a23[abcc]abc".match(/(\d+)\[(.+?)\]/));  //['23[abcc]', '23', 'abcc', index: 1, input: 'a23[abcc]abc', groups: undefined]
+
+
+        // 2)、在replace里，使用 ()
+
+        // "a23[abcc]12[tab]250[hello]".replace(/(\d+)\[(.+?)\]/g,function(item,$1,$2){
+        //     console.log(item,$1,$2);
+        // })
+        
+
+        // var str = "a23[abcc]12[tab]250[hello]".replace(/(\d+)\[(.+?)\]/g,function(item,$1,$2){
+        //     // console.log(item,$1,$2);
+        //     return $2+"{"+$1+"}";
+        // })
+
+        // console.log(str);
+
+        // var str="中国四大名著包括《西游记》、《水浒传》、《三国演义》、《红楼梦》";
+
+        // str = str.replace(/《(.*?)》/g,function(item,$1){
+        //     return `<${$1}>`;
+        // })
+
+        // str = str.replace(/《(.*?)》/g,"<$1>");
+
+        // console.log(str);
+
+        // var tel="18991274261";
+        // tel = tel.replace(/(\d{3})\d{4}(\d{4})/,"$1****$2");
+        // console.log(tel);
+
+        // console.log("abc".repeat(3));
+
+        // var str = "a102b5c11";
+
+        // str.replace(/(.)(\d+)/g,function(item,$1,$2){
+        //     console.log(item,$1,$2);
+        // })
+
+        // str = str.replace(/(.)(\d+)/g,function(item,$1,$2){
+        //     return $1.repeat($2);
+        // })
+
+        // console.log(str);
+
+        // var str = "abc250-hello12-aaa";
+
+        // str = str.replace(/(\d+)-([a-zA-Z]+)/g,"");
+        // console.log(str);
+        // console.log(RegExp.$1);
+        // console.log(RegExp.$2);
+
+        // str.replace(/(2\d{2})/);
+        // console.log(RegExp.$1);
+
+        // str.match(/(2\d{2})/);
+        // console.log(RegExp.$1);
+
+        var objStr="手机号码18991274261， 这是我朋友的手机号码13998765411"; 
+
+        var arr = objStr.match(/(1\d)(\d)\d{8}/g);
+
+        console.log(arr);
+        
+        for(var i=0;i<arr.length;i++){
+            console.log(arr[i].replace(/(1\d)(\d)\d{8}/,"$1$2********"));
+            console.log(RegExp.$2<=3?"是联通的":"是移动或电信");
+        }
+
+    </script>
+
+
+</body>
+
+</html>

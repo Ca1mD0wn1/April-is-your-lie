@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #parentBox{
+            position: relative;
+            width: 800px;
+            height: 600px;
+            border:2px solid red;
+            margin: 0 auto;
+        }
+
+        #box{
+            position: absolute;
+            left:10px;
+            top:10px;
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+
+        #title{
+            width: 100%;
+            height: 30px;
+            background-color: #ccc;
+        }
+
+        #content{
+            width: 100%;
+            height:  calc(100% - 30px);
+            
+        }
+    </style>
+</head>
+<body style="height: 2000px;">
+    <div id="parentBox">
+        <div id="box">
+            <div id="title">
+
+            </div>
+            <div id="content">
+
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        
+        var parentBox = document.getElementById("parentBox");
+        var box = document.getElementById("box");
+        var title = document.getElementById("title");
+
+        var historys = [];
+
+        title.onmousedown = function(event){
+            var e = event || window.event;
+            // 鼠标距离事件源（要拖拽的盒子的距离）
+            var offsetX = e.offsetX;
+            var offsetY = e.offsetY;
+
+            parentBox.onmousemove = function(event){
+                var e = event || window.event;
+
+                // 一、业务逻辑运算
+                // 1、计算 盒子的left和top
+                var left1 = e.pageX - offsetX - parentBox.offsetLeft;
+                var top1 = e.pageY - offsetY- parentBox.offsetTop;
+
+                
+                // 2、边界处理
+                if(left1<0){
+                    left1 = 0;
+                }else if(left1>(parentBox.offsetWidth-box.offsetWidth)){
+                    left1 = parentBox.offsetWidth-box.offsetWidth;
+                }
+                if(top1<0){
+                    top1 = 0;
+                }else if(top1>(parentBox.offsetHeight-box.offsetHeight)){
+                    top1 = parentBox.offsetHeight-box.offsetHeight;
+                }
+
+                historys.push({
+                    left:left1,
+                    top:top1
+                })
+
+                // 二、外观呈现
+                // 改变盒子的left和top
+                box.style.left = left1 +"px";
+                box.style.top = top1 +"px";
+
+            }
+        }
+
+        document.onmouseup = function(){
+            console.log("historys",historys);
+            parentBox.onmousemove=null;
+            historys.length >0 && backPlay();
+        }
+
+        function backPlay(){
+            var index = historys.length-1;
+
+            var myTimer = setInterval(function(){
+
+                box.style.left = historys[index].left +"px";
+                box.style.top = historys[index].top +"px";
+
+                index--;
+
+                if(index<0){
+                    clearInterval(myTimer);
+                    historys.length = 0;
+                }
+
+            },10)
+
+        }
+
+
+    </script>
+</body>
+</html>

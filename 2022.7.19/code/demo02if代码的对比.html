@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <hr />
+    请输入您的身高（米）：
+    <input id="height" type="text" /><br />
+    请输入您的体重（千克）：
+    <input id="weight" type="text" /><br />
+    <input type="button" value="bmi" onclick="bmi()"><br />
+    结果：<input id="bmiResult" type="text" /><br />
+
+
+    <script>
+
+        function bmi() {
+            // 1、输入
+            var height = parseFloat(document.getElementById("height").value);
+            var weight = parseFloat(document.getElementById("weight").value);
+
+            // 2、逻辑
+            // BMI=体重(以千克为单位)除以身高的平方(以米为单位)。
+            // 中国成人正常的BMI应在18.5-23.9之间，如果小于18.5为体重不足，如果大于等于24为超重，大于等于28为肥胖
+            var value = weight / (height * height);
+            var str = "";
+
+            if (value < 18.5) {
+                str = "亲，您多吃点吧"
+            } else if (value < 24) {
+                str = "亲，您是魔鬼，好崇拜噢"
+            } else if (value < 28) {
+                str = "亲，您多吃点蔬菜";
+            } else {
+                str = "亲，您多运动，多吃蔬菜，管住嘴，迈开腿"
+            }
+
+            // -----------------------下面的代码效率低，因为，任何数字都需要做三次判断---------------------------
+
+            if (value < 18.5) {
+                str = "亲，您多吃点吧"
+            }
+
+            if (value >= 18.5 && value < 24) {
+                str = "亲，您是魔鬼，好崇拜噢"
+            }
+
+            if (value >= 24 && value < 28) {
+                str = "亲，您多吃点蔬菜";
+            }
+
+
+            // 3、输出
+            document.getElementById("bmiResult").value = str;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

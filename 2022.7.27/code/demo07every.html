@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="btn01" type="button" value="测试">
+
+    <script>
+
+        document.getElementById("btn01").onclick = function () {
+
+            var scores = [
+                {
+                    name: "张三疯",
+                    score: 98
+                },
+                {
+                    name: "张四疯",
+                    score: 100
+                },
+                {
+                    name: "张五疯",
+                    score: 89
+                },
+                {
+                    name: "张六疯",
+                    score: 88
+                }
+            ];
+
+            // every:
+            // 功能：判断数组中所有（每一个）是否都满足给定的条件
+            // 参数：回调函数（回调的返回值是boolean类型，既就是条件）
+            // 返回值：true：所有都满足；false：只要有一个不满足
+
+            // 需求：
+            // var all = scores.every(function(item,index,arr){
+            //     return item.score>=60;
+            // })
+
+            // console.log(all);
+
+            // 重构
+            Array.prototype.myEvery = function (cb) {
+                for (var i = 0; i < this.length; i++) {
+                    if (!cb(this[i], i, this)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            var all = scores.myEvery(function (item, index, arr) {
+                return item.score >= 60;
+            })
+
+            console.log(all);
+
+            Array.prototype.mySome = function (cb) {
+                return !this.myEvery(cb)
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>

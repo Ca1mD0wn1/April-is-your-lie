@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btnAdd" type="button" value="测试01" >
+    <input id="btnRemove" type="button" value="解绑事件" >
+
+    <script>
+        var btnAdd = document.getElementById("btnAdd");
+        var btnRemove = document.getElementById("btnRemove");
+
+
+        btnAdd.attachEvent("onclick",function(){
+            console.log("啊……&……");
+        })
+
+        var fn01 = function(){
+            console.log("啊22222……&……");
+        }
+
+        btnAdd.attachEvent("onclick",fn01)
+
+        
+        btnAdd.attachEvent("onclick",function(){
+            console.log("啊3333……&……");
+        })
+
+        
+        btnRemove.onclick = function(){
+            btnAdd.detachEvent("onclick",fn01);
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        input {
+            font-size: 20px;
+        }
+
+        span {
+            font-size: 20px;
+            color: blue;
+        }
+
+        table {
+            /* 11行6列 */
+            width: 800px;
+            height: 800px;
+            margin: 0 auto;
+        }
+
+        th {
+            background: #66ccff;
+            height: 50px;
+            border: 1px black solid;
+        }
+
+        /* 鼠标绑定类 */
+        .change {
+            background-color: aqua;
+            color: blueviolet;
+        }
+
+        td {
+            height: 54px;
+            width: 133px;
+            text-align: center;
+            border: 1px solid blue;
+
+        }
+    </style>
+    <title>Document</title>
+    <script src="tools.js"></script>
+    <input type="button" value="5位随机数" id="demo1"><br>
+    <input type="button" value="自增30%" id="demo2"><br>
+    <input type="button" value="数组查找" id="demo3"><br>
+    <input type="button" value="数组去重" id="demo4"><br>
+    <input type="button" value="随机点名" id="demo5"><br>
+    <input type="button" value="其他进制转10" id="demo6">
+    <span>待转数字</span><input type="text" id="demo6_1"><span>该数进制</span><input type="text" id="demo6_2">
+    <br>
+    <input type="button" value="十转其他进制" id="demo7">
+    <span>待转数字</span><input type="text" id="demo7_1"><span>代转进制</span><input type="text" id="demo7_2">
+    <br>
+    <input type="button" value="封装实例" id="demo8"><br>
+    <input type="button" value="冒泡排序" id="demo9"><br>
+    <input type="button" value="选择排序" id="demo10"><br>
+    <input type="button" value="规律插入数组" id="demo11"><br>
+    <input type="button" value="自我介绍" id="demo12"><br>
+    <input type="button" value="总的成绩排序" id="demo13" onclick="demo13()">
+    <input type="button" value="语文成绩排序" id="demo14">
+    <input type="button" value="数学成绩排序" id="demo15">
+    <input type="button" value="英语成绩排序" id="demo16">
+
+    <!-- onmouseover  鼠标移到某元素之上（会有冒泡影响） 
+        onmouseout     鼠标从某元素移开（会有冒泡影响）  -->
+    <table cellspacing="0">
+        <thead>
+            <th>学号</th>
+            <th>语文</th>
+            <th>数学</th>
+            <th>英语</th>
+            <th>总分</th>
+            <th>排名</th>
+        </thead>
+        <tbody>
+
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+        </tbody>
+    </table>
+
+<body>
+    <script>
+        // 1,随机生成5位以内的数,然后输出该数字有多少位,每位分别是什么？
+        function checkCode(n) {// 返回n位数字随机数
+            var code = 0;
+            for (var i = 0; i < n; i++) {
+                var x = parseInt(Math.random() * 10);
+                code = x + code * 10;
+            }
+            return code;
+        }
+        var demo1 = document.querySelector("#demo1");
+        demo1.onclick = function demo1() {
+            console.clear();
+            var num = checkCode(5);//生成五位以内随机数
+            console.log(num);
+            var str = num + "";
+            console.log('生成的是' + str.length + '位数');
+            for (var i = 0; i < str.length; i++) {
+                console.log('生成的第' + (i + 1) + '位是' + str.charAt(i));
+            }
+        }
+
+        // 2,编写函数map(arr)把数组中的每一位数字都增加30 %。
+        function map(arr) {
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = Number((arr[i] * 1.3).toFixed(2));
+            }
+            return arr;
+        }
+        var demo2 = document.querySelector("#demo2");
+        demo2.onclick = function demo2() {
+            console.clear();
+            var arr = [1, 2, 3, 4, 5];
+            console.log(arr);
+            console.log(map(arr));
+        }
+        // 3,编写函数has(arr, n)判断数组中是否存在n这个元素,返回布尔类型。
+        function has(arr, n) {
+            // for (var i = 0; i < arr.length; i++) {
+            //     if ((arr.indexOf(n)) == -1){
+
+            //     }
+            // }
+            if (arr.indexOf(n) == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        var demo3 = document.querySelector("#demo3");
+        demo3.onclick = function demo3() {
+            console.clear();
+            var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            console.log("查找的数组为" + arr + '查找的数字为' + 11);
+            console.log("查找的结果为", has(arr, 11));
+        }
+        // 4,编写函数norepeat(arr)将数组的重复元素去掉,并返回新数组(面试题)。
+
+        var demo4 = document.querySelector("#demo4");
+
+        demo4.onclick = function demo4() {
+            console.clear();
+            var arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+            console.log(arr);
+            console.log(norepect(arr));
+        }
+        // 5,随机点名程序
+        // 提示：把人名都放进数组,随机产生一个下标,根据下标取出一个人名
+        var demo5 = document.querySelector("#demo5");
+
+        function randomNumbers(max, min) {// 范围生成随机数
+            var a = Math.floor(Math.random() * (max - min + 1)) + min;
+            return a;
+        }
+
+        demo5.onclick = function demo5() {
+            console.clear();
+            var names = ['雪乃', '八幡', '小明', '李华', '成龙', '刘德华', '姚明', '李宁', '刘梅'];
+            var name = names[randomNumbers(-1, names.length)];
+            console.log(name);
+        }
+        // 6、完成一个其它进制转换成十进制的函数(convert(‘123’, 8): 表示把8进制的123转成10进制)
+        function convert(number, n) {//十进制以内;
+
+            var arr = [];
+            while (number) {
+                arr.push(number % 10);
+                number = parseInt(number / 10);
+            }
+            var arr2 = arr.filter(element => element > n - 1);
+            if (arr2.length) {
+                return "输入有误！";
+            } else {
+                var sum = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    arr[i] = arr[i] * Math.pow(n, i);
+                    sum = sum + arr[i];
+                }
+                return sum;
+            }
+        }
+        var demo6 = document.querySelector("#demo6");
+        demo6.onclick = function demo6() {
+            console.clear();
+            var number = document.getElementById("demo6_1").value;
+            var n = document.getElementById('demo6_2').value;
+            console.log(convert(number, n))
+        }
+
+        // 7、完成一个十进制转换成其它进制的函数(convert(512, 2) : 表示把十进制的512转成2进制)
+
+        function convert2(number, n) {
+            var arr = [];
+            var result = "";
+            while (true) {
+                arr.push(number % n);
+                number = Math.floor(number / n);
+                if (number == 0) {
+                    break;
+                }
+            }
+            arr = arr.reverse();
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] == 10 || arr[i] == 11 || arr[i] == 12 || arr[i] == 13 || arr[i] == 14 || arr[i] == 15) {
+                    switch (arr[i]) {
+                        case 10: arr[i] = "A"; break;
+                        case 11: arr[i] = "B"; break;
+                        case 12: arr[i] = "C"; break;
+                        case 13: arr[i] = "D"; break;
+                        case 14: arr[i] = "E"; break;
+                        case 15: arr[i] = "F"; break;
+                        default: ;
+                    }
+                }
+                result = result + arr[i];
+            }
+            return (result);
+        }
+        var demo7 = document.querySelector("#demo7");
+        demo7.onclick = function demo7() {
+            console.clear();
+            var number = document.getElementById("demo7_1").value;
+            var n = document.getElementById('demo7_2').value;
+            console.log(convert2(number, n));
+
+        }
+        // 8、把写的关于数组的示例封装成函数。
+
+        // 9、冒泡排序
+        function bubbleSortBigToSmall(arr) { //冒泡排序 从大到小
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] < arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+
+                } console.log("第" + (i + 1) + "趟排序结果为", arr);
+            }
+
+            return arr;
+        }
+
+        function bubbleSortSmallToBig(arr) { //冒泡排序 从小到大
+            for (var i = 0; i < arr.length; i++) {
+                for (var j = 0; j < arr.length - 1 - i; j++) {
+                    if (arr[j] > arr[j + 1]) {
+                        var temp = arr[j];
+                        arr[j] = arr[j + 1];
+                        arr[j + 1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+        var demo9 = document.querySelector("#demo9");
+        demo9.onclick = function demo9() {
+            console.clear();
+            var arr = [4, 51, 3, 6, 985, 4123, 65, 9, 8, 5, 2, 36, 98, 7, 4]
+            console.log("原数组是", arr);
+            console.log("由大到小排序是", bubbleSortBigToSmall(arr));
+            console.log("由小到大排序是", bubbleSortSmallToBig(arr));
+
+        }
+        // 10,选择排序
+        function selectSort(arr) {
+            var minIndex;
+            for (var i = 0; i < arr.length - 1; i++) {
+                minIndex = i;
+                for (var j = i + 1; j < arr.length; j++) {
+                    if (arr[minIndex] > arr[j]) {//寻找最小值
+                        minIndex = j;//保存最小值的索引
+                    }
+                }
+                if (minIndex != i) {
+                    var temp = arr[i];
+                    arr[i] = arr[minIndex];
+                    arr[minIndex] = temp;
+
+                }
+                console.log("第" + (i + 1) + "趟排序结果为", arr);
+            }
+            return arr;
+        }
+        var demo10 = document.querySelector("#demo10");
+        demo10.onclick = function demo10() {
+            console.clear();
+            var arr = [1, 6, 4, 8, 7, 6, 3, 5, 4, 8, 2]
+            console.log("原数组是", arr);
+            console.log(selectSort(arr));
+        }
+
+        // 11,有一个从小到大排好序的数组。现输入一个数,要求按原来的规律插入数组中。（ 可用splice函数 ）
+        var demo11 = document.querySelector("#demo11");
+        demo11.onclick = function demo11() {
+            console.clear();
+            var arr = [1, 2, 3, 4, 6, 7, 8, 9, 11, 55, 66, 77, 99, 101];
+            var number = 55;
+            console.log('原数组为', arr);
+            console.log('插入的数字为', number);
+            console.log('插入的结果为', insert(arr, number));
+        }
+        function insert(arr, number) {
+            var i = 0;
+            while (true) {
+                if (arr[i] > number) {
+                    arr.splice(i, 0, number);
+                    break;
+                } else {
+                    i = i + 1;
+                    continue;
+                }
+            }
+            return arr;
+        }
+        // 12,用JSON创建对象存储学生信息,包括学号、身份证、年龄、性别、专业等信息,同时包含一个方法自我介绍,用来输出对象所有信息。
+        var str = {
+            "学号": "001", "身份证": "001001001", "年龄": "18", "性别": "男", "专业": "计算机科学与技术", "自我介绍": function introduce() {
+                console.log(str);
+            }
+        };
+        var obj = {
+            shcoolCode: "001", socialSecurityNumber: "001001001", age: "18", sex: "男", specialized: "计算机科学与技术", introduce: function introduce() {
+                console.log(obj);
+            }
+        }
+        var demo12 = document.querySelector("#demo12");
+        demo12.onclick = function demo12() {
+            console.clear();
+            obj.introduce();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // 13计算总成绩，按总成绩排名。统计各单科成绩第一名，输出其成绩与学号。
+
+        //     学号	 语文	   数学	    英语	总成绩	备注
+        //     1	 105	    62	    118
+        //     2	 89	        78	    120
+        //     3	 86	        64	    80
+        //     4	 78	        99	    91
+        //     5	 107.5 	    97	    70
+        //     6	 112	    61	    92
+        //     7	 101	    79	    104
+        //     8	 71	        72	    105
+        //     9	 56         68	    61
+        //     10	 98	        83	    77
+
+        // var demo13 = document.querySelector("#demo13");
+        // demo13.onclick = demo13;
+        main();
+        function main() {
+            var table = document.querySelectorAll("tbody>tr");
+            var grades = [
+                [1, 105, 62, 118],
+                [2, 89, 78, 120],
+                [3, 86, 64, 80],
+                [4, 78, 99, 91],
+                [5, 107.5, 97, 70],
+                [6, 112, 61, 92],
+                [7, 101, 79, 104],
+                [8, 71, 72, 105],
+                [9, 56, 68, 61],
+                [10, 98, 83, 77]
+            ];
+            for (i = 0; i < grades.length; i++) {
+                table[i].innerHTML = "<td>" + grades[i][0] + "</td>" + "<td>" + grades[i][1] + "</td>" + "<td>" + grades[i][2] + "</td>" + "<td>" + grades[i][3] + "</td>" + "<td></td><td></td>";
+            }
+        }
+        function demo13() {
+            var grades = [
+                [1, 105, 62, 118],
+                [2, 89, 78, 120],
+                [3, 86, 64, 80],
+                [4, 78, 99, 91],
+                [5, 107.5, 97, 70],
+                [6, 112, 61, 92],
+                [7, 101, 79, 104],
+                [8, 71, 72, 105],
+                [9, 56, 68, 61],
+                [10, 98, 83, 77]
+            ]
+            sum(grades);
+            zong(grades);
+            return grades;
+        }
+
+
+        var demo14 = document.querySelector("#demo14");
+        demo14.onclick = function demo14() {
+            var grades = demo13();
+            yuwen(grades);
+
+
+        }
+        var demo15 = document.querySelector("#demo15");
+        demo15.onclick = function demo15() {
+            var grades = demo13();
+            shuxue(grades);
+
+        }
+        var demo16 = document.querySelector("#demo16");
+        demo16.onclick = function demo16() {
+            var grades = demo13();
+            yingyu(grades);
+
+        }
+
+
+        function sum(grades) {//求总成绩
+            for (var i = 0; i < 10; i++) {
+                grades[i][4] = grades[i][1] + grades[i][2] + grades[i][3];
+            }
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 9 - i; j++) {
+                    if (grades[j][4] < grades[j + 1][4]) {
+                        var temp = grades[j];
+                        grades[j] = grades[j + 1];
+                        grades[j + 1] = temp;
+                    }
+                }
+            }
+        }
+        function zong(grades) { //总成绩排序，并打印
+            var table = document.querySelectorAll("tbody>tr");
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 9 - i; j++) {
+                    if (grades[j][4] < grades[j + 1][4]) {
+                        var temp = grades[j];
+                        grades[j] = grades[j + 1];
+                        grades[j + 1] = temp;
+                    }
+                }
+            }
+            for (i = 0; i < grades.length; i++) {
+                table[i].innerHTML = "<td>" + grades[i][0] + "</td>" + "<td>" + grades[i][1] + "</td>" + "<td>" + grades[i][2] + "</td>" + "<td>" + grades[i][3] + "</td>" + "<td>" + grades[i][4] + "</td>" + "<td>" + (i + 1) + "</td>";
+            }
+        }
+
+
+
+        function yuwen(grades) {//语文成绩排序并打印
+            var table = document.querySelectorAll("tbody>tr");
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 9 - i; j++) {
+                    if (grades[j][1] < grades[j + 1][1]) {
+                        var temp = grades[j];
+                        grades[j] = grades[j + 1];
+                        grades[j + 1] = temp;
+                    }
+                }
+            }
+            for (i = 0; i < grades.length; i++) {
+                table[i].innerHTML = "<td>" + grades[i][0] + "</td>" + "<td>" + grades[i][1] + "</td>" + "<td>" + grades[i][2] + "</td>" + "<td>" + grades[i][3] + "</td>" + "<td>" + grades[i][4] + "</td>" + "<td>" + (i + 1) + "</td>";
+            }
+        }
+
+
+
+        function shuxue(grades) {//数学成绩排序并打印
+            var table = document.querySelectorAll("tbody>tr");
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 9 - i; j++) {
+                    if (grades[j][2] < grades[j + 1][2]) {
+                        var temp = grades[j];
+                        grades[j] = grades[j + 1];
+                        grades[j + 1] = temp;
+                    }
+                }
+            }
+            for (i = 0; i < grades.length; i++) {
+                table[i].innerHTML = "<td>" + grades[i][0] + "</td>" + "<td>" + grades[i][1] + "</td>" + "<td>" + grades[i][2] + "</td>" + "<td>" + grades[i][3] + "</td>" + "<td>" + grades[i][4] + "</td>" + "<td>" + (i + 1) + "</td>";
+            }
+        }
+
+
+
+        function yingyu(grades) {//英语成绩排序并打印
+            var table = document.querySelectorAll("tbody>tr");
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 9 - i; j++) {
+                    if (grades[j][3] < grades[j + 1][3]) {
+                        var temp = grades[j];
+                        grades[j] = grades[j + 1];
+                        grades[j + 1] = temp;
+                    }
+                }
+            }
+            for (i = 0; i < grades.length; i++) {
+                table[i].innerHTML = "<td>" + grades[i][0] + "</td>" + "<td>" + grades[i][1] + "</td>" + "<td>" + grades[i][2] + "</td>" + "<td>" + grades[i][3] + "</td>" + "<td>" + grades[i][4] + "</td>" + "<td>" + (i + 1) + "</td>";
+            }
+        }
+
+        var table = document.querySelector('tbody').querySelectorAll("tr");
+        for (var i = 0; i < table.length; i++) {
+            table[i].onmouseover = function () {
+                this.className = "change";
+            }
+            table[i].onmouseout = function () {
+                this.className = '';
+            }
+        }
+
+            // 14 创建一个数组，从2开始给元素赋偶数值（到100结束），按顺序每5个求一次平均值放在另一个数组并输出。
+
+
+    </script>
+</body>
+
+</html>

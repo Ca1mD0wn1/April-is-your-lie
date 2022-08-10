@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+
+    <script>
+
+        // 一、代码块：一对花括号表示一个代码块 (条件语句的花括号，循环的花括号 )      
+        /*
+        {
+            let num2 = 10;
+            num2 +=2;    
+            console.log("块里面的num2",num2);
+        }
+        console.log("块外面的num2",num2);            
+
+        */
+
+        // 二、let
+        // 1、let定义的变量只在当前代码块里使用，块级作用域
+        /*
+        fn01();
+        function fn01(){
+
+            for(var i=0;i<5;i++){
+
+                let num = 9; //在花括号里定义的变量，只在当前的块里可以使用。
+
+            }
+            console.log("num",num);//不能使用的
+        }
+        */
+
+        // 2、let定义的变量不能声明提升
+
+        // 3、在同一个作用域中不能用let声明同名的变量
+        // let a = 10;
+        // let a = 20;//不行
+
+        // 4、let声明的变量有暂时性死区
+        /*
+        fn01();
+        function fn01(){
+
+            for(var i=0;i<5;i++){
+
+                console.log(num);//暂时性死区，在块级里声明变量的前面不嫩使用变量，这个区域叫暂时性死区
+
+                let num = 9; 
+
+                console.log(num);
+
+            }
+
+            console.log("num",num);//不能使用的
+        }
+
+        */
+        //5、let和var定义全局变量的区别
+        /*
+        // 1）、var定义的全局变量(当前页面都可以使用)，也是window对象的属性
+        var num = 10;
+        console.log(window.num);
+        // 2）、let定义的全局变量(当前页面都可以使用)，不是window对象的属性
+        let num2 = 20;
+        console.log(window.num2);//undefined
+
+        */
+
+        // 6、let和var在for循环里的区别
+        // let :会暂存循环变量的值
+
+        var liDoms = document.querySelectorAll("li");
+
+        // for (var i = 0; i < liDoms.length; i++) {
+        //     // 绑定了事件。
+        //     liDoms[i].onclick = function () {
+        //         console.log(i);// 4;
+        //     }
+        // }
+
+        for (let i = 0; i < liDoms.length; i++) {
+            // 绑定了事件。
+            liDoms[i].onclick = function () {
+                console.log(i);// 0,1,2,3,
+            }
+        }
+
+    </script>
+
+    <script>
+        // console.log("第二个script标签var",num);//可以使用
+        // console.log("第二个script标签let",num2);//可以使用
+    </script>
+
+</body>
+
+</html>

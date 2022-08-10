@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>1,课堂案例敲两遍</p>
+    <P>2,判断类型（要区分出整形和浮点型）</P>
+    <input type="text" id="demo2" value="输入数字" onfocus="if(value=='输入数字') {value=''}"
+        onblur="if (value=='') {value='输入数字'}"><button onclick="demo2()">查看结果</button>
+    <p id="answ2" style="color: red;">此处显示问题2的答案</p>
+    <p>3,为抵抗洪水,战士连续作战89小时,编程计算共多少天零多少小时？</p>
+    <button id="demo3" onclick="demo3()">点击显示问题三的答案</button>
+    <p id="answ3" style="color: red;">此处显示问题三的答案</p>
+    <p>4,小明要到美国旅游,可是那里的温度是以华氏度为单位记录的。它需要一个程序将华氏温度(80度)转换为摄氏度,并以华氏度和摄氏度为单位分别显示该温度。</p>
+    <p>提示：摄氏度与华氏度的转换公式为：摄氏度 = 5/9.0*(华氏度-32)</p>
+    <button id="demo4" onclick="demo4()">点击显示问题四的答案</button>
+    <p id="answ4" style="color: red;">此处显示问题四的答案</p>
+    <p>5,给定一个数,把它保留3位小数,百度搜索:toFixed()。</p>
+    <input type="text" id="demo5" value="输入数字" onfocus="if(value=='输入数字') {value=''}"
+        onblur="if (value=='') {value='输入数字'}"><button onclick="demo5()">查看结果</button>
+    <p id="answ5" style="color: red;">此处显示问题5的答案</p>
+    <p>6,var k=0; alert(k++ + ++k +k +k++); 结果是？</p>
+
+    <p>7、0.2+0.3==0.5 的结果是true还是false</p>
+
+    <p>扩展：使用文本框和按钮实现加减乘除、求余五种运算;</p>
+
+    <p>要求： 1)使用parseInt方法类型转换。</p>
+    <p>2)计算结果使用Math.round方法四舍五入</p>
+
+    <p>注:文本框取到的value值是字符串类型,需要转成数字</p>
+
+    <input type="text" id="x">
+    <select name="" id="select1">
+        <option value="+">加</option>
+        <option value="-">减</option>
+        <option value="*">乘</option>
+        <option value="/">除</option>
+        <option value="%">取余</option>
+    </select>
+    <input type="text" id="y">
+    <button onclick="kuozhan()">点击进行运算</button>
+    <span>运算后的结果是</span>
+    <span id="answ7"></span>
+    <script>
+        function demo2() {
+            var x = document.getElementById("demo2").value;
+            if (isNaN(x)) {
+                document.getElementById("answ2").innerHTML = "你输入的不是一个数字";
+            } else {
+                if ((parseInt(x) === Number(x))) {
+                    document.getElementById("answ2").innerHTML = "输入的数字是整型";
+                } else {
+                    document.getElementById("answ2").innerHTML = "输入的数字是浮点型";
+                }
+            }
+        }
+        function demo3() {
+            var x = 89;
+            var hour;
+            var day;
+            day = parseInt(89 / 24);
+            hour = x % 24;
+            document.getElementById("answ3").innerHTML = "战士们共战斗了" + day + "天" + hour + "小时";
+        }
+
+
+        function demo4() {
+            var f = 80;
+            var c;
+            c = parseInt(5 / 9.0 * (f - 32));
+            document.getElementById("answ4").innerHTML = '该地华氏温度为' + f + 'f,摄氏度为' + c + 'c';
+        }
+
+
+        function demo5() {
+            var x = document.getElementById("demo5").value;
+            if (isNaN(x)) {
+                document.getElementById("answ5").innerHTML = "你输入的不是一个数字";
+            } else {
+                var result = Number(x).toFixed(2);
+                document.getElementById("answ5").innerHTML = "保留两位小数后的结果是" + result;
+            }
+        }
+
+        function kuozhan() {
+            var x = document.getElementById("x").value;
+            var y = document.getElementById("y").value;
+            var i = document.getElementById("select1").value;
+            if (isNaN(x) || isNaN(y)) {
+                alert("你输入的不是一个数字！");
+            } else {
+                if (i == '+') {
+                    document.getElementById("answ7").innerHTML = Math.round(Number(x) + Number(y));
+                }
+                if (i == '-') {
+                    document.getElementById("answ7").innerHTML = Math.round(Number(x) - Number(y));
+                }
+                if (i == '*') {
+                    document.getElementById("answ7").innerHTML = Math.round(Number(x) * Number(y));
+                }
+                if (i == '/') {
+                    document.getElementById("answ7").innerHTML = Math.round(Number(x) / Number(y));
+                }
+                if (i == '%') {
+                    document.getElementById("answ7").innerHTML = Math.round(Number(x) % Number(y));
+                }
+            }
+        }
+    </script>
+</body>
+
+
+</html>

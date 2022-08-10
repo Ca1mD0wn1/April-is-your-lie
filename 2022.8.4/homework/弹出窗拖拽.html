@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 800px;
+            height: 800px;
+            background-color: pink;
+            position: relative;
+        }
+
+        li {
+            line-height: 100px;
+            list-style: none;
+            text-align: center;
+            color: black;
+            font-size: 15px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <li>我可以拖拽噢</li>
+    </div>
+    <script>
+
+        var div = document.querySelector("div");
+        var li = document.querySelector("li");
+
+        function drag(moveDom, fatherDom) {
+            moveDom.onmousedown = function (event) {
+                var e = event || window.event;
+                //鼠标位置
+                var offsetX = e.offsetX;
+                var offsetY = e.offsetY;
+
+                fatherDom.onmousemove = function (event) {
+                    var e = event || window.event;
+                    //计算 盒子的位置
+                    // console.log(offsetX);
+                    //鼠标距离页面的距离 - 鼠标距离父盒子的距离 - 父盒子距离页面的距离
+                    var left1 = e.pageX - offsetX - fatherDom.offsetLeft;
+                    var top1 = e.pageY - offsetY - fatherDom.offsetTop;
+
+
+
+                    if (left1 < 0) {
+                        left1 = 0;
+                    } else if (left1 > (fatherDom.offsetWidth - moveDom.offsetWidth)) {
+                        left1 = fatherDom.offsetWidth - moveDom.offsetWidth;
+                    }
+                    if (top1 < 0) {
+                        top1 = 0;
+                    } else if (top1 > (fatherDom.offsetHeight - moveDom.offsetHeight)) {
+                        top1 = fatherDom.offsetHeight - moveDom.offsetHeight;
+                    }
+
+
+                    moveDom.style.left = left1 + "px";
+                    moveDom.style.top = top1 + "px";
+                }
+            }
+            document.onmouseup = function () {
+
+                fatherDom.onmousemove = null;
+            }
+
+        }
+
+        drag(li, div)
+    </script>
+</body>
+
+</html>

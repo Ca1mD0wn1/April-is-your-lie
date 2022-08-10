@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 
+    请输入一个年月日：
+    <input id="year" type="text" required />年
+    <input id="month" type="text" required />月
+    <input id="date" type="text" required />日<br />
+    <input type="button" value="求该日期是当年的第几天" onclick="showDayCount()"><br />
+    结果：<input id="dayCount" type="text" /><br /> -->
+    
+    <input type="button" value="求1-100之和" onclick="testf01()"><br />
+    <input type="button" value="1-100之间的逢七过" onclick="seven()"><br />
+    <input type="button" value="输出100以内所有偶数的和" onclick="sumEven()"><br />
+
+    <script>
+
+        function testf01(){
+
+            // while(条件){
+            //     语句
+            // }
+
+            // 需求：求1-100之和
+
+            var sum = 0;
+
+            var i=1;//循环变量
+            while(i<=100){//循环条件
+                sum += i;//循环体
+                i++;
+            }
+            
+            console.log("sum",sum);
+            console.log("i",i);//101
+
+        }
+        
+        function seven(){
+            var i=1;
+            while(i<=100){
+
+                if((i%7==0)||(i%10==7 || parseInt(i/10)==7 )){
+                    console.log("过");
+                }else{
+                    console.log(i);
+                }
+                i++;
+            }
+        }
+
+        function sumEven(){
+
+            var sum = 0;
+
+            var i=2;//循环变量
+            while(i<=100){//循环条件
+                sum += i;//循环体
+                i+=2;
+            }
+
+            console.log("sum",sum);
+            console.log("i",i);//101
+        }
+
+    </script>
+
+</body>
+
+</html>

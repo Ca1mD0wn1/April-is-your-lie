@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 一、for in
+        // 可以循环数组，也可以循环json对象
+        
+        // 1、循环数组：实际上是把数组当作对象看待（下标就是键，元素就是值）
+        var arr =["三国演义","水浒传","红楼梦"];
+        for(let key in arr){
+            console.log(key);
+            console.log(typeof key);
+            console.log(arr[key]);
+        }
+
+
+        // 2、循环json对象
+        let person = {
+            name:"曹继承",
+            sex:"男",
+            age:18
+        }
+
+        for(let key in person){
+            console.log(key,person[key]);
+        }
+
+        // 二、for of：循环的是迭代器
+        // 循环数组（实际上是把数组的内容转成迭代器）
+        // 循环map（实际上是把map转成迭代器）；
+
+
+        // var arr = [12,23,34,45];
+        // console.log(arr.keys());//是个迭代器，里面的内容是数组的键（下标）
+        // for(let key of arr.keys()){
+        //     console.log(key);
+        // }
+
+        // console.log(arr.values());//是个迭代器，里面的内容是数组的元素。
+        // for(let value of arr.values()){
+        //     console.log(value);
+        // }
+
+        // console.log("arr.entries()",arr.entries());//是个迭代器，里面的内容包括下标和元素
+        // for(var name of arr.entries()){
+        //     console.log(name);//下标和对应的元素。
+        // }
+
+        // for(let key of arr){//看上去可以循环数组，但是实际是迭代器
+        //     console.log(key);
+        // }
+
+        var m1 = new Map();
+
+        // 给集合map里增加了一个元素，每个元素有 key 和 value 组成。
+        m1.set("001",{id:"001",name:"曹继承",age:18});
+        m1.set("002",{id:"002",name:"王喜珍",age:17});
+        m1.set("003",{id:"003",name:"王紫瑜",age:16});
+
+        // for(let item of m1.entries()){
+        //     console.log(item);
+        // }
+
+        for(let key of m1.keys()){
+            console.log(key);
+        }
+
+        
+        for(let value of m1.values()){
+            console.log(value);
+        }
+
+        // ????数组的下标就是它的键？？？
+
+    </script>
+
+
+</body>
+
+</html>

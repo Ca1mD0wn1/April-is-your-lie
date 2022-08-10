@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        账号：<input id="username" placeholder="数字，字母，下划线，开头不能是数字，6-16位" type="text"><span></span>
+    </p>
+    <p>
+        昵称：<input id="nick" type="text" placeholder="只能汉字，2-10"><span></span>
+    </p>
+    <p>
+        密码：<input id="userpass" type="text" placeholder="大小写字母，数字，特殊字符，下划线，6-16位"><span></span>
+    </p>
+    <p>
+        身份证号码：<input id="card" type="text"><span></span>
+    </p>
+    <p>
+        生日：<input id="birthday" type="text"><span></span>
+    </p>
+    <p>
+        手机：<input id="phone" type="text"><span></span>
+    </p>
+    <p>
+        邮箱：<input id="mail" type="text" placeholder=""><span></span>
+    </p>
+    <p>
+        邮政编码：<input id="postcal" type="text" placeholder=""><span></span>
+    </p>
+    <p>
+        ip地址：<input id="ip" type="text" placeholder=""><span></span>
+    </p>
+
+
+
+
+
+    <script>
+        var username = $("#username");
+        var nick = $("#nick");
+        var userpass = $("#userpass");
+        var card = $("#card");
+        var birthday = $("#birthday");
+        var phone = $("#phone");
+        var mail = $("#mail");
+        var postcal = $("#postcal");
+        var ip = $("#ip");
+
+        username.onchange = function () {
+            // 删除掉首位的空格
+            var str = this.value;
+            str = str.replace(/^\s+/, "");
+            str = str.replace(/\s+$/, "");
+            this.value = str;
+        }
+
+        username.oninput = function () {
+
+            // 数字，字母，下划线，开头不能是数字，6-16位
+            check(this, /^[a-z_]\w{5,15}$/i);
+        }
+
+        nick.oninput = function () {
+            // 只能汉字，2-10
+            check(this, /^[\u4e00-\u9fa5]{2,10}$/i);
+        }
+
+        userpass.oninput = function () {
+            // 大小写字母，数字，特殊字符，下划线，6-16位
+            // check(this,/^{2,10}$/i);
+        }
+
+        card.oninput = function () {
+            // 18位，前17位是数字，首位是1-8，最后一位是数字和X
+            check(this, /^[1-8]\d{16}[X\d]$/i);
+        }
+
+
+        birthday.oninput = function () {
+
+            // 规则：四位的年，两位月，两位的日。年月日之间的分隔符： - 或者 / 或者 .
+            // check(this,/^\d{4}[-/.]\d{2}[-/.]\d{2}$/i);
+            check(this, /^((\d{4}\-\d{2}\-\d{2})|(\d{4}\/\d{2}\/\d{2})|(\d{4}\.\d{2}\.\d{2}))$/i);
+
+        }
+        phone.oninput = function () {
+            // 规则：全部是数字，1开头， 11位
+            check(this, /^1\d{10}$/);
+        }
+
+
+
+        mail.oninput = function () {
+            // 规则： 4位到25位的数字字母下划线@2到10位的数字或者字母.(com|cn|net)
+
+            check(this, /^\w{4,25}@\w{2,10}\.(com|net|cn)$/);
+        }
+
+
+        postcal.oninput = function () {
+            // 规则： 6位纯数字
+            check(this, /^\d{6}$/);
+        }
+
+        ip.oninput = function () {
+            // 规则： 0-255.0-255.0-255.0-255
+
+            /*
+            // 一位：[1-9] 
+            // 两位：[1-9]\d
+            // 三位：
+                    1\d{2}
+                    2[0-4]\d
+                    25[0-5]
+            */
+
+            check(this, /^([1-9]|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])(\.(\d|[1-9]\d|1\d{2}|2[0-4]\d|25[0-5])){3}$/);
+
+        }
+
+
+
+        var myTimer;
+        function check(dom, reg) {
+            if (myTimer) {
+                clearTimeout(myTimer);
+            }
+            myTimer = setTimeout(function () {
+                if (reg.test(dom.value)) {
+                    dom.nextElementSibling.innerHTML = "√"
+                    dom.nextElementSibling.style.color = "green";
+                } else {
+                    dom.nextElementSibling.innerHTML = "×"
+                    dom.nextElementSibling.style.color = "red";
+                }
+            }, 300);
+        }
+
+
+        function $(str) {
+            return document.querySelector(str);
+        }
+
+    </script>
+
+</body>
+
+</html>

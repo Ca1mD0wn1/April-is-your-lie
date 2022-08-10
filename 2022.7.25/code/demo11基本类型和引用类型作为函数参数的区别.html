@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+
+        function fn01() {
+           var a = 10;
+           var b = 5;
+           var t = sum(a,b);
+
+           var scores = [98,78,88,91,95];
+
+           bubbleSort(scores);
+
+           console.log(scores);
+
+        }
+
+        // 基本类型作为函数的参数，传的是值（变量对应的内存的内容）
+
+
+        function sum(x,y){
+            var s = x+y;
+            return s;
+        }
+
+        // 
+        // 冒泡排序
+        // 引用类型作为函数的参数，传的是地址（变量对应的内存的内容）
+
+        function bubbleSort(arr){
+            for(var i=0;i<arr.length-1;i++){
+                var isSort = true;
+                for(var j=0;j<arr.length-1-i;j++){
+                    if(arr[j]>arr[j+1]){
+                        isSort = false;
+                        var temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+                if(isSort){
+                    break;
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

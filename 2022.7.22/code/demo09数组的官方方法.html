@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+
+    <script src="./js/arrTools.js"></script>
+    <script>
+
+        function fn01(){
+            // var arr=["芙蓉姐姐","干露露","大衣哥"];
+            var books = ["三国演义","水浒传","红楼梦"];
+
+            // books.push("西游记");
+
+            // books.unshift("大学");
+
+            // console.log(books);
+
+            // books.pop();
+            // console.log(books);
+
+            // 1、splice(起始下标，长度，要添加的元素);
+            // books.splice(1,2,"西游记");//删除从下标1开始的2个元素，并且在下标1位置插入“西游记”
+            // console.log(books);
+
+            // books.splice(1,0,"西游记");//添加：删除从下标1开始的0个元素，并且在下标1位置插入“西游记”
+            // console.log(books);
+
+            // books.splice(1,1);//删除：删除从下标1开始的1个元素。
+            // console.log(books);
+
+            
+            // books.splice(1,1,"西游记");//等价于 books[1] = "西游记"
+            // console.log(books);
+
+            
+            // 2、reverse();
+            // books.reverse();
+            // console.log(books);
+
+            // 3、slice
+
+            // var arr = books.slice(0,1);
+            // console.log(arr);
+            // console.log("books",books);
+
+            // 4、concat
+            // var arr = books.concat(["大学","中庸"]);
+            // console.log(arr);
+            // console.log("books",books);
+
+            
+
+        }
+
+
+    </script>
+</body>
+</html>

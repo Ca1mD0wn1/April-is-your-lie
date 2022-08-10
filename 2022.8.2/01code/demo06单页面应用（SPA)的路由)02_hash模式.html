@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+
+      li{
+        list-style: none;
+      }
+
+      html,body,#box{
+        width: 100%;
+        height: 100%;        
+      }
+
+      #box{
+        background-color:#eee;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .footer{
+        width: 100%;
+        height: 40px;
+        background-color: skyblue;
+        display: flex;
+        justify-content: space-around;
+        line-height: 40px;
+      }
+
+      .content{
+        width: 100%;
+        flex:1;
+        background-color: orange;
+      }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <div class="content">
+            
+        </div>
+        <ul class="footer">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#goodstype">商品分类</a></li>
+            <li><a href="#car">购物车</a></li>
+            <li><a href="#my">我的</a></li>
+        </ul>
+    </div>
+
+    <script src="./js/home.js"></script>
+    <script src="./js/goodstype.js"></script>
+    <script src="./js/car.js"></script>
+    <script src="./js/my.js"></script>
+
+    <script>
+        var obj = {
+            "home":home,
+            "goodstype":goodstype,
+            "car":car,
+            "my":my
+        };
+
+        var contentDom = document.getElementsByClassName("content")[0]
+
+        window.onhashchange = function(){
+            // console.log(location.hash);
+            contentDom.innerHTML = obj[location.hash.substring(1)];
+        }
+
+
+
+    </script>
+</body>
+</html>

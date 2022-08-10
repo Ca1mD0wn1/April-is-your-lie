@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <span id="spanTime"></span>
+    <input id="btn01" type="button" value="测试">
+    <input id="btnStart" type="button" value="启动">
+    <input id="btnStop" type="button" value="停止">
+
+    <script>
+
+        setInterval(function () {
+            $("spanTime").innerHTML = new Date();
+        }, 1000)
+
+        $("btn01").onclick = function () {
+
+            // var i=0;
+            // setInterval(function(){
+            //     console.log(i++);
+            // },1000)
+
+
+            // var i = 0 ;
+            // setTimeout(function(){
+            //     console.log(i++);
+            // },1000)
+
+
+        }
+
+        var myTimer;
+
+        $("btnStart").onclick = function () {
+            // this.disabled = true;
+            var i = 0;
+            if (myTimer != undefined) {
+                return;
+            }
+            myTimer = setInterval(function () {
+                console.log(i++);
+            }, 1000)
+        }
+
+        $("btnStop").onclick = function () {
+            clearInterval(myTimer);
+            // $("btnStart").disabled = false;
+        }
+
+
+        // 根据选择器获取dom元素
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+    </script>
+
+</body>
+
+</html>

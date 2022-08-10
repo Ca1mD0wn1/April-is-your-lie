@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        // window对象：
+        // 1、表示浏览器窗口，
+        // 2、window对象是所有一切的根对象，即就是前端js里的一切（数据，函数）都隶属于window对象，写代码时，window对象可以省略。
+        // ：如：（用var声明的）全部变量是window对象的属性
+        //       全局函数是window对象的方法
+        // 3、注意：定义全局变量时不用定义name。因为，window对象有个属性name（窗口的名字）。
+
+        // 全局变量
+        var age = 250;
+
+        // 全局函数
+        function foo(){
+            console.log("foo");
+        }
+
+        function fn01(){
+            console.dir(window);
+
+            console.log(age);
+            console.log(window.age);
+
+            window.foo();
+
+            // 局部函数
+            function aaa(){
+                console.log("aaa");
+            }
+
+            aaa();
+            console.log(window.aaa);
+            window.aaa();
+
+        }
+    
+    </script>
+</body>
+</html>

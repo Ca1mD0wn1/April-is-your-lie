@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="测试" onclick="fn01()" />
+
+    <script src="./js/arrTools.js"></script>
+    <script>
+        // 
+
+        function fn01(){
+            var arr = [89,98,88,100,78,67];
+            // 1、
+            var max = maxNum(arr);
+            console.log(max);
+
+            // 2、
+            // console.log(maxAndMin(arr));
+            console.table(maxAndMin(arr));
+
+            // 3、
+
+            // 4、
+            // console.log(reverse(arr));
+
+            // 5、
+            var count = ltCount(arr,80);
+            console.log(count);
+
+            // 6、
+            console.log(index(arr,89)); //0
+            console.log(index(arr,100));//3
+            console.log(index(arr,67));//5
+            console.log(index(arr,60));//-1
+
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="height: 2000px;">
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01(){
+            location.hash="#bbb";
+        }
+
+        // 当浏览器窗口（的网页）加载完毕时，调用函数
+        window.onload = function(){
+            console.log("onload");
+
+        }
+
+        window.onscroll = function(){
+            console.log("页面滚了");
+        }
+
+        window.onresize = function(){
+            console.log("窗口的大小变了");
+        }
+
+        // 当hash发生变化时，触发
+        window.onhashchange = function(){
+            console.log("hash变了",location.hash);
+        }
+    
+    </script>
+</body>
+</html>

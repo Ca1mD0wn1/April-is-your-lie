@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value=" 求四位数字 " onclick="testf()">
+
+    <script>
+        /*
+        2、找数字： 求所有满足条件的四位数abcd：
+            （1）这四位数是11的倍数；
+            （2）a, b, c, d均是小于10的互不相同的自然数；
+            （3）b + c = a；
+            （4）bc是完全平方数（bc=n的平方）。
+        */
+
+        function testf() {
+            // 乘方的结果是两位数的数字进行循环
+            for(var i=4;i<=9;i++){
+                var num = i*i;
+                var b = parseInt(num/10);
+                var c = num%10;
+
+                var a = b+c; //根据b和c算出a
+                if(a<10){// 保证a是个位数
+                    // 求出d
+                    for(var d=0;d<10;d++){
+                        if(d!=a && d!=b && d!=c){
+                            var n = a*1000+b*100+c*10+d;
+                            if(n%11==0){
+                                console.log(n);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // function testf() {
+        //     for (var a = 1; a < 10; a++) {
+        //         for (var b = 0; b < 10; b++) {
+        //             for (var c = 0; c < 10; c++) {
+        //                 for (var d = 0; d < 10; d++) {
+        //                     // 1、这四位数是11的倍数；
+        //                     let num = a*1000+b*100+c*10+d;
+        //                     if(num%11==0){
+        //                         // 2、a, b, c, d均是小于10的互不相同的自然数；
+        //                         if(a!=b && a!=c && a!=d && b!=c && b!=d && c!=d ){
+        //                             // 3、b + c = a；
+        //                             if(b+c==a){
+        //                                  // 4、bc是完全平方数（bc=n的平方）。
+        //                                 if( parseInt(Math.sqrt(b*10+c))==Math.sqrt(b*10+c) ){
+        //                                     console.log(num);
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input type="text" id="username" /><span></span>
+
+    <script>
+      // 一、json对象转成字符串
+      /*
+        var person = {
+            name:"曹继承",
+            age :18
+        }
+
+        var str = JSON.stringify(person); //'{name:"曹继承",age :18}';
+
+        console.log("str", str);
+        console.log("typeof str",typeof str);
+
+        console.log("person",person);
+        */
+
+      // 二、字符串转成json对象(要求键带双引号)
+
+      var str = '{"name":"曹继承","age" :18}';
+
+      var person = JSON.parse(str);
+
+      console.log("str", str);
+      console.log("typeof str", typeof str);
+
+      console.log("person", person);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box {
+            position: absolute;
+            left: 80px;
+            top: 100px;
+            width: 400px;
+            height: 150px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box"></div>
+    <button>走起来</button>
+    <script>
+        var box = document.querySelector("#box");
+        var btn = document.querySelector("button");
+
+        btn.onclick = function () {
+            let width = 400;
+            let step = 0.5;
+            let myTimer = setInterval(function () {
+                width += step;
+                step += 0.1;
+                if (width >= 1000) {
+                    width = 200;
+                    clearInterval(myTimer);
+                }
+                box.style.width = width + "px";
+            }, 10)
+        }
+    </script>
+</body>
+
+</html>

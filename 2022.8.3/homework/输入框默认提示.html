@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 20px;
+        }
+
+        div {
+            position: relative;
+            cursor: default;
+        }
+
+        span {
+            display: none;
+            color: #af7b7b;
+            background-color: #f1f1f1;
+            position: absolute;
+            border: 1px gray solid;
+
+        }
+
+        input {
+            cursor: default;
+
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+
+        <input type="text" name="" id="">
+        <span>
+            这是一条提示
+        </span>
+    </div>
+</body>
+<script>
+    var input = document.querySelector("input");
+    var span = document.querySelector("span");
+
+
+    function block(event) {
+        let e = event || window.event;
+        span.style.display = "block";
+        span.style.left = e.clientX + "px";
+        span.style.top = e.clientY + "px";
+    }
+    input.addEventListener("mousemove", block);
+
+    input.addEventListener("mouseout", function () {
+        span.style.display = 'none';
+    })
+
+
+    input.addEventListener("focus", function () {
+        span.style.display = 'none';
+        input.removeEventListener("mousemove", block);
+        this.style.cursor = "text";
+
+
+
+    })
+    input.addEventListener("blur", function () {
+        input.addEventListener("mousemove", block)
+        this.style.cursor = "default";
+
+    })
+</script>
+
+</html>

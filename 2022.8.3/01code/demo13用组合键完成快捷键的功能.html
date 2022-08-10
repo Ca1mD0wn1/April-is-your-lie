@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #chatBox {
+            width: 300px;
+            height: 400px;
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chatBox">
+
+    </div>
+    <input id="txt" type="text">
+    <input id="btnSend" type="button" value="发送">
+    <hr />
+    <input type="radio" name="speedkey" checked /> enter 发送
+    <input type="radio" name="speedkey" /> ctrl+enter
+    发送
+
+    <script>
+
+        btnSend.onclick = function () {
+            send();
+        }
+
+        txt.onkeydown = function (event) {
+            var e = event || window.event;
+
+            var speedkeys = document.getElementsByName("speedkey");
+            if (speedkeys[0].checked) {
+
+                if (e.ctrlKey == false && e.altKey == false && e.shiftKey == false && e.keyCode == 13) {
+                    send();
+                }
+
+            } else {
+                if (e.ctrlKey == true && e.keyCode == 13) {
+                    send();
+                }
+
+            }
+
+        }
+
+        function send() {
+            // 1、
+            var str = document.getElementById("txt").value;
+
+            chatBox.innerHTML += str + "<br/>";
+
+            document.getElementById("txt").value = "";
+
+            document.getElementById("txt").focus();//获得焦点
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

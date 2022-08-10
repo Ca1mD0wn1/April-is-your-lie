@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <input type="button" value="测试" onclick="fn01()">
+
+    <ul id="box1"><li>第一个li</li><li>第二个li</li>
+        <li>
+            <p>我是个p</p>
+        </li><li>
+            <img src="./img/1.jpg" />
+        </li></ul>
+    <script>
+
+        function fn01(){
+           var boxDom1 = document.getElementById("box1");
+        
+            console.log("boxDom1.parentNode",boxDom1.parentNode);
+        //    console.log("boxDom1.childNodes",boxDom1.childNodes);
+            console.log("boxDom1.childNodes[0]",boxDom1.childNodes[0]);
+            boxDom1.childNodes[0].innerHTML = "第一个li被改了";
+
+            console.log("boxDom1.firstChild",boxDom1.firstChild);
+            console.log("boxDom1.lastChild",boxDom1.lastChild);
+
+            console.log("box1.firstChild.nextSibling",box1.firstChild.nextSibling);
+            console.log("box1.lastChild.previousSibling",box1.lastChild.previousSibling);
+            
+           
+        }
+ 
+
+    </script>
+</body>
+</html>

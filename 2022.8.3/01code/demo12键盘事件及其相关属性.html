@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <input id="username" type="text">
+
+    <script>
+        // 一、
+        // keydown，keyup 和keypress的区别：
+        // keydown和keyup：按下任何键都触发
+        // keypress：(按下并松开)按下键能够产生有字符（如：字母，数字，空格，回车），但是，功能键（capslock，ctrl，shift，方向键）都不会触发。
+
+        // 二、
+        // keyCode：
+        // 1、在 keydown，keyup 事件里：
+        // 虚拟码：   每个键是唯一的编码，不区分大小写。
+        // 2、在 keypress 事件里：
+        // ASCII码（unicode码）
+
+        username.onkeydown = function (event) {
+            var e = event || window.event;
+            console.log("onkeydown");
+            console.log("onkeydown", e.keyCode);
+        }
+
+        username.onkeyup = function (event) {
+            var e = event || window.event;
+            console.log("onkeyup");
+            console.log("onkeyup", e.keyCode);
+        }
+
+        username.onkeypress = function (event) {
+            var e = event || window.event;
+            console.log("onkeypress");
+            console.log("onkeypress", e.keyCode);
+
+        }
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

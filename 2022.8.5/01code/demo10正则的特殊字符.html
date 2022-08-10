@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <script>
+        function fn01() {
+
+
+            //   var str = "astudy";
+
+            //   var reg = /study/ig;          
+            //   console.log(reg.test(str));
+
+            // var reg = /^study/ig;          
+            //   console.log(reg.test(str));
+
+
+            //   var reg = /study$/ig;          
+            //   console.log(reg.test(str));
+
+            //   var reg = /^study$/ig;          
+            //   console.log(reg.test(str));
+
+            // var str = "studystudy";
+
+            // var reg = /^study$/ig;          
+            // console.log(reg.test(str));//false
+
+
+            // var reg = /^stu*dy$/;
+
+            // console.log(reg.test("stdy"));//
+            // console.log(reg.test("study"));//
+            // console.log(reg.test("stuudy"));//
+            // console.log(reg.test("stuuudy"));//
+
+
+            // var reg = /^stu{3}dy$/;
+
+            // console.log(reg.test("stdy"));//
+            // console.log(reg.test("study"));//
+            // console.log(reg.test("stuudy"));//
+            // console.log(reg.test("stuuudy"));//
+
+
+            var reg = /^stu{3,5}dy$/;
+
+            console.log(reg.test("stdy"));//
+            console.log(reg.test("study"));//
+            console.log(reg.test("stuudy"));//
+            console.log(reg.test("stuuudy"));//
+            console.log(reg.test("stuuuudy"));//
+            console.log(reg.test("stuuuuudy"));//
+            console.log(reg.test("stuuuuuudy"));//
+
+        }
+
+
+    </script>
+</body>
+
+</html>

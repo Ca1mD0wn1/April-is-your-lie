@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style type="text/css">
+</style>
+
+<body>
+	<p>HTML文件的内容一</p>
+
+	<img id="shishi" /> <img id="shige" />
+	:<img id="fenshi" /><img id="fenge" />
+	:<img id="miaoshi" /><img id="miaoge" /><br />
+
+	<input type="button" id="btn1" onclick="test1()" value="时钟" />
+</body>
+
+</html>
+
+<script type="text/javascript">
+	//使用getHours、getMinutes、getSeconds
+	var setno = 0;
+	function test1() {
+		setno = setInterval(shizhong, 1000);
+	}
+	function shizhong() {
+
+		var date = new Date();
+
+		// 计算小时的十位和个位
+		var shishi1 = date.getHours() > 10 ? date.getHours().toString().charAt(0) : "0";
+		var shige1 = date.getHours() > 10 ? date.getHours().toString().charAt(1) : date.getHours().toString();
+
+		// 计算分钟的十位和个位
+		var fenshi1 = date.getMinutes() > 10 ? date.getMinutes().toString().charAt(0) : "0";
+		var fenge1 = date.getMinutes() > 10 ? date.getMinutes().toString().charAt(1) : date.getMinutes().toString();
+
+		var miaoshi1 = date.getSeconds() > 10 ? date.getSeconds().toString().charAt(0) : "0";
+		var miaoge1 = date.getSeconds() > 10 ? date.getSeconds().toString().charAt(1) : date.getSeconds().toString();
+
+
+		document.getElementById("shishi").src = "images/" + shishi1 + ".jpg";
+		document.getElementById("shige").src = "images/" + shige1 + ".jpg";
+		document.getElementById("fenshi").src = "images/" + fenshi1 + ".jpg";
+		document.getElementById("fenge").src = "images/" + fenge1 + ".jpg";
+		document.getElementById("miaoshi").src = "images/" + miaoshi1 + ".jpg";
+		document.getElementById("miaoge").src = "images/" + miaoge1 + ".jpg";
+	}	
+</script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="txt" type="text"><span></span>
+
+
+    <script>
+        var myTimer;
+
+        document.getElementById("txt").oninput = function () {
+            if (myTimer) {
+                clearTimeout(myTimer);
+            }
+            var txt = this;
+            myTimer = setTimeout(function () {
+
+                // 1、限定位置
+                // var reg = /^abc/;
+                // var reg = /abc$/
+
+                // 2、限定数量
+                // var reg = /^ab*c$/    *: 0次或者多次
+                // var reg = /^ab+c$/    +：1次或多次 
+                //  var reg = /^ab?c$/   ？：0次或1次
+
+                // var reg = /^ab{3}c$/
+                // var reg = /^ab{3,}c$/
+                // var reg = /^ab{3,5}c$/
+
+                // 3、限定字符
+
+                // var reg = /^a.*c$/
+                // var reg = /^a(x|y|z)+c$/
+                // var reg = /^a[xyz]+c$/   等价于：  /^a(x|y|z)+c$/
+
+                // var reg = /^a[a-z]+c$/  //[a-z] 表示小写字母
+                // var reg = /^a[a-zA-Z0-9]+c$/  // 表示大小写字母和数字
+
+                // var reg = /^a[^a-z]+c$/  // [^a-z]表示非小写字母
+
+                // var reg = /^a(blue|red|green)c$/ 
+
+
+                // \d : 表示数字 [0-9]
+                // var reg = /^a[a-zA-Z\d]+c$/  // 表示大小写字母和数字
+
+                // \D：表示非数字   [^0-9]
+
+
+                // \w : 表示数字字母下划线
+                // var reg = /^a[a-zA-Z0-9_]+c$/
+                // var reg = /^a\w+c$/
+
+                // \W：非 数字字母下划线
+                // var reg = /^a\W+c$/;
+
+
+                // var reg = /^\141bc$/
+                // var reg = /^\x61bc$/
+
+                // var reg = /^a[田-申]c$/
+                // var reg = /^a[\u7530-\u7533]c$/
+
+
+                // var reg = /e\b/; //限制是否存在某个单词的结尾是 e
+                // var reg = /\be/; //限制是否存在某个单词的开头是 e
+
+
+                // var reg = /e\B/; //存在某个单词不在单词的右边界
+                // var reg = /\Be/; //存在某个单词不在单词的左边界
+
+
+                // 
+                // var reg = /is(?= all)/;  //匹配 is ，要求is 后面跟着 all。
+                // var reg = /^is(?= all)/;   //匹配开头is ，要求is 后面跟着 all。 
+
+                // var reg = /^(?= all)/;   // 一开始是个空字符，紧跟 all。 相当于 以 all开头。
+
+
+                // var reg = /is(?! all)/;  //匹配 is ，要求is 后面不能跟着 all。
+                // var reg = /^is(?! all)/;   //匹配开头is ，要求is 后面跟着 all。 
+
+
+                if (reg.test(txt.value)) {
+
+                    txt.nextElementSibling.innerHTML = "√"
+                    txt.nextElementSibling.style.color = "green";
+                } else {
+                    txt.nextElementSibling.innerHTML = "×"
+                    txt.nextElementSibling.style.color = "red";
+                }
+            }, 300);
+        }
+
+
+        // for(var i=30000;i<=30003;i++){
+        //             console.log(String.fromCharCode(i));
+        //         }
+
+
+
+        // document.getElementById("txt").onblur = function(){
+        //     var reg = /^abc/;
+        //     if(reg.test(this.value)){
+        //         this.nextElementSibling.innerHTML = "√"
+        //         this.nextElementSibling.style.color="green";
+        //     }else{
+        //         this.nextElementSibling.innerHTML = "×"
+        //         this.nextElementSibling.style.color="red";
+
+        //     }
+        // }
+
+
+    </script>
+
+</body>
+
+</html>

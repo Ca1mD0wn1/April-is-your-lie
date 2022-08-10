@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>作业5</title>
+    <style type="text/css">
+        #grandpaBox {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        #fatherBox {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+
+        #meBox {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="grandpaBox">
+        <div id="fatherBox">
+            <div id="meBox">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        
+
+
+        // 一、DOM0绑定事件只支持事件冒泡：
+
+        // meBox.onclick = function () {
+        //     console.log("meBox.onclick");
+        // }
+
+        // fatherBox.onclick = function () {
+        //     console.log("fatherBox.onclick");
+        // }
+
+        // grandpaBox.onclick = function () {
+        //     console.log("grandpaBox.onclick");
+        // }
+
+        // 二、DOM2级绑定事件：既有冒泡，又有捕获
+
+        // addEventListener(事件类型，事件处理函数，是否捕获);
+        
+        // 1、DOM2级默认是事件冒泡
+
+        // meBox.addEventListener("click",function(){
+        //     console.log("meBox.onclick");
+        // },false);
+
+        // fatherBox.addEventListener("click",function(){
+        //     console.log("fatherBox.onclick");
+        // },false);
+
+        // grandpaBox.addEventListener("click",function(){
+        //     console.log("grandpaBox.onclick");
+        // },false);
+
+        // 2、DOM2级的捕获，把addEventListener的第三个参数写成 true。
+
+        // meBox.addEventListener("click",function(){
+        //     console.log("meBox.onclick");
+        // },true);
+
+        // fatherBox.addEventListener("click",function(){
+        //     console.log("fatherBox.onclick");
+        // },true);
+
+        // grandpaBox.addEventListener("click",function(){
+        //     console.log("grandpaBox.onclick");
+        // },true);
+
+
+        // 三、IE8及其以下，只支持事件冒泡
+        // meBox.attachEvent("onclick",function(){
+        //     console.log("meBox.onclick");
+        // });
+
+        // fatherBox.attachEvent("onclick",function(){
+        //     console.log("fatherBox.onclick");
+        // });
+
+        // grandpaBox.attachEvent("onclick",function(){
+        //     console.log("grandpaBox.onclick");
+        // });
+
+
+    </script>
+</body>
+
+</html>

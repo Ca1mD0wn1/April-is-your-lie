@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let m1 = new Map();
+        m1.set("001",{id:"001",name:"曹继承",age:18});
+        m1.set("002",{id:"002",name:"王喜珍",age:17});
+        m1.set("003",{id:"003",name:"王紫瑜",age:16});
+
+        // console.dir(m1.keys());
+
+        let iterator = m1.keys();// 迭代器，迭代器一开始是指向第一个元素的前面。
+
+        console.log(iterator.next()); //迭代器的next()方法，会返回下一个元素。
+        console.log(iterator.next());
+        console.log(iterator.next());
+
+        console.log("================");
+        
+        let iterator2 = m1.values();
+        
+        console.log(iterator2.next());
+        console.log(iterator2.next());
+        console.log(iterator2.next());
+
+
+        console.log("================");
+
+        // let iterator3 = m1.values()
+        // let v = iterator3.next();
+
+        // while(v.done==false ){
+        //     console.log(v);
+        //     v = iterator3.next();
+        // }
+
+        console.log("================");
+
+        let iterator4 = m1.values()
+        
+        for(let v of iterator4){
+            console.log(v);
+        }
+
+
+
+        
+
+    </script>
+
+
+</body>
+
+</html>

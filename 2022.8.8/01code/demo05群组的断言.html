@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<input type="text" id="userpass"><span></span>
+
+<body>
+    <script>
+        // 1、后瞻断言
+        // 1）、后瞻肯定断言（有什么）    ?=
+
+        // var reg = /a(?=c)/g; //找a（后面紧跟c的a，或者说，c前面的a）；
+        // var str = "abcacaddcacddd".replace(reg,"0");
+        // console.log(str);
+
+
+
+
+        // var reg = /^(?=c)/; //匹配的是字符串 以c开头的字符串，匹配的是一开始 空字符串（"")
+        // console.log("cacacdef".replace(reg,"0")); //把开头为c的字符串前面补上0。或者说，把开头的c前面的空字符串("")替换成 "0"
+
+        // var reg = /(?=c)/g; //c前面的空字符串。
+        // console.log("cacacdef".replace(reg,"0")); //把所有的c前面的空字符串（"")替换成"0"
+
+        // 2）、后端否定断言（不能有什么）    ?! 
+
+        // console.log("abacad".replace(/a(?!c)/g,"0"));  //匹配 后面不是c的a   0bac0d ;
+
+        // console.log("abacad".replace(/(?!c)/g,"0"));  //匹配：除了字母c之前的空字符串。  0a0b0ac0a0d0
+
+
+        // 2、前瞻断言
+
+        // ?<=   ：前瞻肯定断言
+
+        // ?<!   ：前瞻否定断言
+
+        // console.log("abcdcecddccbdda".replace(/(?<=c)d+/g,"0"));
+
+        // console.log("abcdcecddccbdda".replace(/(?<!c)d+/g,"0"));
+
+
+        // var str="中国四大名著包括《西游记》、《水浒传》、《三国演义》、《红楼梦》";
+        // console.log(str.match(/(?<=《).*?(?=》)/g)); // 匹配书名号里面的内容
+
+
+        // var str = "function sum(a,b){}";
+
+        // var reg = /(?<=\().*(?=\))/;
+
+        // var arr = str.match(reg)[0].split(",");
+        // console.log(arr);
+
+
+
+        // 3、分析正则代码：
+        // 3.1)、
+        // 由6-16位的数字，字母组成，不能是纯数字，不能是纯字母
+        var reg = /^(?!\d+$)(?![a-z]+$)[a-z\d]{6,16}$/i
+
+        // (?!\d+$)： 不能是纯数字
+        // (?![a-z]+$) ：不能是纯字母
+
+        userpass.oninput = function () {
+            this.nextElementSibling.innerHTML = reg.test(this.value) ? "√" : "×";
+        }
+
+        // 3.2)、
+        var reg = /^(?=\D+\d)(?=.*[a-z])[a-zA-Z0-9]{8,16}$/
+
+        //   (?=\D+\d)    aaab2  
+
+        //   (?=.*[a-z]) : 
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btnAdd" type="button" value="测试01" >
+
+    <script>    
+    // 一、事件目标（事件源）
+        // 定义了一个事件源（事件目标）
+        var eTarget = new EventTarget();
+        // 获取了一个事件源（事件目标）
+        var btnAdd = document.getElementById("btnAdd");
+        
+    // 二、绑定事件
+        // 给dom元素绑定一个官方事件
+        btnAdd.addEventListener("click",function(){
+            console.log("btnAdd.click");
+        })
+
+        // 给eTarget绑定一个自定义事件
+        eTarget.addEventListener("myclick",function(){
+            console.log("eTarget.myclick");
+        })
+
+
+    // 三、触发事件
+
+        var ee = new Event("click");
+        btnAdd.dispatchEvent(ee);
+
+        var e = new Event("myclick");
+        eTarget.dispatchEvent(e);
+
+
+    </script>
+</body>
+</html>

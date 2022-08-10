@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>   
+     <input type="button" value="测试" onclick="fn01()" >
+    
+    <script>       
+
+        function fn01(){
+            var scores = [12,23,34,45,56,67,78,89];
+            console.log(halfFind(scores,10)); //-1
+            console.log(halfFind(scores,110));//-1
+            console.log(halfFind(scores,46));//-1
+            console.log(halfFind(scores,12));//0
+            console.log(halfFind(scores,89));//7
+            console.log(halfFind(scores,23));//1
+            console.log(halfFind(scores,78));//6            
+        }
+
+        // 折半查找
+        // 功能：在一个有序的数组（从小到大）里，找一个数。
+        // 参数：
+        //  arr: 一个有序的数组
+        //  num：待找的数
+        // 返回值：如果找到，返回该数的下标，如果找不到，返回-1
+
+        function halfFind(arr,num){
+            var left = 0;
+            var right = arr.length-1;
+            var middle;
+
+            if(num<arr[left] || num>arr[right]){
+                return -1;
+            }
+
+            while(left<=right){
+                middle = parseInt((left+right)/2)
+                if(num==arr[middle]){
+                    return middle
+                }else if(num>arr[middle]){
+                    left = middle+1;
+                }else{
+                    right = middle-1;
+                }                
+            }
+
+            return -1;
+
+        }
+
+    </script>
+</body>
+</html>

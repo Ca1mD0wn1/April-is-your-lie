@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    验证码：
+    <input id="userCode" type="text" onblur="isCheckCode()" /><span id="spanCode" onclick="showCode()"></span>
+    <span id="codeMsg"></span>
+</body>
+</html>
+<script>
+// 一、随机数函数：Math.random();
+// 1、Math.random();//获取一个随机数（范围：0-1（不含）之间的小数）；
+// console.log(Math.random());
+
+// 2、获取0-10（不含）之间的随机数
+// var num = parseInt(Math.random()*10);
+// console.log(num);
+
+// 3、2-12之间
+//  var num = parseInt(Math.random()*10)+2;
+//  console.log(num);
+
+// 4、2-8之间
+//   1）、先取0-6之间的随机数： parseInt(Math.random()*6);
+//   2）、再加2
+
+// var num = parseInt(Math.random()*6)+2;
+// console.log(num);
+
+
+
+// 编写生成n位  数字验证码 的函数
+// 参数：n：位数
+// 返回值：n位的（随机数）验证码
+
+function checkCode(n){
+  
+    var code = "";
+    for(var i=0;i<n;i++){
+        code += parseInt(Math.random()*10);
+    }
+
+    return code;
+}
+
+var computerCode = checkCode(4);
+document.getElementById("spanCode").innerHTML = computerCode;
+
+function showCode(){
+    computerCode = checkCode(4);
+    document.getElementById("spanCode").innerHTML = computerCode;
+}
+
+function isCheckCode(){
+    // 1、获取用户的输入
+    var userCode = document.getElementById("userCode").value;
+    // 2、判断用户的输入和随机验证码是否一样
+    if(userCode == computerCode){
+        // alert("验证码正确");
+        document.getElementById("codeMsg").innerHTML = "√"
+    }else{
+        // alert("验证码错误");
+        document.getElementById("codeMsg").innerHTML = "×"
+    }
+
+}
+
+</script>

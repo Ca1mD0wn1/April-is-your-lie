@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" value="测试" onclick="fn01()">
+
+    <ul id="box1">
+        <li>
+          <p>商品非常好</p>
+          <p>评论人：曹继承；评论时间：2022-8-1 11:46:51</p>
+        </li>
+        <li>
+          <p>商品非常好</p>
+          <p>评论人：曹继承；评论时间：2022-8-1 11:46:51</p>
+        </li>
+    </ul>
+    <hr/>
+    评论内容:
+    <textarea id="text"></textarea><br/>
+    评论人：
+    <input id="username" type="text" /><br/>
+    <input id="sendBtn" type="button" value="发表" >
+    <script>
+
+        var textDom =document.getElementById("text"); 
+        var usernameDom = document.getElementById("username");
+
+        document.getElementById("sendBtn").onclick = function(){
+            // 一、非空判断
+
+            // 二、获取用户输入的内容
+            var content = textDom.value;
+            var username = usernameDom.value;
+            var d = (new Date()).toLocaleString();
+
+            // 三、创建标签，
+            var liDom = document.createElement("li");
+            liDom.innerHTML = ` <p>${content}</p>
+                                <p>评论人：${username}；评论时间：${d}</p>`;
+
+            document.getElementById("box1").appendChild(liDom);
+
+            // 四、清空：
+            textDom.value="";
+            usernameDom.value="";
+        }
+
+    </script>
+</body>
+
+</html>
+
+
