@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ball01 {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+        }
+        #ball02 {
+            position: absolute;
+            left: 200px;
+            top: 200px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body style="height: 2000px;">
+    <input id="btnGo" type="button" value="走起">
+    <div id="ball01"></div>
+    <div id="ball02"></div>
+
+    <script>
+        // 1、哪些类：弹力球(属性和方法)
+
+        class Ball {
+            constructor(obj) {
+                let defaultObj = {
+                    dom:undefined,
+                    size:obj.dom.offsetWidth,
+                    color:"pink",
+                    directionLeft:1,
+                    directionTop:1,
+                    left:obj.dom.offsetLeft,
+                    top:obj.dom.offsetTop,
+                    step:1,
+                    timespace:5
+                }
+
+                //属性（球球的特征)
+                for(let key in defaultObj){
+                    this[key] = obj[key]?obj[key]:defaultObj[key];
+                }
+            }
+
+            // 方法(球球的行为)
+            go() {
+                setInterval(()=>{
+                    // 一、逻辑
+                    // 1、计算
+                    this.left += this.directionLeft * this.step;
+                    this.top += this.directionTop * this.step;
+
+                    // 2、边界处理
+                    if (this.left <= 0 + scrollLeft) {
+                        this.directionLeft = 1;
+                        this.left = 0 + scrollLeft;
+                    } else if (this.left >= clientWidth - this.size + scrollLeft) {
+                        this.directionLeft = -1;
+                        this.left = clientWidth - this.size + scrollLeft;
+                    }
+
+                    if (this.top <= 0 + scrollTop) {
+                        this.directionTop = 1;
+                        this.top = 0 + scrollTop;
+                    } else if (this.top >= clientHeight - this.size + scrollTop) {
+                        this.directionTop = -1;
+                        this.top = clientHeight - this.size + scrollTop;
+                    }
+
+                    // 二、外观
+
+                    this.dom.style.left = this.left + "px";
+                    this.dom.style.top = this.top + "px";
+
+                }, this.timespace);
+
+            }
+
+        }
+
+        // 2、流程
+        let btnGo = document.getElementById("btnGo");
+        let ball01 = document.getElementById("ball01");
+        let ball02 = document.getElementById("ball02");
+        
+        let clientWidth;
+        let clientHeight;
+        let scrollTop;
+        let scrollLeft;
+
+        window.onload = function () {
+            // 初始化数据
+            init();
+            // 点击按钮，让小球动起来
+            btnGo.onclick = function(){
+                let b1 = new Ball({
+                    dom:ball01,
+                    step:5
+                });
+                b1.go();
+
+                new Ball({
+                    dom:ball02,
+                    directionLeft:-1
+                }).go();
+            }
+            // 窗口大小改变时
+            window.onresize = changeWH;
+            // 页面滚动时
+            window.onscroll = changeScroll;
+        }
+
+
+        // 初始化数据
+        function init() {
+            changeWH();
+            changeScroll();
+        }
+
+        function changeWH() {
+            clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+        }
+
+        function changeScroll() {
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+
+        }
+
+        
+
+    </script>
+
+</body>
+
+</html>

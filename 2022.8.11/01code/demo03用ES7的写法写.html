@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+        // ES6定义类的写法，是个语法糖
+        class Person{
+            // 实例属性
+            // 声明（定义）属性，可以同时赋值
+            name="无名";
+            sex="女";
+            // 构造函数
+            constructor(name,sex){
+                // 给属性赋值
+                this.name = name;
+                this.sex = sex
+            }
+
+            // 实例的方法（对象的方法）；
+            eat(){
+                console.log(`${this.name}在吃，天在看……`)
+            }
+
+            drink(){
+                console.log(`${this.name}在喝豆浆`);
+            }
+
+            // 静态方法（类的方法）
+            static totalCount(){
+                console.log("totalCount");
+            }
+
+            //静态属性（类的属性）；
+            static count =0; 
+
+        }
+
+        // 实例化一个对象
+        let p1 = new Person("张三疯","男");
+        p1.eat();
+        p1.drink();
+
+        Person.totalCount();
+        console.log(Person.count);
+
+        // 静态方法（类的方法）
+        // String.fromCharCode();
+        // Array.from();
+        // Array.isArray();
+
+        // let arr = new Array();
+        // // 实例方法(对象的方法)
+        // arr.push();
+
+
+        // 类的属性（方法）和实例属性（方法）区别：
+        // 1、格式：类的属性用类进行调用；实例（对象）的属性用实例调用
+        // 2、作用：
+        //        对象的属性（方法）会根据对象的不同，而不同。
+        //        类属性（方法）不会因为对象的不同，而不同。这种方法一般都属于偏工具类的。
+
+        // 如：Math.abs(); Math.pow(m,n);
+     
+       
+    </script>
+    
+</body>
+</html>

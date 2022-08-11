@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+        // ES6定义类的写法，是个语法糖
+        class Person{
+            // 构造函数
+            constructor(name,sex){
+                // 声明（定义）属性
+                this.name = name;
+                this.sex = sex
+            }
+
+            // 方法
+            eat(){
+                console.log(`${this.name}在吃，天在看……`)
+            }
+
+            drink(){
+                console.log(`${this.name}在喝豆浆`);
+            }
+
+        }
+
+        // 实例化一个对象
+        let p1 = new Person("张三疯","男");
+        p1.eat();
+        p1.drink();
+
+        // 又实例化了一个对象
+        let p2 = new Person("张四疯","女");
+        p2.eat();
+        p2.drink();
+
+        
+        // console.dir(Person);
+
+
+        console.log(p1.eat === p2.eat);
+        console.log(p1.drink === p2.drink);
+
+
+        // 判断对象属于哪个类
+
+        console.log(p1.constructor === Person);//true
+        console.log(p1 instanceof Person);//true
+
+     
+       
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let arr = [
+            {
+                id: 1,
+                name: "张一",
+                parentId: null
+            },
+            {
+                id: 2,
+                name: "张二",
+                parentId: 1
+            },
+            {
+                id: 3,
+                name: "张三",
+                parentId: 1
+            },
+            {
+                id: 4,
+                name: "张四",
+                parentId: 2
+            },
+            {
+                id: 5,
+                name: "张五",
+                parentId: 2
+            },
+            {
+                id: 6,
+                name: "张六",
+                parentId: 3
+            },
+            {
+                id: 7,
+                name: "张七",
+                parentId: 4
+            },
+            {
+                id: 8,
+                name: "张八",
+                parentId: 6
+            }
+        ]
+
+        let tree = arrToTree(arr);
+        console.log(tree);
+        
+        function arrToTree(arr) {
+            let tree = {};
+
+            arr.forEach(item => {                                
+                if(item.parentId!=null){
+                    // 有父亲
+                    // 1、找父亲对象
+                    let parentObj = arr.filter(obj=>obj.id==item.parentId)[0];
+                    if(!parentObj.children){
+                        parentObj.children=[];
+                    }
+                    parentObj.children.push(item);
+                }else{
+                    // 没有父亲
+                    tree = item;
+                }
+            });
+            return tree;
+        }
+
+
+        // let result = {
+        //     id: 1,
+        //     name: "张一",
+        //     parentId: null,
+        //     children: [
+        //         {
+        //             id: 2,
+        //             name: "张二",
+        //             parentId: 1,
+                    
+        //         },
+        //         {
+        //             id: 3,
+        //             name: "张三",
+        //             parentId: 1,
+        //         }
+        //     ]
+        // }
+
+    </script>
+</body>
+
+</html>

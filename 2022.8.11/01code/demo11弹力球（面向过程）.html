@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #ball01{
+            position: absolute;
+            left:100px;
+            top:100px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: red;
+        }
+
+    </style>
+</head>
+<body style="height: 2000px;">
+    <input id="btnGo" type="button" value="走起" >
+    <div id="ball01"></div>
+
+    <script>
+        let btnGo = document.getElementById("btnGo");
+        let ball01 = document.getElementById("ball01");
+
+        let clientWidth;
+        let clientHeight;
+        let scrollTop;
+        let scrollLeft;
+
+        window.onload = function(){
+            // 初始化数据
+            init();
+            // 点击按钮，让小球动起来
+            btnGo.onclick = go;
+            // 窗口大小改变时
+            window.onresize = changeWH;
+            // 页面滚动时
+            window.onscroll = changeScroll;
+        }
+        
+        
+        let left1 = 100;
+        let top1 = 100;
+        let width = 30;
+        let height = 30;
+        let directionLeft = 1;//1：正向；-1：负向；
+        let directionTop = 1;//1：正向；-1：负向；
+        let step = 2;
+        let timespace = 5;
+
+        // 初始化数据
+        function init(){
+            changeWH();
+            changeScroll();
+        }
+
+        function changeWH(){
+            clientWidth= document.documentElement.clientWidth || document.body.clientWidth;
+            clientHeight= document.documentElement.clientHeight || document.body.clientHeight;
+            
+        }
+
+        function changeScroll(){
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            scrollLeft = document.documentElement.scrollLeft  || document.body.scrollLeft ;
+ 
+        }
+
+        function go(){
+
+            setInterval(function(){
+                // 一、逻辑
+                // 1、计算
+                left1 += directionLeft * step;
+                top1 += directionTop * step;
+
+                // 2、边界处理
+                if(left1<=0+scrollLeft){
+                    directionLeft=1;
+                    left1 = 0+scrollLeft; 
+                }else if(left1>=clientWidth-width+scrollLeft){
+                    directionLeft=-1;
+                    left1 = clientWidth-width+scrollLeft;
+                }
+
+                if(top1<=0+scrollTop){
+                    directionTop=1;
+                    top1 = 0+scrollTop; 
+                }else if(top1>=clientHeight-height+scrollTop){
+                    directionTop =-1;
+                    top1 = clientHeight-height+scrollTop;
+                }
+
+                // 二、外观
+
+                ball01.style.left = left1+"px";
+                ball01.style.top = top1+"px";
+
+            },timespace);
+            
+        }
+
+
+    </script>
+
+</body>
+</html>

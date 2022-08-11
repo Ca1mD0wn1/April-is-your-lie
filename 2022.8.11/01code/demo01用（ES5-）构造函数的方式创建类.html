@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <script>
+
+        //一、自定义一个类（用构造函数的方式定义的类）；
+
+        // 1、构造和普通函数的区别
+        // 1）、函数名首字母大写（程序员遵守的书写规范）
+        // 2）、构造函数的调用用new运算符
+        // 3)、构造函数内部，在预编译时，还会增加 var this = new Object();
+        // 4)、构造函数没有返回值，但是，其实是有的。即：虽然程序员没有写返回值，预编译时，会增加返回值
+// ​        预编译时，会增加一句：return this。
+
+        function Person(name,sex){
+            // let this = new Object();//Object是根类，
+            // 类的属性（名词，描述事物的特征）
+            this.name = name;
+            this.sex = sex;
+            // 类的方法（动词，描述事物的行为）；
+            this.eat = function(){
+                console.log(`${this.name}在吃，天在看……`);
+            }
+            // return this;
+        }
+
+
+        // 类的方法
+        Person.prototype.drink =function(){
+            console.log(`${this.name}在喝豆浆`);
+        }
+
+        // 实例化一个对象
+        let p1 = new Person("张三疯","男");
+        p1.eat();
+        p1.drink();
+
+        // 又实例化了一个对象
+        let p2 = new Person("张四疯","女");
+        p2.eat();
+        p2.drink();
+
+        console.dir(Person)
+
+
+        // console.log(p1.eat === p2.eat);
+        // console.log(p1.drink === p2.drink);
+
+
+        // 判断对象属于哪个类
+
+        console.log(p1.constructor === Person);//true
+        console.log(p1 instanceof Person);//true
+
+        let arr1 = new Array();
+        console.log(arr1.constructor === Array);//true
+        console.log(arr1 instanceof Array);//true
+        console.log(Array.isArray(arr1));//true
+
+
+        function Dog(name,sex){
+            this.name = name;
+            this.sex = sex;
+
+        }
+
+        let d1 = new Dog();
+        let d2 = new Dog();
+
+        console.log(typeof p1);//object
+        console.log(typeof d1);//object
+
+        
+        console.log(p1.constructor === Dog);//false
+       
+    </script>
+    
+</body>
+</html>

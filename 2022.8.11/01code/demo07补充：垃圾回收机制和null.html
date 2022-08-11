@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 垃圾回收机制：
+        // 首先，我们知道，定义变量和创建对象都会申请内存空间。
+        // 其次，（栈区的内存会自动释放）基本类型的变量，占用一块内存空间，基本上都在栈区。栈区的内存会自动释放
+        // 再次，（堆区的内存不会自动释放）引用类型的变量，占用两块内存空间，而且，会出现很多变量引用同一块内存空间（堆）。不会自动释放。
+        // 再说， C/C++ 编程语言，堆区内存的释放需要程序员写代码；java，c#，JavaScript这些语言增加了一个垃圾回收程序，帮助程序员释放堆区的内容。
+        // 垃圾回收程序的原理：
+        //    1、计数器：(比较早的方式)当多了一个变量引用一块内存区域，那么计数器加1。当有一个变量不再引用内存区域，计数器减一。
+        //    2、标记的方式：
+
+
+        // null的作用:
+        // var arr = [];
+        // arr = null;
+        //   把堆区中的标记清掉.表示变量不再引用堆区内存，可以简单粗暴的理解为：arr里面不再存储地址了
+
+
+        // 以后尽量不要再定义变量时，直接赋值为null.
+        // var arr = null;
+
+
+      
+    </script>
+</body>
+</html>

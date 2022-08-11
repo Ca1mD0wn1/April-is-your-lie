@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+
+<body style="height: 2000px;">
+    <input id="btnGo" type="button" value="走起">
+
+    <script>
+        // 1、哪些类：弹力球(属性和方法)
+
+        class Ball {
+            constructor(obj) {
+                let defaultObj = {
+                    parentDom: document.body,
+                    dom: undefined,
+                    size: 30,
+                    color: "pink",
+                    directionLeft: 1,
+                    directionTop: 1,
+                    left: 100,
+                    top: 100,
+                    step: 1,
+                    timespace: 5
+                }
+
+                //属性（球球的特征)
+                for (let key in defaultObj) {
+                    this[key] = obj[key] ? obj[key] : defaultObj[key];
+                }
+
+                this.render();
+                this.go();
+            }
+
+            // 创建html和css
+            render() {
+                this.dom = document.createElement("div");
+                this.dom.style.cssText = `
+                        position: absolute;
+                        left: ${this.left}px;
+                        top: ${this.top}px;
+                        width: ${this.size}px;
+                        height: ${this.size}px;
+                        border-radius: 50%;
+                        background-color: ${this.color};
+                `
+                console.log(this.dom);
+                console.log(this.parentDom);
+                this.parentDom.appendChild(this.dom);
+            }
+
+            // 方法(球球的行为)
+            go() {
+                setInterval(() => {
+                    // 一、逻辑
+                    // 1、计算
+                    this.left += this.directionLeft * this.step;
+                    this.top += this.directionTop * this.step;
+
+                    // 2、边界处理
+                    if (this.left <= 0 + scrollLeft) {
+                        this.directionLeft = 1;
+                        this.left = 0 + scrollLeft;
+                    } else if (this.left >= clientWidth - this.size + scrollLeft) {
+                        this.directionLeft = -1;
+                        this.left = clientWidth - this.size + scrollLeft;
+                    }
+
+                    if (this.top <= 0 + scrollTop) {
+                        this.directionTop = 1;
+                        this.top = 0 + scrollTop;
+                    } else if (this.top >= clientHeight - this.size + scrollTop) {
+                        this.directionTop = -1;
+                        this.top = clientHeight - this.size + scrollTop;
+                    }
+                    // 二、外观
+                    this.dom.style.left = this.left + "px";
+                    this.dom.style.top = this.top + "px";
+                }, this.timespace);
+            }
+        }
+
+
+
+
+
+
+
+
+        // 2、流程
+        // let btnGo = document.getElementById("btnGo");
+        // let ball01 = document.getElementById("ball01");
+        // let ball02 = document.getElementById("ball02");
+
+        let clientWidth;
+        let clientHeight;
+        let scrollTop;
+        let scrollLeft;
+
+        window.onload = function () {
+            // 初始化数据
+            init();
+            // 点击按钮，让小球动起来
+            btnGo.onclick = function () {
+                for (let i = 0; i < 1; i++) {
+
+                    let size = parseInt(Math.random() * 90 + 10);
+                    let color = getColor();
+                    let left = parseInt(Math.random() * 900 + 100);
+                    let top = parseInt(Math.random() * 500 + 10);
+                    let directionLeft = parseInt(Math.random() * 2) == 0 ? -1 : 1;
+                    let directionTop = parseInt(Math.random() * 2) == 0 ? -1 : 1;
+                    let step = parseInt(Math.random() * 9 + 1);
+                    let timespace = parseInt(Math.random() * 90 + 10);
+
+                    new Ball({ size, color, directionLeft, directionTop, left, top, step, timespace });
+                }
+            }
+            // 窗口大小改变时
+            window.onresize = changeWH;
+            // 页面滚动时
+            window.onscroll = changeScroll;
+        }
+
+        // 初始化数据
+        function init() {
+            changeWH();
+            changeScroll();
+        }
+
+        function changeWH() {
+            clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+            clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+        }
+
+        function changeScroll() {
+            scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        }
+        //获取随机的颜色值
+        function getColor() {
+            var str = "#";
+            for (var i = 0; i < 6; i++) {
+                //1、获取0-16（不包括）的数
+                var temp = parseInt(Math.random() * 16).toString(16);
+                //2、拼接
+                str += temp;
+            }
+            return str;
+        }
+
+    </script>
+
+</body>
+
+</html>

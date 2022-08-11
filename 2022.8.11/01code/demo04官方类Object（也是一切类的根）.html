@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <script>
+        
+        // 1、官方类Object是一个抽象类（在其它编程语言中，是没法实例化对象的），但是js可以
+        // 2、Object是一切类的根。既就是，一切的类继承自Object（Object具备属性和方法，其它类都有）。
+        //    继承：子类自动拥有父类的一切属性和方法
+        // 3、Object实例化的对象，没法确定对象属于具体的哪个类。
+
+        let o1 = new Object();
+        o1.name = "张三疯";
+        o1.sex="男";        
+        o1.eat = function(){
+            console.log(`${this.name}在吃`);
+        }
+
+        console.log(o1.name);
+        console.log(o1.sex);
+        o1.eat();
+
+        let pig2 = new Object();
+        pig2.name = "小花";
+        pig2.sex="公";        
+        pig2.eat = function(){
+            console.log(`${this.name}在吃`);
+        }
+
+        console.log(pig2.name);
+        console.log(pig2.sex);
+        pig2.eat();
+
+        console.dir(Object);
+
+        // Person默认是继承自Object
+        class Person{
+            constructor(name){
+                this.name
+            }
+        }
+
+        console.dir(Person);
+
+        let p1 =new Person();
+
+        console.log( p1.toString);
+        console.log(p1.hasOwnProperty);
+        
+       
+    </script>
+    
+</body>
+</html>

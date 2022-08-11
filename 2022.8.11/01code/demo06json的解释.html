@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        //一、 json的作用：
+        // 1、可以创建一个对象
+        // 2、是一种描述数据的格式
+        // [
+        //     {
+        //         name:"三国演义",
+        //         author:"罗贯中"
+        //     },
+        //     {
+        //         name:"西游记",
+        //         author:"吴承恩"
+        //     }
+        // ]
+        
+        // xml：可扩展的标记语言，这个是用来描述数据的。
+        /*
+        <books>
+            <book>
+                <name>三国演义</name>
+                <author>罗贯中</author>
+            </book>
+            <book>
+                <name>西游记</name>
+                <author>吴承恩</author>
+            </book>
+        </books>
+        */
+
+        // 二、json的使用
+        // 1、访问json的属性: 点 或者 方括号
+    //     let person = {
+    //         name:"曹继承",
+    //         sex:"男",
+    //         eat:function(){
+    //             console.log("eat函数");
+    //         }   
+    //     };
+
+    //     //1)、 点 的方式
+    //    console.log(person.name);
+    //     person.eat();
+
+    //     //2）、方括号的方式(一般来说,当属性名是变量时,要用方括号)
+    //     let attr = "name";
+    //     console.log(person[attr]);//person.name
+    //     console.log(person["name"])//person.name
+
+    //     let fn = "eat";
+    //     person[fn]();
+    //     person["eat"]();
+
+        // 3）、数组的方括号(数组的下标相当于对象的属性)
+        // var arr = [12,23,34];
+        // console.log(arr[1]);
+        // let i = 1;
+        // console.log(arr[i]);
+        // let index = "1";
+        // console.log(arr[index]);
+        // console.log(arr["1"])
+
+        
+
+        // 三、json的遍历
+        // let book = {
+        //         name:"西游记",
+        //         author:"吴承恩"
+        //     };
+
+        // for(let key in book){
+        //     console.log(key,book[key]);
+        // }
+
+
+        // 四、JSON和字符串的互转
+        // console.dir(JSON)
+        // 1、json转字符串：JSON.stringify(json对象);
+        // let book = {
+        //       name:"西游记",
+        //       author:"吴承恩"
+        // };
+
+        // let str = JSON.stringify(book);
+
+        // console.log(str);
+        // console.log(typeof str);
+
+        // 2、字符串转json：JSON.parse(字符串);
+
+        let str = `
+            {
+                    "name":"西游记",
+                    "author":"吴承恩"
+            }
+        `
+        let obj = JSON.parse(str);
+        console.log(obj);
+        console.log(typeof obj);
+
+    </script>
+</body>
+</html>

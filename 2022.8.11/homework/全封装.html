@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Ball {
+            constructor(obj) {
+                let defaultObj = {//默认值
+                    parentDom: document.body,
+                    dom: undefined,
+                    size: 30,
+                    color: "red",
+                    directionLeft: 1,
+                    directionTop: 1,
+                    left: 100,
+                    top: 100,
+                    step: 1,
+                    spacetime: 5,
+                    clientWidth: 0,
+                    clientHeight: 0,
+                    scrollTop: 0,
+                    scrollLeft: 0,
+                }
+
+                //类的属性
+                for (let key in defaultObj) {
+                    this[key] = obj[key] ? obj[key] : defaultObj[key];
+                }
+                this.init()
+                this.create();
+                this.move();
+
+                window.addEventListener("resize", () => {
+                    this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                    this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                })
+                window.addEventListener("scroll", () => {
+                    this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    this.scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+                })
+
+            }
+            //类的方法
+            create() {//创建html
+                this.dom = document.createElement("div");
+                this.dom.style.cssText =
+                    `
+                        position: absolute;
+                        left: ${this.left}px;
+                        top: ${this.top}px;
+                        width: ${this.size}px;
+                        height: ${this.size}px;
+                        border-radius: 50%;
+                        background-color: ${this.color};
+                `
+                this.parentDom.appendChild(this.dom);
+            }
+            move() {
+                setInterval(() => {
+                    this.left += this.directionLeft * this.step;
+                    this.top += this.directionTop * this.step;
+                    if (this.left <= 0 + this.scrollLeft) {
+                        this.directionLeft = 1;
+                        this.left = 0 + this.scrollLeft;
+                    } else if (this.left >= this.clientWidth - this.size + this.scrollLeft) {
+                        this.directionLeft = -1;
+                        this.left = this.clientWidth - this.size + this.scrollLeft;
+                    }
+
+                    if (this.top <= 0 + this.scrollTop) {
+                        this.directionTop = 1;
+                        this.top = 0 + this.scrollTop;
+                    } else if (this.top >= this.clientHeight - this.size + this.scrollTop) {
+                        this.directionTop = -1;
+                        this.top = this.clientHeight - this.size + this.scrollTop;
+                    }
+                    // 二、外观
+                    this.dom.style.left = this.left + "px";
+                    this.dom.style.top = this.top + "px";
+                }, this.spacetime)
+            }
+            init() {
+                this.clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                this.clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                this.scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                this.scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+            }
+        }
+        new Ball({ step: 7 });
+        new Ball({ color: "yellow", step: 10 });
+        new Ball({ color: "green", step: 2, size: 50 });
+    </script>
+</body>
+
+</html>

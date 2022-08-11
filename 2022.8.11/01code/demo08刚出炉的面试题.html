@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        let arr = [
+            {
+                id: 1,
+                name: "张一",
+                parentId: null
+            },
+            {
+                id: 2,
+                name: "张二",
+                parentId: 1
+            },
+            {
+                id: 3,
+                name: "张三",
+                parentId: 1
+            },
+            {
+                id: 4,
+                name: "张四",
+                parentId: 2
+            },
+            {
+                id: 5,
+                name: "张五",
+                parentId: 2
+            },
+            {
+                id: 6,
+                name: "张六",
+                parentId: 3
+            },
+            {
+                id: 7,
+                name: "张七",
+                parentId: 4
+            },
+            {
+                id: 8,
+                name: "张八",
+                parentId: 6
+            }
+        ]
+
+
+        let tree = arrToTree(arr);
+        console.log("tree",tree);
+
+        function arrToTree(arr) {
+            let tree = {};
+
+            // 1、找到根：
+            tree = {...arr.filter(item => item.parentId == null)[0] };            
+            // 数组
+            childrenFn(arr,tree);
+
+             // 处理儿子
+             function childrenFn(arr,parentObj){            
+                let children = arr.filter(item=>item.parentId == parentObj.id);
+                if(children.length==0){
+                    return;
+                }
+                parentObj.children = [];
+                for(let i=0;i<children.length;i++){
+                    parentObj.children.push(children[i]);
+                    childrenFn(arr,children[i]);
+                }
+            }
+            return tree;
+        }
+
+
+        // let result = {
+        //     id: 1,
+        //     name: "张一",
+        //     parentId: null,
+        //     children: [
+        //         {
+        //             id: 2,
+        //             name: "张二",
+        //             parentId: 1,
+                    
+        //         },
+        //         {
+        //             id: 3,
+        //             name: "张三",
+        //             parentId: 1,
+        //         }
+        //     ]
+
+
+
+        // }
+
+    </script>
+</body>
+
+</html>
