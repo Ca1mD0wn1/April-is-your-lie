@@ -9,19 +9,19 @@
 //   时间间隔
 //   属性名
 
-let movement = function(dom,begin,end,direction,step,timeSpace,attr,cb){
+let movement = function (dom, begin, end, direction, step, timeSpace, attr, cb) {
     let currvalue = begin;
     // setInterval()的返回值是数字（定时器编号）
     let myTimer = setInterval(function () {
-        currvalue += direction*step;
-        if (direction==1?currvalue >= end:currvalue <= end) {
+        currvalue += direction * step;
+        if (direction == 1 ? currvalue >= end : currvalue <= end) {
             currvalue = end;
             clearInterval(myTimer);
             (cb && typeof cb == "function") && cb();
         }
-        if(attr=="opacity"){
+        if (attr == "opacity") {
             dom.style[attr] = currvalue;
-        }else{
+        } else {
             dom.style[attr] = currvalue + "px";
         }
     }, timeSpace);
@@ -53,87 +53,88 @@ let movement = function(dom,begin,end,direction,step,timeSpace,attr,cb){
 
 // }
 
-let movement02 = function(dom,attr,end,timeLong,cb){
-    let begin = parseFloat(getStyle(dom,attr));
-    let direction = begin>end?-1:1;
+let movement02 = function (dom, attr, end, timeLong, cb) {
+    let begin = parseFloat(getStyle(dom, attr));
+    let direction = begin > end ? -1 : 1;
 
     // 速度 = Math.abs(begin-end)/timeLong; // 米/秒
 
     // 时间间隔
     let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
     // 步数
-    let stepCount = timeLong/timeSpace;//总时长/时间间隔；
-    let step = Math.abs(begin-end)/stepCount// 距离/步数;    
+    let stepCount = timeLong / timeSpace;//总时长/时间间隔；
+    let step = Math.abs(begin - end) / stepCount// 距离/步数;    
 
-    movement(dom,begin,end,direction,step,timeSpace,attr,cb);
+    movement(dom, begin, end, direction, step, timeSpace, attr, cb);
 
 }
 
 // 淡出
-function fadeOut(dom,timeLong,end){
+function fadeOut(dom, timeLong, end) {
     end = end || 0;
-    movement02(dom,"opacity",end,timeLong);
+    movement02(dom, "opacity", end, timeLong);
 }
 
 // 淡入
-function fadeIn(dom,timeLong,end){
+function fadeIn(dom, timeLong, end) {
     end = end || 1;
-    movement02(dom,"opacity",end,timeLong);
+    movement02(dom, "opacity", end, timeLong);
 }
 
 // 两个元素的淡入淡出；
-function fadeInOut(domIn,domOut,timeLong){
+function fadeInOut(domIn, domOut, timeLong) {
 
     let opacity = 0;
-     // 时间间隔
-     let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
-     // 步数
-     let stepCount = timeLong/timeSpace;//总时长/时间间隔；
-     let step = 1/stepCount // 距离/步数;    
- 
+    // 时间间隔
+    let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
+    // 步数
+    let stepCount = timeLong / timeSpace;//总时长/时间间隔；
+    let step = 1 / stepCount // 距离/步数;    
 
-    let myTimer = setInterval(function(){
+
+    let myTimer = setInterval(function () {
         // 1、计算数据
         opacity += step;
 
-        if(opacity>=1){
-            opacity=1;
+        if (opacity >= 1) {
+            opacity = 1;
             clearInterval(myTimer);
         }
 
         // 2、改变外观
         domIn.style.opacity = opacity;
-        domOut.style.opacity = 1-opacity;
+        domOut.style.opacity = 1 - opacity;
 
-    },timeSpace)
+    }, timeSpace)
 
 }
 
 
 // 两个元素的滑入滑出（左滑）；
-function slideInOut(domIn,domOut,timeLong,width){
+function slideInOut(domIn, domOut, timeLong, width) {
 
     let left = 0;
-     // 时间间隔
-     let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
-     // 步数
-     let stepCount = timeLong/timeSpace;//总时长/时间间隔；
-     let step = width/stepCount // 距离/步数;     
+    // 时间间隔
+    let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
+    // 步数
+    let stepCount = timeLong / timeSpace;//总时长/时间间隔；
+    let step = width / stepCount // 距离/步数;     
 
-    let myTimer = setInterval(function(){
+    let myTimer = setInterval(function () {
         // 1、计算数据
-        left -= step;
-
-        if(left<=-width){
-            left = -width;
+        left += step;
+        // left 0-400
+        if (left >= width) {
+            left = width;
             clearInterval(myTimer);
         }
 
         // 2、改变外观
-        domOut.style.left = left+"px";
-        domIn.style.left = (left+width)+"px";
+        domOut.style.left = left + "px";
+        domIn.style.left = (left + -width) + "px";
 
-    },timeSpace)
+
+    }, timeSpace)
 
 }
 
@@ -152,18 +153,18 @@ function slideInOut(domIn,domOut,timeLong,width){
 //     opacity:0.2
 // },2000)
 
-function movement03(dom,ends,timeLong,cb){
-   
+function movement03(dom, ends, timeLong, cb) {
+
     // let begin = parseFloat(getStyle(dom,attr));
     let begins = {};
-    for(let key in ends){// key="width"
-        begins[key] = parseFloat(getStyle(dom,key));
+    for (let key in ends) {// key="width"
+        begins[key] = parseFloat(getStyle(dom, key));
     }
 
     // let direction = begin>end?-1:1;
     let directions = {};
-    for(let key in ends){// key="width"
-        directions[key] = begins[key]>ends[key]?-1:1;
+    for (let key in ends) {// key="width"
+        directions[key] = begins[key] > ends[key] ? -1 : 1;
     }
 
     // 速度 = Math.abs(begin-end)/timeLong; // 米/秒
@@ -171,17 +172,17 @@ function movement03(dom,ends,timeLong,cb){
     // 时间间隔
     let timeSpace = 5;//毫秒，时间间隔取尽量小的数，这样会更加平滑
     // 步数
-    let stepCount = timeLong/timeSpace;//总时长/时间间隔；
+    let stepCount = timeLong / timeSpace;//总时长/时间间隔；
 
     // let step = Math.abs(begin-end)/stepCount// 距离/步数;    
     let steps = {};
-    for(let key in ends){// key="width"
-        steps[key] = Math.abs(begins[key]-ends[key])/stepCount;
+    for (let key in ends) {// key="width"
+        steps[key] = Math.abs(begins[key] - ends[key]) / stepCount;
     }
 
 
     // let currvalue = begin;
-    let currvalues = {...begins};
+    let currvalues = { ...begins };
     // for(let key in ends){// key="width"
     //     currvalues[key] = begins[key];
     // }
@@ -190,35 +191,35 @@ function movement03(dom,ends,timeLong,cb){
     let myTimer = setInterval(function () {
 
         // currvalue += direction*step;
-        for(let key in ends){
-            currvalues[key] += directions[key]*steps[key]
+        for (let key in ends) {
+            currvalues[key] += directions[key] * steps[key]
         }
 
-        for(let key in ends){
-            if (directions[key]==1?currvalues[key] >= ends[key]:currvalues[key] <= ends[key]) {            
-                currvalues[key] = ends[key];    
+        for (let key in ends) {
+            if (directions[key] == 1 ? currvalues[key] >= ends[key] : currvalues[key] <= ends[key]) {
+                currvalues[key] = ends[key];
                 myTimer && clearInterval(myTimer);
-                myTimer = undefined;                
+                myTimer = undefined;
             }
         }
 
         !myTimer && (cb && typeof cb == "function") && cb();
 
-        for(let key in ends){
-            if(key=="opacity"){
+        for (let key in ends) {
+            if (key == "opacity") {
                 dom.style[key] = currvalues[key];
-            }else{
+            } else {
                 dom.style[key] = currvalues[key] + "px";
             }
         }
-        
+
     }, timeSpace);
     return myTimer;
 }
 
 
 
- // 圆周运动
+// 圆周运动
 // 参数
 // 转圈的dom
 // 时间间隔
@@ -228,7 +229,7 @@ function movement03(dom,ends,timeLong,cb){
 function circleRun(dom, timespace, r) {
     // 角度
     let degree = 0;
-    
+
     myTimer = setInterval(function () {
         // 一、逻辑
         // 1、运算

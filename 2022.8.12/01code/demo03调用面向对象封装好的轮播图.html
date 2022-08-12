@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            margin: 100px auto;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+
+        
+        #container2 {            
+            position: relative;
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <input id="btnGo" type="button" value="播放">
+    <div id="container">
+
+    </div>
+    <hr/>
+    <div id="container2">
+
+    </div>
+    <script src="./js/cssTools.js"></script>
+    <script src="./js/movergp.js"></script>
+    <script src="./js/Carousel.js"></script>
+    <script>
+
+        window.onload = function () {
+            // 一、创建轮播图
+            let c1 = new Carousel({
+                box: document.getElementById("container"),
+                imgs: [
+                    "./img2/1.jpg", "./img2/2.jpg", "./img2/3.jpg", "./img2/4.jpg", "./img2/5.jpg", "./img2/6.jpg"
+                ],
+                douSize: 20,
+                douColor: "skyblue",
+                douHighColor: "blue",
+                douIsCircle: false,
+                urls:[
+                    "https://www.baidu.com"
+                ]
+            })
+
+           let c2 = new Carousel({
+                box: document.getElementById("container2"),
+                imgs: [
+                    "./img/51.jpg",
+                    "./img/60.jpg",
+                    "./img/65.jpg",
+                    "./img/66.jpg"
+                ],
+                timeSpace:3000
+            })
+
+            // 二、点击按钮，让轮播图开始播放
+            document.getElementById("btnGo").onclick = function(){
+                // c1.autoplay();
+            }
+        }
+
+ 
+    </script>
+</body>
+
+</html>

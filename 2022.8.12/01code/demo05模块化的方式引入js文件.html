@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!-- 使用模块化的方式引入文件，首先，script标签type的值是module -->
+    <script type="module">
+        import {num,str,fn01} from "./js/module1.js";
+
+        console.log("num",num);
+        console.log("str",str);
+
+        fn01();
+
+
+    </script>
+</body>
+</html>
