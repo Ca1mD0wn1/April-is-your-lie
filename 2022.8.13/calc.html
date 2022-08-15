@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .table {
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .button {
+            width: 110px;
+            height: 61px;
+            background-color: #e3e3e3;
+            font-size: large;
+        }
+
+        .saw {
+            font-size: xxx-large;
+        }
+
+        .header {
+            margin-top: 20px;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+
+        li {
+            text-align: center;
+            line-height: 40px;
+            list-style: none;
+            width: 100px;
+            height: 40px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: brown;
+        }
+
+        .footer {
+            height: 50px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <ul>
+            <li><a href="#">首页</a></li>
+            <li><a href="#">课程培训</a></li>
+            <li><a href="">教学保障</a></li>
+            <li><a href="">免费视频</a></li>
+            <li><a href="">公开课</a></li>
+            <li><a href="">企业合作</a></li>
+            <li><a href="">就业喜报</a></li>
+            <li><a href="">学院天地</a></li>
+            <li><a href="">关于千锋</a></li>
+            <li><a href="">学院论坛</a></li>
+        </ul>
+    </div>
+    <table class="table" border="1px" style="width: 450px; height: 600px ">
+        <tr>
+            <td colspan="4">
+                <input id="banner" class="saw" type="text" value="0"
+                    style="width: 450px; height: 100px ;background-color: #e3e3e3 ;text-align: right" />
+            </td>
+        <tr>
+            <td><input class="button" type="button" value="MC" id="MC"></td>
+            <td><input class="button" type="button" value="MR" id="MR"></td>
+            <td><input class="button" type="button" value="M+" id="Mjia"></td>
+            <td><input class="button" type="button" value="M-" id="Mjian"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="%" id="hunder"></td>
+            <td><input class="button" type="button" value="CE" id="CE"></td>
+            <td><input class="button" type="button" id="c" value="C"></td>
+            <td><input class="button" type="button" value="delete" id="delete" style="background-color: red"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="1/x" id="center"></td>
+            <td><input class="button" type="button" value="X^2" id="pow"></td>
+            <td><input class="button" type="button" value="sqrt()" id="sqrt"></td>
+            <td><input class="button" type="button" value="/" data-index="/" style="background-color: #999999"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="7" data-index="7"> </td>
+            <td><input class="button" type="button" value="8" data-index="8"></td>
+            <td><input class="button" type="button" value="9" data-index="9"></td>
+            <td><input class="button" type="button" value="*" data-index="*" style="background-color: #999999"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="4" data-index="4"></td>
+            <td><input class="button" type="button" value="5" data-index="5"></td>
+            <td><input class="button" type="button" value="6" data-index="6"></td>
+            <td><input class="button" type="button" value="-" data-index="-" style="background-color: #999999"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="1" data-index="1"></td>
+            <td><input class="button" type="button" value="2" data-index="2"></td>
+            <td><input class="button" type="button" value="3" data-index="3"></td>
+            <td><input class="button" type="button" value="+" data-index="+" style="background-color: #999999"></td>
+        </tr>
+        <tr>
+            <td><input class="button" type="button" value="+/-" id="zhengfu"></td>
+            <td><input class="button" type="button" value="0" data-index="0"></td>
+            <td><input class="button" type="button" value="·" data-index="0."></td>
+            <td><input class="button" id=result type="button" value="=" style="background-color: lightskyblue"></td>
+        </tr>
+    </table>
+    <div class="footer">
+        <p><strong>&copy;某某机构版权所有 &nbsp; &reg;某某机构注册</strong>
+    </div>
+    <script>
+        var table = document.querySelector("table");
+        var banner = document.querySelector("#banner");
+        var result = document.querySelector("#result");
+        var deleteButton = document.querySelector("#delete");
+        var c = document.querySelector("#c");
+        var sqrt = document.querySelector("#sqrt");
+        var pow = document.querySelector("#pow");
+        var CE = document.querySelector("#CE")
+        var Mjia = document.querySelector("#Mjia");
+        var Mjian = document.querySelector("#Mjian");
+        var MC = document.querySelector("#MC");
+        var MR = document.querySelector("#MR");
+        var zhengfu = document.querySelector("#zhengfu")
+        var center = document.querySelector("#center")
+        var M = 0;
+        table.onclick = function (event) {
+            let value = event.target.getAttribute("data-index")
+            if (banner.value == "0") {
+                banner.value = "";
+            }
+            if (value != null) {
+                banner.value += value;
+            }
+        }
+        result.onclick = function () {
+            try { banner.value = eval(banner.value).toFixed(2); } catch (e) {
+                alert("输入有误！")
+                banner.value = ""
+            }
+        }
+        c.onclick = function () {
+            banner.value = "0";
+        }
+        CE.onclick = function () {
+            banner.value = "0";
+        }
+        deleteButton.onclick = function () {
+            banner.value = banner.value.slice(0, (banner.value.length - 1))
+        }
+        sqrt.onclick = function () {
+            banner.value = Math.sqrt(Number(banner.value));
+        }
+        pow.onclick = function () {
+            banner.value = Math.pow(Number(banner.value), 2);
+        }
+        hunder.onclick = function () {
+            banner.value = banner.value / 100;
+        }
+        Mjia.onclick = function () {
+            M += Number(banner.value);
+        }
+        Mjian.onclick = function () {
+            M -= Number(banner.value)
+        }
+        MC.onclick = function () {
+            M = 0;
+        }
+        MR.onclick = function () {
+            banner.value = M;
+        }
+        zhengfu.onclick = function () {
+            banner.value *= -1;
+        }
+        center.onclick = function () {
+            banner.value = 1 / banner.value;
+        }
+    </script>
+</body>
+
+</html>
