@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style title="t01">
+        #box{
+           width: 200px;
+           height: 200px;
+           background-color: red;
+       }
+         #box2{
+            width: 300px;
+            height: 300px;
+            background-color: skyblue;
+        }
+    </style>
+    <style title="t02">
+        #imgbox1{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <div class="doubox">
+
+    </div>
+    
+    <div class="doubox2">
+
+    </div>
+
+    <input id="btn01" type="button" value="测试" >
+    <script >
+
+        document.getElementById("btn01").onclick = function(){
+            // console.log("document.styleSheets",document.styleSheets);
+            // 1、动态添加style标签
+            let myStyle = document.createElement("style");
+            // myStyle.title = "t03";
+            myStyle.id="t03";
+            document.head.appendChild(myStyle);
+
+            // 2、获取添加的style标签（最后一个）。
+            let lastStyle = document.styleSheets[document.styleSheets.length-1];
+
+            console.log("lastStyle",lastStyle);
+
+            lastStyle.insertRule(`
+                .doubox{
+                    width:100px;
+                    height:100px;
+                    background-color:pink
+                }
+            `,lastStyle.cssRules.length)
+
+            
+            lastStyle.insertRule(`
+                .doubox2{
+                    width:100px;
+                    height:100px;
+                    border:10px solid black;
+                }
+            `,lastStyle.cssRules.length)
+        }
+    </script>
+</body>
+</html>

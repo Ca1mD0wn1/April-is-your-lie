@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #container {
+            margin: 100px auto;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+
+    <script type="module">
+
+        import Carousel from './js/Carousel02.js'
+
+        window.onload = function () {
+            let c1 = new Carousel({
+                box: document.getElementById("container"),
+                imgs: ["./img2/1.jpg", "./img2/2.jpg", "./img2/3.jpg"],
+                urls: [
+                    "https://www.baidu.com",
+                    "https://www.1000phone.com",
+                    "https://www.jd.com"
+                ],
+                cssStr: `
+                    #imgbox {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    #imgbox img {
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        opacity: 0;
+                    }
+
+                    #imgbox img:nth-child(1) {
+                        opacity: 1;
+                    }
+
+                    #doubox {
+                        position: absolute;
+                        left: 50%;
+                        bottom: 20px;
+                        transform: translateX(-50%);
+                        width: 150px;
+                        height: 30px;
+                        /* background-color: rgba(135, 207, 235, 0.416);             */
+                        border-radius: 10px;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        z-index: 999;
+                    }
+
+                    #doubox li {
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background-color: pink;
+                    }
+
+                    #doubox li:nth-child(1) {
+                        background-color: red;
+                    }                
+                `
+            })
+        }
+
+    </script>
+</body>
+
+</html>

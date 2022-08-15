@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+              
+    </div>
+
+    <script type="module">
+        import ReactDom from "./js/react/reactDom.js"
+        import Star from "./js/Star02/index.js";
+        import Carousel from "./js/Carousel/index.js";
+
+
+        window.onload = function(){
+            ReactDom.render(`
+                    <Star contianer=.container  num=10 />
+                    <Carousel contianer=.container imgs=[./img2/1.jpg,./img2/2.jpg,./img2/3.jpg] />
+                    <Star contianer=.container  />
+                    <Carousel contianer=.container imgs=[./img2/1.jpg,./img2/2.jpg,./img2/3.jpg] />
+            `,".container");
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+
+    <div id="box2">
+
+    </div>
+
+    <script type="module">
+        import Star from "./js/Star.js";
+
+        window.onload = function(){
+            new Star({
+                boxDom:document.getElementById("box"),
+                num:10,
+                imgWidth:27,
+                cssStr:`
+                    #box span {
+                        display: inline-block;
+                        background-image: url("./img2/star.gif");
+                        width: 27px;
+                        height: 28px;
+                        background-position: 0px 0px;
+                    } 
+                ` 
+            });
+
+            new Star({
+                boxDom:document.getElementById("box2"),
+                num:8,
+                imgWidth:27,
+                cssStr:`
+                    #box2 span {
+                        display: inline-block;
+                        background-image: url("./img2/star.gif");
+                        width: 27px;
+                        height: 28px;
+                        background-position: 0px 0px;
+                    } 
+                ` 
+            });
+        }
+
+
+    </script>
+</body>
+
+</html>

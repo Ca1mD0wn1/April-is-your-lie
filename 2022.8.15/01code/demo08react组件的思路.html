@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        
+    </div>
+
+    <script type="module">
+        import Star from "./js/Star02/index.js";
+
+
+        function render(jsx,dom){
+            
+            // eval(); :是可以把js代码的字符串格式，按照js进行执行。
+
+            //  eval("var str = 2+3; console.log(str);");
+            // console.log(str);
+            
+            // 1、把jsx用空格的方式分割
+            let arr = jsx.split(" ");
+            // 2、第一个元素是标签名（组件名）
+            let ComName = arr[0].substring(1);
+
+            // 3、把标签的属性转成对象的写法
+            let obj = {};
+            for(let i=1;i<arr.length;i++){
+               let [key,value] =  arr[i].split("=");
+               obj[key] = value;
+            }
+
+            // 4、创建对象（组件）
+            obj.boxDom = dom
+            let str = `new ${ComName}(
+                ${JSON.stringify(obj)}
+            ) `
+            console.log("str",str);
+            eval(str);
+        }
+
+        window.onload = function(){
+
+            render(`<Star num=10  />`,".container");
+
+            
+
+            // new Star({
+            //     boxDom:"#box",
+            //     num:10,
+            // });
+        }
+
+    </script>
+</body>
+
+</html>

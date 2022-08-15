@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #head {
+            position: relative;
+            width: 1100px;
+            background-color: #66ccff;
+            margin: 0 auto;
+            height: auto;
+        }
+
+        #all {
+            margin-left: 70px;
+        }
+
+        #over {
+            position: absolute;
+            right: 70px;
+        }
+
+        #zong {
+            position: absolute;
+            right: 150px;
+        }
+    </style>
+
+</head>
+<div id="head"><input type="checkbox" id="all">全选
+    <span id="zong">总价</span>
+    <span id="over">
+        0
+    </span>
+</div>
+
+<body>
+    <script>
+        class ShoppingCar {
+            constructor(id, count) {
+                this.id = id;
+                this.count = count;
+                this.price;
+                this.render(this.id, this.count);
+            }
+            render(id, count) {
+                let productList = [{
+                    id: 1,
+                    name: "iPhone 12",
+                    price: 4899,
+                    imgUrl: "../homework-shopping/images/iPhone_12.png",
+                    details: "苹果12,8+128只需4899带走"
+                },
+                {
+                    id: 2,
+                    name: "iPhone 13 Pro",
+                    price: 8799,
+                    imgUrl: "../homework-shopping/images/iPhone_13_Pro.png",
+                    details: "苹果13 pro 神一般的存在 拿上他倍有面子"
+                }]
+                let div = document.createElement("div");
+                div.style.cssText =
+                    `
+                    position: relative;
+                    margin: 0 auto;
+                    border-top: 1px solid black;
+                    background-color: pink;
+                    width: 990px;
+                    height: 120px;
+                `
+                //创建单选框
+                let checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = "checkbox"
+                checkbox.style.cssText =
+                    `
+                    position: absolute;
+                    left: 12px;
+                    top: 23px;
+                    width: 13px;
+                    height: 13px;
+                    `
+                //创建商品图片
+                let img = document.createElement("img");
+                img.src = productList[id - 1].imgUrl;
+                img.style.cssText =
+                    `
+                    top: 20px;
+                    left: 42px;
+                    position: absolute;
+                    width: 83px;
+                    height: 83px;
+                    `
+                //创建商品名
+                let name = document.createElement("span");
+                name.innerHTML = productList[id - 1].name;
+                name.style.cssText =
+                    `
+                    position: absolute;
+                    top: 25px;
+                    left: 150px;
+                    `
+                //创建商品描述
+                let details = document.createElement("span");
+                details.innerHTML = productList[id - 1].details;
+                details.style.cssText =
+                    `
+                    width : 250px;
+                    position: absolute;
+                    top: 25px;
+                    left: 300px;
+                    `
+                // 创建加减以及输入框                
+                let productCount = document.createElement("input");
+                productCount.value = count;
+                let add = document.createElement("button");
+                add.innerHTML = "+";
+                add.onclick = () => {
+                    this.count++;
+                    productCount.value = this.count;
+                    this.price = this.count * productList[this.id - 1].price;
+                    price.innerHTML = this.count * productList[this.id - 1].price;
+                }
+                let reduce = document.createElement("button");
+                reduce.innerHTML = "-";
+                reduce.onclick = () => {
+                    if (this.count == 1) return;
+                    this.count--;
+                    productCount.value = this.count;
+                    this.price = this.count * productList[this.id - 1].price;
+                    price.innerHTML = this.price;
+                }
+                add.style.cssText =
+                    `          
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 25px;
+                    left: 833px;
+                    `
+                productCount.style.cssText =
+                    `
+                    position: absolute;
+                    top: 25px;
+                    left: 800px;
+                    width: 25px;
+                    height: 15px;
+                    `
+                reduce.style.cssText =
+                    `
+                    width: 20px;
+                    height: 20px;
+                    position: absolute;
+                    top: 25px;
+                    left: 780px;
+                    `
+                //创建商品价格
+                let price = document.createElement("span");
+                this.price = productList[id - 1].price * count;
+                price.innerHTML = productList[id - 1].price * count;
+                price.style.cssText =
+                    `
+                    position: absolute;
+                    top: 25px;
+                    left: 600px;
+                    `
+                //删除选项
+                let deleteButton = document.createElement("span");
+                deleteButton.innerHTML = "删除";
+                deleteButton.className = "delete";
+                deleteButton.onclick = () => {
+                    deleteButton.parentNode.remove();
+                    this.price += -this.price;
+                }
+                deleteButton.style.cssText =
+                    `
+                    position: absolute;
+                    top: 25px;
+                    right: 50px;
+                    `
+                div.append(checkbox, img, details, price, name, add, productCount, reduce, deleteButton);
+                document.body.append(div);
+                return this.count * productList[this.id - 1].price;
+            }
+            getPrice() {
+                return this.price;
+            }
+        }
+        var over = document.querySelector("#over");
+        var produce = [];
+        var produceId = [];
+        var id = 1;
+        var count = 1;
+        produce.push(new ShoppingCar(id, count));
+        produceId.push(id);
+
+    </script>
+</body>
+
+</html>

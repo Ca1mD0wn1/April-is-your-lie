@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 闭包：
+        // 1、闭包代码
+        function f1(){
+            var n = 250;
+            function f2(){
+                console.log(n);
+            }
+            return f2;
+        }
+
+        // 2、闭包的用途
+        // 1）、可以读取函数内部的变量(局部变量)
+        // 2）、让这些变量（外部函数的局部变量）的值始终保持在内存中
+        
+        // 3、闭包的场景：
+        // 1）、只有一个方法的对象
+       
+        // 2）、用闭包模拟私有方法
+
+        // 3）、循环里使用闭包
+
+
+        // let fn=()=>{}
+
+        // console.dir(fn);
+
+
+        // 一、
+
+        // 7、列举出至少两种字符串匹配子串的方法：
+
+        // 1）、indexOf
+
+        // 2）、match
+        // 如：
+        // let str = "good gooD study Day Day up";
+        // console.log(str.match(/day/i));
+
+
+        // 一、
+
+        // 6、 小数：
+
+        // /^(-?)([1-9]\d*\.\d+|0\.\d+[1-9]\d*)$/
+
+        let reg = /^(-?)([1-9]\d*\.\d*[1-9]|0\.\d*[1-9])$/
+
+        // let console.log(reg = /^-?[1-9]\d*\.\d+$/;
+
+        console.log(reg.test("2.3"));
+        console.log(reg.test("-2.3"));
+        console.log(reg.test("-0.3"));
+        console.log(reg.test("-0.30001"));//true
+        console.log(reg.test("-1.30001"));//true
+        console.log(reg.test("-1.3000"));//false
+        console.log(reg.test("-.3"));//false
+        console.log(reg.test("-0000.3"));//false
+        console.log(reg.test("-0.30000"));//false
+        
+
+
+
+
+    </script>
+</body>
+</html>
