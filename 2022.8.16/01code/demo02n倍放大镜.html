@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #imgbox{
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-image: url(./img2/1.jpg);
+        }
+
+        #imgbox .mirror{
+            position:absolute;
+            left:-15000000px;
+            top:-1000000px;
+            width: 80px;
+            height: 80px;
+            background-color: pink;
+            opacity: 0.5;
+            /* display: none; */
+        }
+
+        #imgbox .show{
+            position:absolute;
+            left:420px;
+            top:100px;
+            width: 160px;
+            height: 160px;
+            border:1px solid black;
+            background-image: url(./img2/1.jpg);
+            background-size:800px 800px;
+            background-position: -300px -200px;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="imgbox">
+        <div class="mirror"></div>
+        <div class="show"></div>
+    </div>
+
+    <script>
+        let imgBox = document.getElementById("imgbox");
+        let mirror = document.querySelector("#imgbox .mirror");
+        let show = document.querySelector("#imgbox .show");
+        let boxLeft = imgBox.offsetLeft;
+        let boxWidth = imgBox.offsetWidth
+        let boxHeight = imgBox.offsetHeight
+        let mirrorWidth = mirror.offsetWidth;
+        let boxTop = imgBox.offsetTop;
+        let mirrorHeight = mirror.offsetHeight
+
+        window.onload = function(){
+            imgBox.onmousemove = mousemoveHandle;
+            imgBox.onmouseenter = mouseenterHandle
+            imgBox.onmouseleave = mouseleaveHandle
+        }
+
+        function mouseenterHandle(){
+            // mirror.style.display = "block";
+            show.style.display = "block";
+        }
+
+        function mouseleaveHandle(){
+            mirror.style.left = "-100000px";
+            // mirror.style.display = "none";
+            show.style.display = "none";
+        }
+
+        function mousemoveHandle(event){
+            let e = event || window.event;
+            //一、逻辑
+            // 1、计算放大镜的坐标
+
+            let left = e.pageX - boxLeft - mirrorWidth/2;
+            let top = e.pageY - boxTop - mirrorHeight/2;
+
+            // 2、判断边界
+            if(left<=0){
+                left=0;
+            }else if(left>boxWidth-mirrorWidth){
+                left=boxWidth-mirrorWidth
+            }
+            if(top<=0){
+                top=0;
+            }else if(top>boxHeight-mirrorHeight){
+                top=boxHeight-mirrorHeight
+            }
+
+            // 二、外观
+
+            mirror.style.left = left+"px";
+            mirror.style.top = top+"px";
+
+            show.style.backgroundPosition = `-${2*left}px -${2*top}px`;
+
+        }
+
+
+    </script>
+
+</body>
+</html>

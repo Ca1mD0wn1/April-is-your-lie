@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+
+    </div>
+
+    <script>
+
+        class Component extends EventTarget{
+            
+            // 属性的处理
+            
+
+            // 事件的处理
+            
+            setState(obj){
+                this.state = {
+                    ...this.state,
+                    ...obj,
+                }
+                console.log("this.state",this.state);
+                // this.render();
+                reRender();
+            }
+
+        }
+
+
+        class Banner extends Component {
+            constructor(props){
+                super();    
+                this.state = {
+                    name:"张三疯"
+                }
+                this.clickFn = this.clickFn.bind(this);
+            }
+
+            clickFn(){
+                console.log("clickFn",this);
+                this.setState({
+                    name:this.state.name+1
+                })
+            }
+
+            render(){
+                return `
+                    <div>
+                        <h1>Banner</h1>
+                        <p>name:{this.state.name}</p>
+                        <input type="button" value="测试" onclick={this.clickFn} />
+                        <p>name:{this.state.name}</p>
+                    </div>
+                `;
+            }
+
+        }
+
+        function render(myEl,dom){
+            // 渲染方法：
+            // 1、处理花括号
+            let htmlStr= myEl.render();
+            // 1)、替换属性
+            htmlStr = htmlStr.replace(/\{this\.state\.(.*)\}/g,function(substring,$1){
+                console.log("$1",$1);
+                return myEl.state[$1]
+            });
+
+            // 2)、处理事件
+            // htmlStr += htmlStr.replace(/onClick/,"onclick");
+            htmlStr = htmlStr.replace(/\{this\.(.*)\}/,function(substring,$1){
+                console.log("$1",$1);
+                return `"${$1}()"`
+            })
+            console.log("htmlStr",htmlStr);
+
+            window.clickFn = myEl.clickFn;
+
+            // 2、把处理的结果放到dom元素里
+            dom.innerHTML = htmlStr;
+        }
+
+
+        let banner = new Banner();
+
+        function reRender(){
+            render(banner,document.getElementById("box"));
+        }
+
+        reRender();
+
+    </script>
+</body>
+</html>

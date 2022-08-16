@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        window.onresize = function(){
+            // 滚动条宽度：16；
+            // console.log("clientWidth",document.documentElement.clientWidth);
+            // console.log("body.offsetWidth",document.body.offsetWidth);
+
+        }
+
+        
+        let width = 200;
+        let parentWidth = document.body.offsetWidth;
+        let colCount = parseInt(parentWidth/width);   
+        // 缝隙     
+        let cranny = (parentWidth%width)/(colCount+1);
+
+        // 动态创建若干张图片，并设置定位。
+        let arr = new Array(colCount);
+        arr.fill(0);        
+        
+        function createImg(){
+
+            for(var i=0;i<70;i++){
+
+                let imgDom = document.createElement("img");
+                imgDom.src=`./img/${i+1}.jpg`;
+                imgDom.style.cssText = `
+                    position:absolute;
+                    width:${width}px;
+                `;
+                document.body.appendChild(imgDom);
+            }
+        }
+
+        function updatePos(imgDoms){            
+
+            for(var i=0;i<imgDoms.length;i++){
+
+                // 列下标；
+                let colIndex = i%colCount;
+                
+                imgDoms[i].style.cssText += `
+                    left:${colIndex*width+(colIndex+1)*cranny}px;
+                    top:${arr[colIndex]}px;
+                `;
+                arr[colIndex] += imgDoms[i].offsetHeight+cranny;
+                
+            }
+
+        }
+
+        let imgDoms;
+
+        window.onload = function(){
+            createImg();            
+            imgDoms = document.body.querySelectorAll("img");
+        
+            imgDoms[imgDoms.length-1].onload = function(){
+                updatePos(imgDoms);
+            }
+        }
+
+        window.onresize = function(){
+            parentWidth = document.body.offsetWidth;
+            colCount = parseInt(parentWidth/width);        
+            cranny = (parentWidth%width)/(colCount+1);
+            arr = new Array(colCount);
+            arr.fill(0);
+            updatePos(imgDoms);
+        }
+
+    </script>
+</body>
+</html>

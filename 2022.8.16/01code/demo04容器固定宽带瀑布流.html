@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    
+    <script>
+
+        let colCount = 9;
+        let width = 200;
+
+        // 动态创建若干张图片，并设置定位。
+        let arr = [0,0,0,0,0,0,0,0,0];
+        function createImg(){
+
+            for(var i=0;i<70;i++){
+
+                let imgDom = document.createElement("img");
+                imgDom.src=`./img/${i+1}.jpg`;
+                imgDom.style.cssText = `
+                    position:absolute;
+                    width:${width}px;
+                `;
+                document.body.appendChild(imgDom);
+            }
+        }
+
+        function updatePos(imgDoms){            
+
+            for(var i=0;i<imgDoms.length;i++){
+
+                // 列下标；
+                let colIndex = i%colCount;                
+                
+                imgDoms[i].style.cssText += `
+                    left:${colIndex*width}px;
+                    top:${arr[colIndex]}px;
+                `;
+                arr[colIndex] += imgDoms[i].offsetHeight;
+                
+            }
+
+        }
+
+        window.onload = function(){
+            createImg();
+            let imgDoms = document.body.querySelectorAll("img");
+            imgDoms[imgDoms.length-1].onload = function(){
+                updatePos(imgDoms);
+            }
+        }
+
+
+    </script>
+</body>
+</html>

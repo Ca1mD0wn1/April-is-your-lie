@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="box1"></div>
+<div id="box2"></div>
+
+<body>
+    <script type="module">
+        import Utils from "./Utils.js"
+        class WaterFall {
+            constructor(obj) {
+                let defaultObj = {
+                    selector: "",
+                    container: document.body,
+                    imgDoms: [],
+                    imgs: ["./img/1.jpg", "./img/2.jpg"],
+                    width: 200,
+                    parentWidth: 0,
+                    colCount: 0,
+                    // 缝隙     
+                    cranny: 0,
+                    arr: [],
+                }
+                for (let key in defaultObj) {
+                    this[key] = obj[key] == undefined ? defaultObj[key] : obj[key];
+                }
+
+
+                if (typeof this.selector === "string" && this.selector != "") {
+                    this.container = document.querySelector(this.selector);
+                }
+                this.setData();
+                this.setStyle();
+                this.render();
+                this.addEvent();
+
+
+            }
+
+            setData() {//计算各项数据
+                this.parentWidth = this.container.offsetWidth;
+                this.colCount = parseInt(this.parentWidth / this.width);//列数
+                this.cranny = (this.parentWidth % this.width) / (this.colCount + 1);
+                this.arr = new Array(this.colCount);//上下的间隙
+                this.arr.fill(this.cranny)
+            }
+
+            setStyle() {
+                // console.log(this.selector);
+                Utils.setStyle(`
+            ${this.selector} {
+                position:relative;
+            }
+            ${this.selector} img{
+                position:absolute;
+                width:${this.width}px;
+            }
+        `, "waterFall")
+            }
+
+
+            render() {
+                for (var i = 0; i < this.imgs.length; i++) {
+
+                    let imgDom = document.createElement("img");
+                    imgDom.src = this.imgs[i];
+                    this.container.appendChild(imgDom);
+                    this.imgDoms.push(imgDom);
+                }
+            }
+
+
+            updatePos() {
+                for (let i = 0; i < this.imgDoms.length; i++) {
+                    let colIndex = i % this.colCount;
+                    // console.log(this.width);
+                    // console.log(this.colCount + 1);
+                    // console.log(this.cranny);
+                    console.log(colIndex * this.width + (this.colCount + 1) * this.cranny);
+                    this.imgDoms[i].style.cssText =
+                        `
+                        left:${colIndex * this.width + (colIndex + 1) * this.cranny}px;
+                        top:${this.arr[colIndex]}px;
+                        `
+                    // console.log(this.colCount + 1);
+                    this.arr[colIndex] += this.imgDoms[i].offsetHeight + this.cranny;
+                    // console.log(colIndex);
+                    // console.log(this.imgDoms[1].offsetWidth);
+                    // console.log(this.arr);
+                }
+
+            }
+            addEvent() {
+                this.imgDoms[this.imgDoms.length - 1].onload = () => {
+                    this.updatePos();
+                }
+                window.addEventListener("resize", this.resizeHandle)
+            }
+            // 窗口调整大小后，重新计算。
+            resizeHandle = () => {
+                this.setData();
+                this.updatePos();
+            }
+        }
+
+
+
+        window.onload = function () {
+            let imgs = [];
+            for (let i = 0; i < 70; i++) {
+                imgs.push(`./images/${i + 1}.jpg`);
+            }
+
+            new WaterFall({
+                selector: "#box1",
+                imgs,
+                width: 100
+            })
+        }
+    </script>
+</body>
+
+</html>

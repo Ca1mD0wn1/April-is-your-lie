@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+
+            width: 80%;
+            height: 600px;
+            border: 1px solid red;
+            overflow: auto;
+        }
+
+        #box2 {
+            width: 80%;
+            height: 600px;
+            border: 1px solid blue;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box1">
+
+    </div>
+
+
+    <div id="box2">
+
+    </div>
+
+    <script type="module">
+        import WaterFall from "./js/WaterFall.js"
+
+        window.onload = function () {
+            let imgs = [];
+            for (let i = 0; i < 30; i++) {
+                imgs.push(`./img/${i + 1}.jpg`);
+            }
+
+            new WaterFall({
+                selector: "#box1",
+                imgs,
+                width: 100
+            })
+
+            imgs = [];
+            for (let i = 30; i < 70; i++) {
+                imgs.push(`./img/${i + 1}.jpg`);
+            }
+
+            new WaterFall({
+                selector: "#box2",
+                imgs,
+                width: 150
+            })
+
+        }
+
+
+    </script>
+</body>
+
+</html>

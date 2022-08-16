@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+        .box2{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="添加一个样式" onclick="addClassName()">
+    <div class="box3"></div>
+    <div class="box4"></div>
+    <script>
+    
+    function addClassName(){
+           let myStyle = document.createElement("style");
+           myStyle.title="custom";
+           document.head.appendChild(myStyle);
+           myStyleSheet = document.styleSheets[document.styleSheets.length-1];
+           myStyleSheet.insertRule(`
+                        .box3{
+                            width: 400px;
+                            height: 400px;
+                            background-color: green;
+                        }
+                `,myStyleSheet.cssRules.length);
+
+           myStyleSheet.insertRule(`
+                        .box4{
+                            width: 40px;
+                            height: 40px;
+                            background-color: red;
+                        }
+                `,myStyleSheet.cssRules.length)
+        }
+
+    </script>
+</body>
+</html>
