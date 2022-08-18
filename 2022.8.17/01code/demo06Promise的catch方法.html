@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1、promise
+        // 1）、proimse代表一个异步操作，所以，把曾经的异步代码放在Promise里
+        // 2）、promise（异步操作）成功时，调用resolve（then方法的第一个参数）
+        // 3）、promise（异步操作）失败时，调用reject（then方法的第二个参数）
+        // 4）、promise的catch方法处理的是then方法的第二个参数。
+
+
+
+        function fn01() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn01成功");
+                    } else {
+                        reject();
+                        console.log("fn01失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+
+        function fn02() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn02成功");
+                    } else {
+                        reject();
+                        console.log("fn02失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn03() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn03成功");
+                    } else {
+                        reject();
+                        console.log("fn03失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn04() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn04成功");
+                    } else {
+                        reject();
+                        console.log("fn04失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn05() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn05成功");
+                    } else {
+                        reject();
+                        console.log("fn05失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn06() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn06成功");
+                    } else {
+                        reject();
+                        console.log("fn06失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn07() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn07成功");
+                    } else {
+                        reject();
+                        console.log("fn07失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function fn08() {
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    let num = parseInt(Math.random() * 10);
+                    console.log("num", num);
+                    // console.log(count++);
+                    if (num <= 5) {
+                        resolve();
+                        console.log("fn08成功");
+                    } else {
+                        reject();
+                        console.log("fn08失败");
+                    }
+                }, 1000);
+            });
+            return p1;
+        }
+        function success() {
+            console.log("成功!");
+        }
+
+        fail1 = () => {
+            console.log("失败1!");
+        }
+        fail2 = () => {
+            console.log("失败2!");
+        }
+        fail3 = () => {
+            console.log("失败3!");
+        }
+        fail4 = () => {
+            console.log("失败4!");
+        }
+        fail5 = () => {
+            console.log("失败5!");
+        }
+        catchFail = () => {
+            console.log("CATCH失败");
+        }
+        window.onload = function () {
+            fn01().then(fn02).then(fn03).then(fn04, fail1).then(fn05, fail2).then(fn06, fail3).then(fn07, fail4).then(fn08, fail5).catch(catchFail);
+        }
+
+    </script>
+</body>
+
+</html>

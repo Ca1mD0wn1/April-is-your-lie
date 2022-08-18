@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 1、promise:
+        // 1）、proimse代表一个异步操作，所以，把曾经的异步代码放在Promise里
+        // 2）、promise（异步操作）成功时，调用resolve（then方法的第一个参数）
+        // 3）、promise（异步操作）失败时，调用reject（then方法的第二个参数）
+
+        /*
+        new Promise(function(resolve,reject){
+            // resolve:是异步操作成功时调用的函数，是then方法的第一个参数
+            // reject：是异步操作失败时调用的函数，是then方法的第二个参数
+        });
+        */
+
+        function fn01() {
+            console.log("fn01开始");
+
+            let p1 = new Promise(function (resolve, reject) {
+
+                setTimeout(function () {
+                    console.log("fn01的异步结束");
+                    let num = parseInt(Math.random() * 10);
+                    if (num <= 5) {
+                        resolve();
+                    } else {
+                        reject();
+                    }
+
+                }, 1000);
+
+            });
+            console.log("fn01结束");
+            return p1;
+        }
+
+        function fn02() {
+            console.log("fn02开始");
+            let p1 = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log("fn02的异步结束");
+                    resolve();
+                }, 2000);
+            });
+
+            console.log("fn02结束");
+            // return p1;
+
+        }
+
+        function fail() {
+            console.log("失败");
+        }
+
+        function fn03(cb) {
+            console.log("fn03开始");
+            console.log("fn03结束");
+        }
+
+        window.onload = function () {
+            fn01().then(fn02, fail).then(fn03);
+        }
+
+    </script>
+</body>
+
+</html>

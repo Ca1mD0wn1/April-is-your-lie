@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function fn01(num) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log("fn01异步结束");
+                    resolve(num * num);
+                }, 1000);
+            });
+        }
+
+        function fn02() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log("fn02异步结束");
+                    resolve("fn02结束");
+                }, 2000);
+            });
+        }
+
+        window.onload = function () {
+
+            var t;
+            console.time(t);
+
+            // race：最快的异步操作完成了，就会执行then里的函数。相当于结束了
+            Promise.race([fn01(3), fn02()]).then(function (result) {
+                console.log("所有异步操作结束");
+                console.log(result);
+                console.timeEnd(t);
+            })
+
+
+        }
+
+    </script>
+</body>
+
+</html>

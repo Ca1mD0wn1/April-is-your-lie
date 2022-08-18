@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+        }
+
+        #redLight {
+            background-color: white;
+        }
+
+        #greenLight {
+            background-color: white;
+        }
+
+        #yellowLight {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="redLight">
+
+    </div>
+    <br />
+    <div id="greenLight">
+
+    </div>
+    <br />
+    <div id="yellowLight">
+
+    </div>
+    <script>
+
+        window.onload = function () {
+            let redLightDom = document.querySelector("#redLight");
+            let greenLightDom = document.querySelector("#greenLight");
+            let yellowLightDom = document.querySelector("#yellowLight");
+
+            let trafficLight = (dom, color, count) => {
+                dom.style.backgroundColor = color;
+                dom.innerHTML = count;
+                return new Promise(function (resolve, reject) {
+                    let myTimer = setInterval(function () {
+                        count--;
+                        if (count <= 0) {
+                            count = 0;
+                            clearInterval(myTimer);
+                            dom.style.backgroundColor = "white";
+                            resolve();
+                        }
+                        dom.innerHTML = count;
+                    }, 500);
+                })
+            }
+            function flashing() {
+                trafficLight(redLightDom, "red", 5)
+                    .then(() => trafficLight(greenLightDom, "green", 4))
+                    .then(() => trafficLight(yellowLightDom, "yellow", 3)).then(flashing);
+            }
+            flashing();
+        }
+
+    </script>
+</body>
+
+</html>
