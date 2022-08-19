@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        用户名：<input id="username" type="text"  >
+    </p>
+    <p>
+        密码：<input id="userpass" type="text"  >
+    </p>
+    <p>
+        确认密码：<input id="userpass2" type="text"  >
+    </p>
+    <br/>
+    <input id="btnReg" type="button" value="注册" />
+    <div id="msg"></div>
+
+    <script>
+
+/*
+        接口文档：
+
+        一、注册：
+
+        1、请求地址： regSave.php
+        2、请求方式：post
+        3、前端给后端传递的参数：
+            username：用户名
+            userpass：密码
+
+        4、后端给前端传递数据
+
+          success：表示注册成功
+          fail：表示注册失败
+
+*/
+        let txtUserName = document.getElementById("username");
+        let txtUserPass = document.getElementById("userpass");
+
+        document.getElementById("btnReg").onclick = function(){
+
+            // 一、前端的验证
+            // 1、非空判断
+            // 2、正则
+            // 3、两次密码是否一样
+
+            // 二、发送请求
+        
+            // 1、创建XMLHttpRequest对象
+
+            let xhr = new XMLHttpRequest();
+
+            // 2、设置请求相关信息：
+
+            xhr.open("post","regSave.php",true);
+
+
+            // 3、设置回调函数：后端响应回来后，调用的函数
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+
+                   if(xhr.responseText=="success"){
+                     document.getElementById("msg").innerHTML="亲，恭喜您，注册成功！";
+                   }else{
+                     document.getElementById("msg").innerHTML="亲，不好意思，注册失败！";
+                   }
+
+                   
+                }
+            }
+
+            // post请求方式，得设置请求头。content-type表示发送给后端的数据类型
+            xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+            
+            // post传递给后端的数据，放在send函数的参数里。
+            let str = `username=${txtUserName.value}&userpass=${txtUserPass.value}`;
+            // 4、发送
+            xhr.send(str);
+        }
+
+    </script>
+</body>
+</html>

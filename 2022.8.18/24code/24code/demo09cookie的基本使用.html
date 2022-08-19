@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="保存cookie" onclick="saveData()">
+    <input type="button" value="保存cookie2" onclick="saveData2()">
+    <input type="button" value="获取cookie" onclick="getData()">
+    <input type="button" value="删除cookie" onclick="delData()">
+
+    <script>
+
+        function saveData(){
+            // document.cookie="键=值;expires=失效时间点;path=可访问的路径;domain=可访问的域名"
+
+            let d = new Date();
+            d.setDate(d.getDate()+7);
+            document.cookie="username=曹继承;expires="+d.toGMTString();
+        }
+
+        function saveData2(){
+            let d = new Date();
+            d.setDate(d.getDate()+7);
+            document.cookie="city=西安;expires="+d.toGMTString();        
+        }
+
+        function getData(){
+            // console.log(document.cookie); //username=曹继承; city=西安
+            let obj = {};
+            let str = document.cookie;
+            let arr = str.split("; ");
+            arr.forEach(item=>{
+                let [key,value] = item.split("=");
+                obj[key] = value;
+            })
+
+            console.log(obj.username);
+            console.log(obj.city);
+        }
+
+        function delData(){
+            let d = new Date();
+            d.setDate(d.getDate()-1);
+            document.cookie="username=byebye;expires="+d.toGMTString();
+        }
+
+    </script>
+
+</body>
+</html>

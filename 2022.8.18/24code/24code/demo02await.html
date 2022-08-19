@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // await:等待
+        // 1、await必须写在带有async修饰的函数里
+        // 2、await 修饰的是promise对象
+        // 3、await修饰promise对象后，返回值是resolve里的参数
+        // 4、await：会让await修饰的代码的后面的所有代码（awiat所在函数的代码）等待。await修饰的代码是立即执行的。但是并不会影响其它函数代码的正常执行。
+
+        // 一、不使用async和await
+        function fn01() {
+
+            let p = new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve("hehe");
+                }, 1000)
+            })
+
+            p.then(function (str) {
+                console.log("str", str);
+            })
+
+        }
+
+        //     fn01();
+
+        // 二、使用async和await
+
+        async function fn01() {
+
+            console.log("1");
+            let p = await new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    resolve("hehe");
+                }, 1000)
+            })
+
+            console.log("2");
+            console.log("p", p);
+        }
+
+        fn01();
+        console.log("函数外面的代码");
+
+    </script>
+</body>
+
+</html>

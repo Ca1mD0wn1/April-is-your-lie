@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+</head>
+<body>
+    <h1>欢迎您的登录</h1>
+    <p>
+        用户名:
+        <input id="username" type="text" />
+    </p>
+    <p>
+        密码:
+        <input id="userpass" type="password" />
+    </p>
+    <p>
+        <input id="btnLogin" type="button" value="登录">
+    </p>
+    
+    <script type="module">
+        import CookieUtils from "./js/cookieUtils.js"
+
+        let btnLogin = document.getElementById("btnLogin");
+        let textUserName = document.getElementById("username");
+        let textUserPass = document.getElementById("userpass");
+
+        btnLogin.onclick = function(){
+            let username = textUserName.value;
+            let userpass = textUserPass.value;
+
+            if(username=="admin" && userpass=="123456"){
+                CookieUtils.saveCookie({
+                    key:"username1",
+                    value:username,
+                    dayCount:7
+                });
+                location.href="index.html"
+            }
+        }
+
+    </script>
+</body>
+</html>

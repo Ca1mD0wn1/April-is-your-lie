@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style type="text/css">
+
+	</style>
+</head>
+
+<body>
+
+	<script>
+
+		console.log(0); //主线程
+		setTimeout(function () {
+			console.log(1);//宏任务
+		}, 1000);
+		setTimeout(function () {
+			console.log(2);//宏任务
+		}, 0);
+		new Promise(function (resolve, reject) {
+			console.log(3);//主线程
+			resolve(); //微任务
+		}).then(() => {
+			console.log(4);//微任务，这个then里的回调代码就是resolve
+		});
+		async function async1() {
+			console.log(5); //同步，主线程
+			let temp = await async2(); //async2函数里有promise
+			console.log(temp);
+			console.log(6);
+			return "async1";
+		}
+		async function async2() {
+			console.log(7); //同步
+			return "async2";
+		}
+		async1();
+		console.log(8);//主线程，
+
+
+	</script>
+</body>
+
+</html>

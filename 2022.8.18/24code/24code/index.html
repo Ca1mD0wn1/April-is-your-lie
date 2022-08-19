@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+
+</head>
+<body>
+
+    <div id="welcome-box" style="display: none;">
+        欢迎您： <span id="username">亲</span>
+    </div>
+    <div id="login-box" style="display: none;">
+        <input id="btnLogin" type="button" value="去登录">
+    </div>
+    
+    <script type="module">
+        import CookieUtils from "./js/cookieUtils.js"
+
+        window.onload = function(){
+            show();
+
+            document.getElementById("btnLogin").onclick = function(){
+                location.href="login.html";
+            }
+        }
+
+        function show(){
+            let username = CookieUtils.getCookie("username1");
+            if(username){
+                document.getElementById("username").innerHTML = username;
+                document.getElementById("welcome-box").style.display = "block";
+            }else{
+                document.getElementById("login-box").style.display = "block";
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>

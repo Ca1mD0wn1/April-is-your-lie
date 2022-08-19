@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				border:1px solid black;
+				text-align: center;
+				line-height: 50px;
+				font-size: 30px;
+				font-weight: bold;
+				color:white;
+			}
+			#redLight{
+				background-color: white;
+			}
+			#greenLight{
+				background-color: white;
+			}
+			#yellowLight{
+				background-color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="redLight">
+			
+		</div>
+		<br/>
+		<div id="greenLight">
+			
+		</div>
+		<br/>
+		<div id="yellowLight">
+			
+		</div>
+        <script>
+            
+            let redLightDom = document.getElementById("redLight");
+            let greenLightDom = document.getElementById("greenLight");
+            let yellowLightDom = document.getElementById("yellowLight");
+
+
+            function colorLight(dom,color,count){
+                dom.style.backgroundColor=color;
+                dom.innerHTML = count;    
+
+                return new Promise(function(resolve,reject){
+                    let myTimer = setInterval(function(){
+                        count--;
+                        if(count<=0){
+                            count=0;
+                            clearInterval(myTimer);
+                            dom.style.backgroundColor="white";
+                            resolve();
+                        }
+                        dom.innerHTML = count;                        
+                    },500);
+                })
+                
+            }
+
+            async function flashing(){
+
+                await colorLight(redLightDom,"red",5);               
+                
+                await colorLight(greenLightDom,"green",4);               
+
+                await colorLight(yellowLightDom,"yellow",3)
+               
+                flashing();
+
+                
+            }
+
+            window.onload = function(){
+                flashing();
+            }
+
+
+        </script>
+	</body>
+</html>

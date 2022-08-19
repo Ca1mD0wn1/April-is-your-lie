@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        用户名：<input id="username" type="text" value="tianwater_110" >
+    </p>
+    <p>
+        密码：<input id="userpass" type="text" >
+    </p>
+    <input type="checkbox"  id="isNotLogin">七天免登陆
+    <input id="btnLogin" type="button" value="登录"/>    
+    <div id="msg"></div>
+
+    <script type="module">
+        import CookieUtils from "./js/cookieUtils.js"
+
+        /*
+                接口文档：
+        
+                一、登录
+        
+                1、请求地址： loginCheck.php
+                2、请求方式：post
+                3、前端给后端传递的参数：
+                    username：用户名
+                    userpass：密码
+        
+                4、后端给前端传递数据
+        
+                    success：表示登录成功
+                    fail：表示登录失败
+        
+        */
+        let txtUserName = document.getElementById("username");
+        let txtUserPass = document.getElementById("userpass");
+        let btnLogin = document.getElementById("btnLogin");
+        let msg = document.getElementById("msg");
+        let isNotLogin = document.getElementById("isNotLogin");
+        
+        btnLogin.onclick = function(){
+            if(txtUserName.value.trim()=="" || txtUserPass.value==""){
+                msg.style.color= "red";
+                msg.innerHTML = "亲，请输入用户名和密码";
+                return ;
+            }
+
+            let xhr = new XMLHttpRequest();
+
+            xhr.open("post","loginCheck.php");
+            
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4 && xhr.status==200){
+                    if(xhr.responseText=="success"){
+                        msg.style.color= "green";
+                        msg.innerHTML = "登录成功！"
+                        if(isNotLogin.checked){
+                            CookieUtils.saveCookie({
+                                key:"username",
+                                value:txtUserName.value,
+                                dayCount:7
+                            });
+                        }
+                        location.href="index.html";
+                    }else{
+                        msg.style.color= "red";
+                        msg.innerHTML = "登录失败！"
+                    }
+                }
+            }
+
+            xhr.setRequestHeader("content-type","application/x-www-form-urlencoded");
+
+            let str = `username=${txtUserName.value}&userpass=${txtUserPass.value}`;
+            xhr.send(str);
+        }
+
+    </script>
+</body>
+
+</html>

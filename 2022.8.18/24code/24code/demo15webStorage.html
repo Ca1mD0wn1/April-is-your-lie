@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="保存数据" onclick="saveData()">
+    <input type="button" value="保存数据2" onclick="saveData2()">
+    <input type="button" value="获取数据" onclick="getData()">
+    <input type="button" value="删除数据" onclick="delData()">
+
+    <script>
+
+        function saveData(){
+            localStorage.setItem("username","曹继承");            
+            sessionStorage.setItem("username","曹继承");            
+        }
+
+        function saveData2(){
+            localStorage.setItem("city","西安");
+        }
+
+        function getData(){
+            let u1 = localStorage.getItem("username");
+            console.log("u1",u1);
+            let city1 = localStorage.getItem("city");
+            console.log("city1",city1);
+        }
+
+        function delData(){
+            localStorage.removeItem("username");
+        }
+
+    </script>
+
+</body>
+</html>

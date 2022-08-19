@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="btnSave01" type="button" value="保存cookie">
+    <input id="btnSave02" type="button" value="保存cookie2" >
+    <input id="btnGet" type="button" value="获取cookie" >
+    <input id="btnDel" type="button" value="删除cookie" >
+
+    <script type="module">
+        import CookieUtils from "./js/cookieUtils.js"
+
+        let btnSave01 = document.getElementById("btnSave01");
+        let btnSave02 = document.getElementById("btnSave02");
+        let btnGet = document.getElementById("btnGet");
+        let btnDel = document.getElementById("btnDel");
+
+        btnSave01.onclick  =  function(){            
+            CookieUtils.saveCookie({
+                key:"username",
+                value:"曹继承",
+                dayCount:7
+            });
+        }
+
+        btnSave02.onclick  =  function(){            
+            CookieUtils.saveCookie({
+                key:"city",
+                value:"西安",
+                dayCount:30
+            });
+        }
+
+        btnGet.onclick  =  function(){            
+            console.log(CookieUtils.getCookie("username"));
+            console.log(CookieUtils.getCookie("city"));
+        }
+
+        btnDel.onclick  =  function(){     
+            CookieUtils.deleteCookie("username");
+        }
+
+    </script>
+
+</body>
+</html>

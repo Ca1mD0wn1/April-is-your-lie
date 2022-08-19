@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="保存cookie" onclick="saveData()">
+    <input type="button" value="保存cookie2" onclick="saveData2()">
+    <input type="button" value="获取cookie" onclick="getData()">
+
+    <script>
+
+        // path:默认值是当前文件所在路径及其子路径下的所有文件可以访问。
+        //      / 表示网站的根路径，既就是所有的页面都可以使用。
+        //      /goods   表示goods文件夹下的文件及其子文件夹下的文件都可以访问。
+
+        // domain：默认就是当前域名。
+        //     www.163.com :表示，保存的cookie可以给 www.163.com域名下的文件访问。
+        //     
+
+        function saveData(){
+            // document.cookie="键=值;expires=失效时间点;path=可访问的路径;domain=可访问的域名"
+
+            let d = new Date();
+            d.setDate(d.getDate()+7);
+            document.cookie="username=曹继承;expires="+d.toGMTString()+";path=/;";
+        }
+
+
+        function getData(){
+            // console.log(document.cookie); //username=曹继承; city=西安
+            let obj = {};
+            let str = document.cookie;
+            let arr = str.split("; ");
+            arr.forEach(item=>{
+                let [key,value] = item.split("=");
+                obj[key] = value;
+            })
+
+            console.log(obj.username);
+            console.log(obj.city);
+        }
+
+
+    </script>
+
+</body>
+</html>

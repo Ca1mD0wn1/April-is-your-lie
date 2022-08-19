@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+         form表单发送请求：其实就是浏览器发送请求。请求的代码不用程序员写。
+         1、程序员只需要说清楚请求的地址，请求的方式，请求的参数    
+         2、按钮使用submit。
+
+         补充：
+            button和submit的区别：
+            1）、button：button按钮触发的事件前端的。不会找后端
+            2）、submit：submit按钮触发的是form表达的onsubmit事件，并且会找后端。
+    -->
+    <form action="regSave.php" method="post">
+        <p>
+            用户名：<input name="username" type="text"  >
+        </p>
+        <p>
+            密码：<input name="userpass" type="text"  >
+        </p>
+        <p>
+            确认密码：<input id="userpass2" type="text"  >
+        </p>
+        <br/>
+        <input type="submit" value="注册" />
+    </form>
+
+    <script>
+
+/*
+        接口文档：
+
+        一、注册：
+
+        1、请求地址： regSave.php
+        2、请求方式：post
+        3、前端给后端传递的参数：
+            username：用户名
+            userpass：密码
+
+        4、后端给前端传递数据
+
+          success：表示注册成功
+          fail：表示注册失败
+
+*/
+
+    </script>
+</body>
+</html>

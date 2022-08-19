@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+    
+        // async:可以修饰函数，
+        // 1、表示函数内部有异步操作，
+        // 2、返回值是promise。把原函数的返回值传给了resolve函数。
+        // 3、
+       async function fn01(){
+            console.log("fn01");
+            return "hehe";
+        }
+
+        // function fn01(){
+
+        //     return new Promise(function(resolve,reject){
+        //         console.log("fn01");
+        //         setTimeout(function(){
+        //             resolve("hehe");
+        //         },1000);
+        //     });
+        // }
+
+
+        let str = fn01();
+
+        str.then((ttt)=>{
+            console.log("ttt",ttt);
+        })
+
+
+    </script>
+</body>
+</html>

