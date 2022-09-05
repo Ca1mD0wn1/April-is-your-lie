@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 定义一个工厂类（标签类）
+
+        class HTMLFactory{
+            constructor(){
+                this.dom;
+            }
+
+            createDom(tagName,obj){
+                this.dom = document.createElement(tagName);
+                for(let key in obj){
+                    if(typeof obj[key] === "object"){
+                        for(let sonkey in obj[key] ){
+                            this.dom[key][sonkey] = obj[key][sonkey];
+                        }
+                    }else{
+                        this.dom[key] = obj[key];
+                    }
+                }
+            }
+
+            createImg(obj){
+                this.createDom("img",obj);
+                return this;
+            }
+
+            appendTo(parentNode){                
+                parentNode.appendChild(this.dom);
+            }
+        }
+
+        
+
+        let factory = new HTMLFactory();
+
+        factory.createImg({
+            src:"img/1.jpg",
+            style:{
+                width:"100px",
+                height:"200px"
+            }
+        }).appendTo(document.body);
+
+
+
+
+    </script>
+</body>
+</html>

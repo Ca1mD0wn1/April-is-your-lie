@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let person = {
+            name: "张梦姣",
+            isAdult: false
+        }
+
+        Object.defineProperties(person, {
+            age: {
+                set: function () { },
+                get: function () { }
+            },
+            sex: {
+                value: "女",
+                writable: false,
+                enumerable: true
+            }
+        })
+
+        var desc = Object.getOwnPropertyDescriptor(person, "name"); // 获取对象某个属性的描述对象
+        console.log(desc);
+        var desc = Object.getOwnPropertyDescriptor(person, "age"); // 获取对象某个属性的描述对象
+        console.log(desc);
+        var desc = Object.getOwnPropertyDescriptor(person, "sex"); // 获取对象某个属性的描述对象
+        console.log(desc);
+
+
+        // var desc = Object.getOwnPropertyDescriptors(person);  // 获取对象所有属性的描述对象
+        // console.log(desc);
+
+        // //冻结
+        // Object.freeze(person);       // 冻结，不能删除，不能修改，不能增加属性
+        // person.height = 180;
+        // console.log(person);
+
+        // delete person.name
+        // console.log(person);
+
+        // person.name="刘雅婷";
+        // console.log(person);
+
+        // // 密封     
+        // Object.seal(person);   // 不能删除属性和增加属性，只能修改属性
+
+        // person.height = 180;
+        // console.log(person);
+
+        // delete person.name
+        // console.log(person);
+
+        // person.name="刘雅婷";
+        // console.log(person);
+
+        // // 禁止扩展（不能再给对象增加属性和方法）
+        // Object.preventExtensions(person);
+
+
+        // console.log(Object.isFrozen(person))//判断是否冻结
+        // Object.isSealed(o);//判断是否被密封
+        // Object.isExtensible(o);//判断是否禁止扩展
+
+        // console.log(Object.length);//构造函数形参数量
+        // console.dir(Object);
+
+        class Programmer {
+            constructor(a, b, c) {
+            }
+        }
+
+        console.log(Programmer.length);
+
+        // // 任何一个函数都有name属性，就是函数名(类名)
+        console.log(Object.name)
+        console.log(Programmer.name)
+
+
+    </script>
+</body>
+
+</html>

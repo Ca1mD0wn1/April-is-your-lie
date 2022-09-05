@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        
+        // 1、每个函数（对象）都会有一个prototype属性。
+        // 2、prototype属性在函数是构造函数时，特别有用（所有的对象会共享构造函数的prototype属性）；
+        Array.prototype.myPush = function(){
+
+        }
+
+        let arr = [1,2,3];
+        arr.myPush();
+
+        function Person(name){
+            this.name = name;
+        }
+
+        Person.prototype.eat = function(){
+            console.log("吃");
+        }
+
+        
+        let p1 = new Person("王娇");
+        let p2 = new Person("王敏");
+
+        console.log(p1.name);
+        p1.__proto__.eat();
+        p1.eat();
+
+        console.log(p2.name);
+        p2.__proto__.eat();
+        p2.eat();
+
+
+        
+    </script>
+</body>
+</html>

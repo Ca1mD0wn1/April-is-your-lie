@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 1、对象的三种创建：
+
+        // 第一种
+        // let o1 = new Object();
+        // o1.a = 1;
+        // console.dir(o1);
+        // // 对象的[[prototype]]属性在控制台可以看到，但是，不能使用。
+        // console.log(o1.a);
+        // // console.log(o1.[[prototype]]);//不能直接使用，如果想看[[prototype]] 里面的内容。通过 __proto__
+        // console.log(o1.__proto__);//__proto__ 表示原型
+
+
+        // 第二种
+        // let o2 = {};//这个是 new Object()的字面量写法。
+        // o2.a = 1;
+        // console.dir(o2);
+        // // 对象的[[prototype]]属性在控制台可以看到，但是，不能使用。
+        // console.log(o2.a);
+        // // console.log(o1.[[prototype]]);//不能直接使用，如果想看[[prototype]] 里面的内容。通过 __proto__
+        // console.log(o2.__proto__);//__proto__ 表示原型
+
+  
+        // 第三种
+
+        // Object.create(); 用一个对象创建另外一个对象。把一个对象作为另外一个对象原型进行创建对象。
+        // let o2 = Object(o1); 创建对象o2，把o1作为o2的原型，
+
+        let o1 = {a:1,b:2};
+        console.log("o1",o1);
+
+        let o2 = Object.create(o1);// 把o1作为o2 的[[prototype]] 创建对象o2。
+        o2.c = 3;
+        console.log("o2",o2);
+
+        // 当用对象访问属性是，如果说对象所在内存没有该属性，那么，到[[prototype]]里面去找。
+        console.log("o2.a",o2.a);
+        console.log("o2.__proto__.a",o2.__proto__.a);//就是console.log("o2.a",o2.a);
+        console.log("o2.b",o2.b);
+        console.log("o2.__proto__.b",o2.__proto__.b);//就是console.log("o2.b",o2.b);
+
+        console.log("o2.c",o2.c);
+
+
+        
+
+
+    </script>
+</body>
+</html>

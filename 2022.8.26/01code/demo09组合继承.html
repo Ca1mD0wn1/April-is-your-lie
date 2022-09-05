@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        function Person(name,sex){
+            if(arguments.length>0){
+                this.name = name;
+                this.sex = sex;
+            }
+
+            this.books = new Array();
+        }
+
+        Person.prototype.eat = function(str){
+            console.log(this.name+"在吃"+str);
+        }
+
+        function Programmer(name,sex,language){
+            // call的继承：
+            Person.call(this,name,sex);
+            this.language =language;
+        }
+
+        // 原型的方式继承（主要需要父类的原型属性）
+        Programmer.prototype = new Person();
+
+        Programmer.prototype.writeCode =function(){
+            console.log("写代码");
+        }
+
+        let p1 = new Programmer("曹继承","男","js");
+        let p2 = new Programmer("曹继承1","男","js1");
+
+        p1.books[0] = "三国演义";
+        p2.books[0] = "西游记";
+
+        console.log("p1.books[0]",p1.books[0]);
+        console.log("p2.books[0]",p2.books[0]);
+
+        console.log(p1.name);
+        p1.writeCode();
+
+
+        console.log(p1.constructor == Person);//true
+        console.log(p1.constructor == Programmer);//false
+
+        console.log(p1 instanceof Person);//true
+        console.log(p1 instanceof Programmer);//true
+
+    </script>
+</body>
+</html>

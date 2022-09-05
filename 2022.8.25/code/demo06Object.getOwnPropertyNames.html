@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let person = {
+            name: "张梦姣",
+            isAdult: false
+        }
+
+        let o1 = { a: 1, b: 2 };
+        Object.setPrototypeOf(person, o1);
+
+
+        let s1 = Symbol();
+        person[s1] = "hehe";
+
+        console.log(person);
+
+        Object.defineProperties(person, {
+            age: {
+                set: function () { },
+                get: function () { }
+            },
+            sex: {
+                value: "女",
+                writable: false,
+                enumerable: true
+            }
+        })
+
+        // 获取对象的所有的属性名（键名），可以获取不可枚举的属性。但是，不可以获取原型链上的属性，也不能获取Symbol属性名
+        // Object.getOwnPropertyNames();
+
+        let keys = Object.getOwnPropertyNames(person);
+        console.log(keys);
+
+        // 获取Symbol属性名
+        console.log(Object.getOwnPropertySymbols(person));
+    </script>
+</body>
+
+</html>

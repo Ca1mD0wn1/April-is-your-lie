@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let person = {
+            name:"张梦姣",
+            sex:"女",
+            isAdult:false
+        }
+
+        // 给对象增加属性：
+        // person.age = 18;
+        // console.log(person);
+
+        // 以上方式增加属性存在的问题是：
+        // 首先，age是有限制的（如：18-60之间的数字）。
+        // 但是，目前这种方式赋值时，是没法限制的。
+        // 怎么办呢？ Object.defineProperty
+
+        // person.age = 160;
+        // console.log(person);
+     
+        // person.age = "hehe";
+        // console.log(person);
+
+        // 一、Object.defineProperty(对象，属性名,属性描述):给对象增加属性
+
+        // 1、age属性不可改
+        // Object.defineProperty(person,"age",{
+        //     value:12,//初始值
+        //     writable:false
+        // })
+
+        // console.log(person);
+        // person.age = 18;
+        // console.log(person);
+        
+        // 2、age属性取值的限制
+        // 给属性的描述加上set和get。这种属性叫做访问器属性，这种属性不能存储值。
+
+        let _age = 12;// 此变量用来保存访问器属性age的值。
+        Object.defineProperty(person,"age",{
+            // set函数的调用时机是：修改age属性时。
+            set:function(val){
+                if(val<0 || val>150){
+                    return;
+                }
+                // 因为：是否成年和年龄是相关的，所以，当年龄发生变化时，需要修改isAdult
+                if(val>=18){
+                    this.isAdult = true
+                }else{
+                    this.isAdult = false
+                }
+                _age = val;
+            },
+            get:function(){
+                return _age;
+            }
+        })
+
+        console.log(person.isAdult);
+
+        person.age = 14;
+        console.log("person.age",person.age);
+        console.log(person.isAdult);
+
+        
+        person.age = 21;
+        console.log("person.age",person.age);
+        console.log(person.isAdult);
+
+        
+        person.age = 218;
+        console.log("person.age",person.age);
+        console.log(person.isAdult);
+
+
+
+    </script>
+</body>
+</html>

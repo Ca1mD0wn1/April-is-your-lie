@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+li{
+    list-style: none;
+}
+
+#box1{
+    width: 200px;
+    height: 200px;
+    background-color: red;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        // 1、闭包：
+        // 函数的嵌套定义，内部函数叫做闭包。闭包除了表示内部函数外，还有它对其周围状态。
+        //  闭包可以让一个函数（内部）访问另外一个函数（外部函数）的局部变量
+                
+        // 2、闭包的基本代码；
+        
+        function fn01(){
+            let num = 100;//fn01函数的局部变量
+            console.log("fn01");            
+            return function fn02(){
+                // fn02是闭包。
+                console.log("fn02",num);
+            }
+        }
+
+        let f = fn01();
+
+        f();
+
+
+        // window.onload = function(){
+        //     var aaa = 10;
+
+        //     box.onclick = function(){
+        //         console.log(aaa);
+        //     }
+
+        // }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+.div {
+  width: 200px;
+  height: 300px;
+  background-color: #f00;
+  font-size: 14px;
+}
+.div p {
+  width: 200px;
+}
+.div p span {
+  color: #00f;
+}
+.div a {
+  text-decoration: none;
+  color: #fff;
+}

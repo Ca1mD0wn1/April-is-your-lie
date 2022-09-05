@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+
+    <script>
+        // console.dir(Object);
+
+        // console.log(Object.apply);
+
+        // console.dir(Object.prototype);// prototype是类的（构造函数的）
+        // console.dir(Object.__proto__); // __proto__ 一般来说，是对象的。Object的__proto__是个函数
+
+        // Reflect是映射，把Object和Proxy里的功能进行了映射。
+
+        // Reflect的作用
+        // 1、Reflect是把Object（也有proxy）里的很多功能，重新写了一下，
+        // 2、Reflect把这些方法做的更加合理：
+        //    1）、如：Object.defineProperty()，设置失败时，不再抛出异常，而是返回false
+        //    2)、 把命令式的写法（如：delete ，in） 改成函数式的写法。
+        // 3、Reflect的方法名和Proxy的方法名基本上一一对应，可以让Proxy方便的调用Reflect的方法
+        // 4、可能在未来，Object的哪些方法就会去掉了。都在Reflect上。
+
+        // 一、Reflect.construct
+
+        class Person {
+            constructor(name, sex) {
+                this.name = name;
+                this.sex = sex;
+            }
+        }
+
+        let p1 = new Person("王娇", "女");
+
+        let p2 = Reflect.construct(Person, ["刘雅婷", "女"]);
+
+        console.log(p1);
+        console.log(p2);
+
+
+        // 二、Reflect.defineProperty();
+
+        // let o1 = {
+        //     name:"王琛"
+        // }
+
+        // let ok = Reflect.defineProperty(o1,"age",{
+        //     value:12,
+        //     writable:false
+        // })
+
+        // console.log("ok",ok);
+
+        // console.log(o1.age);
+        // o1.age = 18;
+        // console.log(o1.age);
+
+        // 三、Reflect.deleteProperty();:删除属性
+
+        let o1 = { a: 1, b: 2, c: 3 };
+
+        // // delete o1.a;
+
+        // Reflect.deleteProperty(o1,"a");
+
+        // console.log(o1);
+
+        console.log(Reflect.get(o1, "a"));
+
+
+    </script>
+</body>
+
+</html>

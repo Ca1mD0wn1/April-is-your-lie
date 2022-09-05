@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        //1、 Object.create();
+
+        //2、原型链：
+        //  对象的原型链属性是 __proto__。
+        //  当对象访问某个属性时，先在自己的内存中寻找，如果找不到，那么就会去该对象的__proto__ 指向的内存寻找，如果还找不到，那就，再在__proto__寻找。
+        //  知道找到Object为止。找到就找到了，找不到了就是undefined（未定义）。
+
+        // 3、继承：继承链就是原型链。
+        //    对象继承：子对象自动拥有父对象的属性和方法。
+        //    因为，Object是所有对象的根，所以说，Object原型的所有属性和方法，任何对象都可以使用。
+
+
+        let o1 = {
+            a:1,
+            b:2
+        }
+
+        // console.log(o1.a);
+        // console.log(o1.b);
+        // console.log(o1.constructor);
+        // console.log(o1.__proto__.constructor);
+
+        let o2 = Object.create(o1);        
+        o2.c = 3;
+
+        // console.dir(o2);
+        // console.log("o2.c",o2.c);
+        // console.log("o2.a",o2.a);
+        // console.log(o2.__proto__.a);
+        // console.log(o2.__proto__.__proto__.toString);
+        // console.log(o2.toString);
+
+        let o3 = Object.create(o2);
+        o3.d = 4;
+        console.dir(o3);
+
+        // console.log(o3.__proto__.c);
+        // console.log(o3.__proto__.__proto__.a);
+
+        console.log(o3.c);
+        console.log(o3.a);
+        console.log(o3.e);//undefined
+
+        console.log(o3.toString());//[object Object]
+        
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 定义对象的属性名：
+        // 1、一般使用双引号括起来，即：属性名都是字符串格式的数据，后来Symbol出现后，可以是Symbol.
+        // 2、如果属性名是变量，那么就用方括号的方式把变量括起来。
+
+        let a ="b";
+        let s1 = Symbol();
+        let s2= Symbol();
+      
+        let o1 = {
+            a:1,
+            [a]:2,
+            "c":3,
+            [s1]:"hehe",
+            [s2]:"haha",
+            play:function(){
+                console.log("play里的this", this)
+            },
+            run(){
+                // ES6的写法（和class中定义方法是一样的）
+                console.log("run里的this", this)
+            },
+            go:()=>{
+                // 箭头函数里的this，会找上一级作用域（script标签，class的花括号，或者function）；
+                console.log("go里的this", this)
+            },
+            12:"heihei",
+            boolean:"lala"
+        }
+
+        console.log(o1);
+
+        o1.play();
+        o1.run();
+        o1.go();      
+        
+        
+        // script标签里的this是window对象。script标签也是一个作用域范围。
+        console.log("this",this);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        class Person{
+            constructor(name){
+                this.name = name;
+                this.delegate=undefined;//代理
+                this.money = 1000000;
+            }
+
+            // 建立代理和委托的关系。
+            setDelegate(delegate){
+                this.delegate = delegate;
+                delegate.master = this;
+            }
+
+            setMoney(inc){
+
+                this.money += inc;
+
+            }
+
+            getMoney(){
+                return this.money;
+            }
+
+            lookDoor(){
+                if(this.delegate){
+                    this.delegate.lookDoor();
+                }else{
+                    console.log(this.name+"可怜兮兮的盯着大门口……");
+                }
+                
+            }
+
+        }
+
+        class Dog{
+            constructor(name){
+                this.name = name;
+                this.master = undefined;//狗的委托方；
+            }
+
+            lookDoor(){
+                console.log(this.name+"在聚精会神地盯着大门口……");
+                this.master.setMoney(-100);
+            }
+
+        }
+
+        window.onload = function(){            
+            let p1 =new Person("隔壁老王");
+            let d1 = new Dog("小黑");
+
+            p1.setDelegate(d1);//建立p1和d1的关系。
+            
+            p1.lookDoor();
+
+            console.log(p1.getMoney());
+
+
+
+        }
+
+    </script>
+
+</body>
+
+</html>

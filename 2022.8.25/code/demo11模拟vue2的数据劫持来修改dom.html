@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="修改姓名" onclick="changeName()" >
+        <input type="button" value="修改年龄" onclick="changeAge()" >
+        <p id="p01">姓名：{{name}}</p>
+        <p id="p02">姓名：{{name}}</p>
+        <p id="p03">年龄：{{age}}</p>
+        <p id="p04">年龄：{{age}}</p>
+    </div>
+
+    <script>
+
+        let person = {
+            
+        }
+
+        // vue2中，使用Object.defineProperty()来劫持数据的变化
+        let _name =  "王娇";
+        Object.defineProperty(person,"name",{            
+            set:function(value){
+                // 在set函数里，就知道了name的值被改了。
+                if(value==_name){
+                    return ;                    
+                }
+                _name = value;
+                changeNameDom();
+            },
+            get:function(){
+                return _name;
+            }
+        })
+
+        let _age = 16;
+        Object.defineProperty(person,"age",{
+            set:function(value){              
+                if(value==_age){
+                    return ;                    
+                }
+                _age = value;
+                changeAgeDom();
+            },
+            get:function(){
+                return _age;
+            }
+        })
+
+        function render(container,person){
+            let box = document.querySelector(container);
+            let htmlStr = box.innerHTML;
+            htmlStr = htmlStr.replace(/{{name}}/g,person.name);
+            htmlStr = htmlStr.replace(/{{age}}/g,person.age);
+            box.innerHTML = htmlStr;
+        }
+
+        function changeName(){
+            // 需求：当name发生变化时，希望，html里使用name的地方都跟着变化。
+            person.name =  person.name+"1";//            
+        }
+
+        // 修改使用name的dom部分。
+        function changeNameDom(){
+            console.log("changeNameDom",person.name);        
+            document.getElementById("p01").innerHTML = "姓名："+person.name;
+            document.getElementById("p02").innerHTML = "姓名："+person.name;
+        }
+
+        function changeAge(){
+            person.age +=1;
+        }
+
+        function changeAgeDom(){
+            document.getElementById("p03").innerHTML = "年龄："+person.age;
+            document.getElementById("p04").innerHTML = "年龄："+person.age;
+        }
+
+        window.onload = function(){
+            render("#box",person);
+
+        }
+
+        
+
+    </script>
+</body>
+</html>

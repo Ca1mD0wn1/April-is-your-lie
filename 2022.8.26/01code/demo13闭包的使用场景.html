@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        
+        // 1、只有一个方法的对象，相当于用闭包模拟出了类的效果
+
+        // class Person{
+        //     constructor(name,sex){
+        //         this.name = name;
+        //         this.sex = sex;
+        //     }
+        //     eat(){
+        //         console.log("hehe");
+        //     }
+        // }
+
+        // let p1 = new Person("","");
+        // p1.eat();
+
+        // let p2 = new Person("","");
+        // p2.eat();
+        
+
+        // function person(name,sex){
+        //     var name = name;
+        //     var sex =sex;
+        //     return function eat(){
+        //         console.log("hehe",name,sex);
+        //     }
+        // }
+
+        // let pp1 = person("张三","男");
+        
+        // let pp2 = person("王娇","女");
+
+        // pp1();
+        // pp2();
+
+        //2、 如果某些数据，只希望某些函数操作使用，可以用闭包模拟出类的效果
+
+        // (function(){            
+        //     var age = 100;
+
+        //     function fn01(){
+        //         console.log(age);
+        //     }
+
+        //     function fn02(){
+        //         console.log(age);
+        //     }           
+            
+        // })();
+
+
+        class Person1{
+            #age = 100;
+
+            #fn01(){
+                console.log("fn01",this.#age);
+            }
+
+            fn02(){
+                console.log("fn02",this.#age);
+                this.#fn01();
+            }   
+        }
+
+        let p1 = new Person1();
+        // p1.fn01();
+        p1.fn02();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 继承：子类自动拥有父类的属性和方法
+        // 继承的优点：提高了代码的复用性
+
+        function Animal(age) {
+            this.age = age;
+        }
+
+        function Person(name,books) {
+            this.name = name;
+            this.books = books;
+        }
+
+        // Person.prototype = new Animal(0);
+
+        Person.prototype.eat = function (str) {
+            console.log(this.name + "在吃" + str);
+        }
+
+        function Programmer(language) {
+            this.language = language;
+        }
+
+        // 原型继承：让子类的prototype属性指向父类的对象
+        Programmer.prototype = new Person("曹继承");
+
+        Programmer.prototype.writeCode = function (str) {
+            console.log(`${this.name}用${this.language}在写代码${str}`);
+        }
+
+
+        let p1 = new Programmer("js");
+        p1.books[0] = 10;
+
+        let p2 = new Programmer("js");
+        // p2.books = [];
+        p2.books[0] = 80;
+        console.log(p1.books[0]);//原型继承的话，如果父类的属性是引用类型，子类是会共享同一块内存空间
+        console.log(p2.books[0]);//
+
+        p1.eat("包子");
+        p1.writeCode("弹力球");
+
+        function Doctor() {
+
+        }
+
+        Doctor.prototype = new Person("王紫瑜");
+        let d1 = new Doctor();
+
+        d1.eat("米线");
+        console.log(d1.age);
+
+        console.dir(d1);
+
+        console.log(d1.constructor ==  Doctor);//false //d1.__proto__.__proto__.constructor
+        console.log(d1.constructor ==  Person);//true  //d1.__proto__.__proto__.constructor
+
+        console.log(d1 instanceof Doctor);//true
+        console.log(d1 instanceof Person);//true
+
+    </script>
+</body>
+
+</html>

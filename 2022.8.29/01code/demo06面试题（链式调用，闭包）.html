@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // 2、封装一个函数，完成功能：add(2).multi(9).div(3) 的结果是6
+
+        let oneHundredTwentyOne = myCalculator(121);
+        console.log(oneHundredTwentyOne.add(1).minus(2).multi(3).div(4).getValue()); // 输出90
+        
+        let ten = myCalculator(10);
+        console.log(ten.multi(5).getValue());
+        console.log(ten.add(2).multi(5).getValue());
+        console.log(myCalculator(10).multi(5).div(2).getValue());
+
+        function myCalculator(num){
+
+            var result = num;
+
+            return {
+                add:function(n){
+                    result += n;
+                    return this;
+                },
+                minus:function(n){                    
+                    result -= n;
+                    return this;
+                },
+                multi:function(n){                    
+                    result *= n;
+                    return this;
+                },
+                div:function(n){                    
+                    result /= n;
+                    return this;
+                },
+                getValue:function(){
+                    return result;
+                }
+            }
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

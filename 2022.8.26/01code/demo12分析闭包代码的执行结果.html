@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+        
+        function fn01(){
+            var num = 100; //在内存中申请空间，名字叫做num，值是100； 
+
+            function fn02(){
+                num++; //把内存中num的值，加个1
+                console.log(num);
+            }
+            return fn02;
+
+        }
+
+        let f = fn01();//f就是fn02
+
+        f();// 打印101
+        f();// 打印102
+        f();// 打印103
+        f();// 打印104
+        f();// 打印105
+
+        let f2 = fn01();
+        // console.log(f);
+        console.log(f2==f);//false
+        f2();//101;
+        f2();//102
+        f();//106
+
+        fn01()();//101
+        fn01()();//??
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+<style type="text/css">
+
+/*整个显示柱状图的区域的高度的是500px;每个柱子的宽是50px;每个柱子的间隔是：50px；
+第一个柱子的left是100px；*/
+
+*{
+	margin:0px;
+	padding:0px;
+}
+
+#box{
+	width:800px;
+	height:500px;
+	border-bottom:solid 2px black;
+	position:relative;
+	
+}
+
+#div1{
+	position:absolute;
+	left:100px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+#div2{
+	position:absolute;
+	left:200px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+#div3{
+	position:absolute;
+	left:300px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+span{
+	text-align:center;
+	width:50px;
+	display:block;
+}
+
+p{
+	height:20px;
+	text-align:center;
+}
+
+#divColor1{
+	width:50px;
+	height:250px;
+	background-color:blue;
+}
+
+
+#divColor2{
+	width:50px;
+	height:210px;
+	background-color:green;
+}
+
+#divColor3{
+	width:50px;
+	height:290px;
+	background-color:yellow;
+}
+
+</style>
+
+<body>
+	<input id="btn" type="button" value="显示销售数据" />
+	<div id="box">
+		<div id="div1">
+			<span id="dataSpan1">680万</span>
+			<div id="divColor1"></div> 
+			<p id="yearp1">2013</p>
+		</div>
+		
+		<div id="div2">
+			<span id="dataSpan2">500万</span>
+			<div id="divColor2"></div>
+			<p id="yearp2">2014</p>
+		</div>
+		<div id="div3">
+			<span id="dataSpan3">800万</span>
+			<div id="divColor3"></div> 
+			<p id="yearp3">2015</p>
+		</div>
+	</div>
+</body>
+</html>

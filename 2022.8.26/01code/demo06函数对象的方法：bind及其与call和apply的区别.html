@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // call,apply和bind的区别：
+        // 1、相同点：
+        //    这三个函数都可以改变this的指向
+        // 2、不同点：
+        //     1）、调用call和apply时，就相当于调用原函数。
+        //     2）、调用bind时，并不会调用原函数，而是是会产生新的函数。
+        //                   调用新的函数时，原函数就被调用了，并且原函数里的this是bind时的第一个参数。
+        //                   而且，每次调用新的函数this都是一样的。既就是使用bind把原函数和某个对象永远绑死了。
+
+        
+        let eat = function(str1,str2){
+            console.log(this.name+"在吃"+str1+"和"+str2);
+        }
+
+        let person = {
+            name:"曹继承",
+        }
+
+        eat.call(person,"胡辣汤","油条");
+        eat.call(person,"胡辣汤","油条");
+        eat.call(person,"胡辣汤","油条");
+        eat.call(person,"胡辣汤","油条");
+
+        // 用bind函数把person对象和eat函数绑死。产生新的函数
+        let personEat = eat.bind(person);
+        personEat("胡辣汤","油条");
+        personEat("胡辣汤","油条");
+        personEat("胡辣汤","油条");
+        personEat("胡辣汤","油条");
+
+        // eat.bind(person)相当于下面这段代码
+        // let personEat = function(){
+        //     person.eat(arguments);
+        // }
+
+        
+    </script>
+</body>
+</html>

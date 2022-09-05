@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    请输入歌曲名：<input id="music-txt" type="text">
+    <ul id="music-ul">
+    </ul>
+
+    <script>
+
+        // 接口文档：
+        // 1、请求地址：getMusic.php
+        // 2、请求方式：get
+        // 3、请求参数：
+        //  query:表示音乐名
+        // 4、返回的数据及其格式
+        //    字符串数组。包含用户输入的关键字的所有歌曲名。
+        //  如：前端给后端发送“你是” ,那么后端给前端响应 ["你是我的眼睛","你是我的小心肝","你是我的小苹果"]
+
+        let musicTxt = document.getElementById("music-txt");
+        let musicUl = document.getElementById("music-ul");
+
+        let myTimer;
+
+        musicTxt.oninput = function () {
+            if (myTimer) {
+                clearInterval(myTimer);
+            }
+
+            myTimer = setTimeout(() => {
+                let xhr = new XMLHttpRequest();
+                xhr.open("get", `getMusic.php?query=${this.value}`);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // JSON.parse:可以把字符串转成json，也可以把字符串转成数组。                        
+                        let arr = JSON.parse(xhr.responseText);
+                        console.log("arr", arr);
+                        let htmlStr = "";
+                        arr.forEach(item => {
+                            htmlStr += `<li>${item}</li>`
+                        });
+                        musicUl.innerHTML = htmlStr;
+                    }
+                }
+                xhr.send();
+            }, 200);
+
+        }
+
+
+        musicUl.onclick = function (event) {
+            let e = event || window.event;
+            if (e.target.tagName.toLowerCase() == "li") {
+                // 
+                musicTxt.value = e.target.innerHTML;
+                // 发送请求查询该歌曲的信息
+
+                // 隐藏ul
+                musicUl.innerHTML = "";
+            }
+        }
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

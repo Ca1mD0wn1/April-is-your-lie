@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+    <script>
+        //一、柯里化应该将 sum(a, b, c) 转换为 sum(a)(b)(c)。
+
+        /*
+        function sum(a,b,c){
+            return a+b+c;
+        }
+
+        function sum(a){
+            return function(b){
+                return function(c){
+                    return a+b+c;
+                }
+            }
+        }
+
+        console.log(sum(3)(4)(5));
+        */
+
+        // 二、柯里化应该将 `sum(a, b, c)` 转换为 `sum(a)(b)(c)`、sum(a,b)(c)、sum(a,b,c)都可以调用。
+
+        /*
+        // 原函数
+        function sum(a,b,c){
+            return a+b+c;
+        }
+
+        // 柯里化函数：
+        function currying(fn){
+            let args =[];//记录所有的参数；
+            return function tempFn(){                
+                args = [...args,...arguments];
+                if(args.length<fn.length){
+                    // 如果参数不够，那就返回函数
+                    // return tempFn;
+                    return arguments.callee;
+                }else{
+                    // 应该传入的参数够了，那就调用原函数；
+                    return fn(...args);
+                }
+            }
+        }
+
+        let sumNew = currying(sum);
+
+        // console.log(sumNew(3,4,5));
+
+        // console.log(sumNew(3,4)(5));
+        console.log(sumNew(3)(4)(5));
+        */
+
+
+        // 解答三：
+
+        // 原函数
+        function sum(a,b,c){
+            return a+b+c;
+        }
+
+        // 柯里化函数：
+        function currying(fn,args=[]){
+
+            return function tempFn(){                
+                let arrs = [...args,...arguments];//3,4
+
+                if(arrs.length<fn.length){
+                    // 如果参数不够，那就返回函数
+                    return currying.call(null,fn,arrs);//3,4
+                }else{
+                    // 应该传入的参数够了，那就调用原函数；
+                    return fn(...arrs);
+                }
+            }
+        }
+
+        let sumNew = currying(sum);  //sumNew就是（第一次）tempFn， 持有的 args 是[];
+        
+        let ff01 = sumNew(3,4); // 二次的tempFn，持有的args 是 [3,4]
+        console.log(ff01(5));
+
+        // console.log(sumNew(3,4)(5)); //
+        // console.log(sumNew(3)(4)(5));
+
+        let ff34 = sumNew(3,4);
+        ff34(5);
+        ff34(6);
+
+
+    </script>
+    
+</body>
+</html>

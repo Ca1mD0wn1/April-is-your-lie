@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>
+        用户名：<input id="username" type="text" value="tianwater_110" placeholder="数字，字母，下划线，开头不能是数字，6-16位"><span></span>
+    </p>
+    <p>
+        密码：<input id="userpass" type="text" placeholder="8-16数字，大小写字母；不能以数字开头，不能纯数字，不能纯小写，不能纯大写"><span></span>
+    </p>
+    <p>
+        确认密码：<input id="userpass2" type="text"><span></span>
+    </p>
+    <br />
+    <input id="btnReg" type="button" value="注册" disabled />
+    <div id="msg"></div>
+
+    <script type="module">
+        import RegTools from "./js/RegTools.js";
+
+        /*
+                接口文档：
+        
+                一、验证用户名是否存在
+        
+                1、请求地址： checkUser.php
+                2、请求方式：get
+                3、前端给后端传递的参数：
+                    username：用户名
+        
+                4、后端给前端传递数据
+        
+                    1：表示该用户名已经被使用了
+                    0：表示该用户名没有被使用
+        
+                二、注册：
+        
+                1、请求地址： regSave.php
+                2、请求方式：post
+                3、前端给后端传递的参数：
+                    username：用户名
+                    userpass：密码
+        
+                4、后端给前端传递数据
+        
+                  success：表示注册成功
+                  fail：表示注册失败
+        
+        */
+        let txtUserName = document.getElementById("username");
+        let txtUserPass = document.getElementById("userpass");
+        let txtUserPass2 = document.getElementById("userpass2");
+        let btnReg = document.getElementById("btnReg");
+        let msg = document.getElementById("msg");
+        // let flag = false;
+        let isUserName = false;
+        let isUserPass = false;
+        let isUserPass2 = false;
+
+        // 一、光标离开文本框，验证用户名是否存在。
+        txtUserName.onblur = function () {
+            // 非空判断
+            if (txtUserName.value == "") {
+                this.nextElementSibling.innerHTML = "亲，请输入用户名";
+                isUserName = false;
+                return;
+            }
+            // 正则验证：
+            if (!RegTools.check("username", this.value)) {
+                this.nextElementSibling.innerHTML = "亲，用户名格式不正确:数字，字母，下划线，开头不能是数字，6-16位";
+                isUserName = false;
+                return;
+            }
+
+            // fetch("checkUser.php?username=" + this.value)
+            //     .then(res => {
+            //         console.log("res",res);
+            //         return   res.text()
+            //     })
+            //     .then(data => {
+            //         if (data.includes("0")) {
+            //             this.nextElementSibling.style.color = "green";
+            //             this.nextElementSibling.innerHTML = "恭喜您，该用户名可以使用";
+            //             btnReg.disabled = false;
+            //             isUserName = true;
+            //         } else if (data == "1") {
+            //             this.nextElementSibling.style.color = "red";
+            //             this.nextElementSibling.innerHTML = "亲，该用户名已经被注册了，换一个吧";
+            //             btnReg.disabled = true;
+            //             isUserName = false;
+            //         }
+            //     })
+
+            let data = checkUserFn(this.value)
+                .then(data => {
+                    if (data.includes("0")) {
+                        this.nextElementSibling.style.color = "green";
+                        this.nextElementSibling.innerHTML = "恭喜您，该用户名可以使用";
+                        btnReg.disabled = false;
+                        isUserName = true;
+                    } else if (data == "1") {
+                        this.nextElementSibling.style.color = "red";
+                        this.nextElementSibling.innerHTML = "亲，该用户名已经被注册了，换一个吧";
+                        btnReg.disabled = true;
+                        isUserName = false;
+                    }
+                })
+
+        }
+
+        async function checkUserFn(username) {
+            return  await fetch("checkUser.php?username=" + username)
+                .then(res => {
+                    console.log("res", res);
+                    return res.text()
+                });
+        }
+
+        txtUserPass.onblur = function () {
+            // 1、非空判断
+            if (this.value == "") {
+                this.nextElementSibling.innerHTML = "请输入密码";
+                isUserPass = false;
+                return;
+            }
+
+            // 密码规则
+            if (!RegTools.check("userpass", this.value)) {
+                this.nextElementSibling.innerHTML = "亲，密码格式不正确";
+                isUserPass = false;
+                return;
+            } else {
+                this.nextElementSibling.innerHTML = "√";
+                isUserPass = true;
+            }
+
+        }
+
+        txtUserPass2.onblur = function () {
+            if (!RegTools.check("userpass", this.value)) {
+                this.nextElementSibling.innerHTML = "亲，密码格式不正确";
+                isUserPass2 = false;
+                return;
+            } else {
+                this.nextElementSibling.innerHTML = "√";
+
+            }
+
+            if (txtUserPass.value != this.value) {
+                this.nextElementSibling.innerHTML = "亲，两次密码不一致";
+                isUserPass2 = false;
+                return;
+            } else {
+                this.nextElementSibling.innerHTML = "√";
+                isUserPass2 = true;
+            }
+        }
+
+        // 二、注册功能
+        btnReg.onclick = function () {
+
+            // 一、用户名 密码，重复密码是否都ok
+            if (!isUserName || !isUserPass || !isUserPass2) {
+                msg.style.color = "red";
+                msg.innerHTML = "亲，信息没有完全输入正确，请查看每一项的提示";
+                return;
+            }
+
+            // 二、发送请求，完成注册的功能，
+
+            // fetch("regSave.php",{
+            //     method:"post",
+            //     headers:new Headers({
+            //         "content-type":"application/x-www-form-urlencoded"
+            //     }),
+            //     body:`username=${txtUserName.value}&userpass=${txtUserPass.value}`
+            // })
+            // .then(res=>res.text())
+            // .then(data=>{
+            //     if (data == "success") {
+            //             msg.style.color = "green";
+            //             msg.innerHTML = "亲，恭喜您，注册成功！";
+            //         } else {
+            //             msg.style.color = "red";
+            //             msg.innerHTML = "亲，不好意思，注册失败！";
+            //         }
+
+            // })
+
+            let params = new URLSearchParams();
+            params.append("username", txtUserName.value);
+            params.append("userpass", txtUserPass.value)
+
+            fetch("regSave.php", {
+                method: "post",
+                headers: new Headers({
+                    "content-type": "application/x-www-form-urlencoded"
+                }),
+                body: params
+            })
+                .then(res => res.text())
+                .then(data => {
+                    if (data == "success") {
+                        msg.style.color = "green";
+                        msg.innerHTML = "亲，恭喜您，注册成功！";
+                    } else {
+                        msg.style.color = "red";
+                        msg.innerHTML = "亲，不好意思，注册失败！";
+                    }
+
+                })
+
+        }
+
+    </script>
+</body>
+
+</html>

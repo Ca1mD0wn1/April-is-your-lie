@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="box">
+        <p id="p1">哥的名字是{{name}}</p>
+        <p id="p2">哥的年龄是{{age}}</p>
+        <p id="p3">哥的性别是{{sex}}</p>
+    </div>
+    <button>点击测试</button>
+</body>
+<script>
+
+    class Follow {
+        constructor() {
+            this.arr = [];
+        }
+
+        addFollow(cb) {
+            this.arr.push(cb);
+        }
+        removeFollow(cb) {
+            let index = this.arr.indexOf(cb);
+            this.arr.splice(index, 1);
+        }
+        publish(what) {
+            this.arr.forEach(item => item(what));
+            console.log(123);
+        }
+    }
+
+
+    class MyVue {
+        constructor(obj) {
+            for (let key in obj.data) {
+                this["_" + key] = obj.data[key];
+
+                this.p1 = new Proxy(obj.data, key, {
+                    set: function (value) {
+                        this["_" + key] = value;
+                        this.subscribers[key].publish(value);
+                    },
+                    get: function (value) {
+                        return this["_" + key];
+                    },
+                });
+            }
+            this.dom = obj.dom;
+            this.data = obj.data;
+            this.render();
+
+            this.nodeObj = {
+                name: [{
+                    dom: "#p1",
+                    innerHTML: "哥的名字是{{name}}"
+                }],
+                age: [{
+                    dom: "#p2",
+                    innerHTML: "哥的名字是{{age}}"
+                }],
+                sex: [{
+                    dom: "#p3",
+                    innerHTML: "哥的性别是{{sex}}"
+                }]
+            }
+
+            this.subscribers = this.subscriber();
+        }
+        subscriber() {
+            let obj = {};
+            for (let key in this.data) {
+                console.log(key);
+                obj[key] = new Follow();
+                console.log(obj);
+                console.log(this.nodeObj);
+                this.nodeObj[key].forEach(item => {
+                    obj[key].addFollow(function (value) {
+                        document.querySelector(item.dom).innerHTML = item.innerHTML.replace(new RegExp(`{{${key}}}`), value);
+                    });
+                })
+            }
+            return obj;
+        }
+        render() {
+            let htmlStr = document.querySelector(this.dom).innerHTML;
+            for (let key in this.data) {
+                htmlStr = htmlStr.replace(new RegExp(`{{${key}}}`, 'gi'), this.data[key])
+            }
+            document.querySelector(this.dom).innerHTML = htmlStr;
+
+        }
+    }
+
+
+    let students = {
+        dom: "#box",
+        data: {
+            name: "John Smith",
+            age: 18,
+            sex: "男",
+        }
+    }
+
+
+    let str = new MyVue(students);
+
+    document.querySelector("button").onclick = function () {
+        for (let key in students.data) {
+            str.p1[key] += 1;
+        }
+    }
+</script>
+
+</html>

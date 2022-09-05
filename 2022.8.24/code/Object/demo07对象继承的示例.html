@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 对象的继承：提高代码复用性。
+
+        //父对象：  创建个div的对象
+        let oDiv = {
+            create() {
+                this.div = document.createElement("div");
+                // Object.assign（目标对象，被合并的对象）:可以把对象进行合并，
+                Object.assign(this.div.style, {
+                    width: "40px",
+                    height: "40px",
+                    backgroundColor: "red"
+                })                
+            },
+            play(cb){
+                this.create();
+                document.body.appendChild(this.div);
+                this.div.onclick = cb;
+            }
+        }
+
+        // 子对象1
+        let oDiv1 = Object.create(oDiv);
+        oDiv1.play(() => {
+            oDiv1.div.style.backgroundColor = "blue";
+        });
+
+
+        // 子对象2；
+        let oDiv2 = Object.create(oDiv);
+        
+        oDiv2.play(() => {
+            oDiv2.div.style.backgroundColor = "green";
+        });
+
+    </script>
+</body>
+
+</html>

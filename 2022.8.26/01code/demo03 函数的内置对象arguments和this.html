@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+    
+        // 一、函数的内置对象
+        // arguments：表示函数被调用时，传入的实参列表，是个伪数组
+        // arguments里的callee属性：表示arguments所在的函数本身（是个引用类型，引用的就是函数本身）；
+        function fn01(){
+            console.log(arguments.callee)//就是fn01函数
+        }
+
+        fn01();
+
+        function factorial(num){
+            if(num<=1){
+                return 1;
+            } else{
+                // return num*factorial(num-1);
+                return num*arguments.callee(num-1);
+            }
+        }
+
+        factorial(5);
+     
+
+        // this：表示某个对象，一般是调用函数的对象（也就是函数的所属对象）；
+        //     首先，this是个代名词，依据this所在的场景，来决定this表示哪个对象，this所在场景一般是函数（非箭头函数）。
+        //      一）、以下四种场景不包括箭头函数
+        //       1）、this所在函数是事件处理函数时，this表示事件源
+        //       2）、this所在函数是构造函数时，this表示new出来的对象。
+        //       3）、this所在函数是实例（对象）的方法时，this表示调用该方法的对象（对象本身也行）；
+        //       4)、不是以上情况时，一般是window。
+
+        
+        // 补充说明：
+
+        // 1、在script里的this，是window对象
+        // 2、在ES6类的一对花括号里，this是调用函数的对象
+        // 3、全局函数：
+        //      补充解释：（window对象是前端js中的最大对象，所有的一切都属于window对象。全局变量（var定义）和声明的全局函数是window对象的属性和方法）
+        //     1)、严格模式：
+        //             1.1）、声明的函数，前面的window如果省略了，那就是undefined； 如果前面带上window对象，那么，this就是window对象
+       //              1.2）、表达式方式定义的函数：this是undefined；
+        //     2）、一般模式（非严格模式）：（声明的函数和表达式定义的函数）this都是window对象。
+
+        // 4、回调函数：
+        //    1）、严格模式下，this是undefined； 非严格模式下，this是window。
+        //    2)、定时器的回调函数，this是window； 
+        //     ……………………………… 每个函数里的回调函数的this是谁，其实是不确定的（官方的，咱得试一下；自己写的，肯定自己知道）；
+
+
+       
+        // "use strict";
+        // 1、在script里的this，是window对象
+        // console.log(this);
+
+         // 2、在ES6类的一对花括号里，this是调用函数的对象
+        // function Person(){
+        // }
+
+        // class Person{
+
+        //     eat = ()=>{
+        //         console.log(this);
+        //     }
+        // }
+
+        // let p1 = new Person();
+        // p1.eat();
+        // var ttt;
+
+
+         // 3、全局函数：
+
+        // function fn01(){
+        //     console.log("fn01",this);//window
+        // }
+
+        // console.dir(window.fn01);//fn01属于window对象的方法
+        // window.fn01();
+
+        // let fn02 = function(){
+        //     console.log("fn02",this);//非严格模式下：this是window；严格模式下：this是undefined
+        // }   
+        // console.dir(window.fn02);//undefined;
+        // fn02();
+        
+        
+        // 4、回调函数：
+        // "use strict";
+        // // function fn01(cb) {
+        // //     // cb();
+        // //     cb();
+        // // }
+
+        // function fncb(){
+        //     console.log("回调函数里的this",this);//严格模式下，this是undefined； 非严格模式下，this是window。
+        // }
+
+        // // fn01(fncb);
+
+        // setTimeout(function(){
+        //     console.log("this",this);
+        //     fncb.call(window);
+        // },1000)
+        
+    </script>
+</body>
+</html>

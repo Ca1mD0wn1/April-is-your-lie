@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    请输入数字：<input type="text" id="num" /><br />
+    平方：<input type="text" id="sqrNum" /><br />
+    立方：<input type="text" id="cubeNum" /><br />
+    四次方：<input type="text" id="fourNum" /><br />
+
+    <input id="btnRemove" type="button" value="四次方退订">
+
+    <script>
+
+        // 发布订阅模式的代码
+        
+        class Observer{
+            constructor(){
+                // 定义数组，保存所有的订阅
+                this.arr = [];
+            }
+
+
+            // 订阅（添加订阅者）
+            subscriber(cb){
+                this.arr.push(cb);
+            }
+
+            // 发布
+            publish(what){
+                this.arr.forEach(item=>{
+                    typeof item == "function" &&  item(what);
+                })
+            }
+
+            // 退订
+            removeSubscriber(cb){
+                let index = this.arr.indexOf(cb);
+                this.arr.splice(index,1);
+            }
+
+        }
+
+
+        let fn04 = function(num){
+            document.getElementById("fourNum").value = num*num*num*num;
+        };
+
+        window.onload = function(){
+            // 定义一个观察者对象，用来观察 第一个文本框的 数据变化
+            let observer = new Observer();
+
+            // 平方文本框订阅
+            observer.subscriber(function(num){
+                document.getElementById("sqrNum").value = num*num;
+            })
+
+            // 立方文本框订阅
+            observer.subscriber(function(num){
+                document.getElementById("cubeNum").value = num*num*num;
+            })
+            // 四次方文本框订阅
+            observer.subscriber(fn04)
+
+            document.getElementById("num").oninput = function(){
+                observer.publish(this.value)
+            }    
+            
+            document.getElementById("btnRemove").onclick = function(){
+                observer.removeSubscriber(fn04);
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

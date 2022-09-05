@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        function url(protocol, hostname, baseURL, path) {
+            return protocol + hostname + "/" + baseURL + "/" + path;
+        }
+
+        function curry(fn, arr = []) {
+
+            return function (...args) {
+                let arrs = [...arr, ...args];
+                if (arrs.length < fn.length) {//判断实参个数是否和原函数的形参个数的关系
+                    return curry.call(this, fn, arrs)
+                } else {
+                    return fn(...arrs);
+                }
+            }
+        }
+
+
+        let douBanApi = curry(url)("https://","www.douban.com","doubanapi");
+        let myApi = curry(url)("http://","localhost","api")
+
+        let loginUrl = douBanApi("loginCheck");
+        console.log(loginUrl);        
+        let regSaveUrl = douBanApi("regSave");
+        console.log(regSaveUrl); 
+
+        let goodsUrl = myApi("goodsList");
+        console.log(goodsUrl);
+        
+        let carUrl = myApi("car");
+        console.log(carUrl);
+
+
+    </script>
+
+</body>
+
+</html>

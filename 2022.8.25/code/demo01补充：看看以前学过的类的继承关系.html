@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="box"></div>
+
+    <input type="text"  id="txt">
+
+    <script>
+
+        // 一、js语言本身的类 的继承关系
+
+        console.dir(Array);
+        //继承关系： Array ---> Function --> Object  
+        let arr = new Array(10);       
+        console.dir(arr);
+        // console.log(arr.__proto__ == Array.prototype);
+
+        console.dir(XMLHttpRequest);
+        //继承关系： XMLHttpRequest-->XMLHttpRequestEventTarget-->EventTarget-->Function-->Object
+
+
+        // 二、dom对象所属的类及其继承关系。
+
+        let box =  document.getElementById("box");
+
+        console.dir(box);
+        // div是 HTMLDivElement的对象，即就是： div属于 HTMLDivElement 类型。
+        //继承关系： HTMLDivElement--> HTMLElement-->Element-->Node-->EventTarget-->Object
+
+        // console.log(box.constructor===HTMLDivElement);
+
+        // let t = document.createElement("div");
+        // let t2 = new HTMLDivElement();//不行， 因为 HTMLDivElement，不是真正的构造函数，实际是个接口。
+
+
+
+        let txt = document.getElementById("txt");
+        console.dir(txt)
+
+        // input标签 是 HTMLInputElement 对象，既就是 input标签属于 HTMLInputElement 类型
+        //继承关系：HTMLInputElement-->HTMLElement-->Element-->Node-->EventTarget-->Object
+
+
+
+// 原生js面试题：请问JavaScript中的内置对象，本地对象，宿主对象分别是什么？
+// ？？？dom对象不是js语言的对象？？？
+//  https://blog.csdn.net/jiang7701037/article/details/85448739
+
+  </script>
+    
+</body>
+</html>

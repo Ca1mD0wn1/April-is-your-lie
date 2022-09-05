@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+      <div id="box">
+
+      </div>
+      <input id="getAllBtn" type="button" value="阅读全部" />
+    <script type="module">
+        import AJAXUtils from "./js/AJAXUtils.js";
+
+        let box = document.getElementById("box");
+        let getAllBtn = document.getElementById("getAllBtn");
+ 
+        getAllBtn.onclick = function(){
+
+            let xhr = new XMLHttpRequest();
+
+            // 同步
+            xhr.open("get","./loadMore.php?pageIndex=1",false);
+
+            // xhr.onreadystatechange = function(){
+            //     if(xhr.readyState==4  && xhr.status==200){
+            //         console.log("1",xhr.responseText);
+            //     }
+            // }
+
+            xhr.send();
+
+            console.log("--------------------------");
+
+            if(xhr.readyState==4  && xhr.status==200){
+               console.log("2",xhr.responseText);
+            }
+            // console.log("2",xhr.responseText);//
+           
+        }
+
+    </script>
+</body>
+</html>

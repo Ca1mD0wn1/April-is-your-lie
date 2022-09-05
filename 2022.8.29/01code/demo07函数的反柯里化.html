@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // call和apply：
+        // 1、call和apply就是函数的一个方法
+        // 2、length
+
+        // function foo(){
+
+        // }
+
+        // console.log(foo.__proto__.call == Function.prototype.call);
+        // console.log(foo.__proto__.call.apply == Function.prototype.call.apply);
+        // console.dir(Function.prototype.call.apply);
+        
+
+        function uncurrying(fn) { //fn: 数组的push。  
+
+            return function () {
+                
+                //call里面的this是push。
+
+                let c = Function.prototype.call 
+
+                c2 = c.apply(fn, arguments); //arguments = argumensts(12,23,34,45) , 56
+
+
+
+                return c2;
+            }
+
+        };
+
+        Array.prototype.push = function(){
+            this;
+        }
+
+        var ff = Array.prototype.push;
+
+        ff();
+
+        //let aaa = new Function();
+
+        // function fff(){
+        // }
+        // fff.call();
+        // fff.call.apply()
+
+        const push = uncurrying(Array.prototype.push);
+
+
+        // const splice = uncurrying(Array.prototype.splice);
+        const splice = uncurrying([].splice);
+
+        function testf(){
+
+            let len =  push(arguments,56);
+
+            console.log("arguments",arguments);
+            console.log("len",len);
+
+            splice(arguments,1,2,100);
+            console.log("arguments",arguments);
+        }
+
+        testf(12,23,34,45)
+        
+
+
+    </script>
+
+</body>
+
+</html>

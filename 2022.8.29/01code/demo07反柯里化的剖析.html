@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        Array.prototype.myPush = function(...args){
+            
+            console.log("this",this);
+
+            for(var i=0;i<args.length;i++){
+                this[this.length] = args[i];
+            }
+            return this.length;
+        }
+
+        // let arr = [12,23,34];
+        // arr.myPush(56);
+
+        // console.log(arr);       
+       
+        // var fn01 = Array.prototype.myPush;
+        // fn01();
+
+        function yourPush(){
+
+
+            return Function.prototype.call.apply(Array.prototype.myPush,arguments);
+            // 1、call函数（是apply的原函数）的this是myPush;  
+            //  变成了：myPush.call(arguments); //此处的arguments就是yourPush的参数，此参数来自于 51行的传参。
+            //  变成了：myPush.call(51行的arguments,56);
+            // 最终表达的意思就是： 51行的arguments.myPush(56);
+
+        }
+
+        // arr =[12,23,34]
+        // yourPush(arr,56);
+        // console.log(arr);
+
+        (function testf() {
+            yourPush(arguments,56);
+        })(12,23,34)
+
+        
+        // 反柯里化：把 obj.fn(参数)  变成了  fn(obj,参数);
+
+
+        //===================================
+        // 反柯里化的函数
+        function uncurrying(fn){
+            return function(){
+                return Function.prototype.call.apply(fn,arguments);
+            }
+        }
+
+
+        var push = uncurrying(Array.prototype.push);
+        
+        push([12,23,34],56);
+
+
+
+    </script>
+
+</body>
+
+</html>

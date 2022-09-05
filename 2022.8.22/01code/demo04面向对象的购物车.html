@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <h1>购物车</h1>
+    <div class="container"></div>
+    <script type="module">
+        import AJAXUtils from "./js/AJAXUtils.js";
+        import ShoppingCar from "./js/ShoppingCar/index.js";
+
+        // 数据驱动的思路完成：
+        // 通过数据驱动页面的变化。
+       
+        // 接口文档：
+        //  请求地址："shoppingCar.php"
+        // 请求方式："get"
+        // 请求参数：无
+        // 返回值：？？
+        
+
+        window.onload = function () {
+
+            AJAXUtils.ajax({
+                url:"./shoppingCar.php",
+                cb:function(result){
+                    // console.log("result",result);
+                    let goods = JSON.parse(result);
+
+                    new ShoppingCar({
+                        el: ".container",
+                        data: goods
+                    })
+
+                }
+            })
+            
+
+          
+        }
+
+    </script>
+</body>
+
+</html>

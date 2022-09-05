@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let o1 = {
+            a:1,
+            b:2,
+            _age:12,
+            set age(val){
+                console.log("set");                
+                this._age = val
+            },
+            get age(){
+                console.log("get");
+                return this._age
+            }
+        }
+
+        // o1.age = 18;
+
+        // console.log(o1.age);
+
+        // let t = o1.age;
+
+        // 如果在对象的使用过程中，想给对象增加访问器属性，那么使用Object.defineProperty(); 或者 Object.defineProperties();
+
+    
+    </script>
+</body>
+</html>

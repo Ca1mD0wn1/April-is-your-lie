@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+      <div id="box">
+
+      </div>
+      <input id="getAllBtn" type="button" value="阅读全部" />
+    <script type="module">
+        import AJAXUtils from "./js/AJAXUtils.js";
+
+/*
+        //一、 接口文档：
+
+        // 请求地址：loadMore.php
+        // 请求方式：get
+        // 请求参数（前端传给后端的数据）:
+        //     pageIndex: 页码。
+        // 响应内容及其格式：
+        {
+            "code":"0",//code=1：表示获取到了内容，code=0：表示没有获取到内容。
+            "data":"" //data就是内容。
+        }
+
+        */
+
+        let box = document.getElementById("box");
+        let getAllBtn = document.getElementById("getAllBtn");
+        // 1、页面加载完毕后， 从后端获取到第一部分内容
+        window.onload = function(){
+            getData(1);
+        }
+
+        // 2 、点击“阅读全部”按钮时，从后端获取第二部分内容
+        getAllBtn.onclick = function(){
+            getData(2);
+        }
+
+        // 获取指定页码的内容
+        function getData(pageIndex){
+            AJAXUtils.ajaxUsePromise({
+                url:"loadMore.php",
+                params:{
+                    pageIndex
+                }
+            })
+            .then(function(result){
+                let obj = JSON.parse(result);
+                if(obj.code=="1"){
+                    box.innerHTML  += obj.data;
+                }
+                pageIndex==2?getAllBtn.style.display = "none":"";
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+        }
+
+    </script>
+</body>
+</html>

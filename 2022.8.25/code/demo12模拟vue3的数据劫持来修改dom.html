@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="修改姓名" onclick="changeName()" >
+        <input type="button" value="修改年龄" onclick="changeAge()" >
+        <p id="p01">姓名：{{name}}</p>
+        <p id="p02">姓名：{{name}}</p>
+        <p id="p03">年龄：{{age}}</p>
+        <p id="p04">年龄：{{age}}</p>
+    </div>
+
+    <script>
+
+        let person = {
+            name:"王娇",
+            age:18
+        }
+
+        let p1 = new Proxy(person,{
+            set:function(target,key,value){
+                if(value == target[key]){
+                    return ;
+                }
+                switch(key){
+                    case "name":{
+                        target[key] = value;
+                        changeNameDom();
+                        return;
+                    }
+                    case "age":{
+                        if(value<0 || value>60){
+                            return;
+                        }
+                        target[key] = value;
+                        changeAgeDom();
+                        return;
+                    }
+                }                
+            },
+            get(target,key){
+                return target[key];
+            }
+        });
+
+      
+        function render(container,person){
+            let box = document.querySelector(container);
+            let htmlStr = box.innerHTML;
+            htmlStr = htmlStr.replace(/{{name}}/g,p1.name);
+            htmlStr = htmlStr.replace(/{{age}}/g,p1.age);
+            box.innerHTML = htmlStr;
+        }
+
+        function changeName(){
+            // 需求：当name发生变化时，希望，html里使用name的地方都跟着变化。
+            p1.name =  p1.name+"1";//            
+        }
+
+        // 修改使用name的dom部分。
+        function changeNameDom(){      
+            document.getElementById("p01").innerHTML = "姓名："+p1.name;
+            document.getElementById("p02").innerHTML = "姓名："+p1.name;
+        }
+
+        function changeAge(){
+            p1.age +=1;
+        }
+
+        function changeAgeDom(){
+            document.getElementById("p03").innerHTML = "年龄："+p1.age;
+            document.getElementById("p04").innerHTML = "年龄："+p1.age;
+        }
+
+        window.onload = function(){
+            render("#box",p1);
+        }
+
+    </script>
+</body>
+</html>

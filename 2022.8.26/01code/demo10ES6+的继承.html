@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // ES6的写法是ES5写法的语法糖。但是继承的背后不是完全一样的。
+        // 
+
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+                this.books = [];
+            }
+            eat(str){
+                console.dir(this);
+                console.log(this.name+"在吃"+str);
+            }
+        }
+
+        // extends：是ES6 继承的关键字。
+        class Programmer extends Person{
+            constructor(name,age,language){                
+                // super是什么意思
+                // 1、可以用来调用父类的构造函数
+                // 2、当父类和子类里有同名的方法时，那么，super，可以用来调用父类的方法；this可以用来调用子类的方法                
+                super(name,age);//super就是父类的构造函数；这句话必须子类构造函数里  的 第一句话。因为，需要先把父类构造出来，在父类的对象上加上子类特有的属性，那就是子类对象了。
+                super.eat("包子");//super:就是父类的对象；                
+                this.eat("米饭");
+                this.language = language;                
+            }
+
+            eat(str){
+                console.log("Programmer里的eat方法",str);
+            }
+
+            writeCode(){
+                console.log(this.name+"在写代码");
+            }
+        }
+
+        let p1 = new Programmer("曹继承","男","js");
+
+        console.log(p1.name);
+        p1.writeCode();
+
+
+        console.log(p1.constructor == Person);//false
+        console.log(p1.constructor == Programmer);//true
+
+        console.log(p1 instanceof Person);//true
+        console.log(p1 instanceof Programmer);//true
+
+
+        class Student{
+            // ES6的类中，预编译时，如果发现程序员没有写构造函数，那么会自动增加上。
+
+            play(){
+                console.log("跑");
+            }
+        }
+
+        let s1 = new Student();
+        s1.play();
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // 定义一个工厂类（标签类）
+
+        class HTMLFactory {
+
+            createDom(tagName, obj) {
+                this.dom = document.createElement(tagName);
+                for (let key in obj) {
+                    if (typeof obj[key] === "object") {
+                        for (let sonkey in obj[key]) {
+                            this.dom[key][sonkey] = obj[key][sonkey];
+                        }
+                    } else {
+                        this.dom[key] = obj[key];
+                    }
+                }
+                return this;
+            }
+
+            appendTo(parentNode) {
+                parentNode.appendChild(this.dom);
+            }
+        }
+
+        class Img extends HTMLFactory {
+            constructor(obj) {
+                super();
+                this.dom;
+                this.createDom("img", obj);
+            }
+        }
+
+        class Input extends HTMLFactory {
+            constructor(obj) {
+                super();
+                this.dom;
+                this.createDom("input", obj);
+            }
+        }
+
+
+        new Img({
+            src: "img/1.jpg",
+            style: {
+                width: "100px",
+                height: "200px"
+            }
+        }).appendTo(document.body);
+
+        new Input({
+            type: "text",
+            style: {
+                width: "100px",
+                height: "30px"
+            }
+        }).appendTo(document.body);
+
+        window.onload = function () {
+            let imgs = [
+                {
+                    src: "img/1.jpg",
+                    style: {
+                        width: "100px",
+                        height: "200px"
+                    }
+                },
+                {
+                    src: "img/2.jpg",
+                    style: {
+                        width: "100px",
+                        height: "200px"
+                    }
+                },
+                {
+                    src: "img/23.jpg",
+                    style: {
+                        width: "100px",
+                        height: "200px"
+                    }
+                }
+            ]
+
+            imgs.forEach(imgObj => new Img(imgObj).appendTo(document.body));
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

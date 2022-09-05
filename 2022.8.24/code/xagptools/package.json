@@ -1,0 +1,12 @@
+{
+  "name": "xagptools",
+  "version": "1.0.2",
+  "description": "【放大镜，瀑布流，商品列表，购物车，五星好评，轮播图】",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["轮播图","放大镜","瀑布流"],
+  "author": "xagp01",
+  "license": "ISC"
+}

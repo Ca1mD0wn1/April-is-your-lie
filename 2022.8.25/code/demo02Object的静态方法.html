@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // // 一、 Object.setPrototypeOf(对象，原型对象)
+        // let o1 = { a: 1, b: 2 }
+
+        // let o2 = { c: 3 };
+
+        // console.log(o2);
+
+        // Object.setPrototypeOf(o2, o1);//设置o2的原型对象是o1
+
+        // console.log(o2);
+
+        // 二、Object.getPrototypeOf(对象)获取某个对象的原型属性
+
+        // let o1 = {a:1,b:2}
+        // console.log(Object.getPrototypeOf(o1));
+
+        // console.log(Object.getPrototypeOf(o1) ==  o1.__proto__);
+        // console.log(Object.getPrototypeOf(o1) ==  Object.prototype);
+
+        // let o2 = Object.create(o1);
+        // console.log(Object.getPrototypeOf(o2));
+
+        // 三、Object.assign:合并或者复制对象
+
+        // Object.assign(目标对象,源对象1,源对象2...);  返回值：是目标对象
+        // 1、合并对象
+        // let o1 = { a: 1, b: 2 }
+        // let o2 = { c: 3, d: 4 }
+        // let o3 = { name: "宇文宝平" }
+
+        // let o4 = Object.assign(o1, o2, o3);
+
+        // console.log(o1);
+        // console.log(o4);
+        // console.log(o1 === o4);//true
+
+        // 2、复制对象
+
+        // let o1 = { a: 1, b: 2 }
+
+        // let o2 = Object.assign({}, o1);
+
+        // console.log(o2);
+        // o1.a = 100;
+        // console.log(o2);
+        // console.log(o1)
+        // console.log(o1 === o2);//false
+
+        // 3、Object.assign()是不是深复制，并不是深复制
+
+        // let o1 = {
+        //     a:1,
+        //     b:2,
+        //     c:{
+        //         c1:5,
+        //         c2:6
+        //     }
+        // }
+
+        // let o2 = Object.assign({},o1);
+
+        // console.log(o1);
+        // console.log(o2);
+        // console.log(o1===o2);//false
+
+        // console.log(o1.c === o2.c);//true
+
+
+
+    </script>
+
+</body>
+
+</html>

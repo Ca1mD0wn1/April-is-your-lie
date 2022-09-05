@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        // console.dir(Function);//Function是个类，也是构造函数。
+
+        // 一、call和apply
+        // 1、call和apply是Function原型属性上的方法，所以，可以被所有的函数对象共享
+        // 2、call和apply都可以用来调用函数本身。
+        // 3、call和apply的作用是：改变函数内部的this的。用call和apply的第一个参数来改变this； null和undefined是不能改变this的。
+        // 4、call和apply的不同：
+        //   1)、call方法的从第二个参数朝后的所有参数是原函数的参数
+        //   2)、apply方法只有两个参数，第二参数是个(伪)数组，数组里是原函数的所有参数。
+
+
+        let fn01 = function (str1, str2) {
+            console.log("fn01", this, str1, str2);
+        }
+
+        fn01("hello", "哥们");
+        // fn01.call();//fn01();
+
+        let person = {
+            name: "曹继承",
+        }
+
+        let dog = {
+
+        }
+
+        fn01.call(person, "hi", "亲");//等价于 person.fn01("hi","亲");
+        fn01.apply(person, ["hi", "亲"]);
+
+        fn01.call(dog);
+
+        // fn01.call(null);
+        // fn01.call(undefined);
+
+        function fff() {
+            fn01.apply(person, arguments);
+        }
+
+        fff("hehe", "啊")
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset = "utf-8"/>
+	</head>
+<style type="text/css">
+
+/*整个显示柱状图的区域的高度的是500px;每个柱子的宽是50px;每个柱子的间隔是：50px；
+第一个柱子的left是100px；*/
+
+*{
+	margin:0px;
+	padding:0px;
+}
+
+#box{
+	width:800px;
+	height:500px;
+	border-bottom:solid 2px black;
+	position:relative;
+	
+}
+
+#div1{
+	position:absolute;
+	left:100px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+#div2{
+	position:absolute;
+	left:200px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+#div3{
+	position:absolute;
+	left:300px;
+	bottom:-20px;
+	width:50px;
+	/*border:1px solid black;*/如果看不懂布局，可以把这句话的注释去掉
+}
+
+span{
+	text-align:center;
+	width:50px;
+	display:block;
+}
+
+p{
+	height:20px;
+	text-align:center;
+}
+
+#divColor1{
+	width:50px;
+	height:250px;
+	background-color:blue;
+}
+
+
+#divColor2{
+	width:50px;
+	height:210px;
+	background-color:green;
+}
+
+#divColor3{
+	width:50px;
+	height:290px;
+	background-color:yellow;
+}
+
+</style>
+
+<body>
+	<input id="btn" type="button" value="显示销售数据" />
+	<div id="box">
+	
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="js/tools.js" ></script>
+<script type="text/javascript" src="js/ajax1803.js" ></script>
+<script type="text/javascript">
+
+//获取数据
+function getData(){
+	ajaxByGet("getSaleMoney.php","",true,show);
+}
+
+function show(str){
+	let objs = JSON.parse(str);
+	htmlStr="";
+	//明确：
+	//1)、柱子的宽度：
+	let zhuWidth=50;
+	//2)、柱子的间隔：
+	let zhuSpace=50;
+	//3)、最大高度，最大金额，算出一个金额所代表的像素
+	let maxHeight = 500;
+	let maxMoney = getMaxMoney(objs);
+	let unit =  maxHeight/maxMoney;
+	
+	for(let i=0;i<objs.length;i++){
+		htmlStr+='<div id="div1" style="position:absolute;left:'+(i*zhuWidth+(i+1)*zhuSpace)+'px;bottom:-20px;width:'+zhuWidth+'px;>';
+		htmlStr+='<span style="	text-align:center;width:'+zhuWidth+'px;display:block;">'+objs[i].money+'万</span>';
+		htmlStr+='<div style="width:'+zhuWidth+'px;height:'+unit*objs[i].money+'px;background-color:'+getColor()+';"></div> ';
+		htmlStr+='<p style="height:20px;text-align:center;">'+objs[i].year+'</p>';
+		htmlStr+='</div>';
+	}
+	$("#box").innerHTML = htmlStr;
+}
+
+function getMaxMoney(objs){
+	let maxMoney = objs[0].money;
+	for(let i=1;i<objs.length;i++){
+		if(objs[i].money>maxMoney){
+			maxMoney = objs[i].money; 
+		}
+	}
+	return maxMoney;
+}
+
+window.onload = function(){
+	getData();
+}
+
+//请求的方式：get
+//请求的url:getSaleMoney.php
+//请求参数：无
+//响应数据的格式：
+/*
+[
+	{
+		"year":"2011",
+		"money":200
+	},
+	{
+		"year":"2012",
+		"money":600
+	},
+	{
+		"year":"2013",
+		"money":580
+	},
+	{
+		"year":"2014",
+		"money":300
+	},
+	{
+		"year":"2015",
+		"money":800
+	},
+	{
+		"year":"2016",
+		"money":1000
+	},
+	{
+		"year":"2017",
+		"money":1500
+	},
+	{
+		"year":"2018",
+		"money":2500
+	},
+	{
+		"year":"2019",
+		"money":3500
+	}
+]
+*/
+
+	
+</script>

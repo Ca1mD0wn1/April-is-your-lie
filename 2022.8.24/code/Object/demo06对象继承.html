@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 1、对象继承：
+        //    1)、子对象自动拥有父对象的属性和方法
+        //    2）、对象读取属性时，先从自己的内存中找，如果找不到，那么，就沿着原型链查找，直到 Object为止。
+        //    3）、对象修改属性时，是直接在自己的内存中修改，如果说，自己内存中没有该属性，那就在自己的内存中增加该属性。
+        //          或者，可以这么认为：当修改原型上的属性时，那么，相当于给对象本身增加属性，而不会修改原型上的属性。
+        //    4）、如果要删除属性，使用  delete 对象名.属性名。
+
+        // 父对象
+        let o1 = {
+            a:1,
+            b:2,
+            run:function(){
+                console.log("run");
+            }
+        }
+
+        // 子对象o2 自动拥有了父对象o1的所有属性和方法
+        let o2 = Object.create(o1);//把o1作为o2 的原型创建对象。
+        o2.c = 3;
+
+        console.log(o2.a);//1
+        o2.run();
+
+        // 给对象o2增加了属性a。而不会改变原型上的属性
+        // o2.a = 50;
+        // console.log("o2.a",o2.a);//50
+        
+        // o2.__proto__.a = 100;//一般来说，不推荐这么干。
+        // console.log("o2.a",o2.a);//
+
+        // 删除
+        delete o2.a;
+        console.log("删除后：o2.a",o2.a);
+
+        // 子对象o3 自动拥有了父对象o1的所有属性和方法
+        let o3 =  Object.create(o1);
+
+        console.log(o3.a);//1
+        console.log("o3.a",o3.a);//1
+
+    </script>
+</body>
+
+</html>

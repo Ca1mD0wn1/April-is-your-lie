@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // call和apply继承：
+        // 只能继承父类构造函数里面的属性和方法。没法继承原型的属性和方法。
+
+        // 父类：Person
+        function Person(name,sex,books){
+            this.name = name;
+            this.sex =sex;
+            this.books = books;
+            // this.eat = function(str){
+            //     console.log(this.name+"在吃"+str);
+            // }
+        }
+
+        Person.prototype.eat = function(str){
+            console.log(this.name+"在吃"+str);
+        }
+
+        // 子类:Programmer
+        function Programmer(name,sex,books,language){
+            // this:就是 p1 。
+            Person.call(this,name,sex,books);//这句话没有把Person当作构造函数调用。
+            // Person.apply(this,[name,sex]);
+            Person.apply(this,arguments);
+            this.language = language;
+        }
+
+        let p1 = new Programmer("杨倩妮","女",["",""],"c++");
+        console.log(p1.name);
+        console.log(p1.sex);
+        console.log(p1.language);
+        // p1.eat("油泼面");
+
+        // console.dir(p1);
+
+        console.log(p1.constructor == Programmer);//true
+        console.log(p1 instanceof Programmer);//true        
+        console.log(p1 instanceof Person);//false
+      
+    </script>
+</body>
+</html>
